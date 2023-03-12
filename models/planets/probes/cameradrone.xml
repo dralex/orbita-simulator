@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:probe name="cameradrone" xmlns:v="venus">
+  <flight>
+    <mission name="Venus"/>
+    <time start="2013-11-25 22:12:00"/>
+    <start_height>250000.0</start_height>
+  </flight>
+  <parameters>
+	<radius_external>0.44</radius_external>
+	<radius_internal>0.41</radius_internal>
+	<absorber>ON</absorber>
+	<isolator>ON</isolator>
+  </parameters>
+  <devices>
+ <!--
+    <device number="1" name="camera" start_state="OFF" in_safe_mode="OFF"/>
+    <device number="2" name="camera" start_state="OFF" in_safe_mode="OFF"/>
+    <device number="2" name="generator" start_state="ON" in_safe_mode="OFF"/>
+    <device number="1" name="diagnadv" start_state="OFF" in_safe_mode="OFF"/>
+    <device number="1" name="spectrometr" start_state="OFF" in_safe_mode="OFF"/>
+    <device number="2" name="engine" start_state="OFF"/>
+    <device number="1" name="parachute" start_state="OFF"/>
+-->
+
+	<device number="1" name="heatshield" start_state="ON"/>
+    <device number="1" name="parachute" start_state="OFF"/>
+	<device number="1" name="parachute_armed" start_state="OFF"/>
+	<device number="1" name="camera" start_state="OFF"/>
+    <device number="1" name="generator" start_state="ON" in_safe_mode="ON"/>
+	<device number="2" name="generator" start_state="ON" in_safe_mode="ON"/>
+	<device number="1" name="damper" start_state="ON"/>	
+	<device number="1" name="transmitter" start_state="ON" in_safe_mode="ON"/>
+	<device number="1" name="diagn" start_state="ON" in_safe_mode="ON"/>
+	<device number="1" name="cpu" start_state="ON" in_safe_mode="ON"/>
+  </devices>
+  <program>
+    <stage id="Landing">
+      <command time="0" device="D1" action="PERIOD" argument="10"/>
+	  <command time="160" device="D1" action="PERIOD" argument="1"/>
+	  <command time="250" device="D1" action="PERIOD" argument="10"/>
+	  <command time="10" device="Hs1" action="TURNON"/>
+	  <command time="207" device="Hs1" action="TURNOFF"/>
+	  <command time="400" device="Fp1" action="TURNON"/>
+	  <command time="580" device="Fp1" action="TURNOFF"/>
+	  <command time="580" device="Pa1" action="TURNON"/>
+    </stage>
+    <stage id="Surface activity">
+      <command time="0" device="D1" action="PERIOD" argument="10"/>
+      <command time="0" device="C1" action="TURNON"/>
+    </stage>
+  </program>
+</v:probe>

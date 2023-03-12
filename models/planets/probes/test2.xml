@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:probe name="Россия-12" xmlns:v="venus">
+  <flight>
+    <mission name="Mars2" view="images" />
+    <time start="2015-10-08 12:50:16"/>
+    <start_height>85000</start_height>
+    <team>Марсоходы</team>
+    <tournament>7</tournament>
+  </flight>
+  <parameters>
+    <radius_external>1.000</radius_external>
+    <radius_internal>0.999</radius_internal>
+    <absorber>OFF</absorber>
+    <isolator>OFF</isolator>
+  </parameters>
+  <devices>
+    <device number="1" name="cpu" start_state="ON" in_safe_mode="ON"/>
+    <device number="1" name="generator" start_state="ON" in_safe_mode="ON"/>
+    <device number="2" name="accumulator" start_state="ON" in_safe_mode="ON"/>
+    <device number="1" name="fueltank_large" start_state="ON" in_safe_mode="ON"/>
+    <device number="1" name="engine_l" start_state="ON" in_safe_mode="ON"/>
+    <device number="1" name="moon_damper" start_state="ON" in_safe_mode="ON"/>
+    <device number="1" name="diagn" start_state="ON" in_safe_mode="ON"/>
+    <device number="1" name="parachute_supersonic" start_state="OFF" in_safe_mode="ON"/>
+    <device number="1" name="heatshield_light" start_state="ON" in_safe_mode="ON"/>
+    <device number="1" name="camera" start_state="ON" in_safe_mode="ON"/>
+    <device number="1" name="gas-chromatograph" start_state="ON" in_safe_mode="ON"/>
+    <device number="1" name="infrared_camera" start_state="ON" in_safe_mode="ON"/>
+    <device number="1" name="termometer" start_state="OFF" in_safe_mode="ON"/>
+    <device number="1" name="barometer" start_state="ON" in_safe_mode="ON"/>
+    <device number="1" name="mass-spectrometr" start_state="ON" in_safe_mode="ON"/>
+    <device number="1" name="solar_battery" start_state="OFF" in_safe_mode="ON"/>
+    <device number="1" name="wr_transmitter" start_state="ON" in_safe_mode="ON"/>
+    <device number="3" name="accumulator" start_state="OFF" in_safe_mode="ON"/>
+  </devices>
+  <program>
+    <stage id="Landing">
+      <command time="0" device="D1" action="PERIOD" argument="1"/>
+      <command time="0" device="Acm2" action="TURNON"/>
+      <command time="0" device="Hsl1" action="TURNON"/>
+      <command time="0" device="CPU1" action="TURNON"/>
+      <command time="0" device="WT1" action="TURNON"/>
+      <command time="229" device="FTL1" action="TURNON"/>
+      <command time="230" device="Hsl1" action="TURNOFF"/>
+      <command time="230" device="EL1" action="TURNON"/>
+      <command time="245" device="Pam1" action="TURNON"/>
+    </stage>
+    <stage id="Surface activity">
+      <command time="300" device="Sbe1" action="TURNON"/>
+      <command time="300" device="Brm1" action="PERIOD" argument="10"/>
+      <command time="300" device="Trm1" action="PERIOD" argument="10"/>
+      <command time="300" device="G1" action="TURNON"/>
+      <command time="300" device="C1" action="PERIOD" argument="10"/>
+      <command time="300" device="IRC1" action="PERIOD" argument="10"/>
+      <command time="300" device="GCh1" action="PERIOD" argument="10"/>
+      <command time="300" device="Acm2" action="TURNON"/>
+      <command time="300" device="Acm3" action="TURNON"/>
+      <command time="300" device="WT1" action="TURNON"/>
+      <command time="300" device="WT1" action="PERIOD" argument="10"/>
+      <command time="300" device="Brm1" action="TURNON"/>
+      <command time="300" device="C1" action="TURNON"/>
+      <command time="300" device="IRC1" action="TURNON"/>
+      <command time="360" device="WT1" action="TURNOFF"/>
+      <command time="360" device="Trm1" action="TURNOFF"/>
+      <command time="360" device="Brm1" action="TURNOFF"/>
+      <command time="360" device="C1" action="TURNOFF"/>
+      <command time="360" device="IRC1" action="TURNOFF"/>
+      <command time="54000" device="Sbe1" action="TURNOFF"/>
+      <command time="54000" device="MSS1" action="PERIOD" argument="100"/>
+      <command time="54000" device="Brm1" action="PERIOD" argument="10"/>
+      <command time="54000" device="Trm1" action="PERIOD" argument="10"/>
+      <command time="54000" device="C1" action="PERIOD" argument="100"/>
+      <command time="54000" device="IRC1" action="PERIOD" argument="100"/>
+      <command time="54000" device="WT1" action="TURNON"/>
+      <command time="54000" device="WT1" action="PERIOD" argument="10"/>
+      <command time="54000" device="C1" action="TURNON"/>
+      <command time="54000" device="IRC1" action="TURNON"/>
+      <command time="54000" device="MSS1" action="TURNON"/>
+      <command time="54000" device="Brm1" action="TURNON"/>
+      <command time="54000" device="Trm1" action="TURNON"/>
+      <command time="54120" device="WT1" action="TURNOFF"/>
+      <command time="54120" device="C1" action="TURNOFF"/>
+      <command time="54120" device="IRC1" action="TURNOFF"/>
+      <command time="54120" device="MSS1" action="TURNOFF"/>
+      <command time="54120" device="Brm1" action="TURNOFF"/>
+      <command time="54120" device="Trm1" action="TURNOFF"/>
+      <command time="79200" device="Trm1" action="PERIOD" argument="10"/>
+      <command time="79200" device="Brm1" action="PERIOD" argument="10"/>
+      <command time="79200" device="GCh1" action="PERIOD" argument="10"/>
+      <command time="79200" device="WT1" action="TURNON"/>
+      <command time="79200" device="WT1" action="PERIOD" argument="10"/>
+      <command time="79200" device="Trm1" action="TURNON"/>
+      <command time="79200" device="Brm1" action="TURNON"/>
+      <command time="79200" device="GCh1" action="TURNON"/>
+      <command time="79320" device="WT1" action="TURNOFF"/>
+      <command time="79320" device="Trm1" action="TURNOFF"/>
+      <command time="79320" device="Brm1" action="TURNOFF"/>
+      <command time="79320" device="GCh1" action="TURNOFF"/>
+    </stage>
+  </program>
+</v:probe>
+

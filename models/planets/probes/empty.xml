@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:probe name="empty" xmlns:v="venus">
+  <flight>
+    <mission name="Venus"/>
+    <time start="2013-11-25 22:12:00"/>
+    <start_height>250000.0</start_height>
+  </flight>
+  <parameters>
+	<radius_external>0.44</radius_external>
+	<radius_internal>0.41</radius_internal>
+	<absorber>ON</absorber>
+	<isolator>ON</isolator>
+  </parameters>
+  <devices>
+  </devices>
+  <program>
+    <stage id="Landing">
+    </stage>
+    <stage id="Surface activity">
+    </stage>
+  </program>
+</v:probe>

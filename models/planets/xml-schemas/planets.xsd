@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	    xmlns:v="venus" targetNamespace="venus">
+  <xsd:element name="planets">
+    <xsd:complexType>
+      <xsd:sequence>
+	      <xsd:element name="planet" minOccurs="1" maxOccurs="unbounded">
+		<xsd:complexType>
+		  <xsd:attribute name="name" type="xsd:string"/>
+		  <xsd:sequence>
+		    <xsd:element name="radius" minOccurs="1" maxOccurs="1"
+				 type="xsd:float"/>
+		    <xsd:element name="mass" minOccurs="1" maxOccurs="1"
+				 type="xsd:float"/>
+		    <xsd:element name="rotation" minOccurs="0" maxOccurs="1">
+		      <xsd:complexType>
+			<xsd:sequence>
+			  <xsd:element name="hours" minOccurs="1" maxOccurs="1"
+				       type="xsd:integer"/>
+			  <xsd:element name="minutes" minOccurs="1" maxOccurs="1"
+				       type="xsd:integer"/>
+			  <xsd:element name="seconds" minOccurs="1" maxOccurs="1"
+				       type="xsd:integer"/>
+			</xsd:sequence>
+		      </xsd:complexType>
+		    </xsd:element>
+		    <xsd:element name="atmosphere" minOccurs="1" maxOccurs="1">
+		      <xsd:complexType>
+			<xsd:sequence>
+			  <xsd:element name="height" minOccurs="1" maxOccurs="1"
+				       type="xsd:decimal"/>
+			  <xsd:element name="density_border" minOccurs="1" maxOccurs="1"
+				       type="xsd:decimal"/>
+			  <xsd:element name="T_ground" minOccurs="1" maxOccurs="1"
+				       type="xsd:decimal"/>
+			  <xsd:element name="T_grad" minOccurs="1" maxOccurs="1"
+				       type="xsd:decimal"/>
+			  <xsd:element name="P_ground" minOccurs="1" maxOccurs="1"
+				       type="xsd:decimal"/>
+			  <xsd:element name="P_coeff" minOccurs="1" maxOccurs="1"
+				       type="xsd:decimal"/>
+              <xsd:element name="C" minOccurs="0" maxOccurs="1"
+                       type="xsd:float"/>
+			</xsd:sequence>
+		      </xsd:complexType>
+		    </xsd:element>
+		  </xsd:sequence>
+		</xsd:complexType>
+	      </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

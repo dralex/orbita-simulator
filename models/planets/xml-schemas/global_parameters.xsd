@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	    xmlns:v="venus" targetNamespace="venus">
+  <xsd:element name="global_parameters">
+    <xsd:complexType>
+      <xsd:sequence>
+	<xsd:element name="G" minOccurs="1" maxOccurs="1"
+			   type="xsd:float"/>
+	<xsd:element name="MaxLaunchTime" minOccurs="1" maxOccurs="1"
+			   type="xsd:integer"/>
+	<xsd:element name="missions">
+	  <xsd:complexType>
+	    <xsd:sequence>
+	      <xsd:element name="mission" minOccurs="1" maxOccurs="unbounded">
+		<xsd:complexType>
+		  <xsd:attribute name="name" type="xsd:string"/>
+		  <xsd:attribute name="full_name" type="xsd:string"/>
+		  <xsd:sequence>
+		    <xsd:element name="planet" minOccurs="1" maxOccurs="1"
+				 type="xsd:string"/>
+		    <xsd:element name="models" minOccurs="1" maxOccurs="1"
+				 type="xsd:string"/>
+		    <xsd:element name="devices" minOccurs="1" maxOccurs="1"
+				 type="xsd:string"/>
+		    <xsd:element name="start_braking_koeff" minOccurs="1" maxOccurs="1"
+				 type="xsd:decimal"/>
+		    <xsd:element name="max_mass" minOccurs="1" maxOccurs="1"
+				 type="xsd:decimal"/>
+		    <xsd:element name="max_radius" minOccurs="1" maxOccurs="1"
+				 type="xsd:decimal"/>
+		    <xsd:element name="max_length" minOccurs="0" maxOccurs="1"
+				 type="xsd:decimal"/>
+		    <xsd:element name="max_acceleration" minOccurs="1" maxOccurs="1"
+				 type="xsd:decimal"/>
+	      	    <xsd:element name="T_start" minOccurs="1" maxOccurs="1"
+				 type="xsd:decimal"/>
+		    <xsd:element name="aerodynamic_coeff" minOccurs="0" maxOccurs="1"
+				 type="xsd:decimal"/>
+		    <xsd:element name="construction" minOccurs="1" maxOccurs="1">
+		      <xsd:complexType>
+			<xsd:sequence>
+			  <xsd:element name="density" minOccurs="1" maxOccurs="1"
+				       type="xsd:decimal"/>		    
+			  <xsd:element name="program" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+			</xsd:sequence>
+		      </xsd:complexType>
+		    </xsd:element>
+		    <xsd:element name="isolator" minOccurs="0" maxOccurs="1">
+		      <xsd:complexType>
+			<xsd:sequence>
+			  <xsd:element name="k" minOccurs="1" maxOccurs="1"
+				       type="xsd:decimal"/>
+			  <xsd:element name="density" minOccurs="1" maxOccurs="1"
+				       type="xsd:decimal"/>		    
+			</xsd:sequence>
+		      </xsd:complexType>
+		    </xsd:element>
+		    <xsd:element name="absorber" minOccurs="0" maxOccurs="1">
+		      <xsd:complexType>
+			<xsd:sequence>
+			  <xsd:element name="state" minOccurs="1" maxOccurs="1">
+			    <xsd:simpleType>
+			      <xsd:restriction base="xsd:string">
+				<xsd:enumeration value="hard"/>
+				<xsd:enumeration value="liquid"/>
+			      </xsd:restriction>
+			    </xsd:simpleType>
+			  </xsd:element>
+			  <xsd:element name="density" minOccurs="1" maxOccurs="1"
+				       type="xsd:decimal"/>
+			  <xsd:element name="T_melting" minOccurs="1" maxOccurs="1"
+				       type="xsd:decimal"/>
+			  <xsd:element name="L" minOccurs="1" maxOccurs="1"
+				       type="xsd:decimal"/>
+			  <xsd:element name="C_hard" minOccurs="1" maxOccurs="1"
+				       type="xsd:decimal"/>
+			  <xsd:element name="C_liquid" minOccurs="1" maxOccurs="1"
+				       type="xsd:decimal"/>
+			</xsd:sequence>
+		      </xsd:complexType>
+		    </xsd:element>
+		    <xsd:element name="surface_max_time" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+		    <xsd:element name="score" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+            <xsd:element name="result" minOccurs="1" maxOccurs="1" type="xsd:string"/>
+		    <xsd:element name="launch" minOccurs="0" maxOccurs="1">
+		      <xsd:complexType>
+                <xsd:sequence>
+                  <xsd:element name="target_distance" minOccurs="0" maxOccurs="1"
+                           type="xsd:integer"/>
+                  <xsd:element name="accuracy" minOccurs="0" maxOccurs="1"
+                           type="xsd:decimal"/>
+                  <xsd:element name="cycles" minOccurs="1" maxOccurs="1"
+                           type="xsd:integer"/>
+                  <xsd:element name="max_height" minOccurs="1" maxOccurs="1"
+                           type="xsd:integer"/>
+                  <xsd:element name="max_wait_time" minOccurs="1" maxOccurs="1"
+                           type="xsd:integer"/>
+                </xsd:sequence>
+		      </xsd:complexType>
+		    </xsd:element>
+		  </xsd:sequence>
+		</xsd:complexType>
+	      </xsd:element>
+	    </xsd:sequence>
+	  </xsd:complexType>
+	</xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

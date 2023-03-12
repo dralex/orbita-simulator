@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	    xmlns:v="venus" targetNamespace="venus">
+  <xsd:element name="devices">
+    <xsd:complexType>
+      <xsd:sequence>
+	<xsd:element name="device" minOccurs="1" maxOccurs="unbounded">
+	  <xsd:complexType>
+	    <xsd:sequence>
+	      <xsd:element name="type" minOccurs="1" maxOccurs="1">
+		<xsd:simpleType>
+		  <xsd:restriction base="xsd:string">
+		    <xsd:enumeration value="Generators"/>
+		    <xsd:enumeration value="Transmitters"/>
+		    <xsd:enumeration value="Base diagnostics"/>
+		    <xsd:enumeration value="Advanced diagnostics"/>
+		    <xsd:enumeration value="Scientific equipment"/>
+		    <xsd:enumeration value="Control"/>
+		    <xsd:enumeration value="Engines"/>
+		    <xsd:enumeration value="Fuel tanks"/>
+		    <xsd:enumeration value="Parachutes"/>
+            <xsd:enumeration value="Dampers"/>
+            <xsd:enumeration value="Accumulators"/>
+            <xsd:enumeration value="Solar panels"/>
+		  </xsd:restriction>
+		</xsd:simpleType>
+	      </xsd:element>
+	      <xsd:element name="mass" type="xsd:decimal"  minOccurs="1" maxOccurs="1"/>
+	      <xsd:element name="volume" type="xsd:decimal"  minOccurs="1" maxOccurs="1"/>
+	      <xsd:element name="power_generation" type="xsd:float" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="solar_power" type="xsd:float" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="capacity" type="xsd:float"  minOccurs="0" maxOccurs="1"/>
+	      <xsd:element name="period_min" type="xsd:positiveInteger" minOccurs="0" maxOccurs="1"/>
+	      <xsd:element name="period_max" type="xsd:positiveInteger" minOccurs="0" maxOccurs="1"/>
+	      <xsd:element name="traffic_generation" type="xsd:float" minOccurs="0" maxOccurs="1"/>
+	      <xsd:element name="critical_temperature" type="xsd:float" minOccurs="1" maxOccurs="1"/>
+	      <xsd:element name="fuel_speed" type="xsd:float" minOccurs="0" maxOccurs="1"/>
+	      <xsd:element name="traction" type="xsd:float" minOccurs="0" maxOccurs="1"/>
+	      <xsd:element name="max_speed" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="energy_compensation" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+	      <xsd:element name="parachute_square" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+	      <xsd:element name="scientific_limit" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+	      <xsd:element name="thermal_protection" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+	      <xsd:element name="k_spring" type="xsd:float" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="m_spring" type="xsd:float" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="max_springs" type="xsd:positiveInteger" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="max_springs_length" type="xsd:float" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="custom" type="xsd:boolean" minOccurs="0" maxOccurs="1"/>
+          <xsd:element name="custom_param" minOccurs="0" maxOccurs="unbounded">
+                <xsd:simpleType>
+                    <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="springs_length"/>
+                        <xsd:enumeration value="springs"/>
+                    </xsd:restriction>
+                </xsd:simpleType>
+	      </xsd:element>
+	    </xsd:sequence>
+	    <xsd:attribute name="name" type="xsd:string"/>
+	    <xsd:attribute name="full_name" type="xsd:string"/>
+	    <xsd:attribute name="code" type="xsd:string"/>
+	  </xsd:complexType>
+	</xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

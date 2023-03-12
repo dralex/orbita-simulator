@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:probe name="Struchochek" xmlns:v="venus">
+  <flight>
+    <mission name="Mars2"/>
+    <start_height>80000.0</start_height>
+  </flight>
+  <parameters>
+    <radius_external>0.811</radius_external>
+    <radius_internal>0.81</radius_internal>
+    <absorber>OFF</absorber>
+    <isolator>OFF</isolator>
+  </parameters>
+  <devices>
+    <device number="1" name="generator" start_state="ON" in_safe_mode="ON"/>
+    <device number="2" name="generator" start_state="ON" in_safe_mode="ON"/>
+    <device number="1" name="damper" start_state="ON"/>	
+    <device number="1" name="transmitter" start_state="ON" in_safe_mode="ON"/>
+    <device number="1" name="transmitter" start_state="ON" in_safe_mode="ON"/>
+    <device number="1" name="cpu" start_state="ON" in_safe_mode="ON"/>
+    <device number="1" name="engine_g" start_state="OFF" in_safe_mode="OFF"/>
+    <device number="1" name="fueltank" start_state="ON" in_safe_mode="ON"/>
+    <device number="2" name="fueltank" start_state="ON" in_safe_mode="ON"/>
+    <device number="1" name="parachute_supersonic" start_state="OFF" in_safe_mode="ON"/>
+    <device number="1" name="heatshield_light" start_state="ON" in_safe_mode="ON"/>
+    <device number="1" name="camera" start_state="OFF"/>
+    <device number="1" name="infrared_camera" start_state="OFF"/>
+    <device number="1" name="videocamera" start_state="OFF"/>
+    <device number="1" name="radiometer" start_state="OFF"/>
+    <device number="1" name="magnetometer" start_state="OFF"/>
+  </devices>
+  <program>
+    <stage id="Landing">
+      <command time="241" device="Hsl1" action="TURNOFF"/>
+      <command time="241" device="Pam1" action="TURNON"/>
+      <command time="265" device="EG1" action="TURNON"/>
+    </stage>
+    <stage id="Surface activity">
+      <command time="0" device="EG1" action="TURNOFF"/>
+      <command time="0" device="C1" action="TURNON"/>
+      <command time="0" device="IRC1" action="TURNON"/>
+      <command time="30000" device="IRC1" action="TURNOFF"/>
+      <command time="30000" device="Mgm1" action="TURNON"/>
+      <command time="32500" device="C1" action="TURNOFF"/>
+      <command time="32500" device="VC1" action="TURNON"/>
+      <command time="59167" device="VC1" action="TURNOFF"/>
+      <command time="59167" device="Rm1" action="TURNON"/>
+    </stage>
+  </program>
+</v:probe>

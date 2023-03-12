@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:probe name="Phoenix" xmlns:v="venus">
+  <flight>
+    <mission name="Mars"/>
+    <start_height>90000.0</start_height>
+  </flight>
+  <parameters>
+	<radius_external>0.811</radius_external>
+    <radius_internal>0.81</radius_internal>
+	<absorber>OFF</absorber>
+    <isolator>OFF</isolator>
+  </parameters>
+  <devices>
+	<device number="1" name="camera" start_state="OFF"/>
+    <device number="1" name="accumulator" start_state="ON" in_safe_mode="ON"/>
+    <device number="1" name="solar_battery" start_state="ON" in_safe_mode="ON"/>
+	<device number="1" name="damper" start_state="ON"/>	
+	<device number="1" name="transmitter" start_state="ON" in_safe_mode="ON"/>
+	<device number="1" name="diagn" start_state="ON" in_safe_mode="ON"/>
+	<device number="1" name="cpu" start_state="ON" in_safe_mode="ON"/>
+	<device number="1" name="engine_l" start_state="OFF" in_safe_mode="OFF"/>
+	<device number="1" name="fueltank" start_state="ON" in_safe_mode="ON"/>
+	<device number="1" name="parachute_supersonic" start_state="OFF" in_safe_mode="ON"/>
+	<device number="1" name="heatshield_light" start_state="ON" in_safe_mode="ON"/>
+	</devices>
+  <program>
+    <stage id="Landing">
+      <command time="0" device="D1" action="PERIOD" argument="10"/>
+      <command time="257" device="Hsl1" action="TURNOFF"/>
+      <command time="257" device="Pam1" action="TURNON"/>
+      <command time="320" device="EL1" action="TURNON"/>
+      <command time="330" device="EL1" action="TURNOFF"/>
+    </stage>
+    <stage id="Surface activity">
+      <command time="0" device="D1" action="PERIOD" argument="10"/>	  
+    </stage>
+  </program>
+</v:probe>

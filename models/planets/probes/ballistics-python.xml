@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:probe name="Баллистика-14" xmlns:v="venus">
+  <flight>
+    <mission name="Ballistics" view="images" />
+    <time start="2016-11-28 18:02:24"/>
+    <start_height></start_height>
+    
+        <target_distance>1600000.0</target_distance><team>Тестовая</team>
+    <tournament>1</tournament>
+  </flight>
+  <parameters>
+    <radius_external>1.100</radius_external>
+    <radius_internal>1.099</radius_internal>
+    <absorber>OFF</absorber>
+    <isolator>OFF</isolator>
+  </parameters>
+  <devices>
+    <device number="1" name="accumulator" start_state="ON" in_safe_mode="ON"/>
+    <device number="1" name="cpu" start_state="ON" in_safe_mode="ON"/>
+    <device number="1" name="diagn" start_state="ON" in_safe_mode="ON"/>
+    <device number="1" name="engine_rd" start_state="OFF" in_safe_mode="OFF"/>
+    <device number="1" name="fueltank_large" start_state="ON" in_safe_mode="ON"/>
+    <device number="2" name="fueltank_large" start_state="ON" in_safe_mode="ON"/>
+    <device number="3" name="fueltank_large" start_state="ON" in_safe_mode="ON"/>
+    <device number="4" name="fueltank_large" start_state="ON" in_safe_mode="ON"/>
+    <device number="5" name="fueltank_large" start_state="ON" in_safe_mode="ON"/>
+    <device number="1" name="transmitter" start_state="ON" in_safe_mode="ON"/>
+  </devices>
+  <python_code><![CDATA[t_off = 30
+start_angle = 45
+
+probe.engine_set_angle('ERD1', start_angle)
+probe.set_device_state('ERD1', STATE_ON)
+engine = True
+
+probe.set_device_period('D1', 10)
+
+while probe.run():
+    t = probe.cpu_get_flight_time()
+    if engine and t >= t_off:
+        probe.set_device_state('ERD1', STATE_OFF)
+        engine = False
+        continue
+]]></python_code>
+
+</v:probe>

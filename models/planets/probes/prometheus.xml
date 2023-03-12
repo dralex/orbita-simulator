@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:probe name="Mercury" xmlns:v="venus">
+  <flight>
+    <mission name="Mercury"/>
+    <start_height>100000.0</start_height>
+  </flight>
+  <parameters>
+	<radius_external>1.171</radius_external>
+    <radius_internal>1.17</radius_internal>
+	<absorber>OFF</absorber>
+    <isolator>OFF</isolator>
+  </parameters>
+  <devices>
+	<device number="1" name="camera" start_state="ON"/>
+    <device number="1" name="generator" start_state="ON" in_safe_mode="ON"/>
+	<device number="2" name="generator" start_state="ON" in_safe_mode="ON"/>
+	<device number="3" name="generator" start_state="ON" in_safe_mode="ON"/>
+	<device number="4" name="generator" start_state="ON" in_safe_mode="ON"/>
+	<device number="5" name="generator" start_state="ON" in_safe_mode="ON"/>
+	<device number="1" name="damper" start_state="ON"/>	
+	<device number="1" name="transmitter" start_state="ON" in_safe_mode="ON"/>
+	<device number="1" name="diagn" start_state="ON" in_safe_mode="ON"/>
+	<device number="1" name="cpu" start_state="ON" in_safe_mode="ON"/>
+	<device number="1" name="engine_g" start_state="OFF" in_safe_mode="OFF"/>
+	<device number="2" name="engine_g" start_state="OFF" in_safe_mode="OFF"/>	
+	<device number="1" name="fueltank_large" start_state="ON" in_safe_mode="ON"/>
+	<device number="2" name="fueltank_large" start_state="ON" in_safe_mode="ON"/>
+	<device number="3" name="fueltank_large" start_state="ON" in_safe_mode="ON"/>
+	<device number="4" name="fueltank_large" start_state="ON" in_safe_mode="ON"/>
+	<device number="1" name="videocamera" start_state="ON" in_safe_mode="OFF"/>
+	<device number="1" name="spectrometr" start_state="ON" in_safe_mode="OFF"/>
+	<device number="1" name="radiometer" start_state="ON" in_safe_mode="OFF"/>
+	</devices>
+  <program>
+    <stage id="Landing">
+      <command time="0" device="D1" action="PERIOD" argument="10"/>
+	  <command time="169" device="EG1" action="TURNON"/>
+	  <command time="169" device="EG2" action="TURNON"/>
+	  <command time="323" device="EG2" action="TURNOFF"/>
+	  <command time="323" device="EG1" action="TURNOFF"/>
+	  <command time="330" device="EG1" action="TURNON"/>
+    </stage>
+    <stage id="Surface activity">
+      <command time="0" device="D1" action="PERIOD" argument="10"/>
+    </stage>
+  </program>
+</v:probe>

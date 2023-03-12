@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+//option py_generic_services = true;
+
+enum Error {
+    ERROR_UNKNOWN = 0;
+    ERROR_SYSTEM_NOT_AVAIL = -1;
+    ERROR_NOT_SUPPORTED = -2;
+    ERROR_BAD_PARAMETERS = -3;
+}
+
+enum State {
+    STATE_NOT_INITIALIZED = 0;
+    STATE_OFF = 1;
+    STATE_ON = 2;
+    STATE_DEAD = 3;
+}
+
+enum System {
+    SYSTEM_NONE = 0;
+}
+
+enum Command {
+    CALL_NONE = 0;
+
+    CALL_RUN = 1;
+    CALL_GET_DEVICE_STATE = 2;
+    CALL_SET_DEVICE_STATE = 3;
+    CALL_GET_DEVICE_PERIOD = 4;
+    CALL_SET_DEVICE_PERIOD = 5;
+
+    CALL_CPU_GET_FLIGHT_TIME = 11;
+    CALL_CPU_DROP_STAGE = 12;
+
+    CALL_TELEMETRY_SEND_MESSAGE = 21;
+
+    CALL_NAVI_GET_ACCEL = 31;
+    CALL_NAVI_HAS_LANDED = 32;
+
+    CALL_POWER_GET_BATTERY_CAPACITY = 41;
+    CALL_POWER_GET_GENERATION = 42;
+    CALL_POWER_GET_CONSUMPTION = 43;
+
+    CALL_TRANSMITTER_GET_BANDWIDTH = 51;
+    CALL_TRANSMITTER_GET_TRAFFIC = 52;
+
+    CALL_HC_GET_EXT_TEMPERATURE = 61;
+
+    CALL_ENGINE_GET_FUEL = 71;
+    CALL_ENGINE_SET_ANGLE = 72;
+}
+
+message Payload {
+    oneof Types {
+        bool boolean = 1;
+        int32 integer = 2;
+        double real = 3;
+        string text = 4;
+        bytes data = 5;
+    }
+}
+
+message Request {
+    System system = 1;
+    Command command = 2;
+    repeated Payload arguments = 3;
+}
+
+message Response {
+    oneof Outcomes {
+        Error error = 1;
+        Payload result = 2;
+    }
+}
+
+service ProbeService {
+    rpc MakeCall (Request) returns (Response);
+}

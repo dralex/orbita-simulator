@@ -1,0 +1,4 @@
+pyxb
+posix_ipc
+matplotlib
+protobuf

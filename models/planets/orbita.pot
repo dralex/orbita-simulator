@@ -1,0 +1,835 @@
+# -*- coding: utf-8 -*- 
+# Orbita localization file.
+# Copyright (C) Alexey Fedoseev <aleksey@fedoseev.net>, 2023
+
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2023-03-12 10:30+0300\n"
+"PO-Revision-Date: 2023-03-12 10:30+0300\n"
+"Last-Translator: Alexey Fedoseev <aleksey@fedoseev.net>\n"
+"Language-Team: Russian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+
+#: data.py:115
+msgid "Cannot decode parameters. Similar missions names: {}"
+msgstr "Невозможно загрузить глобальные параметры. Однаковые названия миссий: {}"
+
+#: data.py:124
+msgid "Cannot load parameters: bad xml document"
+msgstr "Невозможно загрузить глобальные параметры: плохой XML-документ"
+
+#: data.py:126
+msgid "Cannot load parameters: error in %s"
+msgstr "Невозможно загрузить глобальные параметры: ошибка в %s"
+
+#: data.py:128
+msgid "Parameters loaded successfully."
+msgstr "Глобальные параметры загружены."
+
+#: data.py:139
+msgid "Cannot decode planets. Similar planets names: {}"
+msgstr "Невозможно загрузить миссии. Одинаковые названия миссий: {}"
+
+#: data.py:146
+msgid "Cannot load planets: bad xml document"
+msgstr "Невозможно загрузить миссии: плохой XML-документ"
+
+#: data.py:148
+msgid "Cannot load planets: error in %s"
+msgstr "Невозможно зарузить миссии: ошибка в %s"
+
+#: data.py:150
+msgid "Planets loaded successfully."
+msgstr "Миссии загружены."
+
+#: data.py:167
+msgid "Cannot decode config. Similar mission names: %s"
+msgstr "Невозможно загрузить конфигурацию. Одинаковые названия миссий: %s"
+
+#: data.py:171
+msgid "Cannot load config: bad xml document"
+msgstr "Невозможно загрузить конфигурацию: плохой XML-документ"
+
+#: data.py:173
+msgid "Cannot load config: error in %s"
+msgstr "Невозможно загрузить конфигурацию: ошибка в %s"
+
+#: data.py:175
+msgid "Config loaded successfully."
+msgstr "Конфигурация загружена."
+
+#: data.py:185
+msgid "Cannot decode devices. Similar device names: %s"
+msgstr "Ошибка декодирования параметров устройств: несколько устройств с одним именем %s"
+
+#: data.py:189
+msgid "Cannot load devices: bad xml document"
+msgstr "Ошибка загрузки устройств: плохой XML-документ"
+
+#: data.py:191
+msgid "Cannot load devices: error %s in %s"
+msgstr "Ошибка загрузки устройств: ошибка %s в %s"
+
+#: data.py:301
+msgid "negative power balance %d, going to safe mode"
+msgstr "Отрицательный баланс энергии %d. Аппарат переходит в Экономичный режим"
+
+#: data.py:324
+msgid "device %s started transmission"
+msgstr "Устройство %s начало передачу"
+
+#: data.py:342
+msgid "device {} stopped transmitting due to bandwidth limit"
+msgstr "Устройство {} остановило передачу из-за превышения пропускной способности канала"
+
+#: data.py:345
+msgid "device {} stopped transmitting"
+msgstr "Устройство {} остановило передачу"
+
+#: data.py:369
+msgid "fuel tank {} is empty, fuel left: {:05}"
+msgstr "Топливный бак {} пуст, остатки топлива: {:05}"
+
+#: data.py:398
+msgid "Accumulator %s is empty"
+msgstr "Аккумулятор %s разряжен"
+
+#: data.py:437
+msgid "Damper %s used successfully! Velocity %3.2f"
+msgstr "Демпфер %s успешно активирован при посадке. Скорость: %3.2f м/с"
+
+#: data.py:444
+msgid "Damper %s collapsed! Compression %f > 1/2 of springs length"
+msgstr "Демпфер %s разрушен! Сжатие %f > 1/2 от длинны пружины"
+
+#: data.py:462
+msgid "CPU is dead"
+msgstr "Центральный процессор вышел из строя"
+
+#: data.py:466
+msgid "No working CPU device found"
+msgstr "В аппарате отсутствует работающий Центральный процессор"
+
+#: data.py:472
+msgid "device %s has burn"
+msgstr "Устройство %s вышло из строя из-за перегрева"
+
+#: data.py:482 data.py:525
+msgid "dropping parachute %s because of speed limit: V = %f, maxV = %f"
+msgstr "Парашют %s сорван: скорость потока %f превыcила ограничение по скорости %f"
+
+#: data.py:518
+msgid "device %s is turned on"
+msgstr "Устройство %s включено"
+
+#: data.py:533
+msgid "dropping entangled parachutes: %s and %s"
+msgstr "Запутавшиеся парашюты %s и %s были отброшены"
+
+#: data.py:547
+msgid "device %s has %s"
+msgstr "Устройство %s имеет %s"
+
+#: data.py:552
+msgid "device %s dropped %s"
+msgstr "Устройство %s отброшено %s"
+
+#: data.py:555
+msgid "dropping stage %s "
+msgstr "Отделение ступени %s "
+
+#: data.py:562
+msgid "dropping stage %s failed: stage not found"
+msgstr "Отделение ступени %s невозможно: ступень не найдена"
+
+#: data.py:573
+msgid "dropping entangled parachutes: %s"
+msgstr "Сбрасываем запутавшийся парашют %s"
+
+#: data.py:584
+msgid "parachute %s has dropped"
+msgstr "Парашют %s был отброшен"
+
+#: data.py:589
+msgid "device %s is turned off"
+msgstr "Устройство %s выключено"
+
+#: data.py:595
+msgid "double safe mode!"
+msgstr "Двойное включение Экономичного режима!"
+
+#: data.py:625
+msgid "cannot find device %s (stage %s, time %d, command %s)"
+msgstr ""
+
+#: data.py:640
+msgid "%s: command %s with device %s%s"
+msgstr "%s: команда %s для устройства %s%s"
+
+#: data.py:643
+msgid " param "
+msgstr " параметр "
+
+#: data.py:645
+msgid "command error: trying to activate dead device"
+msgstr "Ошибка программы: попытка активировать вышедшее из строя устройство"
+
+#: data.py:653
+msgid "setting period to %d"
+msgstr "Установка периода в %d"
+
+#: data.py:656
+msgid "error: period %d does not fit the device period limits [%d:%d]"
+msgstr "Ошибка: период %d превышает возможный диапазон периодов для устройства [%d:%d]"
+
+#: data.py:664
+msgid "error: engine %s angle too large: %0.1f; max %0.1f allowed"
+msgstr "Ошибка: угол двигателя %s очень большой: %0.1f; максимально допустимая величина %0.1f"
+
+#: data.py:667
+msgid "command error: trying to set angle for non-engine device %s"
+msgstr "Ошибка программы: попытка задать угол поворота для устройства %s, не являющегося двигателем"
+
+#: data.py:677
+msgid "turning off engine/parachute %s on landing"
+msgstr "Выключение двигателя/парашюта %s после приземления"
+
+#: data.py:715
+msgid "Cannot setup logs. Unknown stage %s"
+msgstr "Невозможно задать журнал для неизвестного состояния %s"
+
+#: data.py:872
+msgid "incorrect springs number in device %s, max %i allowed "
+msgstr "Неверное число витков пружины устройства %s: максимально возможное число %i "
+
+#: data.py:875
+msgid "incorrect springs length in device %s, max %d allowed "
+msgstr "Неверная длина пружины устройства %s: максимально возможная длина %d"
+
+#: data.py:882
+msgid "incorrect custom device %s "
+msgstr "Настраиваемое устройство %s с ошибкой"
+
+#: data.py:917
+msgid "error decoding probe %s. target distance %d is too large"
+msgstr "Ошибка загрузки аппарата %s: целевое расстояние %d очень велико"
+
+#: data.py:934
+msgid "error decoding probe %s. wrong stage order of %s"
+msgstr "Ошибка загрузки аппарата %s: неправильный порядок ступеней %s"
+
+#: data.py:940
+msgid "error decoding probe %s. unknown device %s"
+msgstr "Ошибка загрузки аппарата %s: неизвестное устройство %s"
+
+#: data.py:943
+msgid "device %s is not available in mission %s"
+msgstr "Устройство %s не может быть использовано в миссии %s"
+
+#: data.py:955
+msgid "error decoding probe %s. wrong stage of device %s %s; stage %s does not exist"
+msgstr "Ошибка загрузки аппарата %s: неверное состояние устройства %s %s; состояние %s не существует"
+
+#: data.py:997
+msgid "more than one parachutes (%s) turned on from the beginning"
+msgstr "Больше одного парашюта (%s) включено с начала миссии"
+
+#: data.py:1005
+msgid "the heatshield %s should be turned on from the beginning"
+msgstr "Тепловой щит %s должен быть включен с начала миссии"
+
+#: data.py:1008
+msgid "there are more than one heatshield %s installed"
+msgstr "На аппарате установлен более чем один тепловой щит %s"
+
+#: data.py:1036
+msgid "probe %s has no start_height flight parameter"
+msgstr "Аппарат %s не имеет параметра стартовой высоты (start_height)"
+
+#: data.py:1067
+msgid "Cannot load probe %s: bad xml-document"
+msgstr "Ошибка загрузки аппарата %s: плохой XML-документ"
+
+#: data.py:1069
+msgid "Cannot load probe %s: error %s in %s"
+msgstr "Ошибка загрузки аппарата %s: ошибка %s в %s"
+
+#: data.py:1077
+msgid "Probe %s was loaded successfully."
+msgstr "Аппарат %s был успешно загружен."
+
+#: data.py:1090
+msgid "No CPU device found"
+msgstr "Не найден Центральный процессор"
+
+#: data.py:1093
+msgid "probe error: probe internal radius %.3f m should not be more than external radius %.3f m"
+msgstr "Ошибка конструкции аппарата: внутренний радиус аппарата %.3f м должен быть меньше, чем внешний радиус %.3f м"
+
+#: data.py:1097
+msgid "probe error: probe radius %.3f m is greater than size limit %.3f m"
+msgstr "Ошибка конструкции аппарата: радиус аппарата %.3f больше, чем максимально допустимый радиус %.3f м"
+
+#: data.py:1101
+msgid "probe error: probe length %.3f m is greater than size limit %.3f m"
+msgstr "Ошибка конструкции аппарата: размер аппарата %.3f больше, чем максимально допустимый размер %.3f м"
+
+#: data.py:1105
+msgid "probe error: total devices volume %.3f m^3 is greater than internal volume %.3f m^3"
+msgstr "Ошибка конструкции аппарата: общий объем устройств %.3f куб.м больше, чем объем внутренней сферы %.3f куб.м"
+
+#: data.py:1111
+msgid "probe error: stage \"%s\" devices volume %.3f m^3 is greater than internal volume %.3f m^3"
+msgstr "Ошибка конструкции аппарата: объем устройств ступени \"%s\" %.3f куб.м превышает ограничения по внутреннему объему %.3f куб.м"
+
+#: data.py:1115
+msgid "probe error: probe stage \"%s\" radius %.3f m is greater than size limit %.3f m"
+msgstr "Ошибка конструкции аппарата: радиус ступени \"%s\" %.3f м превышает ограничения по размеру %.3f м"
+
+#: data.py:1119
+msgid "probe error: probe total mass %.3f kg is greater than mass limit %.3f kg"
+msgstr "Ошибка конструкции аппарата: общая масса аппарата %.3f кг превышает ограничения по массе %.3f кг"
+
+#: data.py:1126
+msgid "Device name %s, code %s"
+msgstr "Устройство %s, код %s"
+
+#: data.py:1130
+msgid "Global parameters:"
+msgstr "Глобальные параметры модели"
+
+#: data.py:1131
+msgid "\tG: %.4e kg m^3 / (c^2)"
+msgstr "\tG: %.4e кг куб.м / кв.с"
+
+#: data.py:1134
+msgid "\tMission: %s"
+msgstr "\tМиссия: %s"
+
+#: data.py:1135
+msgid "\tPlanet: %s"
+msgstr "\tПланета: %s"
+
+#: data.py:1136
+msgid "\t\tRadius: %.4f m,"
+msgstr "\t\tРадиус: %.4f м,"
+
+#: data.py:1137
+msgid "\t\tMass: %.4e kg"
+msgstr "\t\tМасса: %.4e кг"
+
+#: data.py:1138
+msgid "\t\tAtmosphere height: %.2f m"
+msgstr "\t\tВысота атмосферы: %.2f м"
+
+#: data.py:1139
+msgid "\t\tAtmosphere border: %.2f m"
+msgstr "\t\tГраница атмосферы: %.2f м"
+
+#: data.py:1142
+msgid "\t\tGround temperature: %.2f K"
+msgstr "\t\tТемпература у поверхности: %.2f К"
+
+#: data.py:1143
+msgid "\t\tGround pressure: %.2f Pa"
+msgstr "\t\tДавление у поверхности: %.2f Па"
+
+#: data.py:1144
+msgid "\t\tStart braking koeff: %.2f"
+msgstr "\t\tКоэффициент начального торможения: %.2f"
+
+#: data.py:1145
+msgid "\t\tMax acceleration: %.2f"
+msgstr "\t\tМаксимальное ускорение: %.2f"
+
+#: data.py:1148
+msgid "Global config:"
+msgstr "Глобальные настройки:"
+
+#: data.py:1149
+msgid "\tLogging"
+msgstr "\tЖурнал"
+
+#: data.py:1150
+msgid "\t\tMission: %s"
+msgstr "\t\tМиссия: %s"
+
+#: data.py:1152
+msgid "\t\t\tLanding:"
+msgstr "\t\t\tЭтап посадки:"
+
+#: data.py:1153 data.py:1164
+msgid "\t\t\t\tMission log:"
+msgstr "\t\t\t\tЖурнал телеметрии:"
+
+#: data.py:1154 data.py:1165
+msgid "\t\t\t\t\tDiagnostics: %s"
+msgstr "\t\t\t\t\tДиагностика: %s"
+
+#: data.py:1156 data.py:1167
+msgid "\t\t\t\t\tAdv. Diagnostics: %s"
+msgstr "\t\t\t\t\tРасш. диагностика: %s"
+
+#: data.py:1158 data.py:1169
+msgid "\t\t\t\tDebug log: %s"
+msgstr "\t\t\t\tЖурнал отладки: %s"
+
+#: data.py:1161
+msgid "\t\t\tLanding log undefined"
+msgstr "\t\t\tЖурнал посадки не задан"
+
+#: data.py:1163
+msgid "\t\t\tSurface activity:"
+msgstr "\t\t\tЭтап работы на поверхности:"
+
+#: data.py:1172
+msgid "\t\t\tSurface activity log undefined"
+msgstr "\t\t\tЖурнал работы на поверхности не задан"
+
+#: data.py:1177
+msgid "Probe %s:"
+msgstr "Аппарат %s:"
+
+#: data.py:1178
+msgid "\tTeam: %s"
+msgstr "\tКоманда: %s"
+
+#: data.py:1179
+msgid "\tTournament: %s"
+msgstr "\tТурнир: %s"
+
+#: data.py:1181
+msgid "\tConstant parameters:"
+msgstr "\tПостоянные параметры: %s"
+
+#: data.py:1182
+msgid "\t\tConstruction density: %.4f kg / m^3"
+msgstr "\t\tПлотность конструкции: %.4f кг / куб.м"
+
+#: data.py:1185
+msgid "\t\tIsolator:"
+msgstr "\t\tИзолятор:"
+
+#: data.py:1186
+msgid "\t\t\tK: %.4f W / (m K)"
+msgstr "\t\t\tK: %.4f Вт / (м К)"
+
+#: data.py:1188
+msgid "\t\tAbsorber:"
+msgstr "\t\tТеплопоглотитель:"
+
+#: data.py:1189
+msgid "\t\t\tState: %s"
+msgstr "\t\t\tСостояние: %s"
+
+#: data.py:1190
+msgid "\t\t\tDensity: %s kg / m^3"
+msgstr "\t\t\tПлотоность: %s кг / куб.м"
+
+#: data.py:1191
+msgid "\t\t\tMelting temperature: %s К"
+msgstr "\t\t\tТемпература плавления: %s К"
+
+#: data.py:1192
+msgid "\t\t\tL: %s J / kg"
+msgstr "\t\t\tL: %s Дж / кг"
+
+#: data.py:1193
+msgid "\t\t\tC (hard): %s J / (kg K)"
+msgstr "\t\t\tC (тверд.): %s Дж / (кг К)"
+
+#: data.py:1194
+msgid "\t\t\tC (liquid): %s J / (kg K)"
+msgstr "\t\t\tC (жидк.): %s Дж / (кг К)"
+
+#: data.py:1195
+msgid "\t\tStart temperature: %.1f K"
+msgstr "\t\tНачальная температура: %.1f К"
+
+#: data.py:1197
+msgid "\t\tAerodynamic factor: %.3f"
+msgstr "\t\tАэродинамический коэффициент: %.3f"
+
+#: data.py:1198
+msgid "\tBase parameters:"
+msgstr "\tБазовые параметры:"
+
+#: data.py:1199
+msgid "\t\tExternal radius: %.3f m"
+msgstr "\t\tВнешний радиус: %.3f м"
+
+#: data.py:1200
+msgid "\t\tInternal radius: %.3f m"
+msgstr "\t\tВнутренний радиус: %.3f м"
+
+#: data.py:1201
+msgid "\tFlight parameters:"
+msgstr "\tПараметры полета:"
+
+#: data.py:1202
+msgid "\t\tPlanet: %s"
+msgstr "\t\tМиссия: %s"
+
+#: data.py:1203
+msgid "\t\tStart time: %s"
+msgstr "\t\tНачальное время: %s"
+
+#: data.py:1204
+msgid "\t\tStart X: %.4f m"
+msgstr "\t\tНачальное положение по X: %.4f м"
+
+#: data.py:1205
+msgid "\t\tStart height (Y): %.4f m"
+msgstr "\t\tНачальная высота (Y): %.4f м"
+
+#: data.py:1206
+msgid "\tDevices:"
+msgstr "\tУстройства:"
+
+#: data.py:1209
+msgid "\t\tDevice %s, identifier %s, start state %s"
+msgstr "\t\tУстройство %s, идентификатор %s, начальное состояние %s"
+
+#: data.py:1212
+msgid "\tProgram (python):"
+msgstr "\tПрограмма (Python):"
+
+#: data.py:1215
+msgid "\tProgram:"
+msgstr "\tПрограмма:"
+
+#: data.py:1217
+msgid "\t\tStage %s:"
+msgstr "\t\tЭтап %s:"
+
+#: data.py:1219
+msgid "\t\t\tTime %03d device %s command %s"
+msgstr "\t\t\tВремя %03d устройство %s команда %s"
+
+#: data.py:1221
+msgid "\tNo program"
+msgstr "\tПрограмма не задана"
+
+#: data.py:1223
+msgid "\tDerived parameters:"
+msgstr "\tПроизводные параметры:"
+
+#: data.py:1225
+msgid "\t\tIsolator mass: %.4f kg"
+msgstr "\t\tМасса изолятора: %.4f кг"
+
+#: data.py:1226
+msgid "\t\tIsolator volume: %.4f m^3"
+msgstr "\t\tОбъем изолятора: %.4f куб.м"
+
+#: data.py:1227
+msgid "\t\tConstruction mass: %.4f kg"
+msgstr "\t\tМасса конструкции: %.4f кг"
+
+#: data.py:1228
+msgid "\t\tDevice mass: %.4f kg"
+msgstr "\t\tМасса устройств: %.4f кг"
+
+#: data.py:1229
+msgid "\t\tDevice volume: %.4f m^3"
+msgstr "\t\tОбъем устройств: %.4f куб.м"
+
+#: data.py:1230
+msgid "\t\tFuel: %.1f kg"
+msgstr "\t\tМасса топлива: %.1f кг"
+
+#: data.py:1231
+msgid "\t\tHeat transmission surface: %.4f m^2"
+msgstr "\t\tПлощадь поверхности теплопереноса: %.4f кв.м"
+
+#: data.py:1232
+msgid "\t\tFriction square: %.4f m^2"
+msgstr "\t\tПлощадь трения: %.4f кв.м"
+
+#: data.py:1233
+msgid "\t\tInternal volume: %.4f m^3"
+msgstr "\t\tВнутренний объем: %.4f куб.м"
+
+#: data.py:1235
+msgid "\t\tAbsorber volume: %.4f m^3"
+msgstr "\t\tОбъем темлопоглотителя: %.4f куб.м"
+
+#: data.py:1236
+msgid "\t\tAbsorber mass: %.4f kg"
+msgstr "\t\tМасса теплопоглотителя: %.4f кг"
+
+#: data.py:1237
+msgid "\t\tTotal mass: %.4f kg"
+msgstr "\t\tОбщая масса: %.4f кг"
+
+#: data.py:1238
+msgid "\t\tStart velocity (X): %.4f m/s"
+msgstr "\t\tНачальная скорость (по X): %.4f м/с"
+
+#: data.py:1239
+msgid "\t\tStart velocity (Y): %.4f m/s"
+msgstr "\t\tНачальная скорость (по Y): %.4f м/с"
+
+#: data.py:1240
+msgid "\t\tPower balance: %.4f * 10W"
+msgstr "\t\tБаланс энергии: %.4f * 10 Вт"
+
+#: data.py:1241
+msgid "\t\tScientific information: %.4f kbit"
+msgstr "\t\tНаучная информация: %.4f кбит"
+
+#: data.py:1242
+msgid "Flight telemetry:"
+msgstr "Телеметрия полета:"
+
+#: data.py:1258
+msgid "PROBE TERMINATED"
+msgstr "АППАРАТ ПОТЕРЯН"
+
+#: data.py:1261 data.py:1262
+msgid "Total scientific information: %.4f kbit"
+msgstr "Общий объем научной информации: %.4f кбит"
+
+#: data.py:1263
+msgid "Unused scientific limits:"
+msgstr "Недостигнутые пределы научной информации:"
+
+#: logger.py:156
+msgid "<title>Probe {}: Flight Results</title>\n"
+msgstr "<title>Аппарат {}: Результаты полета</title>\n"
+
+#: logger.py:160
+msgid "<h3>Probe {}: Flight Results</h3>\n"
+msgstr "<h3>Аппарат {}: Результаты полета</h3>\n"
+
+#: logger.py:168
+msgid "Moon"
+msgstr "Луна"
+
+#: logger.py:170
+msgid "Mars"
+msgstr "Марс"
+
+#: logger.py:172
+msgid "Mercury"
+msgstr "Меркурий"
+
+#: logger.py:174
+msgid "Venus"
+msgstr "Венера"
+
+#: logger.py:175
+msgid "Mission"
+msgstr "Миссия"
+
+#: logger.py:177
+msgid "Start time"
+msgstr "Время начала"
+
+#: logger.py:179
+msgid "Mission duration (sec)"
+msgstr "Длительность миссии (с)"
+
+#: logger.py:181
+msgid "Start mass (kg)"
+msgstr "Стартовая масса (кг)"
+
+#: logger.py:183
+msgid "Flight results"
+msgstr "Результаты полета"
+
+#: logger.py:185
+msgid "Landed successfully"
+msgstr "Успешная посадка"
+
+#: logger.py:187
+msgid "Crashed on the surface"
+msgstr "Аппарат разбился о поверхность"
+
+#: logger.py:189
+msgid "Not started (bad parameters)"
+msgstr "Аппарат не стартовал (неверные параметры)"
+
+#: logger.py:191
+msgid "Calculation error"
+msgstr "Ошибка вычислений"
+
+#: logger.py:193
+msgid "Terminated in flight"
+msgstr "Аппарат разрушился в полете"
+
+#: logger.py:195
+msgid "Terminated on surface"
+msgstr "Аппарат разрушился на поверхности"
+
+#: logger.py:197
+msgid "Crushed by overload"
+msgstr "Аппарат разрушен перегрузками"
+
+#: logger.py:199
+msgid "Last system state"
+msgstr "Последнее состояние системы"
+
+#: logger.py:201
+msgid "Not available"
+msgstr "Не доступно"
+
+#: logger.py:203
+msgid "CPU off (prob. overheat)"
+msgstr "Центральный процессор вышел из строя (возможно из-за перегрева)"
+
+#: logger.py:205
+msgid "No CPU on board"
+msgstr "Не установлен Центральный процессор"
+
+#: logger.py:207
+msgid "Not enough energy (double SAFE MODE)"
+msgstr "Не хватило энергии (двойной вход в Экономный режим)"
+
+#: logger.py:209
+msgid "Mission time limit"
+msgstr "Превышен предел времени миссии"
+
+#: logger.py:211
+msgid "Time on surface (sec)"
+msgstr "Время на поверхности (с)"
+
+#: logger.py:213
+msgid "Score"
+msgstr "Очки"
+
+#: logger.py:215
+msgid "Scientifical information achieved (kB)"
+msgstr "Получено научной информации (kB)"
+
+#: logger.py:221
+msgid "<li><strong>Parameters history:</strong><br/>\n"
+msgstr "<li><strong>История параметров:</strong><br/>\n"
+
+#: logger.py:231
+msgid "<li><strong>Telemetry:</strong>\n"
+msgstr "<li><strong>Телеметрия:</strong>\n"
+
+#: pycontrol/program.py:93
+msgid "Program was not run because contains more than {} lines"
+msgstr "Программа не может быть запущена, поскольку содержит более {} строк"
+
+#: pycontrol/program.py:276
+msgid "The program was terminated due to unacceptable operation"
+msgstr "Программа завершилась из-за выполнения недопустимой операции"
+
+#: pycontrol/program.py:278
+msgid "The program finished unexpected"
+msgstr "Программа внезапно завершилась"
+
+#: pycontrol/program.py:280
+msgid "The program finished"
+msgstr "Программа завершилась"
+
+#: pycontrol/program.py:285
+msgid "The program was terminated because did not respond for {:01} sec"
+msgstr "Программа остановлена в связи с отсутствием ответа в течение {:01} с"
+
+#: simulation.py:47
+msgid "Cannot import pycontrol"
+msgstr "Невозможно импортировать модуль pycontrol"
+
+#: simulation.py:100
+msgid "Flying program completed."
+msgstr "Программа полета завершена"
+
+#: simulation.py:105
+msgid "Program error: %s\n%s"
+msgstr "Ошибка программы: %s\n%s"
+
+#: simulation.py:110
+msgid "Security error while running the program:\n%s"
+msgstr "Ошибка безопасности при выполнении программы:\n%s"
+
+#: simulation.py:116
+msgid "Program runtime error:\n%s"
+msgstr "Ошибка во время выполнения программы:\n%s"
+
+#: simulation.py:227 simulation.py:381
+msgid "Acceleration %3.2f. Max acceleration %3.2f was exceeded!"
+msgstr "Ускорение %3.2f. Превышено максимальное ускорение %3.2f!"
+
+#: simulation.py:248 simulation.py:410
+msgid "Probe was crashed by the surface"
+msgstr "Аппарат разбился о поверхность"
+
+#: simulation.py:254
+msgid "Time limit for takeoff exceeded!"
+msgstr "Превышено максимальное время взлета"
+
+#: simulation.py:257
+msgid "Take off at %s!"
+msgstr "Взлет в %s!"
+
+#: simulation.py:258
+msgid "Take off Ti=%s"
+msgstr "Взлет Ti=%s"
+
+#: simulation.py:263
+msgid "Orbit cycle at %s!"
+msgstr "Выход на орбиту в %s!"
+
+#: simulation.py:265 simulation.py:268
+msgid "%s Success! %s has entered %s orbit. %d orbital cycles completed"
+msgstr "Успех %s! %s вышел на орбиту %s. Пройдено %d орбитальных циклов"
+
+#: simulation.py:273
+msgid "orbit reached"
+msgstr "Орбита достигнута"
+
+#: simulation.py:292
+msgid "Max launch time exceeded!"
+msgstr "Превышено максимальное время запуска"
+
+#: simulation.py:294
+msgid "height limit"
+msgstr "Предел высоты"
+
+#: simulation.py:402
+msgid "Successfull landing %s!"
+msgstr "Успешная посадка %s!"
+
+#: simulation.py:403
+msgid "LANDING Ti=%s, V=%.2f, Max.Acc=%.2f, Te=%.1f"
+msgstr "ПОСАДКА Ti=%s, V=%.2f, Max.Acc=%.2f, Te=%.1f"
+
+#: simulation.py:491
+msgid "%s: set tick length to %f s, tick period to %f s"
+msgstr "%s: установлен размер такта %f с, период %f с"
+
+#: simulation.py:498
+msgid "Time limit"
+msgstr "Предел времени"
+
+#: simulation.py:540
+msgid "Bad image directory {}"
+msgstr "Неверная директория для изображений {}"
+
+#: simulation.py:553
+msgid "Cannot decode probe {}"
+msgstr "Невозможно загрузить аппарат {}"
+
+#: simulation.py:561
+msgid "python program available, running the runtime"
+msgstr "Доступна программа на python, запускаем программное огружение"
+
+#: simulation.py:567
+msgid "Probe program error:\n\t%s"
+msgstr "Ошибка в программе аппарата:\n\t%s"
+
+#: simulation.py:628
+msgid "Termination error: {}"
+msgstr "Ошибка полета: {}"
+
+#: simulation.py:631
+msgid "Critical error: {}"
+msgstr "Критическая ошибка: {}"

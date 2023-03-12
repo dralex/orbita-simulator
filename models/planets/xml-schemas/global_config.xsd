@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	    xmlns:v="venus" targetNamespace="venus">
+  <xsd:element name="global_config">
+    <xsd:complexType>
+      <xsd:sequence>
+	<xsd:element name="logging">
+	  <xsd:complexType>
+	    <xsd:sequence>
+	      <xsd:element name="debug_diagn_period" minOccurs="1" maxOccurs="1"
+			   type="xsd:decimal"/>
+	      <xsd:element name="short_log_len" minOccurs="1" maxOccurs="1"
+			   type="xsd:positiveInteger"/>
+	      <xsd:element name="empty_image" minOccurs="1" maxOccurs="1"
+			   type="xsd:string"/>
+	      <xsd:element name="mission" minOccurs="1" maxOccurs="unbounded">
+		<xsd:complexType>
+		  <xsd:attribute name="name" type="xsd:string"/>
+		  <xsd:sequence>
+            <xsd:element name="debug_constants" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+            <xsd:element name="debug_probe" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+		    <xsd:element name="landing" minOccurs="0" maxOccurs="1">
+		      <xsd:complexType>
+			<xsd:sequence>
+			  <xsd:element name="mission_log" minOccurs="1" maxOccurs="1">
+			    <xsd:complexType>
+			      <xsd:sequence>
+				<xsd:element name="diagnostics" minOccurs="1" maxOccurs="1"
+				       type="xsd:string"/>
+				<xsd:element name="adv_diagnostics" minOccurs="1" maxOccurs="1"
+					     type="xsd:string"/>
+			      </xsd:sequence>
+			    </xsd:complexType>
+			  </xsd:element>			    
+			  <xsd:element name="debug_log" minOccurs="1" maxOccurs="1"
+				       type="xsd:string"/>		  
+			  <xsd:element name="short_log" minOccurs="1" maxOccurs="1"
+				       type="xsd:string"/>
+			  <xsd:element name="image" minOccurs="0" maxOccurs="unbounded">
+			    <xsd:complexType>
+			      <xsd:attribute name="params" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			      <xsd:attribute name="ymin" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+			      <xsd:attribute name="ymax" type="xsd:decimal" minOccurs="0"
+			      maxOccurs="1"/>
+			      <xsd:attribute name="label" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			    </xsd:complexType>
+			  </xsd:element>
+			</xsd:sequence>
+		      </xsd:complexType>
+		    </xsd:element>
+		    <xsd:element name="surface_activity" minOccurs="0" maxOccurs="1">
+		      <xsd:complexType>
+			<xsd:sequence>
+			  <xsd:element name="mission_log" minOccurs="1" maxOccurs="1">
+			    <xsd:complexType>
+			      <xsd:sequence>
+				<xsd:element name="diagnostics" minOccurs="1" maxOccurs="1"
+				       type="xsd:string"/>
+				<xsd:element name="adv_diagnostics" minOccurs="1" maxOccurs="1"
+					     type="xsd:string"/>
+			      </xsd:sequence>
+			    </xsd:complexType>
+			  </xsd:element>			    
+			  <xsd:element name="debug_log" minOccurs="1" maxOccurs="1"
+				       type="xsd:string"/>		  
+			  <xsd:element name="short_log" minOccurs="1" maxOccurs="1"
+				       type="xsd:string"/>		  
+			  <xsd:element name="image" minOccurs="0" maxOccurs="unbounded">
+			    <xsd:complexType>
+			      <xsd:attribute name="params" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			      <xsd:attribute name="ymin" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+			      <xsd:attribute name="ymax" type="xsd:decimal" minOccurs="0"
+			      maxOccurs="1"/>
+			      <xsd:attribute name="label" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			    </xsd:complexType>
+			  </xsd:element>
+			</xsd:sequence>
+		      </xsd:complexType>
+		    </xsd:element>
+		    <xsd:element name="launch" minOccurs="0" maxOccurs="1">
+		      <xsd:complexType>
+			<xsd:sequence>
+			  <xsd:element name="mission_log" minOccurs="1" maxOccurs="1">
+			    <xsd:complexType>
+			      <xsd:sequence>
+				<xsd:element name="diagnostics" minOccurs="1" maxOccurs="1"
+				       type="xsd:string"/>
+				<xsd:element name="adv_diagnostics" minOccurs="1" maxOccurs="1"
+					     type="xsd:string"/>
+			      </xsd:sequence>
+			    </xsd:complexType>
+			  </xsd:element>
+			  <xsd:element name="debug_log" minOccurs="1" maxOccurs="1"
+				       type="xsd:string"/>
+			  <xsd:element name="short_log" minOccurs="1" maxOccurs="1"
+				       type="xsd:string"/>
+			  <xsd:element name="image" minOccurs="0" maxOccurs="unbounded">
+			    <xsd:complexType>
+			      <xsd:attribute name="params" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			      <xsd:attribute name="ymin" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+			      <xsd:attribute name="ymax" type="xsd:decimal" minOccurs="0"
+			      maxOccurs="1"/>
+			      <xsd:attribute name="label" type="xsd:string" minOccurs="1" maxOccurs="1"/>
+			    </xsd:complexType>
+			  </xsd:element>
+			</xsd:sequence>
+		      </xsd:complexType>
+		    </xsd:element>
+          </xsd:sequence>
+		</xsd:complexType>
+	      </xsd:element>
+	    </xsd:sequence>
+	  </xsd:complexType>
+	</xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

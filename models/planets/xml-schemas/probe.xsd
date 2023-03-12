@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	    xmlns:v="venus" targetNamespace="venus">
+  <xsd:element name="probe">
+    <xsd:complexType>
+      <xsd:sequence>
+	<xsd:element name="flight">
+	  <xsd:complexType>
+	    <xsd:sequence>
+	      <xsd:element name="mission" minOccurs="1" maxOccurs="1">
+		<xsd:complexType>
+		  <xsd:attribute name="name" type="xsd:string"/>
+		  <xsd:attribute name="view" type="xsd:string"/>
+		</xsd:complexType>
+	      </xsd:element>
+	      <xsd:element name="time" minOccurs="0" maxOccurs="1">
+		<xsd:complexType>
+		  <xsd:attribute name="start" type="xsd:string"/>
+		</xsd:complexType>
+	      </xsd:element>
+	      <xsd:element name="start_height" minOccurs="1" maxOccurs="1"
+			   type="xsd:decimal"/>
+	      <xsd:element name="target_distance" minOccurs="0" maxOccurs="1"
+			   type="xsd:decimal"/>
+	      <xsd:element name="team" minOccurs="0" maxOccurs="1"
+			   type="xsd:string"/>
+	      <xsd:element name="tournament" minOccurs="0" maxOccurs="1"
+			   type="xsd:string"/>
+          <xsd:element name="cycle_time" minOccurs="0" maxOccurs="1"
+               type="xsd:float"/>
+	    </xsd:sequence>
+	  </xsd:complexType>
+	</xsd:element>
+	<xsd:element name="parameters">
+	  <xsd:complexType>
+	    <xsd:sequence>
+	      <xsd:element name="radius_external" minOccurs="1" maxOccurs="1"
+			   type="xsd:decimal"/>
+	      <xsd:element name="radius_internal" minOccurs="0" maxOccurs="1"
+			   type="xsd:decimal"/>
+	      <xsd:element name="absorber" minOccurs="1" maxOccurs="1">
+		<xsd:simpleType>
+		  <xsd:restriction base="xsd:string">
+		    <xsd:enumeration value="OFF"/>
+		    <xsd:enumeration value="ON"/>
+		  </xsd:restriction>
+		</xsd:simpleType>
+	      </xsd:element>
+	      <xsd:element name="isolator" minOccurs="1" maxOccurs="1">
+		<xsd:simpleType>
+		  <xsd:restriction base="xsd:string">
+		    <xsd:enumeration value="OFF"/>
+		    <xsd:enumeration value="ON"/>
+		  </xsd:restriction>
+		</xsd:simpleType>
+	      </xsd:element>
+	    </xsd:sequence>
+	  </xsd:complexType>
+	</xsd:element>
+	<xsd:element name="contruction" minOccurs="0" maxOccurs="1">
+	  <xsd:complexType>
+	    <xsd:sequence>
+            <xsd:element name="stage" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                  <xsd:attribute name="number" type="xsd:positiveInteger"/>
+                  <xsd:attribute name="name" type="xsd:string"/>
+                  <xsd:attribute name="geometry">
+                    <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                            <xsd:enumeration value="cylinder"/>
+                            <xsd:enumeration value="sphere"/>
+                        </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                  <xsd:attribute name="radius" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+                  <xsd:attribute name="length" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+                </xsd:complexType>
+            </xsd:element>
+	    </xsd:sequence>
+	  </xsd:complexType>
+	</xsd:element>
+	<xsd:element name="devices">
+	  <xsd:complexType>
+	    <xsd:sequence>
+	      <xsd:element name="device" minOccurs="0" maxOccurs="unbounded">
+		<xsd:complexType>
+		  <xsd:attribute name="number" type="xsd:positiveInteger"/>
+		  <xsd:attribute name="name" type="xsd:string"/>
+          <xsd:attribute name="springs" minOccurs="0" maxOccurs="1" type="xsd:positiveInteger"/>
+          <xsd:attribute name="springs_length" minOccurs="0" maxOccurs="1" type="xsd:float"/>
+		  <xsd:attribute name="start_state">
+		    <xsd:simpleType>
+		      <xsd:restriction base="xsd:string">
+			<xsd:enumeration value="OFF"/>
+			<xsd:enumeration value="ON"/>
+		      </xsd:restriction>
+		    </xsd:simpleType>
+		  </xsd:attribute>
+		  <xsd:attribute name="in_safe_mode">
+		    <xsd:simpleType>
+		      <xsd:restriction base="xsd:string">
+			<xsd:enumeration value="OFF"/>
+			<xsd:enumeration value="ON"/>
+		      </xsd:restriction>
+		    </xsd:simpleType>
+		  </xsd:attribute>
+          <xsd:attribute name="stage" minOccurs="0" maxOccurs="1" type="xsd:positiveInteger"/>
+		</xsd:complexType>
+	      </xsd:element>
+	    </xsd:sequence>
+	  </xsd:complexType>
+	</xsd:element>
+	<xsd:element name="python_code" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+	<xsd:element name="program" minOccurs="0" maxOccurs="1">
+	  <xsd:complexType>
+	    <xsd:sequence>
+	      <xsd:element name="stage" minOccurs="1" maxOccurs="3">
+		<xsd:complexType>
+		  <xsd:sequence>
+		    <xsd:element name="command" minOccurs="0" maxOccurs="unbounded">
+		      <xsd:complexType>
+			<xsd:attribute name="time" type="xsd:nonNegativeInteger"/>
+			<xsd:attribute name="device" type="xsd:string"/>
+			<xsd:attribute name="action">
+			  <xsd:simpleType>
+			    <xsd:restriction base="xsd:string">
+                    <xsd:enumeration value="TURNOFF"/>
+                    <xsd:enumeration value="TURNON"/>
+                    <xsd:enumeration value="PERIOD"/>
+                    <xsd:enumeration value="ANGLE"/>
+                    <xsd:enumeration value="DROP STAGE"/>
+			    </xsd:restriction>
+			  </xsd:simpleType>
+			</xsd:attribute>
+			<xsd:attribute name="argument" type="xsd:string" use="optional"/>
+		      </xsd:complexType>
+		    </xsd:element>		 
+		  </xsd:sequence>
+		  <xsd:attribute name="id">
+		    <xsd:simpleType>
+		      <xsd:restriction base="xsd:string">
+			<xsd:enumeration value="Landing"/>
+			<xsd:enumeration value="Surface activity"/>
+            <xsd:enumeration value="Launch"/>
+		      </xsd:restriction>
+		    </xsd:simpleType>
+		  </xsd:attribute>
+		</xsd:complexType>
+	      </xsd:element>
+	    </xsd:sequence> 
+	  </xsd:complexType>      
+	</xsd:element>
+      </xsd:sequence> 
+      <xsd:attribute name="name" type="xsd:string"/>
+      <xsd:attribute name="team" type="xsd:string" use="optional"/>
+      <xsd:attribute name="tournament" type="xsd:string" use="optional"/>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

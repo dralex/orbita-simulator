@@ -1,0 +1,445 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:devices xmlns:v="venus">
+  <device name="diagnadv" full_name="Advanced Diagnostics Module" code="DA">
+    <type>Advanced diagnostics</type>
+    <mass>80</mass>
+    <volume>0.02</volume>
+    <power_generation>-10</power_generation>
+    <period_min>1</period_min>
+    <period_max>3600</period_max>
+    <traffic_generation>-2</traffic_generation>
+    <critical_temperature>410</critical_temperature>
+  </device>
+  <device name="cpu" full_name="Central Processing Unit" code="CPU">
+    <type>Control</type>
+    <mass>50</mass>
+    <volume>0.04</volume>
+    <power_generation>-10</power_generation>
+    <period_min>1</period_min>
+    <period_max>100</period_max>
+    <traffic_generation>0</traffic_generation>
+    <critical_temperature>410</critical_temperature>
+  </device>
+  <device name="diagn" full_name="Base Diagnostics Module" code="D">
+    <type>Base diagnostics</type>
+    <mass>25</mass>
+    <volume>0.01</volume>
+    <power_generation>-2</power_generation>
+    <period_min>1</period_min>
+    <period_max>3600</period_max>
+    <traffic_generation>-2</traffic_generation>
+    <critical_temperature>425</critical_temperature>
+  </device>
+  <device name="engine" full_name="Braking Engine" code="E">
+    <type>Engines</type>
+    <mass>1900</mass>
+    <volume>0.7</volume>
+    <power_generation>-25</power_generation>
+    <period_min>1</period_min>
+    <period_max>1</period_max>
+    <traffic_generation>0</traffic_generation>
+    <critical_temperature>1500</critical_temperature>
+    <fuel_speed>800</fuel_speed>
+    <traction>0.5</traction>
+  </device>
+  <device name="engine_g" full_name="Langing Engine" code="EG">
+    <type>Engines</type>
+    <mass>250</mass>
+    <volume>1.0</volume>
+    <power_generation>-5</power_generation>
+    <period_min>1</period_min>
+    <period_max>1</period_max>
+    <traffic_generation>0</traffic_generation>
+    <critical_temperature>450</critical_temperature>
+    <fuel_speed>3600</fuel_speed>
+    <traction>4.2</traction>
+  </device>
+  <device name="engine_rd" full_name="Launch Engine" code="ERD">
+    <type>Engines</type>
+    <mass>600</mass>
+    <volume>2.5</volume>
+    <power_generation>-9</power_generation>
+    <period_min>1</period_min>
+    <period_max>1</period_max>
+    <traffic_generation>0</traffic_generation>
+    <critical_temperature>450</critical_temperature>
+    <fuel_speed>4100</fuel_speed> <!--3080-->
+    <traction>70</traction>
+  </device>
+  <device name="engine_l" full_name="Light Langing Engine" code="EL">
+    <type>Engines</type>
+    <mass>100</mass>
+    <volume>0.5</volume>
+    <power_generation>-5</power_generation>
+    <period_min>1</period_min>
+    <period_max>1</period_max>
+    <traffic_generation>0</traffic_generation>
+    <critical_temperature>450</critical_temperature>
+    <fuel_speed>3600</fuel_speed>
+    <traction>2</traction>
+  </device>  
+  <device name="engine_m" full_name="Maneuvering Engine" code="EM">
+    <type>Engines</type>
+    <mass>140</mass>
+    <volume>0.025</volume>
+    <power_generation>-11</power_generation>
+    <period_min>1</period_min>
+    <period_max>1</period_max>
+    <traffic_generation>0</traffic_generation>
+    <critical_temperature>1500</critical_temperature>
+    <fuel_speed>800</fuel_speed>
+    <traction>0.02</traction>
+  </device>
+  <device name="fueltank" full_name="Base Fuel Tank" code="FT">
+    <type>Fuel tanks</type>
+    <mass>50</mass>
+    <volume>0.04</volume>
+    <power_generation>0</power_generation>
+    <period_min>1</period_min>
+    <period_max>1</period_max>
+    <traffic_generation>0</traffic_generation>
+    <critical_temperature>380</critical_temperature>
+  </device>
+  <device name="fueltank_large" full_name="Large Fuel Tank" code="FTL">
+    <type>Fuel tanks</type>
+    <mass>500</mass>
+    <volume>0.4</volume>
+    <power_generation>0</power_generation>
+    <period_min>1</period_min>
+    <period_max>1</period_max>
+    <traffic_generation>0</traffic_generation>
+    <critical_temperature>380</critical_temperature>
+  </device>
+  <device name="generator" full_name="Radioisotope Generator" code="G">
+    <type>Generators</type>
+    <mass>200</mass>
+    <volume>0.04</volume>
+    <power_generation>50</power_generation>
+    <period_min>1</period_min>
+    <period_max>1</period_max>
+    <traffic_generation>0</traffic_generation>
+    <critical_temperature>430</critical_temperature>
+  </device>
+  <device name="parachute" full_name="Parachute" code="Pa">
+    <type>Parachutes</type>
+    <mass>40</mass>
+    <volume>0.02</volume>
+    <power_generation>0</power_generation>
+    <period_min>1</period_min>
+    <period_max>1</period_max>
+    <traffic_generation>0</traffic_generation>
+    <critical_temperature>1000</critical_temperature>
+    <max_speed>35</max_speed>
+    <parachute_square>10</parachute_square>
+    <thermal_protection>0</thermal_protection>
+  </device>
+  <device name="parachute_supersonic" full_name="Supersonic Parachite" code="Pam">
+    <type>Parachutes</type>
+    <mass>10</mass>
+    <volume>0.06</volume>
+    <power_generation>0</power_generation>
+    <period_min>1</period_min>
+    <period_max>1</period_max>
+    <traffic_generation>0</traffic_generation>
+    <critical_temperature>300</critical_temperature>
+    <max_speed>600</max_speed>
+    <parachute_square>200</parachute_square>
+    <thermal_protection>0</thermal_protection>
+  </device>
+  <device name="heatshield" full_name="Heavy Heatshield" code="Hs">
+    <type>Parachutes</type>
+    <mass>1000</mass>
+    <volume>0.01</volume>
+    <power_generation>0</power_generation>
+    <period_min>1</period_min>
+    <period_max>1</period_max>
+    <traffic_generation>0</traffic_generation>
+    <critical_temperature>4000</critical_temperature>
+    <max_speed>4000</max_speed>
+    <parachute_square>3</parachute_square>
+    <thermal_protection>0.3333</thermal_protection>
+  </device>
+  <device name="heatshield_light" full_name="Aerodynamic Brake" code="Hsl">
+    <type>Parachutes</type>
+    <mass>150</mass>
+    <volume>0.01</volume>
+    <power_generation>0</power_generation>
+    <period_min>1</period_min>
+    <period_max>1</period_max>
+    <traffic_generation>0</traffic_generation>
+    <critical_temperature>2000</critical_temperature>
+    <max_speed>7000</max_speed>
+    <parachute_square>18</parachute_square>
+    <thermal_protection>0.1</thermal_protection>
+  </device>
+  <device name="parachute_armed" full_name="Armed Parachute" code="Fp">
+    <type>Parachutes</type>
+    <mass>70</mass>
+    <volume>0.02</volume>
+    <power_generation>0</power_generation>
+    <period_min>1</period_min>
+    <period_max>1</period_max>
+    <traffic_generation>0</traffic_generation>
+    <critical_temperature>4000</critical_temperature>
+    <max_speed>500</max_speed>
+    <parachute_square>2</parachute_square>
+    <thermal_protection>0</thermal_protection>
+  </device>
+  <device name="damper" full_name="Damper" code="Dm">
+    <type>Dampers</type>
+    <mass>400</mass>
+    <volume>0.08</volume>
+    <power_generation>0</power_generation>
+    <period_min>1</period_min>
+    <period_max>1</period_max>
+    <traffic_generation>0</traffic_generation>
+    <critical_temperature>800</critical_temperature>
+    <energy_compensation>1200000</energy_compensation> <!-- absorbed energy in joules -->
+  </device>
+  <device name="moon_damper" full_name="Damper with Shock-Absorbing Supports" code="DAM">
+    <type>Dampers</type>
+    <mass>1000</mass>
+    <volume>0.15</volume>
+    <power_generation>0</power_generation>
+    <period_min>1</period_min>
+    <period_max>1</period_max>
+    <traffic_generation>0</traffic_generation>
+    <critical_temperature>350</critical_temperature>
+    <energy_compensation>3000000</energy_compensation> <!-- absorbed energy in joules -->
+  </device>
+  <device name="custom_damper" full_name="Custom Damper" code="DAC">
+    <type>Dampers</type>
+    <mass>1000</mass>
+    <volume>0.15</volume>
+    <power_generation>0</power_generation>
+    <period_min>1</period_min>
+    <period_max>1</period_max>
+    <traffic_generation>0</traffic_generation>
+    <critical_temperature>350</critical_temperature>
+    <k_spring>220000</k_spring> <!-- hooke coefficient N/m -->
+    <m_spring>100</m_spring>
+    <max_springs>20</max_springs>
+    <max_springs_length>1</max_springs_length>
+    <custom>true</custom>
+    <custom_param>springs</custom_param>
+    <custom_param>springs_length</custom_param>
+  </device>
+  <device name="spectrometr" full_name="Spectrometer" code="S">
+    <type>Scientific equipment</type>
+    <mass>180</mass>
+    <volume>0.04</volume>
+    <power_generation>-28</power_generation>
+    <period_min>1</period_min>
+    <period_max>100</period_max>
+    <traffic_generation>-50</traffic_generation>
+    <critical_temperature>310</critical_temperature>
+    <scientific_limit>4600000</scientific_limit>
+  </device>
+  <device name="mass-spectrometr" full_name="Mass Spectrometer" code="MSS">
+    <type>Scientific equipment</type>
+    <mass>200</mass>
+    <volume>0.08</volume>
+    <power_generation>-19</power_generation>
+    <period_min>1</period_min>
+    <period_max>100</period_max>
+    <traffic_generation>-22</traffic_generation>
+    <critical_temperature>310</critical_temperature>
+    <scientific_limit>7000000</scientific_limit>
+  </device>  
+  <device name="camera" full_name="Camera" code="C">
+    <type>Scientific equipment</type>
+    <mass>10</mass>
+    <volume>0.005</volume>
+    <power_generation>-14</power_generation>
+    <period_min>1</period_min>
+    <period_max>100</period_max>
+    <traffic_generation>-18</traffic_generation>
+    <critical_temperature>345</critical_temperature>
+    <scientific_limit>700000</scientific_limit>
+  </device>
+  <device name="videocamera" full_name="Videocamera" code="VC">
+    <type>Scientific equipment</type>
+    <mass>20</mass>
+    <volume>0.008</volume>
+    <power_generation>-24</power_generation>
+    <period_min>1</period_min>
+    <period_max>10</period_max>
+    <traffic_generation>-27</traffic_generation>
+    <critical_temperature>330</critical_temperature>
+    <scientific_limit>800000</scientific_limit>
+  </device>
+  <device name="infrared_camera" full_name="IR Camera" code="IRC">
+    <type>Scientific equipment</type>
+    <mass>10</mass>
+    <volume>0.004</volume>
+    <power_generation>-20</power_generation>
+    <period_min>1</period_min>
+    <period_max>100</period_max>
+    <traffic_generation>-15</traffic_generation>
+    <critical_temperature>290</critical_temperature>
+    <scientific_limit>3000000</scientific_limit>
+  </device>
+  <device name="radiometer" full_name="Radiometer" code="Rm">
+    <type>Scientific equipment</type>
+    <mass>14</mass>
+    <volume>0.02</volume>
+    <power_generation>-8</power_generation>
+    <period_min>1</period_min>
+    <period_max>100</period_max>
+    <traffic_generation>-10</traffic_generation>
+    <critical_temperature>400</critical_temperature>
+    <scientific_limit>1200000</scientific_limit>
+  </device>
+  <device name="magnetometer" full_name="Magnitometer" code="Mgm">
+    <type>Scientific equipment</type>
+    <mass>10</mass>
+    <volume>0.003</volume>
+    <power_generation>-9</power_generation>
+    <period_min>1</period_min>
+    <period_max>10</period_max>
+    <traffic_generation>-9</traffic_generation>
+    <critical_temperature>380</critical_temperature>
+    <scientific_limit>1500000</scientific_limit>
+  </device>
+  <device name="LIDAR" full_name="LIDAR" code="LID">
+    <type>Scientific equipment</type>
+    <mass>15</mass>
+    <volume>0.005</volume>
+    <power_generation>-6</power_generation>
+    <period_min>1</period_min>
+    <period_max>10</period_max>
+    <traffic_generation>-8</traffic_generation>
+    <critical_temperature>350</critical_temperature>
+    <scientific_limit>2000000</scientific_limit>
+  </device>
+  <device name="seismograph" full_name="Seismograph" code="Smg">
+    <type>Scientific equipment</type>
+    <mass>55</mass>
+    <volume>0.008</volume>
+    <power_generation>-2</power_generation>
+    <period_min>1</period_min>
+    <period_max>10</period_max>
+    <traffic_generation>-11</traffic_generation>
+    <critical_temperature>370</critical_temperature>
+    <scientific_limit>3500000</scientific_limit>
+  </device>
+  <device name="barometer" full_name="Barometer" code="Brm">
+    <type>Scientific equipment</type>
+    <mass>8</mass>
+    <volume>0.003</volume>
+    <power_generation>-2</power_generation>
+    <period_min>1</period_min>
+    <period_max>10</period_max>
+    <traffic_generation>-3</traffic_generation>
+    <critical_temperature>340</critical_temperature>
+    <scientific_limit>1000000</scientific_limit>
+  </device>
+  <device name="termometer" full_name="Termometer" code="Trm">
+    <type>Scientific equipment</type>
+    <mass>2</mass>
+    <volume>0.003</volume>
+    <power_generation>-2</power_generation>
+    <period_min>1</period_min>
+    <period_max>10</period_max>
+    <traffic_generation>-2</traffic_generation>
+    <critical_temperature>450</critical_temperature>
+    <scientific_limit>500000</scientific_limit>
+  </device>
+  <device name="gas-chromatograph" full_name="Gas Chromatograph" code="GCh">
+    <type>Scientific equipment</type>
+    <mass>105</mass>
+    <volume>0.06</volume>
+    <power_generation>-9</power_generation>
+    <period_min>1</period_min>
+    <period_max>10</period_max>
+    <traffic_generation>-25</traffic_generation>
+    <critical_temperature>330</critical_temperature>
+    <scientific_limit>5500000</scientific_limit>
+  </device>
+  <device name="spectrophotometer" full_name="Spectrophotometer" code="SPh">
+    <type>Scientific equipment</type>
+    <mass>80</mass>
+    <volume>0.025</volume>
+    <power_generation>-7</power_generation>
+    <period_min>1</period_min>
+    <period_max>10</period_max>
+    <traffic_generation>-3</traffic_generation>
+    <critical_temperature>330</critical_temperature>
+    <scientific_limit>2550000</scientific_limit>
+   </device>
+  <device name="laser-evaporator" full_name="Lase Evaporator" code="LEv">
+    <type>Scientific equipment</type>
+    <mass>20</mass>
+    <volume>0.025</volume>
+    <power_generation>-80</power_generation>
+    <period_min>1</period_min>
+    <period_max>10</period_max>
+    <traffic_generation>-98</traffic_generation>
+    <critical_temperature>380</critical_temperature>
+    <scientific_limit>1000000</scientific_limit>
+   </device>
+  <device name="anemometer" full_name="Anemometer" code="AN">
+    <type>Scientific equipment</type>
+    <mass>12</mass>
+    <volume>0.003</volume>
+    <power_generation>-4</power_generation>
+    <period_min>1</period_min>
+    <period_max>10</period_max>
+    <traffic_generation>-1</traffic_generation>
+    <critical_temperature>390</critical_temperature>
+    <scientific_limit>1350000</scientific_limit>
+  </device>
+  <device name="transmitter" full_name="Transmitter" code="T">
+    <type>Transmitters</type>
+    <mass>30</mass>
+    <volume>0.01</volume>
+    <power_generation>-4</power_generation>
+    <period_min>1</period_min>
+    <period_max>1</period_max>
+    <traffic_generation>20</traffic_generation>
+    <critical_temperature>428</critical_temperature>
+  </device>
+  <device name="wr_transmitter" full_name="Wide Range Transmitter" code="WT">
+    <type>Transmitters</type>
+    <mass>160</mass>
+    <volume>0.05</volume>
+    <power_generation>-8</power_generation>
+    <period_min>1</period_min>
+    <period_max>1</period_max>
+    <traffic_generation>100</traffic_generation>
+    <critical_temperature>380</critical_temperature>
+  </device>
+  <device name="accumulator" full_name="Accumulator" code="Acm">
+    <type>Accumulators</type>
+    <mass>70</mass>
+    <volume>0.02</volume>
+    <power_generation>0</power_generation>
+    <capacity>400</capacity>
+    <period_min>1</period_min>
+    <period_max>1</period_max>
+    <traffic_generation>0</traffic_generation>
+    <critical_temperature>360</critical_temperature>
+  </device>
+  <device name="solar_battery" full_name="Solar Battery" code="Sbt">
+    <type>Solar panels</type>
+    <mass>30</mass>
+    <volume>0.06</volume>
+    <power_generation>0</power_generation>
+    <solar_power>10</solar_power>
+    <period_min>1</period_min>
+    <period_max>1</period_max>
+    <traffic_generation>0</traffic_generation>
+    <critical_temperature>380</critical_temperature>
+  </device>  
+  <device name="solar_battery_extended" full_name="Extended Solar Battery" code="Sbe">
+    <type>Solar panels</type>
+    <mass>80</mass>
+    <volume>0.14</volume>
+    <power_generation>0</power_generation>
+    <solar_power>32</solar_power>
+    <period_min>1</period_min>
+    <period_max>1</period_max>
+    <traffic_generation>0</traffic_generation>
+    <critical_temperature>380</critical_temperature>
+  </device>  
+ </v:devices>
