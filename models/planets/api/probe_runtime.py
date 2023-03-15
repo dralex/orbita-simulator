@@ -23,7 +23,6 @@
 # along with this program. If not, see https://www.gnu.org/licenses/
 # -----------------------------------------------------------------------------
 
-import sys
 from google.protobuf.message import DecodeError
 import data
 import api.probe_pb2 as proto
@@ -82,7 +81,7 @@ class ProbeRuntime:
         response, next_step = self.__process_command(request)
         return self.serialize_response(response), next_step
 
-    def __process_command(self, request):
+    def __process_command(self, request): # pylint: disable=R0911
         response = proto.Response()
 
         if request is None:
@@ -108,7 +107,7 @@ class ProbeRuntime:
             return response, False
 
         if len(args) > 0:
-            for i in range(len(args)):
+            for i in enumerate(args):
                 arg = args[i]
                 req_type = req_arg_types[i]
                 if arg.WhichOneof('Types') == req_type:
