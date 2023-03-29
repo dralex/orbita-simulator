@@ -107,8 +107,7 @@ class ProbeRuntime:
             return response, False
 
         if len(args) > 0:
-            for i in enumerate(args):
-                arg = args[i]
+            for i, arg in enumerate(args):
                 req_type = req_arg_types[i]
                 if arg.WhichOneof('Types') == req_type:
                     parsed_args.append(getattr(arg, req_type))
