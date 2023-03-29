@@ -30,9 +30,8 @@ import subprocess
 import threading
 import atexit
 from collections import deque
-import gettext
 import posix_ipc
-
+import gettext
 _ = gettext.gettext
 
 THIS_MODULE_PATH = os.path.dirname(os.path.abspath(__file__))
@@ -51,6 +50,12 @@ DEFAULT_PARAMS_MAX_STEP_TIME = 0.1
 STDOUT_BUFFER_LINES = 4096
 STDERR_BUFFER_LINES = 64
 MAX_LINE_LENGTH = 256
+
+def buffer_to_message(buf):
+    msg = ''
+    for b in buf:
+        msg += b.decode('utf-8')
+    return msg
 
 class ControlError(Exception):
     def __init__(self, msg):
@@ -86,6 +91,7 @@ class Program:
                  params_max_lines=DEFAULT_PARAMS_MAX_LINES,
                  params_max_init_time=DEFAULT_PARAMS_MAX_INIT_TIME,
                  params_max_step_time=DEFAULT_PARAMS_MAX_STEP_TIME):
+
         global _ # pylint: disable=W0603
         _ = tr
 
@@ -102,7 +108,7 @@ class Program:
         self._worker = None
         self._first_step = True
         self._deferred_response = None
-        
+
         self._stdout_buffer = deque([], STDOUT_BUFFER_LINES)
         self._stderr_buffer = deque([], STDERR_BUFFER_LINES)
 
@@ -275,8 +281,8 @@ class Program:
                     if ret_code < 0:
                         raise SecurityError(_('The program was terminated due to unacceptable operation')) # pylint: disable=C0301
                     if ret_code > 0:
-                        raise ProgramError(_('The program finished unexpected'),
-                                           ''.join(self._stderr_buffer))
+                        raise ProgramError(_('The program finished unexpectedly'),
+                                           buffer_to_message(self._stderr_buffer))
                     raise FinishError(_('The program finished'))
                 if self._first_step:
                     time_without_answer = self._max_init_time
@@ -285,14 +291,17 @@ class Program:
                 raise SecurityError(_('The program was terminated because did not respond for {:01} sec').format(time_without_answer)) # pylint: disable=C0301
 
     def print_stdout(self):
-        print('\nStdout buffer:\n')
-        print(''.join(self._stdout_buffer))
+        print(_('\nStdout buffer:\n'))
+        print(buffer_to_message(self._stdout_buffer))
 
     def print_stderr(self):
-        print('\nStderr buffer:\n')
-        print(''.join(self._stderr_buffer))
+        print(_('\nStderr buffer:\n'))
+        print(buffer_to_message(self._stderr_buffer))
 
 if __name__ == '__main__':
+
+    if len(sys.argv) < 2:
+        sys.exit(1)
 
     filename = sys.argv[1]
     lines = open(filename).readline()
