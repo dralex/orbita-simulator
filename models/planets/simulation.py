@@ -37,6 +37,7 @@ from errors import CriticalError, Terminated
 _ = gettext.gettext
 
 DEFAULT_LANG = 'en'
+LANG_ORIGIN = 'orbita'
 USE_PYCONTROL = True
 
 if USE_PYCONTROL:
@@ -515,7 +516,7 @@ def run(probename, probefile, missionfile, debugfile, shortfile, imagedir, htmlt
 
     if lang != 'en':
         global _ # pylint: disable=W0603
-        t = gettext.translation('orbita',
+        t = gettext.translation(LANG_ORIGIN,
                                 os.path.dirname(os.path.abspath(__file__)),
                                 languages=[lang])
         _ = t.gettext
