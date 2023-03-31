@@ -57,7 +57,7 @@ def modification_date(filename):
 def get_oldest_file(checkdir):
     files = os.listdir(checkdir)
     oldesttime = datetime.datetime.now()
-    oldestfile = 0
+    oldestfile = None
 
     for f in files:
         filename = join(checkdir, f)
@@ -71,26 +71,31 @@ def get_oldest_file(checkdir):
 def get_random_file(checkdir):
     files = os.listdir(checkdir)
     if len(files) == 0:
-        return 0
+        return None
     f = random.choice(files)
     return f
 
-def load_models(mdir):
+def load_model(mdir, modelname):
     if not os.path.isdir(mdir):
         return {}
-    ms = {}
+    ms = None
     mdirname = os.path.basename(mdir)
-    for modelname in os.listdir(mdir):
+    models = os.listdir(mdir)
+    if modelname not in models:
+        server_log('error: cannot find model {}'.format(modelname))
+    else:
         modelpath = join(mdir, modelname)
-        if modelname.find('__') != 0 and os.path.isdir(modelpath):
+        if os.path.isdir(modelpath):
             model = importlib.import_module('{}.{}'.format(mdirname, modelname))
             if '__all__' in dir(model) and 'simulation' in model.__all__:
                 sys.path.append(os.path.abspath(modelpath))
                 pkgname = '{}.{}'.format(mdirname, modelname)
-                ms[modelname] = importlib.import_module('{}.simulation'.format(pkgname),
-                                                        pkgname)
+                ms = importlib.import_module('{}.simulation'.format(pkgname),
+                                             pkgname)
             else:
-                server_log('warning: model {} has no simulation package'.format(modelname))
+                server_log('error: model {} has no simulation package'.format(modelname))
+        else:
+            server_log('error: cannol load model {}'.format(modelname))
     return ms
 
 def take_file(f, fromdir, todir):
@@ -112,7 +117,7 @@ def write_shortfile_error(shortfile, msg):
     f.write('</o:shortlog>\n')
     f.close()
 
-def process_file(filename, ms, idir, wdir, odir, imdir, language, debuglog):
+def process_file(filename, model, idir, wdir, odir, imdir, language, debuglog):
     server_log('process file: {}'.format(filename))
     if not take_file(filename, idir, wdir):
         return -1
@@ -131,15 +136,8 @@ def process_file(filename, ms, idir, wdir, odir, imdir, language, debuglog):
     pid = os.fork()
     if pid == 0:
         try:
-            task_simulation = None
-            for modelname, model in ms.items():
-                if task.index(modelname) == 0:
-                    task_simulation = model
-                    break
-            if not task_simulation:
-                raise Exception('no model {} found'.format(''))
-            task_simulation.run(task, taskfile, logfile, debugfile,
-                                shortfile, imdir, htmlfile, language)
+            model.run(task, taskfile, logfile, debugfile,
+                      shortfile, imdir, htmlfile, language)
         except Exception as ex: # pylint: disable=W0703
             template = "general exception of type {0} occured. Arguments:\n{1!r}"
             message = template.format(type(ex).__name__, ex.args)
@@ -185,6 +183,7 @@ if __name__ == '__main__':
     debug = cfg.get('general', 'debug').lower() in ('on', 'true', 'yes', '1')
 
     modelsdir = cfg.get('simulation', 'models')
+    calcmodel = cfg.get('simulation', 'calc_model')
 
     server_log("========= Orbita server started =========")
     server_log('in dir: {}'.format(indir))
@@ -197,26 +196,26 @@ if __name__ == '__main__':
     server_log('debugging: {}'.format(debug))
     server_log('')
     server_log('models dir: {}'.format(modelsdir))
+    server_log('model: {}'.format(calcmodel))
 
     sleep(random.random() + 0.1)
 
     child_procs = []
 
     try:
-        models = load_models(modelsdir)
-        if len(models) == 0:
-            server_log('no models available')
-            raise Exception('No models error')
+        modelsim = load_model(modelsdir, calcmodel)
+        if modelsim is None:
+            server_log('no model {} available'.format(calcmodel))
+            raise Exception('No model error')
 
-        server_log('loaded models:')
-        for m in models:
-            server_log('\t{}'.format(m))
+        server_log('loaded model:')
+        server_log('\t{}'.format(calcmodel))
 
         while True:
             if len(child_procs) <= max_process_num:
                 the_file = get_oldest_file(indir)
-                if the_file != 0:
-                    chpid = process_file(the_file, models, indir, workdir, outdir,
+                if the_file is not None:
+                    chpid = process_file(the_file, modelsim, indir, workdir, outdir,
                                          imgdir, lang, debug)
                     if chpid > 0:
                         child_procs.append(chpid)
