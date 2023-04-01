@@ -92,7 +92,7 @@ class CrystalMission(Mission):
         if probe.landed:
             probe.success = self.full_orbit and load.valid_environment
             if probe.success:
-                mission_log('MISSION ACCOMPLISHED! The crystal has landed earth successfully.')
+                mission_log(_('MISSION ACCOMPLISHED! The crystal has landed earth successfully.'))
                 landing_error = abs(data.normalize_angle_difference(navig.angle -
                                                                     self.landing_angle))
                 probe.landing_error = landing_error
