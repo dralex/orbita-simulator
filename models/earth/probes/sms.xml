@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:probe name="SMS-x" xmlns:v="venus">
+<flight>
+<tournament>tournament</tournament>
+<planet name="Earth"/>
+<time start="2015-01-01 00:00:00"/>
+<T_start>290.000000</T_start>
+<mission type="sms">
+<control_stations>
+        <control_station name="11">
+                <location_angle>230.000000</location_angle>
+        </control_station>
+        <control_station name="10">
+                <location_angle>213.000000</location_angle>
+        </control_station>
+        <control_station name="13">
+                <location_angle>273.000000</location_angle>
+        </control_station>
+        <control_station name="12">
+                <location_angle>241.000000</location_angle>
+        </control_station>
+        <control_station name="15">
+                <location_angle>316.000000</location_angle>
+        </control_station>
+        <control_station name="14">
+                <location_angle>291.000000</location_angle>
+        </control_station>
+        <control_station name="17">
+                <location_angle>353.000000</location_angle>
+        </control_station>
+        <control_station name="16">
+                <location_angle>322.000000</location_angle>
+        </control_station>
+        <control_station name="1">
+                <location_angle>27.000000</location_angle>
+        </control_station>
+        <control_station name="0">
+                <location_angle>6.000000</location_angle>
+        </control_station>
+        <control_station name="3">
+                <location_angle>61.000000</location_angle>
+        </control_station>
+        <control_station name="2">
+                <location_angle>52.000000</location_angle>
+        </control_station>
+        <control_station name="5">
+                <location_angle>116.000000</location_angle>
+        </control_station>
+        <control_station name="4">
+                <location_angle>88.000000</location_angle>
+        </control_station>
+        <control_station name="7">
+                <location_angle>157.000000</location_angle>
+        </control_station>
+        <control_station name="6">
+                <location_angle>127.000000</location_angle>
+        </control_station>
+        <control_station name="9">
+                <location_angle>197.000000</location_angle>
+        </control_station>
+        <control_station name="8">
+                <location_angle>164.000000</location_angle>
+        </control_station>
+</control_stations>
+<duration>6.000000</duration>
+<messages>
+<message order="1" msgfrom="6" msgto="10" data="29.000000" duration="6481.000000"/>
+<message order="3" msgfrom="11" msgto="14" data="22.000000" duration="6682.000000"/>
+<message order="2" msgfrom="16" msgto="3" data="29.000000" duration="6576.000000"/>
+<message order="5" msgfrom="9" msgto="17" data="21.000000" duration="6123.000000"/>
+<message order="4" msgfrom="1" msgto="5" data="22.000000" duration="6366.000000"/>
+</messages>
+<orbit>645.000000</orbit>
+<start_angular_velocity>1.000000</start_angular_velocity>
+</mission>
+</flight>
+<construction><fuel>0.000000</fuel>
+<voltage>15.000000</voltage>
+<xz_yz_solar_panel_fraction>100.000000</xz_yz_solar_panel_fraction>
+<xz_yz_radiator_fraction>0.000000</xz_yz_radiator_fraction>
+<xy_radiator_fraction>45.000000</xy_radiator_fraction>
+</construction>
+<systems><system name="Cubesat-Case-3U"/>
+<system name="Navi-1" start_mode="ON"/>
+<system name="Therm-1" start_mode="ON"/>
+<system name="Radio-1" start_mode="OFF"/>
+<system name="Orient-2" start_mode="ON"/>
+<system name="CPU-1" start_mode="ON">
+<program>
+<![CDATA[
+initial_height = 645000.0
+
+G = 6.6742e-11
+earth_mass = 5.9726e24
+earth_radius = 6371032.0
+
+max_orientation_torsion = 0.0026 / 4
+
+heater_power = 4.0
+
+angular_velocity_precision = 2e-3
+orient_angle_precision = 5e-3
+navig_angle_precision = 5e-3
+coord_precision = 1e-2
+
+radio_angle_precision = 10.0
+
+routing = [(6, 10), (16, 3), (11, 14), (1, 5), (9, 17)]
+
+station_angles = [6, 27, 52, 61, 88, 116, 127, 157, 164, 197, 213, 230, 241, 273, 291, 316, 322, 353]
+
+def normalize_angle(angle):
+    normalized_angle = angle
+    while normalized_angle < 0:
+        normalized_angle += 360
+    while normalized_angle >= 360:
+        normalized_angle -= 360
+    return normalized_angle
+
+def normalize_angle_difference(angle_difference):
+    normalized_angle_difference = angle_difference
+    while normalized_angle_difference < -180:
+        normalized_angle_difference += 360
+    while normalized_angle_difference >= 180:
+        normalized_angle_difference -= 360
+    return normalized_angle_difference
+
+class DampingMode(object):
+    def __init__(self):
+        self.enabled = False
+        self.active = False
+        self.desired_angular_velocity = 0.0
+
+    def run(self):
+        if self.enabled:
+            angular_velocity = sputnik.orientation.get_angular_velocity(AXIS_Z)
+            if abs(angular_velocity - self.desired_angular_velocity) > angular_velocity_precision:
+                if not self.active:
+                    self.active = True
+                    if angular_velocity > self.desired_angular_velocity:
+                        torsion = -max_orientation_torsion
+                    else:
+                        torsion = max_orientation_torsion
+                    sputnik.orientation.start_motor(AXIS_Z)
+                    sputnik.orientation.set_motor_moment(AXIS_Z, torsion)
+            elif self.active:
+                sputnik.orientation.stop_motor(AXIS_Z)
+                self.active = False
+
+damping_mode = DampingMode()
+
+class OrientationMode(object):
+    def __init__(self):
+        self.enabled = False
+        self.active = False
+        self.differential = True
+        self.desired_angle = 0.0
+        self.desired_angular_velocity = 0.0
+        self.max_angular_acceleration = 0.0
+        self.inertia_moment = 0.0
+
+    def run(self):
+        if self.enabled:
+            angle = sputnik.orientation.get_angle(AXIS_Z)
+            angular_velocity = sputnik.orientation.get_angular_velocity(AXIS_Z)
+            desired_angle_change = normalize_angle_difference(self.desired_angle - angle)
+            if ((abs(angular_velocity - self.desired_angular_velocity) > angular_velocity_precision) or
+                (abs(desired_angle_change) > orient_angle_precision)):
+                proportional_coefficient = 8 * self.max_angular_acceleration / 180
+                differential_coefficient = 8 * math.sqrt(self.max_angular_acceleration / 360)
+                angular_acceleration = desired_angle_change * proportional_coefficient
+                if self.differential:
+                    angular_acceleration -= (angular_velocity - self.desired_angular_velocity) * differential_coefficient
+                torsion = self.inertia_moment * angular_acceleration
+                if torsion > max_orientation_torsion:
+                    torsion = max_orientation_torsion
+                if torsion < -max_orientation_torsion:
+                    torsion = -max_orientation_torsion
+                sputnik.orientation.set_motor_moment(AXIS_Z, torsion)
+                if not self.active:
+                    self.active = True
+                    sputnik.orientation.start_motor(AXIS_Z)
+            elif self.active:
+                sputnik.orientation.stop_motor(AXIS_Z)
+                self.active = False
+
+orientation_mode = OrientationMode()
+
+class TargetingMode(object):
+    def __init__(self):
+        self.enabled = False
+        self.active = False
+        self.initial_nav_angular_velocity = math.degrees(math.sqrt((G * earth_mass) / ((initial_height + earth_radius) ** 3)))
+
+    def run(self):
+        if self.enabled:
+            flight_time = sputnik.cpu.get_flight_time()
+            nav_angle = sputnik.navigation.get_z_axis_angle()
+            orientation_mode.desired_angle = normalize_angle(270 - nav_angle)
+            orientation_mode.desired_angular_velocity = -self.initial_nav_angular_velocity
+            if not self.active:
+                self.active = True
+
+targeting_mode = TargetingMode()
+
+state = 0
+
+message_index = 0
+
+message = None
+
+heating = False
+
+sputnik.telemetry.set_period(60)
+
+while sputnik.cpu.run():
+    damping_mode.run()
+    orientation_mode.run()
+    targeting_mode.run()
+
+    temperature = sputnik.heat_control.get_temperature()
+    if (temperature < 285) and not heating:
+        heating = True
+        sputnik.heat_control.set_power(heater_power)
+        sputnik.heat_control.start_heating()
+    elif (temperature > 300) and heating:
+        heating = False
+        sputnik.heat_control.set_power(0)
+        sputnik.heat_control.stop_heating()
+
+    if state == 0:
+        sputnik.telemetry.set_state(STATE_ON)
+        sputnik.navigation.set_state(STATE_ON)
+        sputnik.orientation.set_state(STATE_ON)
+        sputnik.heat_control.set_state(STATE_ON)
+        initial_angular_velocity = sputnik.orientation.get_angular_velocity(AXIS_Z)
+        flight_time = sputnik.cpu.get_flight_time()
+        stabilization_begin_time = flight_time
+        damping_mode.enabled = True
+        state = 1
+        continue
+
+    if (state == 1) and not damping_mode.active:
+        damping_mode.enabled = False
+        orientation_mode.max_angular_acceleration = abs(initial_angular_velocity) / (sputnik.cpu.get_flight_time() - stabilization_begin_time)
+        orientation_mode.inertia_moment = max_orientation_torsion / orientation_mode.max_angular_acceleration
+        state = 10
+        continue
+    
+    if state == 10:
+        targeting_mode.enabled = True
+        state = 11
+        continue
+
+    if (state == 11) and targeting_mode.active:
+        orientation_mode.enabled = True
+        state = 12
+        continue
+
+    if (state == 12) and not orientation_mode.active:
+        sputnik.transmitter.set_state(STATE_ON)
+        sputnik.transmitter.receive(routing[message_index][0])
+        state = 20
+        continue
+
+    if (state == 20) and (sputnik.transmitter.get_progress(routing[message_index][0]) >= 100.0):
+        message = sputnik.transmitter.get_message(routing[message_index][0])
+        state = 30
+        continue
+
+    if (state == 30) and (abs(normalize_angle_difference(station_angles[routing[message_index][1]] - sputnik.navigation.get_z_axis_angle())) < radio_angle_precision):
+        sputnik.transmitter.send_data(MESSAGE_SMS, message.data, routing[message_index][1], routing[message_index][0])
+        message_index += 1
+        if message_index == len(routing):
+            state = 40
+            continue
+        else:
+            sputnik.transmitter.receive(routing[message_index][0])
+            state = 20
+            continue
+]]></program>
+</system>
+<system name="Power-1" start_mode="ON"/>
+<system name="Telemetry-1" start_mode="ON"/>
+</systems>
+</v:probe>

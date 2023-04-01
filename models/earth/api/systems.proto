@@ -1,0 +1,147 @@
+syntax = "proto3";
+
+//option py_generic_services = true;
+
+enum Error {
+    ERROR_UNKNOWN = 0;
+    ERROR_SYSTEM_NOT_AVAIL = -1;
+    ERROR_NOT_SUPPORTED = -2;
+    ERROR_BAD_PARAMETERS = -3;
+}
+
+enum State {
+    STATE_NOT_INITIALIZED = 0;
+    STATE_OFF = 1;
+    STATE_ON = 2;
+    STATE_SLEEP = 3;
+    STATE_DEAD = 4;
+    STATE_SAFE = 5;
+    STATE_WAKEUP = 6;
+}
+
+enum Axis {
+    AXIS_NONE = 0;
+    AXIS_X = 1;
+    AXIS_Y = 2;
+    AXIS_Z = 3;
+}
+
+enum System {
+    SYSTEM_NONE = 0;
+    SYSTEM_CPU = 10;
+    SYSTEM_TELEMETRY = 20;
+    SYSTEM_TRANSMITTER = 30;
+    SYSTEM_POWER = 40;
+    SYSTEM_NAVIGATION = 50;
+    SYSTEM_ORIENTATION = 60;
+    SYSTEM_ENGINE = 70;
+    SYSTEM_HEATCONTROL = 80;
+    SYSTEM_CAMERA = 90;
+    SYSTEM_CONTAINER = 100;
+}
+
+enum Command {
+    CALL_NONE = 0;
+
+    CALL_GET_STATE = 1;
+    CALL_SET_STATE = 2;
+    CALL_SLEEP = 3;
+
+    CALL_CPU_RUN = 11;
+    CALL_CPU_GET_FLIGHT_TIME = 12;
+    CALL_CPU_SUCCESS = 13;
+
+    CALL_TELEMETRY_SEND_MESSAGE = 21;
+    CALL_TELEMETRY_SET_PERIOD = 22;
+
+    CALL_TRANSMITTER_SEND_DATA = 31;
+    CALL_TRANSMITTER_SEND_PHOTO = 32;
+    CALL_TRANSMITTER_SEND_PHOTO_TO = 33;
+    CALL_TRANSMITTER_RECEIVE = 34;
+    CALL_TRANSMITTER_GET_PROGRESS = 35;
+    CALL_TRANSMITTER_GET_MESSAGE = 36;
+
+    CALL_POWER_GET_BATTERY_CAPACITY = 41;
+    CALL_POWER_GET_GENERATION = 42;
+    CALL_POWER_GET_CONSUMPTION = 43;
+
+    CALL_NAVI_GET_ORBIT_HEIGHT = 51;
+    CALL_NAVI_GET_Z_AXIS_ANGLE = 52;
+    CALL_NAVI_GET_X_COORD = 53;
+    CALL_NAVI_GET_Y_COORD = 54;
+    CALL_NAVI_GET_TRANSVERSAL_VELOCITY = 55;
+    CALL_NAVI_GET_RADIAL_VELOCITY = 56;
+
+    CALL_ORIENT_GET_ANGLE = 61;
+    CALL_ORIENT_GET_ANGULAR_VELOCITY = 62;
+    CALL_ORIENT_START_MOTOR = 63;
+    CALL_ORIENT_STOP_MOTOR = 64;
+    CALL_ORIENT_SET_MOTOR_MOMENT = 65;
+    CALL_ORIENT_START_COIL = 66;
+    CALL_ORIENT_STOP_COIL = 67;
+
+    CALL_ENGINE_GET_FUEL = 71;
+    CALL_ENGINE_START_ENGINE = 72;
+    CALL_ENGINE_STOP_ENGINE = 73;
+    CALL_ENGINE_SET_TRACTION = 74;
+
+    CALL_HC_GET_TEMPERATURE = 81;
+    CALL_HC_START_HEATING = 82;
+    CALL_HC_STOP_HEATING = 83;
+    CALL_HC_SET_POWER = 84;
+
+    CALL_CAMERA_TAKE_PHOTO = 91;
+    CALL_CAMERA_START_SHOOTING = 92;
+    CALL_CAMERA_STOP_SHOOTING = 93;
+    CALL_CAMERA_GET_IMAGE_SIZE = 94;
+
+    CALL_CONTAINER_START_EXPERIMENT = 101;
+    CALL_CONTAINER_STOP_EXPERIMENT = 102;
+    CALL_CONTAINER_SET_PARA_HEIGHT = 103;
+    CALL_CONTAINER_DROP = 104;
+}
+
+enum MessageType {
+    MESSAGE_UNKNOWN = 0;
+    MESSAGE_TELEMETRY = 1;
+    MESSAGE_PHOTO = 2;
+    MESSAGE_SMS = 3;
+}
+
+message Message {
+    int32 receiver = 1;
+    int32 sender = 2;
+    MessageType type = 3;
+    int32 id = 4;
+    bytes data = 5;
+    double send_time = 6;
+    double timeout = 7;
+}
+
+message Payload {
+    oneof Types {
+        bool boolean = 1;
+        int32 integer = 2;
+        double real = 3;
+        string text = 4;
+        bytes data = 5;
+        Message message = 6;
+    }
+}
+
+message Request {
+    System system = 1;
+    Command command = 2;
+    repeated Payload arguments = 3;
+}
+
+message Response {
+    oneof Outcomes {
+        Error error = 1;
+        Payload result = 2;
+    }
+}
+
+service SystemsService {
+    rpc MakeCall (Request) returns (Response);
+}

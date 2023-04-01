@@ -1,0 +1,683 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:missions xmlns:v="venus">
+  <generation>
+    <parameter name="channel" full_name="The required channel bandwidth" unit="KB/sec"/>
+    <parameter name="control_stations" full_name="Ground stations" unit=""/>
+    <parameter name="control_station" full_name="Ground station" unit=""/>
+    <parameter name="data" full_name="Message data size" unit="KB"/>
+    <parameter name="duration" full_name="Mission duration" unit="h"/>
+    <parameter name="launch_time" full_name="Launch time" unit="sec"/>
+    <parameter name="location_angle" full_name="Location angle" unit="°"/>
+    <parameter name="length" full_name="Message length" unit="B"/>
+    <parameter name="messages" full_name="Messages to send and receive" unit=""/>
+    <parameter name="missiles" full_name="" unit=""/>
+    <parameter name="msgfrom" full_name="Message from" unit=""/>
+    <parameter name="msgto" full_name="Message to" unit=""/>
+    <parameter name="oneway_message" full_name="One way message" unit=""/>
+    <parameter name="orbit" full_name="Start orbit height" unit="km"/>
+    <parameter name="order" full_name="Message number" unit=""/>
+    <parameter name="precision" full_name="" unit="°"/>
+    <parameter name="resolution" full_name="" unit="m/pixel"/>
+    <parameter name="start_angular_velocity" full_name="Start angular velocity" unit="°/sec"/>
+    <parameter name="target_angle" full_name="Target angle" unit="°"/>
+    <parameter name="target_orbit" full_name="Target orbit height" unit="km"/>
+    <parameter name="timeout" full_name="Allowed message timeout" unit="sec"/>
+  </generation>
+  <mission_list>
+    <mission name="test1" full_name="Looking to Earth" duration="6" test="true" order="1">
+      <description>First training mission. The spacecraft launches at a pre-set orbit height.
+	It is necessary to extinguish the initial rotation of the spacecraft and
+	make a complete revolution around the Earth with the spacecraft oriented nadir
+	(normal to the surface). In this training mission the spacecraft will be fully
+	constructed, you'll just have to make calculations and insert the required constants
+	into the flight program.</description>
+      <image>image.jpg</image>
+      <achievements>
+        <achievement type="speed">
+          <score level="1" compare="equal" full_name="The first on orbit!" score_value="60"/>
+          <score level="2" compare="equal" full_name="The second on orbit!" score_value="50"/>
+          <score level="3" compare="equal" full_name="The third on orbit!" score_value="40"/>
+        </achievement>
+        <achievement type="tries">
+          <score level="1" compare="equal" full_name="Launch with the first attempt" score_value="50"/>
+          <score level="2" compare="equal" full_name="Launch with the second attempt" score_value="30"/>
+          <score level="3" compare="moreeq" full_name="Mission accomplished" score_value="10"/>
+        </achievement>
+        <achievement type="spec" full_name="Accomplished in one revolution" xmlname="result_turns">
+          <score level="1" compare="lesseq" score_value="50"/>
+        </achievement>
+      </achievements>
+      <generator parameters="orbit,control_stations">
+        <control_stations>
+          <control_station name="GS">
+            <location_angle>
+              <frm>0</frm>
+              <to>359.9</to>
+            </location_angle>
+          </control_station>
+        </control_stations>
+        <orbit>
+          <frm>600</frm>
+          <to>650</to>
+        </orbit>
+      </generator>
+      <default>
+        <construction>
+          <fuel>0</fuel>
+          <voltage>15.0</voltage>
+        </construction>
+        <systems>
+<system name="Cubesat-Case-1U"/>
+<system name="Orient-1" start_mode="ON"/>
+<system name="Telemetry-2" start_mode="ON"/>
+<system name="Navi-1" start_mode="ON"/>
+<system name="Power-1" start_mode="ON"/>
+<system name="" type="load" />
+<system name="" type="radio" />
+<system name="" type="engine" />
+<system name="CPU-1" start_mode="ON">
+<program><![CDATA[t = # THE FLYWHEEL WORKING TIME
+w = # THE FINAL ANGULAR VELOCITY
+M0 = # THE MOMENT
+M = 0.000001
+dw = 0.00001
+
+sputnik.telemetry.set_period(60)
+mode = 'rotate'
+sputnik.orientation.set_motor_moment(AXIS_Z, M0);
+sputnik.orientation.start_motor(AXIS_Z);
+moment = True
+
+while sputnik.cpu.run():
+
+    if mode == 'rotate' and sputnik.cpu.get_flight_time() >= t: 
+        mode = 'ok'
+        sputnik.orientation.stop_motor(AXIS_Z)
+        moment = False
+
+    if mode == 'ok':
+        av = sputnik.orientation.get_angular_velocity(AXIS_Z)
+        if abs(av - w) < dw:
+            if moment:
+                sputnik.orientation.stop_motor(AXIS_Z)
+                moment = False
+        else:
+            if not moment:
+                sputnik.orientation.start_motor(AXIS_Z)
+                moment = True
+            if av > w:
+                sputnik.orientation.set_motor_moment(AXIS_Z, -M)
+            else:
+                sputnik.orientation.set_motor_moment(AXIS_Z, M)
+]]></program>
+</system>
+<system name="Therm-1" start_mode="ON"/>
+        </systems>
+      </default>
+    </mission>
+    <mission name="test2" full_name="Connecting with Earth" duration="6" test="true" order="2">
+      <description>Second training mission. The satellite launches into orbit at a
+      pre-set altitude. It is necessary to program the device to send a message to Earth
+      through the high-performance telecommunications subsystem. In this training mission
+      the satellite will be fully constructed, only the flight program have to be written.</description>
+      <image>image.jpg</image>
+      <achievements>
+	<achievement type="speed">
+          <score level="1" compare="equal" full_name="The first on orbit!" score_value="200"/>
+          <score level="2" compare="equal" full_name="The second on orbit!" score_value="175"/>
+          <score level="3" compare="equal" full_name="The third on orbit!" score_value="150"/>
+        </achievement>
+        <achievement type="tries">
+          <score level="1" compare="equal" full_name="Launch with the first attempt" score_value="120"/>
+          <score level="3" compare="lesseq" full_name="Launch with the 2nd-3rd attempt" score_value="100"/>
+          <score level="4" compare="moreeq" full_name="Mission accomplished" score_value="80"/>
+        </achievement>
+        <achievement type="spec" full_name="Accomplished in one revolution" xmlname="result_turns">
+          <score level="1" compare="lesseq" score_value="200"/>
+        </achievement>
+      </achievements>
+      <generator parameters="orbit,control_stations,oneway_message">
+        <control_stations>
+          <control_station name="GS">
+            <location_angle>
+              <frm>180.0</frm>
+              <to>269.9</to>
+            </location_angle>
+          </control_station>
+        </control_stations>
+        <oneway_message>
+          <length>
+            <frm>20</frm>
+            <to>30</to>
+          </length>
+        </oneway_message>
+        <orbit>
+          <frm>600</frm>
+          <to>650</to>
+        </orbit>
+      </generator>
+      <default>
+        <construction>
+          <fuel>0</fuel>
+          <voltage>15.0</voltage>
+        </construction>
+        <systems>
+<system name="Radio-1" start_mode="OFF"/>
+<system name="Cubesat-Case-3U"/>
+<system name="Orient-2" start_mode="ON"/>
+<system name="Telemetry-1" start_mode="ON"/>
+<system name="Navi-1" start_mode="ON"/>
+<system name="Power-1" start_mode="ON"/>
+<system name="CPU-1" start_mode="ON" />
+<system name="Therm-1" start_mode="ON"/>          
+<system name="" type="load" />
+<system name="" type="engine" />
+        </systems>
+      </default>
+    </mission>
+    <mission name="test3" full_name="Orbital Maneuver" duration="6" test="true" order="3">
+      <description>The third training mission. The satellite launches into orbit at a
+	pre-set altitude. It is necessary to program the device to move to a higher orbit. В
+	In this training mission, the satellite will be fully constructed, you only have to
+	calculate the mass of fuel required and write a flight program.
+      </description>
+      <image>image.jpg</image>
+      <achievements>
+	<achievement type="speed">
+          <score level="1" compare="equal" full_name="The first on orbit!" score_value="300"/>
+          <score level="2" compare="equal" full_name="The second on orbit!" score_value="280"/>
+          <score level="3" compare="equal" full_name="The third on orbit!" score_value="250"/>
+        </achievement>
+        <achievement type="tries">
+          <score level="1" compare="equal" full_name="Launch with the first attempt" score_value="1000"/>
+          <score level="5" compare="lesseq" full_name="Launch with the 2nd-5th attempt" score_value="400"/>
+          <score level="6" compare="moreeq" full_name="Mission accomplished" score_value="100"/>
+        </achievement>
+        <achievement type="spec" full_name="Precise calculation" xmlname="result_targetdiff">
+          <score level="1000" compare="lesseq" score_value="1000"/>
+        </achievement>
+      </achievements>
+      <generator parameters="orbit,control_stations,target_orbit">
+        <control_stations>
+          <control_station name="GS">
+            <location_angle>
+              <frm>90.0</frm>
+              <to>269.9</to>
+            </location_angle>
+          </control_station>
+        </control_stations>
+        <orbit>
+          <frm>600</frm>
+          <to>650</to>
+        </orbit>
+        <target>
+          <orbit>
+            <frm>700</frm>
+            <to>800</to>
+          </orbit>
+        </target>
+      </generator>
+      <default>
+        <construction>
+          <voltage>15.0</voltage>
+        </construction>
+        <systems>
+<system name="Cubesat-Case-6U"/>
+<system name="Orient-1" start_mode="ON"/>
+<system name="Telemetry-1" start_mode="ON"/>
+<system name="Navi-1" start_mode="ON"/>
+<system name="Power-1" start_mode="ON"/>
+<system name="CPU-1" start_mode="ON" />
+<system name="Therm-1" start_mode="ON"/>          
+<system name="Engine-1-1" start_mode="ON"/>
+<system name="" type="load" />
+<system name="" type="radio"/>
+        </systems>
+      </default>
+    </mission>
+    <mission name="dzz" full_name="Remote Sensing" duration="6" order="4">
+      <description>
+	The satellite launches into orbit at a preset altitude. You need to take a picture
+	of an object located on Earth from space. The image data must be transmitted it to
+	a ground station via a high-capacity communication channel. The number of winning
+	points depends on the resolution of the image and the normal orientation of the
+	vehicle in relation to the surface at the time of capture.
+       </description>
+      <image>image.jpg</image>
+	<achievement type="speed">
+          <score level="1" compare="equal" full_name="The first on orbit!" score_value="1200"/>
+          <score level="2" compare="equal" full_name="The second on orbit!" score_value="1000"/>
+          <score level="3" compare="equal" full_name="The third on orbit!" score_value="800"/>
+        </achievement>
+        <achievement type="tries">
+          <score level="1" compare="equal" full_name="Precise calculation" score_value="3000"/>
+          <score level="5" compare="lesseq" full_name="High reliability" score_value="2000"/>
+          <score level="6" compare="moreeq" full_name="Mission accomplished" score_value="1000"/>
+        </achievement>
+        <achievement type="spec" full_name="High resolution" xmlname="result_resolution">
+          <score level="10" compare="lesseq" score_value="5000"/>
+        </achievement>
+        <achievement type="spec" full_name="Precise shot" xmlname="result_targetangle">
+          <score level="0.01" compare="lesseq" score_value="3000"/>
+        </achievement>
+        <achievement type="spec" full_name="Vestical shot" xmlname="result_targetnormal">
+          <score level="0.01" compare="lesseq" score_value="2000"/>
+        </achievement>
+      </achievements>
+      <generator parameters="orbit,control_stations,target_angle,resolution">
+        <control_stations>
+          <control_station name="НИП">
+            <location_angle>
+              <frm>190.0</frm>
+              <to>350.0</to>
+            </location_angle>
+          </control_station>
+        </control_stations>
+        <orbit>
+          <frm>650</frm>
+          <to>650</to>
+        </orbit>
+        <resolution>
+          <frm>2.0</frm>
+          <to>2.0</to>
+        </resolution>
+        <target>
+          <location_angle>
+            <frm>2.0</frm>
+            <to>178.0</to>
+          </location_angle>
+        </target>
+      </generator>
+    </mission>
+    <mission name="sms" full_name="SMS Everywhere" duration="6" order="5">
+      <description>
+	The satellite launches into orbit at a given altitude. The team is given a set of
+	messages to be delivered between ground stations. It is necessary to sequentially reorient the
+	vehicle to stations in order to receive signal from some stations and transmit it to
+	others. The number of of victory points received depends on the number of messages
+	transmitted to Earth.
+      </description>
+      <image>image.jpg</image>
+      <achievements>
+        <achievement type="speed">
+          <score level="1" compare="equal" full_name="The first on orbit!" score_value="1500"/>
+          <score level="2" compare="equal" full_name="The second on orbit!" score_value="1200"/>
+          <score level="3" compare="equal" full_name="The third on orbit!" score_value="1000"/>
+        </achievement>
+        <achievement type="tries">
+          <score level="1" compare="equal" full_name="Precise calculation" score_value="3000"/>
+          <score level="5" compare="lesseq" full_name="Good calculation" score_value="2000"/>
+          <score level="6" compare="moreeq" full_name="Mission accomplished" score_value="1000"/>
+        </achievement>
+        <achievement type="spec" full_name="High reliability" xmlname="result_msgnum">
+          <score level="5" compare="equal" score_value="5000"/>
+        </achievement>
+      </achievements>
+      <generator parameters="orbit,control_stations,messages">
+        <control_stations>
+          <control_station name="0">
+            <location_angle>
+              <frm>0.0</frm>
+              <to>19.9</to>
+            </location_angle>
+          </control_station>
+          <control_station name="1">
+            <location_angle>
+              <frm>20.0</frm>
+              <to>39.9</to>
+            </location_angle>
+          </control_station>
+          <control_station name="2">
+            <location_angle>
+              <frm>40.0</frm>
+              <to>59.9</to>
+            </location_angle>
+          </control_station>
+          <control_station name="3">
+            <location_angle>
+              <frm>60.0</frm>
+              <to>79.9</to>
+            </location_angle>
+          </control_station>
+          <control_station name="4">
+            <location_angle>
+              <frm>80.0</frm>
+              <to>99.9</to>
+            </location_angle>
+          </control_station>
+          <control_station name="5">
+            <location_angle>
+              <frm>100.0</frm>
+              <to>119.9</to>
+            </location_angle>
+          </control_station>
+          <control_station name="6">
+            <location_angle>
+              <frm>120.0</frm>
+              <to>139.9</to>
+            </location_angle>
+          </control_station>
+          <control_station name="7">
+            <location_angle>
+              <frm>140.0</frm>
+              <to>159.9</to>
+            </location_angle>
+          </control_station>
+          <control_station name="8">
+            <location_angle>
+              <frm>160.0</frm>
+              <to>179.9</to>
+            </location_angle>
+          </control_station>
+          <control_station name="9">
+            <location_angle>
+              <frm>180.0</frm>
+              <to>199.9</to>
+            </location_angle>
+          </control_station>
+          <control_station name="10">
+            <location_angle>
+              <frm>200.0</frm>
+              <to>219.9</to>
+            </location_angle>
+          </control_station>
+          <control_station name="11">
+            <location_angle>
+              <frm>220.0</frm>
+              <to>239.9</to>
+            </location_angle>
+          </control_station>
+          <control_station name="12">
+            <location_angle>
+              <frm>240.0</frm>
+              <to>259.9</to>
+            </location_angle>
+          </control_station>
+          <control_station name="13">
+            <location_angle>
+              <frm>260.0</frm>
+              <to>279.9</to>
+            </location_angle>
+          </control_station>
+          <control_station name="14">
+            <location_angle>
+              <frm>280.0</frm>
+              <to>299.9</to>
+            </location_angle>
+          </control_station>
+          <control_station name="15">
+            <location_angle>
+              <frm>300.0</frm>
+              <to>319.9</to>
+            </location_angle>
+          </control_station>
+          <control_station name="16">
+            <location_angle>
+              <frm>320.0</frm>
+              <to>339.9</to>
+            </location_angle>
+          </control_station>
+          <control_station name="17">
+            <location_angle>
+              <frm>340.0</frm>
+              <to>359.9</to>
+            </location_angle>
+          </control_station>
+        </control_stations>
+        <messages number="5">
+          <data>
+            <frm>20</frm>
+            <to>30</to>
+          </data>
+          <timeout>
+            <frm>6000</frm>
+            <to>7000</to>
+          </timeout>
+        </messages>
+        <orbit>
+          <frm>600</frm>
+          <to>650</to>
+        </orbit>
+      </generator>
+    </mission>
+    <mission name="inspect" full_name="Orbital Inspection" duration="6" order="6">
+      <description>
+	The satellite launches in an orbit of a given altitude. Another orbit is known,
+	in which the target satellite is moving. You must get close to the target to take
+	a picture of target satellite and transmit the results of the pictures to Earth.
+	The number of victory points you get depends on the quality of the picture.
+      </description>
+      <image>image.jpg</image>
+      <achievements>
+        <achievement type="speed">
+          <score level="1" compare="equal" full_name="The first on orbit!" score_value="2000"/>
+          <score level="2" compare="equal" full_name="The second on orbit!" score_value="1800"/>
+          <score level="3" compare="equal" full_name="The third on orbit!" score_value="1600"/>
+        </achievement>
+        <achievement type="tries">
+          <score level="1" compare="equal" full_name="Precise calculation" score_value="6000"/>
+          <score level="5" compare="lesseq" full_name="High reliability" score_value="4000"/>
+          <score level="6" compare="moreeq" full_name="Mission accomplished" score_value="2000"/>
+        </achievement>
+        <achievement type="spec" full_name="High resolution" xmlname="result_resolution">
+          <score level="10" compare="moreeq" score_value="10000"/>
+        </achievement>
+        <achievement type="spec" full_name="Sneaked to the Target" xmlname="result_targetdest">
+          <score level="1000" compare="lesseq" score_value="10000"/>
+        </achievement>
+      </achievements>
+      <generator parameters="orbit,control_stations,target_angle,target_orbit,resolution">
+        <control_stations>
+          <control_station name="GS">
+            <location_angle>
+              <frm>0</frm>
+              <to>359.9</to>
+            </location_angle>
+          </control_station>
+        </control_stations>
+        <orbit>
+          <frm>180</frm>
+          <to>220</to>
+        </orbit>
+        <resolution>
+          <frm>0.002</frm>
+          <to>0.002</to>
+        </resolution>
+        <target>
+          <location_angle>
+            <frm>20</frm>
+            <to>80</to>
+          </location_angle>
+          <orbit>
+            <frm>700</frm>
+            <to>800</to>
+          </orbit>
+        </target>
+      </generator>
+    </mission>
+    <mission name="crystal" full_name="Growing Crystal in Space" duration="6" order="7">
+      <description>
+	The satellite launches into orbit at a preset altitude. You need to grow a protein
+	crystal in zero gravity and deliver it to Earth. To do this you need to take the
+	satellite into a given orbit, make one revolution around planet with the rest
+	equipment turned off (you only need the CPU, the power supply subsystem and the
+	container with the crystal), keeping the temperature of the spacecraft in the
+	required range and then land the probe at a certain point on the Earth's
+	surface. The number of victory points obtained depends on the accuracy landing.
+       </description>
+      <image>image.jpg</image>
+      <achievements>
+        <achievement type="speed">
+          <score level="1" compare="equal" full_name="The first on orbit!" score_value="2400"/>
+          <score level="2" compare="equal" full_name="The second on orbit!" score_value="2200"/>
+          <score level="3" compare="equal" full_name="The third on orbit!" score_value="2000"/>
+        </achievement>
+        <achievement type="tries">
+          <score level="1" compare="equal" full_name="Precise calculation" score_value="8000"/>
+          <score level="5" compare="lesseq" full_name="High reliability" score_value="6000"/>
+          <score level="6" compare="moreeq" full_name="Mission accpmlished" score_value="3000"/>
+        </achievement>
+        <achievement type="spec" full_name="Stable experimental conditions" xmlname="result_tempdelta">
+          <score level="5" compare="lesseq" score_value="10000"/>
+        </achievement>
+        <achievement type="spec" full_name="Precise landing" xmlname="result_targetdiff">
+          <score level="5" compare="lesseq" score_value="10000"/>
+        </achievement>
+      </achievements>
+      <generator parameters="orbit,control_stations,target_angle,target_orbit,precision">
+        <control_stations>
+          <control_station name="GS">
+            <location_angle>
+              <frm>0</frm>
+              <to>359.9</to>
+            </location_angle>
+          </control_station>
+        </control_stations>
+        <orbit>
+          <frm>600</frm>
+          <to>650</to>
+        </orbit>
+        <precision>
+          <frm>0.01</frm>
+          <to>0.01</to>
+        </precision>
+        <target>
+          <location_angle>
+            <frm>0</frm>
+            <to>359.9</to>
+          </location_angle>
+          <orbit>
+            <frm>700</frm>
+            <to>800</to>
+          </orbit>
+        </target>
+      </generator>
+    </mission>
+    <mission name="molniya" full_name="Telecom satellite MOLNIYA" duration="36" order="8">
+      <description>
+      The satellite starts on a circular low orbit. To complete the mission you need to
+      initiate the two communication sessions with the ground station of at least 8 hours
+      duration with at least 1 mb/s channel bandwidth.  A communication session should
+      continue the high-speed transmitting continuously while the satellite within range
+      of the ground station. In order to conduct such a long communication session, you
+      will have to put the satellite into a suitable elliptical orbit during the
+      mission. Note that this mission simulates the rotation of the Earth along with the
+      ground station located on it. It takes 23 hours and 56 minutes for the Earth to make
+      a complete revolution.
+       </description>
+      <image>image.jpg</image>
+      <achievements>
+        <achievement type="speed">
+          <score level="1" compare="equal" full_name="The first on orbit!"
+          description="You completed the mission the first" score_value="2000"/>
+          <score level="2" compare="equal" full_name="The second on orbit!"
+          description="You completed the mission the second" score_value="1800"/>
+          <score level="3" compare="equal" full_name="The third on orbit!"
+          description="You completed the mission the third" score_value="1600"/>
+        </achievement>
+        <achievement type="tries">
+          <score level="1" compare="equal" full_name="Precise calculation"
+		 description="You completed the mission with the first launch" score_value="6000"/>
+          <score level="5" compare="lesseq" full_name="High reliability"
+		 description="You completed the mission with the 2nd-5th launch" score_value="4000"/>
+          <score level="6" compare="moreeq" full_name="Mission accomplished"
+		 description="You completed the mission with the 6th or more launch" score_value="2000"/>
+        </achievement>
+        <achievement type="spec" full_name="Fast deployment" description="Make
+		 at least three communication sessions" xmlname="result_sessioncount">
+          <score level="3" compare="moreeq" score_value="5000"/>
+        </achievement>
+        <achievement type="spec" full_name="No breaks"
+		     description="The duration of each session is at least 10 hours" xmlname="result_sessionlength">
+          <score level="10" compare="moreeq" score_value="10000"/>
+        </achievement>
+      </achievements>
+      <generator parameters="orbit,control_stations">
+        <control_stations>
+          <control_station name="GS">
+            <location_angle>
+              <frm>315.0</frm>
+              <to>45.0</to>
+            </location_angle>
+          </control_station>
+        </control_stations>
+        <orbit>
+          <frm>500</frm>
+          <to>600</to>
+        </orbit>
+      </generator>
+    </mission>
+    <mission name="early_warning" full_name="Early Rocket Warning System" duration="36" order="9">
+      <description>
+	Your satellite is on geostationary orbit. The area of responsibility of the
+	satellite is a sector of the earth's surface ±45 degrees from its point of origin.
+	From this region during the mission ballistic missiles will be launched, which
+	need to be detected and intercepted. During the active phase of the rocket lauch,
+	the missile's plume is clearly visible in the infrared range. The active phase
+	lasts 180 seconds, during which time the missile reaches an altitude of about 160
+	km. The satellite should make a round-the-clock survey of the Earth using an
+	infrared telescope and promptly transmit the obtained data to the Earth.  In order
+	to intercept the rocket successfully, it is necessary to transmit an image of it
+	to Earth no later than 180 seconds after launch. In order to get a sufficiently
+	complete coverage of the surface, it is recommended to take an image at an angular
+	velocity of not more than 1 °/sec. Note that this mission simulates the rotation of
+	the Earth together with the ground stations located on it. The Earth makes a complete
+	revolution in 23 hours 56 minutes.
+       </description>
+      <image>image.jpg</image>
+      <achievements>
+        <achievement type="speed">
+          <score level="1" compare="equal" full_name="The first on orbit!"
+          description="You completed the mission the first" score_value="2400"/>
+          <score level="2" compare="equal" full_name="The second on orbit!"
+          description="You completed the mission the second" score_value="2200"/>
+          <score level="3" compare="equal" full_name="The third on orbit!"
+          description="You completed the mission the third" score_value="2000"/>
+        </achievement>
+        <achievement type="tries">
+          <score level="1" compare="equal" full_name="Precise calculation"
+		 description="You completed the mission with the first launch" score_value="8000"/>
+          <score level="5" compare="lesseq" full_name="High reliability"
+		 description="You completed the mission with the 2nd-5th launch" score_value="6000"/>
+          <score level="6" compare="moreeq" full_name="Mission accomplished"
+		 description="You completed the mission with the 6th or more launch" score_value="3000"/>
+        </achievement>
+        <achievement type="spec" full_name="You shall not pass!" description="All the
+          rockets were intercepted" xmlname="result_unintercepted">
+          <score level="0" compare="equal" score_value="10000"/>
+        </achievement>
+      </achievements>
+      <generator parameters="orbit,control_stations,missiles">
+        <control_stations>
+          <control_station name="GS-West">
+            <location_angle>
+              <frm>315.0</frm>
+              <to>325.0</to>
+            </location_angle>
+          </control_station>
+          <control_station name="GS-East">
+            <location_angle>
+              <frm>35.0</frm>
+              <to>45.0</to>
+            </location_angle>
+          </control_station>
+        </control_stations>
+        <missiles number="10">
+          <location_angle>
+            <frm>315.0</frm>
+            <to>45.0</to>
+          </location_angle>
+          <launch_time>
+            <frm>3600</frm>
+            <to>255600</to>
+          </launch_time>
+          <cooldown>600</cooldown>
+        </missiles>
+        <orbit>
+          <frm>35794</frm>
+          <to>35794</to>
+        </orbit>
+      </generator>
+    </mission>
+  </mission_list>
+</v:missions>

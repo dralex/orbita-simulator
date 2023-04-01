@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:probe name="Test3" xmlns:v="venus">
+<flight>
+<tournament>tournament</tournament>
+<planet name="Earth"/>
+<time start="2015-01-01 00:00:00"/>
+<T_start>290.000000</T_start>
+    <mission type="crystal">
+      <control_stations>
+	<control_station name="GS">
+	  <location_angle>30</location_angle>
+	</control_station>
+      </control_stations>
+      <duration>6</duration>
+      <orbit>600</orbit>
+      <precision>0.1</precision>
+      <start_angular_velocity>1.0</start_angular_velocity>
+      <target_angle>120</target_angle>
+      <target_orbit>700</target_orbit>
+    </mission>
+</flight>
+<construction><fuel>0.75</fuel>
+<voltage>27.000000</voltage>
+<xz_yz_solar_panel_fraction>100.000000</xz_yz_solar_panel_fraction>
+<xz_yz_radiator_fraction>0.000000</xz_yz_radiator_fraction>
+<xy_radiator_fraction>100.000000</xy_radiator_fraction>
+</construction>
+<systems>
+<system name="Cubesat-Case-6U"/>
+<system name="Orient-1" start_mode="ON"/>
+<system name="Telemetry-1" start_mode="ON"/>
+<system name="Navi-1" start_mode="ON"/>
+<system name="Power-1" start_mode="ON"/>
+<system name="Therm-2" start_mode="ON"/>	  
+<system name="Engine-1-1" start_mode="ON"/>
+<system name="Crystal-Container-Small" start_mode="OFF"/>
+<system name="CPU-1" start_mode="ON">
+<program>
+<![CDATA[
+import math
+
+def normalize_angle(angle):
+    while angle >= 360.0:
+        angle -= 360.0
+    while angle < 0.0:
+        angle += 360.0
+    return angle
+
+orig_mass = 8.6
+volume = 6.8
+u = 2790.0
+G = 6.6742e-11
+R_z = 6371032.0
+M_z = 5.9726e24
+target_height = 700.0 * 1000.0
+R1 = R_z + 600.0 * 1000.0
+R2 = R_z + target_height
+M1 = 0.00002
+M2 = 0.00001
+Traction = 0.009
+dw = 0.00001
+T = 2 * math.pi * (R_z + target_height) / math.sqrt(G * M_z / (R_z + target_height))
+target_angle = 120
+
+f = sputnik.engine.get_fuel()
+a = math.pow(volume, 1/3.0) / 10
+I = (1/12.0) * (2.0 * a ** 2) * (orig_mass + f)
+
+av = sputnik.orientation.get_angular_velocity(AXIS_Z)
+aa = av ** 2 / ((180 + 360 * 3) * 2)
+t0 = av / aa
+M0 = I * aa
+
+dv1 = math.sqrt(G * M_z / R1) * (math.sqrt(2 * R2 / (R1 + R2)) - 1)
+dv2 = math.sqrt(G * M_z / R2) * (1 - math.sqrt(2 * R1 / (R1 + R2)))
+dv = dv1 + dv2
+
+heating = False
+
+stage = -2
+
+sputnik.telemetry.set_period(60)
+
+while sputnik.cpu.run():
+    temp = sputnik.heat_control.get_temperature()
+    if temp < 290:
+        if not heating and stage < 8:
+            sputnik.heat_control.start_heating()
+            heating = True
+    else:
+        if heating:
+            sputnik.heat_control.stop_heating()
+            heating = False
+
+    if stage == -2:
+        sputnik.orientation.set_motor_moment(AXIS_Z, -M0)
+        sputnik.orientation.start_motor(AXIS_Z)
+        stage = -1
+        sputnik.telemetry.send_message('STAGE -1')
+    elif stage == -1:
+        t = sputnik.cpu.get_flight_time()
+        if t >= t0:
+            sputnik.orientation.stop_motor(AXIS_Z)
+            stage = 0
+            sputnik.telemetry.send_message('STAGE 0')
+    elif stage == 0:
+        na = sputnik.navigation.get_z_axis_angle()
+        if na >= 180:
+            start_velocity = sputnik.navigation.get_transversal_velocity()
+            sputnik.engine.set_traction(Traction)
+            sputnik.engine.start_engine()
+            stage = 1
+            sputnik.telemetry.send_message('STAGE 1')
+    elif stage == 1:
+        v = sputnik.navigation.get_transversal_velocity()
+        if abs(v - start_velocity) > dv1:
+            sputnik.engine.stop_engine()
+            stage = 2
+            sputnik.telemetry.send_message('STAGE 2')
+    elif stage == 2:
+        sputnik.orientation.set_motor_moment(AXIS_Z, M1)
+        sputnik.orientation.start_motor(AXIS_Z)
+        stage = 3
+        sputnik.telemetry.send_message('STAGE 3')
+    elif stage == 3:
+        oa = sputnik.orientation.get_angle(AXIS_Z)
+        if oa >= 270:
+            sputnik.orientation.set_motor_moment(AXIS_Z, -M1)
+            stage = 4
+            sputnik.telemetry.send_message('STAGE 4')
+    elif stage == 4:
+        oa = sputnik.orientation.get_angle(AXIS_Z)
+        if oa >= 359.9 or oa <= 0.1:
+            sputnik.orientation.stop_motor(AXIS_Z)
+            h = 0.0
+            stage = 5
+            sputnik.telemetry.send_message('STAGE 5')
+            moment = False
+    elif 5 <= stage <= 6:
+        av = sputnik.orientation.get_angular_velocity(AXIS_Z)
+        if abs(av) < dw:
+            if moment:
+                sputnik.orientation.stop_motor(AXIS_Z)
+                moment = False
+        else:
+            if not moment:
+                sputnik.orientation.start_motor(AXIS_Z)
+                moment = True
+            if av > 0:
+                sputnik.orientation.set_motor_moment(AXIS_Z, -M2)
+            else:
+                sputnik.orientation.set_motor_moment(AXIS_Z, M2)
+        if stage == 5:
+            prev_h = h
+            h = sputnik.navigation.get_orbit_height()
+            if h <= prev_h:
+                sputnik.orientation.stop_motor(AXIS_Z)
+                start_velocity = sputnik.navigation.get_transversal_velocity()
+                sputnik.engine.start_engine()
+                stage = 6
+                sputnik.telemetry.send_message('STAGE 6')
+        elif stage == 6:
+            v = sputnik.navigation.get_transversal_velocity()
+            if abs(v - start_velocity) > dv2:
+                sputnik.engine.stop_engine()
+                stage = 7
+                sputnik.telemetry.send_message('STAGE 7')
+                start_time = sputnik.cpu.get_flight_time()
+                sputnik.engine.set_state(STATE_OFF)
+                sputnik.telemetry.set_state(STATE_OFF)
+                sputnik.navigation.set_state(STATE_OFF)
+                sputnik.orientation.set_state(STATE_OFF)
+                sputnik.container.set_state(STATE_ON)
+                sputnik.container.start_experiment()
+    elif stage == 7:
+        t = sputnik.cpu.get_flight_time()
+        if t - start_time >= T + 10:
+            stage = 8
+            sputnik.telemetry.send_message('STAGE 8')
+            sputnik.container.stop_experiment()
+            sputnik.container.set_state(STATE_OFF)
+            sputnik.engine.set_state(STATE_ON)
+            sputnik.telemetry.set_state(STATE_ON)
+            sputnik.navigation.set_state(STATE_ON)
+            sputnik.orientation.set_state(STATE_ON)
+    elif stage == 8:
+        na = sputnik.navigation.get_z_axis_angle()
+        if na >= 175.0:
+            stage = 9
+            sputnik.telemetry.send_message('STAGE 9')
+            f = sputnik.engine.get_fuel()
+            w_z = 360.0 / T
+            a = math.pow(volume, 1/3.0) / 10
+            I = (1/12.0) * (2.0 * a ** 2) * (orig_mass + f)
+            aa = w_z ** 2 / ((180.0 - na) * 2)
+            t7 = w_z / aa
+            M3 = I * aa
+            sputnik.orientation.set_motor_moment(AXIS_Z, -M3)
+            sputnik.orientation.start_motor(AXIS_Z)
+            t = sputnik.cpu.get_flight_time()
+            start_time = t
+    elif stage == 9:
+        t = sputnik.cpu.get_flight_time()
+        if t - start_time >= t7:
+            sputnik.orientation.stop_motor(AXIS_Z)
+            stage = 10
+            sputnik.telemetry.send_message('STAGE 10')
+    elif stage == 10:
+        na = sputnik.navigation.get_z_axis_angle()
+        if abs(na - normalize_angle(target_angle - 150)) < 0.1:
+            stage = 11
+            sputnik.telemetry.send_message('STAGE 11')
+            sputnik.engine.start_engine()
+            start_time = sputnik.cpu.get_flight_time()
+    elif stage == 11:
+        f = sputnik.engine.get_fuel()
+        if f < Traction:
+            stage = 12
+            sputnik.telemetry.send_message('STAGE 12')
+            sputnik.container.set_parachute_height(5000)
+            sputnik.container.drop()
+]]></program>
+</system>
+</systems>
+</v:probe>

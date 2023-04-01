@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:v="venus" targetNamespace="venus">
+  <xsd:element name="shortlog">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="tournament" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+        <xsd:element name="probe" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+        <xsd:element name="planet" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+        <xsd:element name="mission" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+        <xsd:element name="flight_time" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+        <xsd:element name="status" minOccurs="1" maxOccurs="1">
+          <xsd:simpleType>
+            <xsd:restriction base="xsd:string">
+              <xsd:enumeration value="completed"/>
+              <xsd:enumeration value="failed"/>
+              <xsd:enumeration value="notelemetry"/>
+              <xsd:enumeration value="error"/>
+            </xsd:restriction>
+          </xsd:simpleType>
+        </xsd:element>
+        <xsd:element name="result_message" minOccurs="1" maxOccurs="1" type="xsd:string"/>
+        <xsd:element name="result_score" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+        <xsd:element name="result_detectiondelay" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+        <xsd:element name="result_msgnum" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+        <xsd:element name="result_resolution" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+        <xsd:element name="result_sessioncount" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+        <xsd:element name="result_sessionlength" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+        <xsd:element name="result_targetangle" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+        <xsd:element name="result_targetdest" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+        <xsd:element name="result_targetdiff" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+        <xsd:element name="result_targetnormal" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+        <xsd:element name="result_tempdelta" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+        <xsd:element name="result_turns" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+        <xsd:element name="result_unintercepted" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+        <xsd:element name="images" minOccurs="0" maxOccurs="1">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="image" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                  <xsd:attribute name="file" type="xsd:string"/>
+                  <xsd:attribute name="title" type="xsd:string"/>
+                </xsd:complexType>
+              </xsd:element>            
+            </xsd:sequence> 
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="mission_log" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+        <xsd:element name="data" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+        <xsd:element name="events" minOccurs="0" maxOccurs="1" type="xsd:string"/>
+      </xsd:sequence> 
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

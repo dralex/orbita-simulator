@@ -5,7 +5,6 @@ including several models (ballistics, landing, radio, surface activity, etc.)
 
 There are three models available in the current version of the simulator:
 * planets - the first version of the engineering simulation dedicated to landing on planets and surface missions
-* gravity - a simple gravity calculator model
 * earth - the second version of the engineering simulation dedicated to missions on the Earth orbit
 
 Authors:

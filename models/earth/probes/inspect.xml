@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:probe name="Insp-x" xmlns:v="venus">
+<flight>
+<tournament>tournament</tournament>
+<planet name="Earth"/>
+<time start="2015-01-01 00:00:00"/>
+<T_start>290.000000</T_start>
+<mission type="inspect">
+<control_stations>
+        <control_station name="GS">
+                <location_angle>121.000000</location_angle>
+        </control_station>
+</control_stations>
+<duration>6.000000</duration>
+<orbit>182.000000</orbit>
+<resolution>0.000000</resolution>
+<start_angular_velocity>1.000000</start_angular_velocity>
+<target_angle>61.000000</target_angle>
+<target_orbit>790.000000</target_orbit>
+</mission>
+</flight>
+<construction>
+  <fuel>29.000000</fuel>
+  <voltage>27.000000</voltage>
+  <xz_yz_solar_panel_fraction>100.000000</xz_yz_solar_panel_fraction>
+  <xz_yz_radiator_fraction>0.000000</xz_yz_radiator_fraction>
+  <xy_radiator_fraction>50.000000</xy_radiator_fraction>
+</construction>
+<systems><system name="MicroSat-Case"/>
+<system name="Therm-2" start_mode="ON"/>
+<system name="Navi-1" start_mode="ON"/>
+<system name="Orient-3" start_mode="ON"/>
+<system name="Engine-2-2" start_mode="OFF"/>
+<system name="CPU-2" start_mode="ON">
+<program>
+<![CDATA[
+initial_inspector_height = 182000.0
+target_height = 790000.0
+
+initial_target_angle = 61.0
+ground_station_angle = 121.0
+
+G = 6.6742e-11
+earth_mass = 5.9726e24
+earth_radius = 6371032.0
+
+max_orientation_torsion = 0.0165
+
+max_engine_traction = 0.037
+engine_specific_impulse = 2705.0
+
+dry_mass = 1.7 + 10.0 + 6.6 + 0.6 + 0.2 + 0.4 + 3.0 + 16.0 + 1.5 + 1.5
+
+first_burn_tune = 0.00
+second_burn_tune = 0.00
+
+load_enable_interval = 1.5
+radio_enable_interval = 200
+
+heater_power = 5.0
+
+angular_velocity_precision = 2e-3
+orient_angle_precision = 5e-3
+navig_angle_precision = 5e-3
+coord_precision = 1e-2
+
+def normalize_angle(angle):
+    normalized_angle = angle
+    while normalized_angle < 0:
+        normalized_angle += 360
+    while normalized_angle >= 360:
+        normalized_angle -= 360
+    return normalized_angle
+
+def normalize_angle_difference(angle_difference):
+    normalized_angle_difference = angle_difference
+    while normalized_angle_difference < -180:
+        normalized_angle_difference += 360
+    while normalized_angle_difference >= 180:
+        normalized_angle_difference -= 360
+    return normalized_angle_difference
+
+class DampingMode(object):
+    def __init__(self):
+        self.enabled = False
+        self.active = False
+        self.desired_angular_velocity = 0.0
+
+    def run(self):
+        if self.enabled:
+            angular_velocity = sputnik.orientation.get_angular_velocity(AXIS_Z)
+            if abs(angular_velocity - self.desired_angular_velocity) > angular_velocity_precision:
+                if not self.active:
+                    self.active = True
+                    if angular_velocity > self.desired_angular_velocity:
+                        torsion = -max_orientation_torsion
+                    else:
+                        torsion = max_orientation_torsion
+                    sputnik.orientation.start_motor(AXIS_Z)
+                    sputnik.orientation.set_motor_moment(AXIS_Z, torsion)
+            elif self.active:
+                sputnik.orientation.stop_motor(AXIS_Z)
+                self.active = False
+
+damping_mode = DampingMode()
+
+class OrientationMode(object):
+    def __init__(self):
+        self.enabled = False
+        self.active = False
+        self.differential = True
+        self.desired_angle = 0.0
+        self.desired_angular_velocity = 0.0
+        self.max_angular_acceleration = 0.0
+        self.inertia_moment = 0.0
+
+    def run(self):
+        if self.enabled:
+            angle = sputnik.orientation.get_angle(AXIS_Z)
+            angular_velocity = sputnik.orientation.get_angular_velocity(AXIS_Z)
+            desired_angle_change = normalize_angle_difference(self.desired_angle - angle)
+            if ((abs(angular_velocity - self.desired_angular_velocity) > angular_velocity_precision) or
+                (abs(desired_angle_change) > orient_angle_precision)):
+                proportional_coefficient = 8 * self.max_angular_acceleration / 180
+                differential_coefficient = 8 * math.sqrt(self.max_angular_acceleration / 360)
+                angular_acceleration = desired_angle_change * proportional_coefficient
+                if self.differential:
+                    angular_acceleration -= (angular_velocity - self.desired_angular_velocity) * differential_coefficient
+                torsion = self.inertia_moment * angular_acceleration
+                if torsion > max_orientation_torsion:
+                    torsion = max_orientation_torsion
+                if torsion < -max_orientation_torsion:
+                    torsion = -max_orientation_torsion
+                sputnik.orientation.set_motor_moment(AXIS_Z, torsion)
+                if not self.active:
+                    self.active = True
+                    sputnik.orientation.start_motor(AXIS_Z)
+            elif self.active:
+                sputnik.orientation.stop_motor(AXIS_Z)
+                self.active = False
+
+orientation_mode = OrientationMode()
+
+class PhasingMode(object):
+    def __init__(self):
+        self.enabled = False
+        self.active = False
+        self.angle_alignment = 0.0
+        self.target_angle = 0.0
+        self.initial_nav_angular_velocity = math.degrees(math.sqrt((G * earth_mass) / ((initial_inspector_height + earth_radius) ** 3)))
+        self.target_angular_velocity = math.degrees(math.sqrt((G * earth_mass) / ((target_height + earth_radius) ** 3)))
+
+    def run(self):
+        if self.enabled:
+            flight_time = sputnik.cpu.get_flight_time()
+            self.target_angle = normalize_angle(initial_target_angle + flight_time * self.target_angular_velocity)
+            nav_angle = sputnik.navigation.get_z_axis_angle()
+            orientation_mode.desired_angle = normalize_angle(360 - nav_angle)
+            orientation_mode.desired_angular_velocity = -self.initial_nav_angular_velocity
+            self.angle_alignment = normalize_angle_difference(self.target_angle - nav_angle)
+            if not self.active:
+                self.active = True
+
+phasing_mode = PhasingMode()
+
+class TrackingMode(object):
+    def __init__(self):
+        self.enabled = False
+        self.active = False
+        self.target_angle = 0.0
+        self.target_direction = 0.0
+        self.sample_time = 0.0
+        self.target_direction_angular_velocity = 0.0
+        self.target_angular_velocity = math.degrees(math.sqrt((G * earth_mass) / ((target_height + earth_radius) ** 3)))
+
+    def run(self):
+        if self.enabled:
+            flight_time = sputnik.cpu.get_flight_time()
+            self.target_angle = normalize_angle(initial_target_angle + flight_time * self.target_angular_velocity)
+            target_x = (target_height + earth_radius) * math.sin(math.radians(self.target_angle))
+            target_y = (target_height + earth_radius) * math.cos(math.radians(self.target_angle))
+            our_x = sputnik.navigation.get_x_coord()
+            our_y = sputnik.navigation.get_y_coord()
+            prev_target_direction = self.target_direction
+            prev_sample_time = self.sample_time
+            self.target_direction = math.degrees(math.atan2(target_y - our_y, target_x - our_x))
+            self.sample_time = flight_time
+            if self.sample_time > prev_sample_time:
+                self.target_direction_angular_velocity = (self.target_direction - prev_target_direction) / (self.sample_time - prev_sample_time)
+            orientation_mode.desired_angle = self.target_direction
+            orientation_mode.desired_angular_velocity = self.target_direction_angular_velocity
+            if not self.active:
+                self.active = True
+
+tracking_mode = TrackingMode()
+
+state = 0
+
+heating = False
+
+sputnik.telemetry.set_period(60)
+
+while sputnik.cpu.run():
+    damping_mode.run()
+    orientation_mode.run()
+    phasing_mode.run()
+    tracking_mode.run()
+
+    temperature = sputnik.heat_control.get_temperature()
+    if (temperature < 285) and not heating:
+        heating = True
+        sputnik.heat_control.set_power(heater_power)
+        sputnik.heat_control.start_heating()
+    elif (temperature > 300) and heating:
+        heating = False
+        sputnik.heat_control.set_power(0)
+        sputnik.heat_control.stop_heating()
+
+    if state == 0:
+        sputnik.telemetry.set_state(STATE_ON)
+        sputnik.navigation.set_state(STATE_ON)
+        sputnik.orientation.set_state(STATE_ON)
+        sputnik.heat_control.set_state(STATE_ON)
+        initial_angular_velocity = sputnik.orientation.get_angular_velocity(AXIS_Z)
+        flight_time = sputnik.cpu.get_flight_time()
+        stabilization_begin_time = flight_time
+        damping_mode.enabled = True
+        state = 1
+        continue
+
+    if (state == 1) and not damping_mode.active:
+        damping_mode.enabled = False
+        orientation_mode.max_angular_acceleration = abs(initial_angular_velocity) / (sputnik.cpu.get_flight_time() - stabilization_begin_time)
+        orientation_mode.inertia_moment = max_orientation_torsion / orientation_mode.max_angular_acceleration
+        state = 10
+        continue
+    
+    if state == 10:
+        phasing_mode.enabled = True
+        state = 11
+        continue
+
+    if (state == 11) and phasing_mode.active:
+        orientation_mode.enabled = True
+        state = 12
+        continue
+
+    if (state == 12) and not orientation_mode.active:
+        transfer_angle_alignment = normalize_angle_difference(180 * (1 - math.sqrt((1 + (initial_inspector_height + earth_radius) / (target_height + earth_radius)) ** 3) / math.sqrt(8)))
+        transfer_delta_v = abs(math.sqrt(G * earth_mass / (initial_inspector_height + earth_radius)) * (math.sqrt(2 * (target_height + earth_radius) / ((target_height + earth_radius) + (initial_inspector_height + earth_radius))) - 1))
+        sputnik.engine.set_state(STATE_ON)
+        transfer_start_fuel = sputnik.engine.get_fuel()
+        sputnik.engine.set_state(STATE_OFF)
+        transfer_end_fuel = ((dry_mass + transfer_start_fuel) / math.exp(transfer_delta_v / engine_specific_impulse)) - dry_mass
+        if transfer_end_fuel < 0.0:
+            transfer_end_fuel = 0.0
+        transfer_burn_time = (transfer_start_fuel - transfer_end_fuel) / (max_engine_traction / 2)
+        transfer_burn_angle = transfer_burn_time * phasing_mode.initial_nav_angular_velocity
+        #transfer_delta_v = transfer_delta_v * math.radians(transfer_burn_angle) / (2 * math.sin(math.radians(transfer_burn_angle / 2))) + first_burn_tune
+        transfer_delta_v = transfer_delta_v + first_burn_tune
+        transfer_end_fuel = ((dry_mass + transfer_start_fuel) / math.exp(transfer_delta_v / engine_specific_impulse)) - dry_mass
+        if transfer_end_fuel < 0.0:
+            transfer_end_fuel = 0.0
+        transfer_burn_time = (transfer_start_fuel - transfer_end_fuel) / (max_engine_traction / 2)
+        transfer_burn_angle = transfer_burn_time * phasing_mode.initial_nav_angular_velocity
+        state = 13
+        continue
+
+    if (state == 13) and (abs(normalize_angle_difference(phasing_mode.angle_alignment - transfer_angle_alignment - (transfer_burn_time / 2) * (phasing_mode.initial_nav_angular_velocity - phasing_mode.target_angular_velocity))) < navig_angle_precision):
+        nav_angle = sputnik.navigation.get_z_axis_angle()
+        transfer_center_angle = nav_angle + transfer_burn_angle / 2
+        sputnik.engine.set_state(STATE_ON)
+        sputnik.engine.set_traction(max_engine_traction / 2)
+        sputnik.engine.start_engine()
+        state = 14
+        continue
+
+    if (state == 14) and (sputnik.engine.get_fuel() <= transfer_end_fuel):
+        sputnik.engine.set_traction(0)
+        sputnik.engine.set_state(STATE_OFF)
+        phasing_mode.enabled = False
+        state = 20
+        continue
+
+    if state == 20:
+        orientation_mode.desired_angle = normalize_angle(360 - normalize_angle(transfer_center_angle + 180))
+        orientation_mode.desired_angular_velocity = 0
+        state = 21
+        continue
+
+    if (state == 21) and not orientation_mode.active:
+        transfer_delta_v = abs(math.sqrt(G * earth_mass / (target_height + earth_radius)) * (1 - math.sqrt(2 * (initial_inspector_height + earth_radius) / ((target_height + earth_radius) + (initial_inspector_height + earth_radius)))))
+        sputnik.engine.set_state(STATE_ON)
+        transfer_start_fuel = sputnik.engine.get_fuel()
+        sputnik.engine.set_state(STATE_OFF)
+        transfer_end_fuel = ((dry_mass + transfer_start_fuel) / math.exp(transfer_delta_v / engine_specific_impulse)) - dry_mass
+        if transfer_end_fuel < 0.0:
+            transfer_end_fuel = 0.0
+        transfer_burn_time = (transfer_start_fuel - transfer_end_fuel) / (max_engine_traction / 2)
+        transfer_burn_angle = transfer_burn_time * (phasing_mode.target_angular_velocity - (transfer_delta_v / (target_height + earth_radius)))
+        #transfer_delta_v = transfer_delta_v * math.radians(transfer_burn_angle) / (2 * math.sin(math.radians(transfer_burn_angle / 2))) + second_burn_tune
+        transfer_delta_v = transfer_delta_v + second_burn_tune
+        transfer_end_fuel = ((dry_mass + transfer_start_fuel) / math.exp(transfer_delta_v / engine_specific_impulse)) - dry_mass
+        if transfer_end_fuel < 0.0:
+            transfer_end_fuel = 0.0
+        transfer_burn_time = (transfer_start_fuel - transfer_end_fuel) / (max_engine_traction / 2)
+        transfer_burn_angle = transfer_burn_time * (phasing_mode.target_angular_velocity - (transfer_delta_v / (target_height + earth_radius)))
+        state = 22
+        continue
+
+    if (state == 22) and (abs(normalize_angle_difference(sputnik.navigation.get_z_axis_angle() - normalize_angle(transfer_center_angle + 180.0 - transfer_burn_angle / 2))) < navig_angle_precision):
+        sputnik.engine.set_state(STATE_ON)
+        sputnik.engine.set_traction(max_engine_traction / 2)
+        sputnik.engine.start_engine()
+        state = 23
+        continue
+
+    if (state == 23) and (sputnik.engine.get_fuel() <= transfer_end_fuel):
+        sputnik.engine.set_traction(0)
+        sputnik.engine.set_state(STATE_OFF)
+        phasing_mode.enabled = False
+        state = 30
+        continue
+
+    if state == 30:
+        tracking_mode.enabled = True
+        state = 31
+        continue
+
+    if (state == 31) and tracking_mode.active:
+        state = 32
+        continue
+
+    if (state == 32) and not orientation_mode.active:
+        state = 40
+        continue
+
+    if (state == 40):
+        sputnik.transmitter.set_state(STATE_ON)
+        sputnik.camera.set_state(STATE_ON)
+        load_enable_time = sputnik.cpu.get_flight_time()
+        load_enable_angle = sputnik.navigation.get_z_axis_angle()
+        sputnik.camera.start_shooting()
+        state = 41
+        continue
+
+    if (state == 41) and ((sputnik.cpu.get_flight_time() - load_enable_time) >= load_enable_interval):
+        slot = sputnik.camera.stop_shooting()
+        sputnik.transmitter.send_photo(slot)
+        sputnik.camera.set_state(STATE_OFF)
+        state = 42
+        continue
+
+    if (state == 42) and (abs(normalize_angle_difference(load_enable_angle + 90 - sputnik.navigation.get_z_axis_angle())) < navig_angle_precision):
+        sputnik.transmitter.set_state(STATE_ON)
+        sputnik.camera.set_state(STATE_ON)
+        load_enable_time = sputnik.cpu.get_flight_time()
+        load_enable_angle = sputnik.navigation.get_z_axis_angle()
+        sputnik.camera.start_shooting()
+        state = 43
+        continue
+
+    if (state == 43) and ((sputnik.cpu.get_flight_time() - load_enable_time) >= load_enable_interval):
+        slot = sputnik.camera.stop_shooting()
+        sputnik.transmitter.send_photo(slot)
+        sputnik.camera.set_state(STATE_OFF)
+        state = 44
+        continue
+
+    if (state == 44) and (abs(normalize_angle_difference(load_enable_angle + 90 - sputnik.navigation.get_z_axis_angle())) < navig_angle_precision):
+        sputnik.transmitter.set_state(STATE_ON)
+        sputnik.camera.set_state(STATE_ON)
+        load_enable_time = sputnik.cpu.get_flight_time()
+        load_enable_angle = sputnik.navigation.get_z_axis_angle()
+        sputnik.camera.start_shooting()
+        state = 45
+        continue
+
+    if (state == 45) and ((sputnik.cpu.get_flight_time() - load_enable_time) >= load_enable_interval):
+        slot = sputnik.camera.stop_shooting()
+        sputnik.transmitter.send_photo(slot)
+        sputnik.camera.set_state(STATE_OFF)
+        state = 46
+        continue
+
+    if (state == 46) and (abs(normalize_angle_difference(load_enable_angle + 90 - sputnik.navigation.get_z_axis_angle())) < navig_angle_precision):
+        sputnik.transmitter.set_state(STATE_ON)
+        sputnik.camera.set_state(STATE_ON)
+        load_enable_time = sputnik.cpu.get_flight_time()
+        load_enable_angle = sputnik.navigation.get_z_axis_angle()
+        sputnik.camera.start_shooting()
+        state = 47
+        continue
+
+    if (state == 47) and ((sputnik.cpu.get_flight_time() - load_enable_time) >= load_enable_interval):
+        slot = sputnik.camera.stop_shooting()
+        sputnik.transmitter.send_photo(slot)
+        sputnik.camera.set_state(STATE_OFF)
+        tracking_mode.enabled = False
+        state = 60
+        continue
+
+    if state == 60:
+        orientation_mode.desired_angle = normalize_angle(270 - ground_station_angle)
+        orientation_mode.desired_angular_velocity = 0.0
+        state = 61
+        continue
+
+    if (state == 61) and not orientation_mode.active:
+        radio_enable_angle = ground_station_angle - 5.0
+        state = 70
+        continue
+
+    if (state == 70) and (abs(normalize_angle_difference(radio_enable_angle - sputnik.navigation.get_z_axis_angle())) < navig_angle_precision):
+        radio_enable_time = sputnik.cpu.get_flight_time()
+        state = 71
+        continue
+
+    if (state == 71) and ((sputnik.cpu.get_flight_time() - radio_enable_time) >= radio_enable_interval):
+        sputnik.transmitter.set_state(STATE_OFF)
+        state = 80
+        break
+
+]]></program>
+</system>
+<system name="Power-3" start_mode="ON"/>
+<system name="Radio-2" start_mode="OFF"/>
+<system name="Telemetry-1" start_mode="ON"/>
+<system name="Camera-1" start_mode="OFF"/>
+</systems>
+</v:probe>

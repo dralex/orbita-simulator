@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	    xmlns:v="venus" targetNamespace="venus">
+  <xsd:complexType name="vect">
+    <xsd:sequence>
+      <xsd:element name="x" type="xsd:decimal" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="y" type="xsd:decimal" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="z" type="xsd:decimal" minOccurs="1" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="global_parameters">
+    <xsd:complexType>
+      <xsd:sequence>
+	<xsd:element name="G" minOccurs="1" maxOccurs="1"
+			   type="xsd:decimal"/>
+	<xsd:element name="orbasic" minOccurs="1" maxOccurs="1">
+	  <xsd:complexType>
+	    <xsd:sequence>
+	      <xsd:element name="max_lines" minOccurs="1" maxOccurs="1"
+				 type="xsd:decimal"/>
+	      <xsd:element name="max_running_time" minOccurs="1" maxOccurs="1"
+				 type="xsd:decimal"/>
+	      <xsd:element name="max_call_depth" minOccurs="1" maxOccurs="1"
+				 type="xsd:decimal"/>
+	    </xsd:sequence>
+	  </xsd:complexType>
+	</xsd:element>
+	<xsd:element name="planets">
+	  <xsd:complexType>
+	    <xsd:sequence>
+	      <xsd:element name="planet" minOccurs="1" maxOccurs="unbounded">
+		<xsd:complexType>
+		  <xsd:attribute name="name" type="xsd:string"/>
+		  <xsd:sequence>
+		    <xsd:element name="tick" minOccurs="1" maxOccurs="1"
+				 type="xsd:decimal"/>
+		    <xsd:element name="models" minOccurs="1" maxOccurs="1">
+		      <xsd:complexType>
+			<xsd:sequence>
+			  <xsd:element name="model" minOccurs="0" maxOccurs="unbounded">
+			    <xsd:complexType>
+			      <xsd:attribute name="kind" type="xsd:string"/>
+			      <xsd:attribute name="modelclass" type="xsd:string"/>
+			      <xsd:attribute name="order" type="xsd:positiveInteger"/>
+			    </xsd:complexType>
+			  </xsd:element>
+			</xsd:sequence>
+		      </xsd:complexType>
+		    </xsd:element>
+		    <xsd:element name="radius" minOccurs="1" maxOccurs="1"
+				 type="xsd:decimal"/>
+		    <xsd:element name="mass" minOccurs="1" maxOccurs="1"
+				 type="xsd:decimal"/>
+            <xsd:element name="rotation_period" minOccurs="1" maxOccurs="1"
+				 type="xsd:decimal"/>
+		    <xsd:element name="max_landing_velocity" type="xsd:decimal" minOccurs="1" maxOccurs="1"/>
+		    <xsd:element name="atmosphere" minOccurs="1" maxOccurs="1">
+		      <xsd:complexType>
+			<xsd:sequence>
+			  <xsd:element name="density_border" minOccurs="1" maxOccurs="1"
+				       type="xsd:decimal"/>
+			  <xsd:element name="T_ground" minOccurs="1" maxOccurs="1"
+				       type="xsd:decimal"/>
+			  <xsd:element name="T_grad" minOccurs="1" maxOccurs="1"
+				       type="xsd:decimal"/>
+			  <xsd:element name="density_ground" minOccurs="1" maxOccurs="1"
+				       type="xsd:decimal"/>
+			  <xsd:element name="density_coeff" minOccurs="1" maxOccurs="1"
+				       type="xsd:decimal"/>
+			</xsd:sequence>
+		      </xsd:complexType>
+		    </xsd:element>
+		    <xsd:element name="atmosphere_table" minOccurs="1" maxOccurs="1">
+		      <xsd:complexType>
+			<xsd:sequence>
+			  <xsd:element name="height" minOccurs="1" maxOccurs="1"
+				       type="xsd:string"/>
+			  <xsd:element name="temperature" minOccurs="1" maxOccurs="1"
+				       type="xsd:string"/>
+			  <xsd:element name="density" minOccurs="1" maxOccurs="1"
+				       type="xsd:string"/>
+			  <xsd:element name="sound_speed" minOccurs="1" maxOccurs="1"
+				       type="xsd:string"/>
+			</xsd:sequence>
+		      </xsd:complexType>
+		    </xsd:element>
+		    <xsd:element name="sun_radiation" minOccurs="1" maxOccurs="1"
+				 type="xsd:decimal"/>
+		    <xsd:element name="probe" minOccurs="1" maxOccurs="1">
+		      <xsd:complexType>
+			<xsd:sequence>
+			  <xsd:element name="fuel_density" minOccurs="1" maxOccurs="1"
+				       type="xsd:decimal"/>
+			  <xsd:element name="max_mass" minOccurs="1" maxOccurs="1"
+				       type="xsd:decimal"/>
+			  <xsd:element name="T_start" minOccurs="1" maxOccurs="1"
+				       type="xsd:decimal"/>
+			</xsd:sequence>
+		      </xsd:complexType>
+		    </xsd:element>
+		    <xsd:element name="ground" minOccurs="1" maxOccurs="1">
+		      <xsd:complexType>
+			<xsd:sequence>
+			  <xsd:element name="control_stations" minOccurs="1" maxOccurs="1">
+			    <xsd:complexType>
+			      <xsd:sequence>
+				<xsd:element name="amplification" minOccurs="1" maxOccurs="1" type="xsd:decimal"/>
+				<xsd:element name="circuit_loss" minOccurs="1" maxOccurs="1" type="xsd:decimal"/>
+				<xsd:element name="targeting_loss" minOccurs="1" maxOccurs="1" type="xsd:decimal"/>
+				<xsd:element name="environment_loss" minOccurs="1" maxOccurs="1" type="xsd:decimal"/>
+			      </xsd:sequence>
+			    </xsd:complexType>
+			  </xsd:element>
+			</xsd:sequence>
+		      </xsd:complexType>
+		    </xsd:element>
+		  </xsd:sequence>
+		</xsd:complexType>
+	      </xsd:element>
+	    </xsd:sequence>
+	  </xsd:complexType>
+	</xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

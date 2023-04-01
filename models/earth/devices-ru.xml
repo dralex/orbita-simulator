@@ -1,0 +1,599 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:devices xmlns:v="venus">
+  <subsystems>
+    <subsystem type="construction" full_name="Корпус" allow_empty="false" allow_program="false" allow_state="false"/>
+    <subsystem type="cpu" full_name="БЦВМ" allow_empty="false" allow_program="true" require_program="true" allow_state="true"/>
+    <subsystem type="power" full_name="СЭП" allow_empty="false" allow_program="true" allow_state="true"/>
+    <subsystem type="radio" full_name="ВРК" allow_empty="true" allow_program="true" allow_state="true"/>
+    <subsystem type="navigation" full_name="СН" allow_empty="false" allow_program="true" allow_state="true"/>
+    <subsystem type="orientation" full_name="СУОС" allow_empty="false" allow_program="true" allow_state="true"/>
+    <subsystem type="engine" full_name="СКО" allow_empty="true" allow_program="false" allow_state="true"/>
+    <subsystem type="heat_control" full_name="СОТР" allow_empty="false" allow_program="true" allow_state="true"/>
+    <subsystem type="telemetry" full_name="СТМИ" allow_empty="false" allow_program="true" allow_state="true"/>
+    <subsystem type="load" full_name="ПН" allow_empty="true" allow_program="true" allow_state="true"/>
+  </subsystems>
+  <construction_parameters>
+    <parameter name="fuel" full_name="Масса топлива" unit="кг" required="false"/>
+    <parameter name="voltage" full_name="Напряжение в электросети спутника" unit="В" required="true"/>
+    <parameter name="xz_yz_solar_panel_fraction" full_name="Доля площади боковых граней, отведенная под солнечные батареи" unit="%" required="true"/>
+    <parameter name="xz_yz_radiator_fraction" full_name="Доля площади боковых граней, отведенная под радиатор" unit="%" required="true"/>
+    <parameter name="xy_radiator_fraction" full_name="Доля площади верхней и нижней граней, отведенная под радиатор" unit="%" required="true"/>
+  </construction_parameters>
+  <parameters>
+    <parameter name="absorption_factor" full_name="Коэффициент поглощения" unit="" required="false"/>
+    <parameter name="activation_time" full_name="Время активации" unit="с" required="false"/>
+    <parameter name="amplification" full_name="Усиление бортовой антенны" unit="" required="false"/>
+    <parameter name="bar_length" full_name="Длина штанги" unit="м" required="false"/>
+    <parameter name="bar_mass" full_name="Масса груза на конце штанги" unit="кг" required="false"/>
+    <parameter name="camera_angle" full_name="Угол зрения камеры" unit="°" required="false"/>
+    <parameter name="capacity" full_name="Емкость аккумулятора" unit="Вт ч" required="false"/>
+    <parameter name="circuit_loss" full_name="Потери в бортовом радиотракте" unit="" required="false"/>
+    <parameter name="comp_freq" full_name="Частота процессора" unit="МГц" required="false"/>
+    <parameter name="data_stream" full_name="Размер потока данных" unit="Мбит/с" required="false"/>
+    <parameter name="data_volume" full_name="Размер пакета данных" unit="Б" required="false"/>
+    <parameter name="freq" full_name="Частота" unit="МГц" required="false"/>
+    <parameter name="fuel" full_name="Объем топливного бака" unit="л" required="false"/>
+    <parameter name="ground_amplification" full_name="Усиление наземной антенны" unit="" required="false"/>
+    <parameter name="heat_absorption" full_name="Коэффициент поглощения тепла оболочкой" unit="Дж/кв.м" required="false"/>
+    <parameter name="heat_capacity" full_name="Средняя удельная теплоемкость" unit="Дж/(кг К)" required="false"/>
+    <parameter name="heat_production" full_name="Тепловыделение" unit="Вт" required="true"/>
+    <parameter name="jet_speed" full_name="Удельный импульс двигательной установки" unit="м/с" required="false"/>
+    <parameter name="mass" full_name="Масса" unit="кг" required="true"/>
+    <parameter name="max_acceleration" full_name="Допустимое ускорение" unit="м/кв.с" required="false"/>
+    <parameter name="max_charge" full_name="Максимальный ток заряда" unit="А" required="false"/>
+    <parameter name="max_landing_velocity" full_name="Максимальная скорость посадки" unit="м/с" required="false"/>
+    <parameter name="max_period" full_name="Максимальный период работы" unit="с" required="false"/>
+    <parameter name="max_recharge" full_name="Максимальный ток разряда" unit="А" required="false"/>
+    <parameter name="max_temperature" full_name="Максимально допустимая температура" unit="°C" required="false"/>
+    <parameter name="max_torsion" full_name="Максимальный момент" unit="Н м" required="false"/>
+    <parameter name="max_traction" full_name="Максимальный массовый расход" unit="кг/с" required="false"/>
+    <parameter name="memory" full_name="Объем памяти" unit="МБ" required="false"/>
+    <parameter name="min_period" full_name="Минимальный период работы" unit="с" required="false"/>
+    <parameter name="min_temperature" full_name="Минимально допустимая температура" unit="°C" required="true"/>
+    <parameter name="orientation_type" full_name="Тип устройства ориентации" unit="" required="false"/>
+    <parameter name="parachute_mass" full_name="Масса парашюта" unit="кг" required="false"/>
+    <parameter name="parachute_square" full_name="Площадь парашюта" unit="кв.м" required="false"/>
+    <parameter name="pixel_size" full_name="Физический размер пикселя матрицы" unit="мкм" required="false"/>
+    <parameter name="power" full_name="Энергопотребление" unit="Вт" required="true"/>
+    <parameter name="radiation_blackness" full_name="Степень черноты радиатора" unit="" required="false"/>
+    <parameter name="radiation_square" full_name="Площадь радиатора" unit="" required="false"/>
+    <parameter name="radio_angle" full_name="Угол направленности антенны" unit="°" required="false"/>
+    <parameter name="radio_power" full_name="Мощность излучателя" unit="Вт" required="false"/>
+    <parameter name="resolution" full_name="Горизонтальное разрешение камеры" unit="пикс" required="false"/>
+    <parameter name="size" full_name="Размер" unit="м x м x м" required="false"/>
+    <parameter name="solar_efficiency" full_name="КПД фотоэлектрических элементов" unit="%" required="false"/>
+    <parameter name="square" full_name="Площадь" unit="кв.м" required="false"/>
+    <parameter name="volume" full_name="Объем" unit="л" required="true"/>
+  </parameters>
+  <choices>
+  <device name="Cubesat-Case-1U" full_name="Корпус для CubeSat-1U">
+    <heat_production>0</heat_production>
+    <mass>0.3</mass>
+    <max_temperature>100</max_temperature>
+    <min_temperature>-100</min_temperature>
+    <power>0</power>
+    <type>construction</type>
+    <volume>1.1</volume>
+  </device>
+  <device name="Cubesat-Case-3U" full_name="Корпус для CubeSat-3U">
+    <heat_production>0</heat_production>
+    <mass>1</mass>
+    <max_temperature>100</max_temperature>
+    <min_temperature>-100</min_temperature>
+    <power>0</power>
+    <type>construction</type>
+    <volume>3.4</volume>
+  </device>
+  <device name="Cubesat-Case-6U" full_name="Корпус для CubeSat-6U">
+    <heat_production>0</heat_production>
+    <mass>2</mass>
+    <max_temperature>100</max_temperature>
+    <min_temperature>-100</min_temperature>
+    <power>0</power>
+    <type>construction</type>
+    <volume>6.8</volume>
+  </device>
+  <device name="MicroSat-Case" full_name="Корпус для микроспутника">
+    <heat_production>0</heat_production>
+    <mass>10</mass>
+    <max_temperature>100</max_temperature>
+    <min_temperature>-100</min_temperature>
+    <power>0</power>
+    <type>construction</type>
+    <volume>125</volume>
+  </device>
+  <device name="MiniSat-Case" full_name="Корпус для миниспутника">
+    <heat_production>0</heat_production>
+    <mass>25</mass>
+    <max_temperature>100</max_temperature>
+    <min_temperature>-100</min_temperature>
+    <power>0</power>
+    <type>construction</type>
+    <volume>512</volume>
+  </device>
+  <device name="CPU-1" full_name="БЦВМ-1">
+    <comp_freq>60</comp_freq>
+    <heat_production>1</heat_production>
+    <mass>0.4</mass>
+    <max_temperature>80</max_temperature>
+    <memory>16</memory>
+    <min_temperature>-40</min_temperature>
+    <power>1</power>
+    <type>cpu</type>
+    <volume>0.15</volume>
+  </device>
+  <device name="CPU-2" full_name="БЦВМ-2">
+    <comp_freq>150</comp_freq>
+    <heat_production>3.5</heat_production>
+    <mass>1.5</mass>
+    <max_temperature>80</max_temperature>
+    <memory>64</memory>
+    <min_temperature>-40</min_temperature>
+    <power>3.5</power>
+    <type>cpu</type>
+    <volume>0.8</volume>
+  </device>
+  <device name="CPU-3" full_name="БЦВМ-3">
+    <comp_freq>228</comp_freq>
+    <heat_production>23</heat_production>
+    <mass>6.0</mass>
+    <max_temperature>50</max_temperature>
+    <memory>512</memory>
+    <min_temperature>-40</min_temperature>
+    <power>23</power>
+    <type>cpu</type>
+    <volume>5.5</volume>
+  </device>
+  <device name="Power-1" full_name="СЭП с малым аккумулятором">
+    <absorption_factor>0.95</absorption_factor>
+    <capacity>41.8</capacity>
+    <heat_production>0.2</heat_production>
+    <mass>0.5</mass>
+    <max_charge>4</max_charge>
+    <max_recharge>4</max_recharge>
+    <max_temperature>40</max_temperature>
+    <min_temperature>-10</min_temperature>
+    <power>0.2</power>
+    <radiation_blackness>0.4</radiation_blackness>
+    <solar_efficiency>29.8</solar_efficiency>
+    <type>power</type>
+    <volume>0.3</volume>
+  </device>
+  <device name="Power-2" full_name="СЭП со средним аккумулятором">
+    <absorption_factor>0.95</absorption_factor>
+    <capacity>129.6</capacity>
+    <heat_production>2</heat_production>
+    <mass>1.5</mass>
+    <max_charge>10</max_charge>
+    <max_recharge>10</max_recharge>
+    <max_temperature>40</max_temperature>
+    <min_temperature>0</min_temperature>
+    <power>2</power>
+    <radiation_blackness>0.4</radiation_blackness>
+    <solar_efficiency>28</solar_efficiency>
+    <type>power</type>
+    <volume>1.0</volume>
+  </device>
+  <device name="Power-3" full_name="СЭП с большим аккумулятором">
+    <absorption_factor>0.95</absorption_factor>
+    <capacity>259.2</capacity>
+    <heat_production>3.5</heat_production>
+    <mass>3.0</mass>
+    <max_charge>20</max_charge>
+    <max_recharge>20</max_recharge>
+    <max_temperature>40</max_temperature>
+    <memory>2</memory>
+    <min_temperature>0</min_temperature>
+    <power>3.5</power>
+    <radiation_blackness>0.4</radiation_blackness>
+    <solar_efficiency>28</solar_efficiency>
+    <type>power</type>
+    <volume>2.0</volume>
+  </device>
+  <device name="Power-4" full_name="СЭП с очень большим аккумулятором">
+    <absorption_factor>0.95</absorption_factor>
+    <capacity>1036.8</capacity>
+    <heat_production>5</heat_production>
+    <mass>12.0</mass>
+    <max_charge>40</max_charge>
+    <max_recharge>40</max_recharge>
+    <max_temperature>40</max_temperature>
+    <min_temperature>0</min_temperature>
+    <power>5</power>
+    <radiation_blackness>0.4</radiation_blackness>
+    <solar_efficiency>28</solar_efficiency>
+    <type>power</type>
+    <volume>8.0</volume>
+  </device>
+  <device name="Navi-1" full_name="Навигатор-1">
+    <comp_freq>15</comp_freq>
+    <heat_production>0.5</heat_production>
+    <mass>0.4</mass>
+    <max_temperature>60</max_temperature>
+    <memory>0.5</memory>
+    <min_temperature>-40</min_temperature>
+    <power>0.5</power>
+    <type>navigation</type>
+    <volume>0.15</volume>
+  </device>
+  <device name="Navi-2" full_name="Навигатор-2">
+    <comp_freq>60</comp_freq>
+    <heat_production>2</heat_production>
+    <mass>0.3</mass>
+    <max_temperature>60</max_temperature>
+    <memory>0.5</memory>
+    <min_temperature>-40</min_temperature>
+    <power>2</power>
+    <type>navigation</type>
+    <volume>0.6</volume>
+  </device>
+  <device name="Orient-1" full_name="Система ориентации с малым управляющим моментом">
+    <comp_freq>15</comp_freq>
+    <heat_production>1</heat_production>
+    <mass>0.2</mass>
+    <max_temperature>50</max_temperature>
+    <max_torsion>0.000023</max_torsion>
+    <memory>0.5</memory>
+    <min_temperature>-20</min_temperature>
+    <orientation_type>wheel</orientation_type>
+    <power>1</power>
+    <type>orientation</type>
+    <volume>0.2</volume>
+  </device>
+  <device name="Orient-2" full_name="Система ориентации со средним управляющим моментом">
+    <comp_freq>40</comp_freq>
+    <heat_production>5</heat_production>
+    <mass>2.0</mass>
+    <max_temperature>60</max_temperature>
+    <max_torsion>0.0026</max_torsion>
+    <memory>16.5</memory>
+    <min_temperature>-20</min_temperature>
+    <orientation_type>wheel</orientation_type>
+    <power>5</power>
+    <type>orientation</type>
+    <volume>1.5</volume>
+  </device>
+  <device name="Orient-3" full_name="Система ориентации с большим управляющим моментом">
+    <comp_freq>84</comp_freq>
+    <heat_production>15</heat_production>
+    <mass>6.6</mass>
+    <max_temperature>50</max_temperature>
+    <max_torsion>0.0165</max_torsion>
+    <memory>8</memory>
+    <min_temperature>-20</min_temperature>
+    <orientation_type>wheel</orientation_type>
+    <power>15</power>
+    <type>orientation</type>
+    <volume>8.7</volume>
+  </device>
+  <device name="Orient-4" full_name="Система ориентации с очень большим управляющим моментом">
+    <comp_freq>80</comp_freq>
+    <heat_production>50</heat_production>
+    <mass>45</mass>
+    <max_temperature>50</max_temperature>
+    <max_torsion>0.25</max_torsion>
+    <memory>8</memory>
+    <min_temperature>-20</min_temperature>
+    <orientation_type>wheel</orientation_type>
+    <power>50</power>
+    <type>orientation</type>
+    <volume>60</volume>
+  </device>
+  <device name="Therm-1" full_name="СОТР с малым нагревателем">
+    <absorption_factor>0.2</absorption_factor>
+    <comp_freq>15</comp_freq>
+    <heat_production>4</heat_production>
+    <mass>0.3</mass>
+    <max_temperature>80</max_temperature>
+    <memory>0.5</memory>
+    <min_temperature>-40</min_temperature>
+    <power>0.1</power>
+    <radiation_blackness>1</radiation_blackness>
+    <type>heat_control</type>
+    <volume>0.1</volume>
+  </device>
+  <device name="Therm-2" full_name="СОТР со средним нагревателем">
+    <absorption_factor>0.2</absorption_factor>
+    <comp_freq>15</comp_freq>
+    <heat_production>20</heat_production>
+    <mass>1.5</mass>
+    <max_temperature>80</max_temperature>
+    <memory>0.5</memory>
+    <min_temperature>-40</min_temperature>
+    <power>0.2</power>
+    <radiation_blackness>1</radiation_blackness>
+    <type>heat_control</type>
+    <volume>0.5</volume>
+  </device>
+  <device name="Therm-3" full_name="СОТР с большим нагревателем">
+    <absorption_factor>0.2</absorption_factor>
+    <comp_freq>15</comp_freq>
+    <heat_production>40</heat_production>
+    <mass>3</mass>
+    <max_temperature>80</max_temperature>
+    <memory>0.5</memory>
+    <min_temperature>-40</min_temperature>
+    <power>0.3</power>
+    <radiation_blackness>1</radiation_blackness>
+    <type>heat_control</type>
+    <volume>1</volume>
+  </device>
+  <device name="Therm-4" full_name="СОТР с очень большим нагревателем">
+    <absorption_factor>0.2</absorption_factor>
+    <comp_freq>15</comp_freq>
+    <heat_production>100</heat_production>
+    <mass>7.5</mass>
+    <max_temperature>80</max_temperature>
+    <memory>0.5</memory>
+    <min_temperature>-40</min_temperature>
+    <power>0.5</power>
+    <radiation_blackness>1</radiation_blackness>
+    <type>heat_control</type>
+    <volume>2.5</volume>
+  </device>
+  <device name="Telemetry-1" full_name="Телеметрия с ненаправленной антенной">
+    <amplification>1</amplification>
+    <comp_freq>15</comp_freq>
+    <freq>435</freq>
+    <ground_amplification>16</ground_amplification>
+    <heat_production>1</heat_production>
+    <mass>0.6</mass>
+    <max_temperature>80</max_temperature>
+    <memory>8</memory>
+    <min_temperature>-40</min_temperature>
+    <orientation_type>none</orientation_type>
+    <power>2</power>
+    <radio_angle>360</radio_angle>
+    <radio_power>1</radio_power>
+    <type>telemetry</type>
+    <volume>0.4</volume>
+  </device>
+  <device name="Telemetry-2" full_name="Телеметрия с направленной антенной">
+    <amplification>2</amplification>
+    <comp_freq>30</comp_freq>
+    <freq>435</freq>
+    <ground_amplification>16</ground_amplification>
+    <heat_production>0.5</heat_production>
+    <mass>0.3</mass>
+    <max_temperature>80</max_temperature>
+    <memory>16</memory>
+    <min_temperature>-40</min_temperature>
+    <orientation_type>none</orientation_type>
+    <power>1</power>
+    <radio_angle>180</radio_angle>
+    <radio_power>0.5</radio_power>
+    <type>telemetry</type>
+    <volume>0.2</volume>
+  </device>
+  <device name="Engine-1-1" full_name="Двигатель с малой тягой и малым баком">
+    <fuel>1</fuel>
+    <heat_production>2</heat_production>
+    <jet_speed>2790</jet_speed>
+    <mass>2</mass>
+    <max_temperature>100</max_temperature>
+    <max_traction>0.009</max_traction>
+    <min_temperature>-100</min_temperature>
+    <orientation_type>none</orientation_type>
+    <power>2</power>
+    <type>engine</type>
+    <volume>3</volume>
+  </device>
+  <device name="Engine-1-2" full_name="Двигатель с малой тягой и средним баком">
+    <fuel>10</fuel>
+    <heat_production>2</heat_production>
+    <jet_speed>2790</jet_speed>
+    <mass>5</mass>
+    <max_temperature>100</max_temperature>
+    <max_traction>0.009</max_traction>
+    <min_temperature>-100</min_temperature>
+    <orientation_type>none</orientation_type>
+    <power>2</power>
+    <type>engine</type>
+    <volume>14</volume>
+  </device>
+  <device name="Engine-2-1" full_name="Двигатель со средней тягой и средним баком">
+    <fuel>10</fuel>
+    <heat_production>5</heat_production>
+    <jet_speed>2705</jet_speed>
+    <mass>8</mass>
+    <max_temperature>100</max_temperature>
+    <max_traction>0.037</max_traction>
+    <min_temperature>-100</min_temperature>
+    <orientation_type>none</orientation_type>
+    <power>5</power>
+    <type>engine</type>
+    <volume>18</volume>
+  </device>
+  <device name="Engine-2-2" full_name="Двигатель со средней тягой и большим баком">
+    <fuel>50</fuel>
+    <heat_production>5</heat_production>
+    <jet_speed>2705</jet_speed>
+    <mass>16</mass>
+    <max_temperature>100</max_temperature>
+    <max_traction>0.037</max_traction>
+    <min_temperature>-100</min_temperature>
+    <orientation_type>none</orientation_type>
+    <power>5</power>
+    <type>engine</type>
+    <volume>65</volume>
+  </device>
+  <device name="Engine-3-1" full_name="Двигатель с большой тягой и большим баком">
+    <fuel>50</fuel>
+    <heat_production>10</heat_production>
+    <jet_speed>3041</jet_speed>
+    <mass>20</mass>
+    <max_temperature>100</max_temperature>
+    <max_traction>0.165</max_traction>
+    <min_temperature>-100</min_temperature>
+    <orientation_type>none</orientation_type>
+    <power>10</power>
+    <type>engine</type>
+    <volume>75</volume>
+  </device>
+  <device name="Engine-3-2" full_name="Двигатель с большой тягой и очень большим баком">
+    <fuel>150</fuel>
+    <heat_production>10</heat_production>
+    <jet_speed>3041</jet_speed>
+    <mass>32</mass>
+    <max_temperature>100</max_temperature>
+    <max_traction>0.165</max_traction>
+    <min_temperature>-100</min_temperature>
+    <orientation_type>none</orientation_type>
+    <power>10</power>
+    <type>engine</type>
+    <volume>180</volume>
+  </device>
+  <device name="Radio-1" full_name="Система связи УКВ">
+    <amplification>1</amplification>
+    <comp_freq>30</comp_freq>
+    <freq>435</freq>
+    <ground_amplification>16</ground_amplification>
+    <heat_production>0.5</heat_production>
+    <mass>0.3</mass>
+    <max_temperature>80</max_temperature>
+    <memory>32</memory>
+    <min_temperature>-40</min_temperature>
+    <orientation_type>none</orientation_type>
+    <power>1</power>
+    <radio_angle>180</radio_angle>
+    <radio_power>0.5</radio_power>
+    <type>radio</type>
+    <volume>0.2</volume>
+  </device>
+  <device name="Radio-2" full_name="Система связи X-диапазона узкой направленности">
+    <amplification>6.3</amplification>
+    <freq>8192</freq>
+    <ground_amplification>25000</ground_amplification>
+    <heat_production>4</heat_production>
+    <mass>1.7</mass>
+    <max_temperature>80</max_temperature>
+    <memory>512</memory>
+    <min_temperature>-40</min_temperature>
+    <power>8</power>
+    <radio_angle>90</radio_angle>
+    <radio_power>4</radio_power>
+    <type>radio</type>
+    <volume>2.6</volume>
+  </device>
+  <device name="Radio-3" full_name="Система связи X-диапазона широкой направленности">
+    <amplification>3.8</amplification>
+    <freq>8192</freq>
+    <ground_amplification>25000</ground_amplification>
+    <heat_production>4</heat_production>
+    <mass>2.1</mass>
+    <max_temperature>80</max_temperature>
+    <memory>512</memory>
+    <min_temperature>-40</min_temperature>
+    <power>8</power>
+    <radio_angle>128</radio_angle>
+    <radio_power>4</radio_power>
+    <type>radio</type>
+    <volume>2.1</volume>
+  </device>
+   <device name="Radio-4" full_name="Система связи Ku-диапазона">
+    <amplification>600</amplification>
+    <freq>12000</freq>
+    <ground_amplification>75000</ground_amplification>
+    <heat_production>80</heat_production>
+    <mass>40</mass>
+    <max_temperature>80</max_temperature>
+    <memory>1024</memory>
+    <min_temperature>-40</min_temperature>
+    <power>160</power>
+    <radio_angle>12.5</radio_angle>
+    <radio_power>80</radio_power>
+    <type>radio</type>
+    <volume>20</volume>
+  </device>
+  <device name="Camera-1" full_name="Малая камера">
+    <camera_angle>9.2</camera_angle>
+    <camera_range>visible</camera_range>
+    <comp_freq>80</comp_freq>
+    <data_stream>1</data_stream>
+    <heat_production>0.7</heat_production>
+    <mass>0.2</mass>
+    <max_temperature>60</max_temperature>
+    <memory>32</memory>
+    <min_temperature>0</min_temperature>
+    <pixel_size>10</pixel_size>
+    <power>0.7</power>
+    <resolution>2048</resolution>
+    <type>load</type>
+    <volume>0.5</volume>
+  </device>
+  <device name="Camera-2" full_name="Большая камера с малым углом зрения">
+    <camera_angle>6.4</camera_angle>
+    <camera_range>visible</camera_range>
+    <comp_freq>100</comp_freq>
+    <data_stream>70</data_stream>
+    <heat_production>5.0</heat_production>
+    <mass>4.0</mass>
+    <max_temperature>40</max_temperature>
+    <memory>512</memory>
+    <min_temperature>0</min_temperature>
+    <pixel_size>7.4</pixel_size>
+    <power>5.0</power>
+    <resolution>4864</resolution>
+    <type>load</type>
+    <volume>5.0</volume>
+  </device>
+  <device name="Camera-3" full_name="Большая камера с большим углом зрения">
+    <camera_angle>12.7</camera_angle>
+    <camera_range>visible</camera_range>
+    <comp_freq>120</comp_freq>
+    <data_stream>120</data_stream>
+    <heat_production>8.0</heat_production>
+    <mass>3.5</mass>
+    <max_temperature>40</max_temperature>
+    <memory>512</memory>
+    <min_temperature>10</min_temperature>
+    <pixel_size>8</pixel_size>
+    <power>8.0</power>
+    <resolution>4864</resolution>
+    <type>load</type>
+    <volume>4.0</volume>
+  </device>
+  <device name="Infrared-Telescope" full_name="ИК-телескоп">
+    <camera_angle>0.1</camera_angle>
+    <camera_range>infrared</camera_range>
+    <comp_freq>100</comp_freq>
+    <data_stream>10</data_stream>
+    <heat_production>20.0</heat_production>
+    <mass>40</mass>
+    <max_temperature>40</max_temperature>
+    <memory>256</memory>
+    <min_temperature>0</min_temperature>
+    <pixel_size>18.5</pixel_size>
+    <power>20.0</power>
+    <resolution>1024</resolution>
+    <type>load</type>
+    <volume>20</volume>
+  </device>
+  <device name="Crystal-Container-Small" full_name="Малый контейнер для выращивания белковых кристаллов">
+    <heat_production>6</heat_production>
+    <mass>1</mass>
+    <max_temperature>20</max_temperature>
+    <min_temperature>10</min_temperature>
+    <orientation_type>none</orientation_type>
+    <parachute_mass>0.5</parachute_mass>
+    <parachute_square>3</parachute_square>
+    <parachute_velocity>1000</parachute_velocity>
+    <power>6</power>
+    <type>load</type>
+    <volume>2</volume>
+  </device>
+  <device name="Crystal-Container-Big" full_name="Большой контейнер для выращивания белковых кристаллов">
+    <heat_production>60</heat_production>
+    <mass>10</mass>
+    <max_temperature>45</max_temperature>
+    <min_temperature>5</min_temperature>
+    <orientation_type>none</orientation_type>
+    <parachute_mass>4</parachute_mass>
+    <parachute_square>20</parachute_square>
+    <parachute_velocity>400</parachute_velocity>
+    <power>60</power>
+    <type>load</type>
+    <volume>22.5</volume>
+  </device>
+  </choices>
+</v:devices>

@@ -1,4 +1,5 @@
 pyxb
 posix_ipc
+numpy
 matplotlib
 protobuf

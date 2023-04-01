@@ -1,0 +1,987 @@
+# -*- coding: utf-8 -*- 
+# Orbita localization file.
+# Copyright (C) Alexey Fedoseev <aleksey@fedoseev.net>, 2023
+
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2023-04-01 13:26+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Alexey Fedoseev <aleksey@fedoseev.net>\n"
+"Language-Team: Russian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+
+#: calcmodels/ballistics.py:103
+msgid "The atmosphere border: %f m"
+msgstr "Граница атмосферы: %f м"
+
+#: calcmodels/ballistics.py:108
+msgid "The geostationary orbit: %f (%f) m"
+msgstr "Геостационарная орбита: %f (%f) м"
+
+#: calcmodels/ballistics.py:125
+msgid "Successful landing %s!"
+msgstr "Благополучная посадка %s!"
+
+#: calcmodels/ballistics.py:126
+msgid "LANDING Ti=%s, Ang=%.2f V=%.2f, Max.Acc=%.2f"
+msgstr "ПОСАДКА Вр=%s, Уг=%.2f Ск=%.2f, Макс.Уск=%.2f"
+
+#: calcmodels/ballistics.py:133
+msgid "Falling velocity: %f"
+msgstr "Скорость падения на Землю: %f"
+
+#: calcmodels/ballistics.py:134
+msgid "The probe has crushed on the ground"
+msgstr "Аппарат разбился о поверхность Земли"
+
+#: calcmodels/ballistics.py:158
+msgid "The fuel is exhausted."
+msgstr "Топливо полностью выработано."
+
+#: calcmodels/ballistics.py:183
+msgid "Acceleration: %f"
+msgstr "Ускорение: %f"
+
+#: calcmodels/ballistics.py:184
+msgid "The probe was crushed by overload"
+msgstr "Аппарат разрушен под воздействием перегрузок"
+
+#: calcmodels/ballistics.py:211
+msgid "Orbital revolution: %d"
+msgstr "Виток: %d"
+
+#: calcmodels/control.py:61 calcmodels/control.py:81
+msgid ""
+"The device %s program error: %s\n"
+"\t%s"
+msgstr ""
+
+#: calcmodels/control.py:66
+msgid "Error while running program of the device: %s: %s"
+msgstr "Ошибка в программе устройства %s: %s"
+
+#: calcmodels/control.py:71
+msgid "System error while running program: %s"
+msgstr "Системная ошибка: %s"
+
+#: calcmodels/control.py:89
+msgid "Error while running program of the device %s: %s"
+msgstr "Ошибка при запуске программы устройства %s: %s"
+
+#: calcmodels/control.py:93
+msgid "Program finished."
+msgstr "Программа полета завершилась."
+
+#: calcmodels/load.py:70
+msgid "The camera memory %s (%f bytes) overloaded. The memory buffer was dropped"
+msgstr "Память камеры %s (%f байт) переполнена. Буфер камеры сброшен"
+
+#: calcmodels/load.py:72
+msgid "The camera memory (%f bytes) overloaded, the data was lost (%f bytes)"
+msgstr "Память камеры (%f байт) переполнена, данные потеряны (%f байт)"
+
+#: calcmodels/power.py:57
+msgid "Power subsystem is not working"
+msgstr "Система питания не функционирует"
+
+#: calcmodels/power.py:60
+msgid "Entering SAFE MODE twice"
+msgstr "Повторный вход в режим экономии электроэнергии"
+
+#: calcmodels/power.py:79
+msgid "Power consumption %.4f A exceeds maximum recharge current of the accumulator %.4f A"
+msgstr "Потребление в сети %.4f А превышает максимальный ток разрядки аккумулятора %.4f А"
+
+#: calcmodels/power.py:87
+msgid "The battery is low"
+msgstr "Заряд аккумулятора иссяк"
+
+#: calcmodels/power.py:91
+msgid "The battery is charged"
+msgstr "Аккумулятор заряжен полностью"
+
+#: calcmodels/radio.py:76
+msgid "The basic radio model for %s is: %f (%f MHz; %f W)"
+msgstr "Базовый коэффициент радиомодели для %s: %f (%f МГц; %f Вт)"
+
+#: calcmodels/radio.py:149
+msgid "The probe received (channel %s) from %s the data type %s, size %d bytes"
+msgstr "Аппарат получил по каналу %s от %s данные типа %s, размер %d байт"
+
+#: calcmodels/radio.py:155
+msgid "The message received"
+msgstr "Сообщение принято"
+
+#: calcmodels/radio.py:164
+msgid "Error: the unexpected message received"
+msgstr "Ошибка: принято неожиданное сообщение"
+
+#: calcmodels/radio.py:186
+msgid "The ground station %s received (channel %s) the data %d type %s, size %d bytes"
+msgstr "НИП %s получил по каналу %s данные %d типа %s, размер %d байт"
+
+#: calcmodels/radio.py:234
+msgid "%d data packets sent to Earth by channel %s: total value %.1f bytes"
+msgstr "Передано с Земли %d пакетов данных по каналу %s общим объемом %.1f байт"
+
+#: calcmodels/radio.py:237
+msgid "%d data packets received to Earth by channel %s: total value  %.1f bytes"
+msgstr "Передано на Землю %d пакетов данных по каналу %s общим объемом %.1f байт"
+
+#: calcmodels/telemetry.py:243
+msgid "Telemetry: "
+msgstr "Телеметрия: "
+
+#: calcmodels/telemetry.py:343
+msgid "Navigation"
+msgstr "Навигация"
+
+#: calcmodels/telemetry.py:343
+msgid "Orientation"
+msgstr "Ориентация"
+
+#: calcmodels/telemetry.py:345
+msgid "Ballistics-Mechanics"
+msgstr "Баллистика и механика аппарата"
+
+#: calcmodels/telemetry.py:349
+msgid "Angle (degree)"
+msgstr "Угол (°)"
+
+#: calcmodels/telemetry.py:351
+msgid "Angular-Velocity"
+msgstr "Угловая скорость"
+
+#: calcmodels/telemetry.py:355
+msgid "Angular Velocity (degree/s)"
+msgstr "Угловая скорость (°/с)"
+
+#: calcmodels/telemetry.py:358
+msgid "Fuel"
+msgstr "Топливо"
+
+#: calcmodels/telemetry.py:362
+msgid "Fuel Left (kg)"
+msgstr "Остаток топлива (кг)"
+
+#: calcmodels/telemetry.py:364
+msgid "Power"
+msgstr "Электроэнергия"
+
+#: calcmodels/telemetry.py:369
+msgid "Power (W)"
+msgstr "Мощность (Вт)"
+
+#: calcmodels/telemetry.py:371
+msgid "Power-Accumulator"
+msgstr "Заряд аккумулятора"
+
+#: calcmodels/telemetry.py:375
+msgid "Accumulator Capacity (J)"
+msgstr "Емкость аккумулятора (Дж)"
+
+#: calcmodels/telemetry.py:381
+msgid "Temperature (K)"
+msgstr "Температура (К)"
+
+#: calcmodels/telemetry.py:384
+msgid "Radio-Queue"
+msgstr "Очередь радиопередачи"
+
+#: calcmodels/telemetry.py:388
+msgid "Radio Queues Len (MB)"
+msgstr "Длина очереди радио (МБ)"
+
+#: calcmodels/telemetry.py:390
+msgid "Radio-Transmitting-Bandwidth"
+msgstr "Пропускная способность радио"
+
+#: calcmodels/telemetry.py:396
+msgid "Bandwidth (MB/s)"
+msgstr "Пропускная способность (МБ/с)"
+
+#: calcmodels/telemetry.py:398
+msgid "Telemetry"
+msgstr "Телеметрия"
+
+#: calcmodels/telemetry.py:402
+msgid "Bandwidth (KB/s)"
+msgstr "Пропускная способность (КБ/с)"
+
+msgid "Generation"
+msgstr "Генерация"
+
+msgid "Consumption"
+msgstr "Потребление"
+
+msgid "Radio"
+msgstr "Радио"
+
+msgid "Probe position (km)"
+msgstr "Позиция аппарата (км)"
+
+msgid "time"
+msgstr "время"
+
+#: data.py:44
+msgid "Critical error while running probe %s: %s"
+msgstr "Критическая ошибка при запуске аппарата %s: %s"
+
+#: data.py:46 simulation.py:278
+msgid "Critical error: {}"
+msgstr "Критическая ошибка: {}"
+
+#: data.py:51
+msgid "Probe terminated"
+msgstr "Спутник вышел из строя"
+
+#: data.py:109
+msgid "Trying to set bad mode %s"
+msgstr "Попытка установить неверный режим %s"
+
+#: data.py:114
+msgid "Trying to change the state %s for the dead device %s"
+msgstr "Попытка установить режим %s вышедшему из строя устройству %s"
+
+#: data.py:117
+msgid "The device %s now has the state %s"
+msgstr "Устройству %s установлен режим %s"
+
+#: data.py:128
+msgid "The device %s has %s"
+msgstr "Устройство %s %s"
+
+#: data.py:130
+msgid "overcooled"
+msgstr "переохладилось"
+
+#: data.py:130
+msgid "overheated"
+msgstr "перегрелось"
+
+#: data.py:136
+msgid "Cannot create device: %s"
+msgstr "Невозможно создать устройство: %s"
+
+#: data.py:161
+msgid "The state %s cannot be set for the probe construction"
+msgstr "Установлен невозможный режим для конструкции аппарата %s"
+
+#: data.py:165
+msgid "The program cannot be set for the probe construction"
+msgstr "Программа не может быть установлена для конструкции аппарата"
+
+#: data.py:196
+msgid "Trying to change the state of the subsystem %s in SAFE MODE"
+msgstr "Попытка изменить режим подсистемы %s во время режима экономии энергии"
+
+#: data.py:267 data.py:269
+msgid "Cycle number %d"
+msgstr "Переход к циклу %d"
+
+#: data.py:280
+msgid "Cannot start SAFE MODE, CPU is dead"
+msgstr "Невозможно перейти в режим экономии питания: ЦЭВМ вышла из строя"
+
+#: data.py:287
+msgid "CPU was turned off: %s. Computer stopped"
+msgstr "ЦБВМ была выключена %s. Остановка компьютера"
+
+#: data.py:390
+msgid "This type of message is not supported"
+msgstr "Сообщения данного типа не поддерживаются"
+
+#: data.py:404
+msgid "Sending SMS from %s to %s"
+msgstr "Отправка SMS-сообщения от %s в %s"
+
+#: data.py:406
+msgid "This mission do not allow sending messages"
+msgstr "В данной миссии нельзя посылать сообщения"
+
+#: data.py:435
+msgid "Dropping message (len %d B) which does not fit the memory %f MB"
+msgstr "Отбрасываем сообщение длиной %d байт, которое не влезает в оперативную память %f MB"
+
+#: data.py:438
+msgid "Memory of the transmitter %s (%f MB) is overful. The messagy (type %s len %f MB) dropped"
+msgstr "Память высокопроизводительного радиопередатчика %s (%f МБ) переполнена. Сообщение типа %s размером %f МБ отброшено"
+
+#: data.py:462
+msgid "Trying to send the message to an unavailable ground station %s"
+msgstr "Попытка передать сообщение на несуществующий НИП %s"
+
+#: data.py:476
+msgid "Trying to receive the message form an unavailable ground station %s"
+msgstr "Попытка принять сообщение с несуществующего НИПа %s"
+
+#: data.py:576
+msgid "This version of the simulator supports only orientation systems with wheel or w/o conrtol at all"
+msgstr "Данная версия симулятора поддерживает только устройства ориентации с маховиком или без управляющего воздействия"
+
+#: data.py:601
+msgid "Flywheel started"
+msgstr "Начало работы маховика"
+
+#: data.py:604
+msgid "Trying to run flywheel while the navigation system is off"
+msgstr "Попытка запустить маховик при выключенной системе ориентации"
+
+#: data.py:609
+msgid "Flywheel stopped"
+msgstr "Конец работы маховика"
+
+#: data.py:622
+msgid "Bad moment value %f"
+msgstr "Неверное значение момента %f"
+
+#: data.py:626
+msgid "Moment set %f"
+msgstr "Установлен момент %f"
+
+#: data.py:628
+msgid "Trying to set moment while the navigation system is off"
+msgstr "Попытка задать момент при выключенной системе ориентации"
+
+#: data.py:643
+msgid "Cannot set program to an engine device"
+msgstr "Программа не может быть установлена для двигательной установки"
+
+#: data.py:668
+msgid "Engine started. Fuel %f kg"
+msgstr "Начало работы двигателя. Топливо %f кг"
+
+#: data.py:671
+msgid "Trying to start engine while the engine device is off"
+msgstr "Попытка запустить двигатель при выключенной двигательной установке"
+
+#: data.py:676
+msgid "Engine stopped. Fuel %f kg"
+msgstr "Конец работы двигателя. Топливо %f кг"
+
+#: data.py:686
+msgid "Bad engine traction value %f"
+msgstr "Неверное значение тяги двигателя %f"
+
+#: data.py:690
+msgid "Set engine traction %f"
+msgstr "Установлена тяга двигателя %f"
+
+#: data.py:692
+msgid "Trying to set traction while the engine is off"
+msgstr "Попытка задать тягу при выключенной двигательной установке"
+
+#: data.py:734
+msgid "The priod value %d exceeds the possible limits [%d:%d]"
+msgstr "Значение периода %d выходит за допустимые пределы [%d:%d]"
+
+#: data.py:741
+msgid "Set telemetry period %d s"
+msgstr "Установлен период телеметрии %d с"
+
+#: data.py:745
+msgid "Telemetry message: %s"
+msgstr "Сообщение телеметрии: %s"
+
+#: data.py:781
+msgid "Too high heater power %f"
+msgstr "Неверное значение мощности нагревателя %f"
+
+#: data.py:786
+msgid "Set heater power %f"
+msgstr "Установлена мощность нагревателя %f"
+
+#: data.py:792
+msgid "Trying to set heat power while the heat control device is off"
+msgstr "Попытка задать мощность при выключенной СОТР"
+
+#: data.py:796
+msgid "Start heating"
+msgstr "Включение нагрева аппарата"
+
+#: data.py:801
+msgid "Tring to start heating while the heat control device is off"
+msgstr "Попытка включить нагрев при выключенной СОТР"
+
+#: data.py:806
+msgid "Stop heating"
+msgstr "Выключение нагрева аппарата"
+
+#: data.py:824
+msgid "Photocamera with the performance of %f Mbps -> %f B/s"
+msgstr "Фотокамера с производительностью: %f МБ/с -> %f Б/с"
+
+#: data.py:856 data.py:932 data.py:936 data.py:1001 data.py:1014 data.py:1027
+msgid "The device is not a camera"
+msgstr "Устройство не является камерой"
+
+#: data.py:860
+msgid "Trying to take a photo while the camera is off"
+msgstr "Попытка сделать снимок при выключенной камере"
+
+#: data.py:864
+msgid "The shooting is already performing"
+msgstr "Съёмка уже ведётся"
+
+#: data.py:880 data.py:963
+msgid "Camera shot: %s"
+msgstr "Снимок камерой: %s"
+
+#: data.py:882
+msgid "Target offset angle: %.3f deg"
+msgstr "Отклонение от цели: %.3f градусов"
+
+#: data.py:884
+msgid "Distance to the target: %.3f m"
+msgstr "Расстояние до цели: %.3f метров"
+
+#: data.py:887
+msgid "Resolution: %.3f m/pixel"
+msgstr "Разрешение: %.3f м/пикс"
+
+#: data.py:889
+msgid "Target incidence angle: %.3f deg"
+msgstr "Отклонение от вертикали: %.3f градусов"
+
+#: data.py:895
+msgid "Insufficient memory to save the image"
+msgstr "Недостаточно памяти для хранения снимка"
+
+#: data.py:904
+msgid "There are no empty slot to save the image"
+msgstr "Нет свободных слотов для хранения снимка"
+
+#: data.py:922
+msgid "Start shooting"
+msgstr "Начало съёмки"
+
+#: data.py:930
+msgid "Trying to start shooting while the camera is off"
+msgstr "Попытка начать съёмку при выключенной камере"
+
+#: data.py:942
+msgid "Stop shooting"
+msgstr "Конец съёмки"
+
+#: data.py:946
+msgid "Buffer is empty. Nothing was shooted"
+msgstr "Буфер камеры пуст, ничего не снято"
+
+#: data.py:966
+msgid "The best target offset angle: %.3f deg"
+msgstr "Лучшее отклонение от цели: %.3f градусов"
+
+#: data.py:969
+msgid "The best distance to target: %.3f m"
+msgstr "Лучшее расстояние до цели: %.3f метров"
+
+#: data.py:972
+msgid "The best resolution: %.3f m/pixel"
+msgstr "Лучшее разрешение: %.3f м/пикс"
+
+#: data.py:975
+msgid "The best target incidence angle: %.3f deg"
+msgstr "Лучшее отклонение от вертикали: %.3f градусов"
+
+#: data.py:984
+msgid "There are no empty slots to save the shot"
+msgstr "Нет свободных слотов для хранения снимка"
+
+#: data.py:1046
+msgid "Starting the experiment"
+msgstr "Начало эксперимента"
+
+#: data.py:1050
+msgid "The experiment was already started"
+msgstr "Эксперимент уже был проведён один раз"
+
+#: data.py:1052
+msgid "Trying to start experiment while the container is off"
+msgstr "Попытка начать эксперимент при выключенном контейнере"
+
+#: data.py:1054
+msgid "Cannot start experiment. The device is not a scientific container"
+msgstr "Невозможно начать эксперимент. Устройство не является контейнером"
+
+#: data.py:1065
+msgid "Cannot stop experiment. The device is not a scientific container"
+msgstr "Невозможно остановить эксперимент. Устройство не является контейнером"
+
+#: data.py:1071
+msgid "The experiment finished"
+msgstr "Эксперимент завершен"
+
+#: data.py:1075
+msgid "Set parachute activation height to %f m"
+msgstr "Установлено раскрытие парашюта на высоте %f"
+
+#: data.py:1083
+msgid "The container was shot off"
+msgstr "Контейнер отстрелен"
+
+#: data.py:1090
+msgid "The parachute has opened"
+msgstr "Парашют раскрылся"
+
+#: data.py:1093
+msgid "The parachute has dropped because of exceeding the maximum speed"
+msgstr "Парашют сорван, т.к. превышена допустимая скорость"
+
+#: data.py:1163
+msgid "Mission %s is not supported"
+msgstr "Миссия %s не поддерживается"
+
+#: data.py:1189
+msgid "Unknown subsystem type %s: %s"
+msgstr "Неизвестная подсистема типа %s %s"
+
+#: data.py:1192
+msgid "Unknown subsystem %s"
+msgstr "Неизвестная подсистема %s"
+
+#: data.py:1195
+msgid "More than one subsystem of type %s"
+msgstr "Более одной подсистемы типа %s"
+
+#: data.py:1213
+msgid "The required system %s should be enabled in the probe"
+msgstr "Обязательная система %s не может отсуствовать в аппарате"
+
+#: data.py:1218
+msgid "There is no required equipment for this mission: a container for scientific experiments"
+msgstr "Отсутствует обязательное для миссии оборудование: контейнер для выращивания белковых кристаллов"
+
+#: data.py:1224
+msgid "There is no required equipment for this mission: a camera"
+msgstr "Отсутствует обязательное для миссии оборудование: камера"
+
+#: data.py:1233
+msgid "There is no required equipment for this mission: a high-performance transmitter"
+msgstr "Отсутствует обязательное для миссии оборудование: высокопроизводительный радиопередатчик"
+
+#: data.py:1244
+msgid "Probe mass: %f kg"
+msgstr "Масса аппарата: %f кг"
+
+#: data.py:1247
+msgid "The probe weight limit %.3f exceeded"
+msgstr "Превышен предел для общей массы аппарата %.3f кг"
+
+#: data.py:1250
+msgid "The moment of inertia for the probe %.1f kg m^2 should be positive"
+msgstr "Момент инерции аппарата %.1f кг м^2 должен быть положительным"
+
+#: data.py:1277
+msgid "The voltage of the probe's electric network %.1f V should be positive"
+msgstr "Напряжение в сети аппарата должно быть положительным %.1f"
+
+#: data.py:1285
+msgid "The fraction of solar panels square %.1f%%%% should be between 0 and 100%%%%"
+msgstr "Доля площади граней %.1f%%%% должна быть не меньше 0%%%% и не больше 100%%%%"
+
+#: data.py:1294
+msgid "The fraction of radiator square (side) %.1f%%%% should be between 0 and 100%%%%"
+msgstr "Доля площади граней радиатора %.1f%%%% должна быть не меньше 0%%%% и не больше 100%%%%"
+
+#: data.py:1303
+msgid "The fraction of radiator square (top-bottom) %.1f%%%% should be between 0%%%% and 100%%%%"
+msgstr "Доля площади оставшихся граней %.1f%%%% должна быть не меньше 0%%%% и не больше 100%%%%"
+
+#: data.py:1311
+msgid "The total square of side faces %.1f%%%% should not exceed 100%%%%"
+msgstr "Суммарная доля площади боковых граней %.1f%%%% не может превышать 100%%%%"
+
+#: data.py:1326
+msgid "The value of devices %.5f m^3 exceeds the possible value of construction %.5f m^3"
+msgstr "Объем устройств %.5f куб.м превышает объем конструкции %.5f куб м."
+
+#: data.py:1338
+msgid "The value of fuel %f m^3 exceeds the possible value of fuel tanks %f m^3"
+msgstr "Объем топлива %f куб.м превышает доступный объем топливных баков %f куб.м"
+
+#: data.py:1342
+msgid "Total mass (with fuel): %f kg"
+msgstr "Общая масса (с топливом): %f кг"
+
+#: data.py:1352
+msgid "The flight log:"
+msgstr "Журнал полета:"
+
+#: data.py:1357
+msgid "The size of the probe's side: %f"
+msgstr "Размер стороны аппарата, м: %f"
+
+#: data.py:1376
+msgid "Going to SAFE MODE"
+msgstr "Переход в экономичный режим"
+
+#: data.py:1392
+msgid "Trying to drop already dropped container"
+msgstr "Повторная попытка отбросить контейнер"
+
+#: data.py:1395
+msgid "Trying to drop a container while the probe has no container"
+msgstr "Попытка отбросить контейнер у аппарата без контейнера"
+
+#: data.py:1411
+msgid "Probe %s:"
+msgstr "Аппарат %s:"
+
+#: data.py:1412
+msgid "\tFlight parameters:"
+msgstr "\tПараметры полета:"
+
+#: data.py:1413
+msgid "\t\tPlanet: %s"
+msgstr "\t\tПланета: %s"
+
+#: data.py:1414
+msgid "\t\tStart temperature: %.1f К"
+msgstr "\t\tНачальная температура: %.1f К"
+
+#: data.py:1416
+msgid "\t\tStart time of the autonomous flight: %s"
+msgstr "\t\tАбсолютное время начала автономного полета: %s"
+
+#: data.py:1417
+msgid "\t\tFlight duration: %d h"
+msgstr "\t\tПродолжительность полета: %d ч"
+
+#: data.py:1418
+msgid "\t\tOrbit height: %.2f m"
+msgstr "\t\tВысота орбиты: %.2f м"
+
+#: data.py:1419
+msgid "\t\tStart angle: %.2f deg"
+msgstr "\t\tНачальный угол: %.2f градусов"
+
+#: data.py:1420
+msgid "\t\tStart orientation angle: %.2f deg"
+msgstr "\t\tНачальный угол ориентации: %.2f градусов"
+
+#: data.py:1421
+msgid "\t\tStart rotation speed of the probe: %.2f deg/s"
+msgstr "\t\tНачальная скорость вращения аппарата вокруг центра масс: %.2f градусов/с"
+
+msgid "\t\tTarget:"
+msgstr "\t\tЦель:"
+
+msgid "\t\t\tX coord: %.1f m"
+msgstr "\t\t\tКоордината X: %.1f м"
+
+msgid "\t\t\tY coord: %.1f m"
+msgstr "\t\t\tКоордината Y: %.1f м"
+
+#: data.py:1425
+msgid "\tSubsystems:"
+msgstr "\tПодсистемы:"
+
+#: data.py:1433
+msgid "\tNo"
+msgstr "\tНет"
+
+#: data.py:1434
+msgid "\t\tSubsystem %s: device %s, m %f v %f st.state %s, program:\n%s\n"
+msgstr "Подсистема %s: устройство %s, масса %f объем %f начальное состояние %s, программа:\n%s\n"
+
+#: data.py:1446
+msgid "\t\tSubsystem %s is absent\n"
+msgstr "\t\tПодсистема %s отсутствует\n"
+
+#: data.py:1447
+msgid "\tStart mass: %.4f kg"
+msgstr "\tНачальная масса: %.4f кг"
+
+#: data.py:1448
+msgid "\tSystems' volume: %.5f m^3"
+msgstr "\tОбъем систем аппарата: %.5f куб.м"
+
+#: data.py:1449
+msgid "\tMin temperature: %.1f K"
+msgstr "\tМинимальная допустимая температура: %.1f К"
+
+#: data.py:1450
+msgid "\tMax temperature: %.1f K"
+msgstr "\tМаксимально допустимая температура: %.1f К"
+
+#: data.py:1451
+msgid "\tStart power generation: %.2f W"
+msgstr "\tНачальная мощность питания: %.2f Вт"
+
+#: logger.py:62
+msgid "Bad logging target \"%s\"\n"
+msgstr "Неверная цель логирования \"%s\"\n"
+
+msgid "MISSION ACCOMPLISHED! The crystal has landed earth successfully."
+msgstr "МИССИЯ УСПЕШНА! Кристалл успешно достиг поверхности."
+
+#: missions/dzz.py:121
+msgid "Image %s received from camera"
+msgstr "Получено изображение с камеры: %s"
+
+#: missions/dzz.py:126
+msgid "MISSION ACCOMPLISHED! The image of the target received."
+msgstr "МИССИЯ УСПЕШНА! Получено изображение целевого объекта."
+
+#: missions/early_warning.py:101
+msgid "Rocket launch: %s"
+msgstr "Пуск ракеты: %s"
+
+#: missions/early_warning.py:111
+msgid "Rocket height: %s"
+msgstr "Высота ракеты: %s"
+
+#: missions/early_warning.py:159
+msgid "The end of the active trajectory of the target"
+msgstr "Конец активного участка ракеты"
+
+#: missions/early_warning.py:179 missions/inspect.py:142
+msgid "Image received from camera: %s"
+msgstr "Получено изображение с камеры: %s"
+
+#: missions/early_warning.py:184
+msgid "Ballistic launch detected!!"
+msgstr "Обнаружен запуск баллистической ракеты!"
+
+#: missions/early_warning.py:192
+msgid "Data sent in time."
+msgstr "Данные переданы своевременно."
+
+#: missions/early_warning.py:201
+msgid "MISSION ACCOMPLISHED! More than %d%%%% targets intercepted."
+msgstr "МИССИЯ УСПЕШНА! Перехвачено более %d процентов ракет."
+
+#: missions/early_warning.py:210
+msgid "Data sent with delay."
+msgstr "Данные переданы с опозданием."
+
+#: missions/inspect.py:147
+msgid "MISSION ACCOMPLISHED! The target image received."
+msgstr "МИССИЯ УСПЕШНА! Получено изображение целевого объекта."
+
+#: missions/molniya.py:82
+msgid "MISSION ACCOMPLISHED! The required telecommunication session completed."
+msgstr "МИССИЯ УСПЕШНА! Требуемые сеансы связи проведены."
+
+#: missions/sms.py:61
+msgid "Message %d: %s->%s"
+msgstr "Сообщение %d: %s->%s"
+
+#: missions/sms.py:66
+msgid "The Probe definition did not contain any SMS message"
+msgstr "Аппарат не содержит ни одного сообщения в миссии SMS"
+
+#: missions/sms.py:80
+msgid "SMS received form %s, time interval %f sec"
+msgstr "Принято SMS для %s, интервал %f с"
+
+#: missions/sms.py:94
+msgid "Ground station %s received the SMS-message from %s size %d. "
+msgstr "НИП %s получил SMS-сообщение от %s размером %d."
+
+#: missions/sms.py:102
+msgid "Error: the message was received from the wrong source - %s instead of %s. "
+msgstr "Ошибка: сообщение от неверного источника - %s вместо %s."
+
+#: missions/sms.py:106
+msgid "Error: the message was sent to the wrong destination - %s instead of %s. "
+msgstr "Ошибка: сообщение для неверного получателя - %s вместо %s."
+
+#: missions/sms.py:110
+msgid "Error: the message was changed while transfered. "
+msgstr "Ошибка: сообщение было изменено в процессе передачи."
+
+#: missions/sms.py:115
+msgid "Error: the transfer time %f sec exceeded the valid interval %f sec."
+msgstr "Ошибка: время доставки сообщения %f с превысило допустимый интервал %f с."
+
+#: missions/sms.py:119
+msgid "Error: the probe tried to send message before receiving it. "
+msgstr "Ошибка: попытка передать сообщение до его получения."
+
+#: missions/sms.py:122
+msgid "Error: all the messages were sent. "
+msgstr "Ошибка: все сообщения уже переданы."
+
+#: missions/sms.py:129
+msgid "Problems while sending SMS-message. "
+msgstr "Аппарат неверно передал SMS-сообщение."
+
+#: missions/sms.py:131
+msgid "MISSION ACCOMPLISHED! SMS-message was transferred correctly."
+msgstr "МИССИЯ УСПЕШНА! SMS-сообщение было передано верно."
+
+#: missions/sms.py:144
+msgid "New SMS-message %s->%s"
+msgstr "Новое SMS-сообщение %s->%s"
+
+#: missions/test1.py:73
+msgid "MISSION ACCOMPLISHED! The probe completed the orbital revolution with the normal orientation."
+msgstr "МИССИЯ УСПЕШНА! Аппарат совершил полный виток в нормальной ориентации."
+
+#: missions/test2.py:58
+msgid "The ground station %s received SMS size %d. "
+msgstr "НИП %s получил SMS-сообщение размером %d."
+
+#: missions/test2.py:63
+msgid "Error: the message was changed while being transferred. "
+msgstr "Ошибка: сообщение было изменено в процессе передачи."
+
+#: missions/test2.py:71
+msgid "The probe transferred wrong message. {}"
+msgstr "Аппарат неверно передал сообщение. {}"
+
+#: missions/test2.py:73
+msgid "MISSION ACCOMPLISHED! The message was transferred."
+msgstr "МИССИЯ УСПЕШНА! Сообщение было передано верно."
+
+#: missions/test3.py:80
+msgid "MISSION ACCOMPLISHED! The probe completed the revolution on the new orbit."
+msgstr "МИССИЯ УСПЕШНА! Аппарат совершил полный виток по новой орбите."
+
+#: plotgraph.py:122
+msgid "Surface"
+msgstr "Поверхность"
+
+#: plotgraph.py:127
+msgid "Atmosphere"
+msgstr "Атмосфера"
+
+#: plotgraph.py:134
+msgid "Trajectory of the target"
+msgstr "Траектория цели"
+
+#: plotgraph.py:143
+msgid "GS"
+msgstr "НИП"
+
+#: plotgraph.py:146
+msgid "Trajectory"
+msgstr "Траектория"
+
+#: simulation.py:102
+msgid "Module load error: cannot find class %s in module %s"
+msgstr "Ошибка загрузки: нет класса %s в модуле %s"
+
+#: simulation.py:110
+msgid "Module load error: module %s cannot be loaded: %s"
+msgstr "Ошибка загрузки: модуль %s не может быть загружен: %s"
+
+#: simulation.py:138
+msgid "MISSION ENDED. Duration = %s"
+msgstr "Миссия завершена УСПЕШНО. Длительность = %s"
+
+#: simulation.py:150
+msgid "Terminated: "
+msgstr "Аппарат завершил работу: "
+
+#: simulation.py:155
+msgid "Mission accomplished with the score %f"
+msgstr "Миссия завершена успешно с очками %f"
+
+#: simulation.py:157
+msgid "Mission accomplished"
+msgstr "Миссия завершена успешно"
+
+#: simulation.py:160
+msgid "Mission failed"
+msgstr "Миссия завершена неудачно"
+
+#: simulation.py:163
+msgid "No telemetry from the probe"
+msgstr "Нет связи с аппаратом"
+
+#: simulation.py:165
+msgid "%s. Duration: %s"
+msgstr "%s. Продолжительность: %s"
+
+#: simulation.py:223
+msgid "CriticalError: {}"
+msgstr "Критическая ошибка: {}"
+
+#: xmlconverters.py:67
+msgid "XML Error. Cannot load %s: cannot open file %s"
+msgstr "Ошибка XML. Ошибка загрузки %s: не возможно открыть файл %s"
+
+#: xmlconverters.py:72
+msgid "XML Error. Cannot load %s: bad xml-document %s: %s"
+msgstr "Ошибка XML. Ошибка загрузки %s: плохой xml-документ %s: %s"
+
+#: xmlconverters.py:75
+msgid "XML Error. Cannot load %s: bad xml-документ %s: error in %s"
+msgstr "Ошибка XML. Ошибка загрузки %s: плохой xml-документ %s: ошибка в %s"
+
+#: xmlconverters.py:78
+msgid "XML Error. Cannot load %s: bad xml document %s"
+msgstr "Ошибка XML. Ошибка загрузки %s: плохой xml-документ %s"
+
+#: xmlconverters.py:87
+msgid "parameters"
+msgstr "параметров"
+
+#: xmlconverters.py:103
+msgid "XML Error. Cannot load %s: there are two planets with the same name %s"
+msgstr "Ошибка XML. Ошибка загрузки %s: параметры с одинаковыми именами %s"
+
+#: xmlconverters.py:114
+msgid "Global Parameters:"
+msgstr "Глобальные параметры:"
+
+#: xmlconverters.py:115
+msgid "\tG: %.4e kg m^3 / sec^2"
+msgstr "\tG: %.4e кг куб.м / кв.с"
+
+#: xmlconverters.py:117
+msgid "\tPlanet: %s"
+msgstr "\tПланета: %s"
+
+#: xmlconverters.py:118
+msgid "\t\tRadius: %.4f км,"
+msgstr "\t\tРадиус: %.4f км,"
+
+#: xmlconverters.py:119
+msgid "\t\tMass: %.4e кг"
+msgstr "\t\tМасса: %.4e кг"
+
+#: xmlconverters.py:120
+msgid "\tConstruction limits:"
+msgstr "\tОграничения конструирования:"
+
+#: xmlconverters.py:121
+msgid "\t\tMax mass: %.2f кг"
+msgstr "\t\tМаксимальная масса: %.2f кг"
+
+#: xmlconverters.py:125
+msgid "config"
+msgstr "конфигурации"
+
+#: xmlconverters.py:137
+msgid "XML Error. Cannot load %s: there are two parameters with the same name %s"
+msgstr "Ошибка XML. Ошибка загрузки %s: две подсистемы с одним именем %s"
+
+#: xmlconverters.py:165
+msgid "missions"
+msgstr "миссий"
+
+#: xmlconverters.py:178
+msgid "XML Error. Cannot load %s: there are two missions with the same name %s"
+msgstr "Ошибка XML. Ошибка загрузки %s: миссии с одинаковыми именами %s"
+
+#: xmlconverters.py:331
+msgid "devices"
+msgstr "устройств"
+
+#: xmlconverters.py:344
+msgid "XML Error. Cannot load %s: there are two devices with the same nameд %s"
+msgstr "Ошибка XML. Ошибка загрузки %s: две подсистемы с одним именем %s"
+
+#: xmlconverters.py:452
+msgid "Error while reading short log: %s"
+msgstr "Ошибка при чтении кратного журнала: %s"
+
+msgid "Language {} installed"
+msgstr "Установлен язык {}"
