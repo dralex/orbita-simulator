@@ -545,10 +545,10 @@ def run(probename, probefile, missionfile, debugfile, shortfile, imagedir, htmlt
 
     try:
         data.cleanup_collector()
-        data.parameters_load()
+        data.parameters_load(lang)
         data.planets_load()
-        data.config_load()
-        data.devices_load()
+        data.config_load(lang)
+        data.devices_load(lang)
 
         the_probe = data.probe_load(probename, probefile)
 

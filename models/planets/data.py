@@ -42,9 +42,10 @@ from errors import CriticalError, Terminated
 from plotgraph import plot_graph
 
 LOCAL_DIR = os.path.dirname(os.path.abspath(__file__))
-PARAMETERS_FILE = os.path.join(LOCAL_DIR, 'parameters.xml')
-DEVICES_FILE = os.path.join(LOCAL_DIR, 'devices.xml')
-CONFIG_FILE = os.path.join(LOCAL_DIR, 'config.xml')
+DEFAULT_LANG = 'en'
+PARAMETERS_FILE = os.path.join(LOCAL_DIR, 'parameters{}.xml')
+DEVICES_FILE = os.path.join(LOCAL_DIR, 'devices{}.xml')
+CONFIG_FILE = os.path.join(LOCAL_DIR, 'config{}.xml')
 PLANETS_FILE = os.path.join(LOCAL_DIR, 'planets.xml')
 
 _ = gettext.gettext
@@ -102,10 +103,11 @@ def mission_adv_log(s, *args):
     debug_log(msg)
     AD_messages.append(msg)
 
-def parameters_load():
+def parameters_load(lang):
     global Parameters #pylint: disable=W0603
     Parameters = None
-    xmldata = read_xml_file(PARAMETERS_FILE)
+    lang_postfix = "-{}".format(lang) if lang != DEFAULT_LANG else ''
+    xmldata = read_xml_file(PARAMETERS_FILE.format(lang_postfix))
     try:
         Parameters = venus.global_parameters.CreateFromDocument(xmldata)
         Parameters.Missions = {}
@@ -155,10 +157,11 @@ def is_model_on(probe, model):
 def is_device_allowed(probe, device):
     return device in Parameters.Missions[probe.mission].Devices
 
-def config_load():
+def config_load(lang):
     global Config #pylint: disable=W0603
     Config = None
-    xmldata = read_xml_file(CONFIG_FILE)
+    lang_postfix = "-{}".format(lang) if lang != DEFAULT_LANG else ''
+    xmldata = read_xml_file(CONFIG_FILE.format(lang_postfix))
     try:
         Config = venus.global_config.CreateFromDocument(xmldata)
         Config.Logging = {}
@@ -174,10 +177,11 @@ def config_load():
     else:
         debug_log(_("Config loaded successfully."))
 
-def devices_load():
+def devices_load(lang):
     global Devices #pylint: disable=W0603
     Devices = {}
-    xmldata = read_xml_file(DEVICES_FILE)
+    lang_postfix = "-{}".format(lang) if lang != DEFAULT_LANG else ''
+    xmldata = read_xml_file(DEVICES_FILE.format(lang_postfix))
     try:
         devices = venus.devices.CreateFromDocument(xmldata)
         for d in devices.device:
@@ -1207,7 +1211,7 @@ def debug_probe(probe, logger=mission_log):
         for d in probe.devices.device:
             # debug_device(d.code, '\t\t')
             logger(_("\t\tDevice %s, identifier %s, start state %s") %
-                   (str(d.device.name)), str(d.identifier), str(d.start_state))
+                   (str(d.device.name), str(d.identifier), str(d.start_state)))
     if probe.python_program:
         logger(_("\tProgram (python):"))
         logger(('\t\t' + '\n\t\t'.join(probe.python_program)).replace('%', '%%'))
