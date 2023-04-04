@@ -1,0 +1,309 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:global_parameters xmlns:v="venus">
+  <G>6.6742e-11</G>
+  <MaxLaunchTime>500000</MaxLaunchTime><!-- Maximum launch time in ms -->
+  <missions>
+    <mission name="Venus" full_name="Венерв">
+        <planet>Venus</planet>
+        <models>landing,stokes,termodynamics,surface</models>
+        <devices>
+diagnadv,cpu,diagn,engine,engine_g,engine_l,engine_m,fueltank,fueltank_large,
+generator,parachute,heatshield,parachute_armed,
+damper,
+spectrometr,mass-spectrometr,camera,videocamera,radiometer,magnetometer,LIDAR,
+seismograph,barometer,termometer,gas-chromatograph,spectrophotometr,laser-evaporator,anemometer,
+transmitter,wr_transmitter,accumulator
+        </devices>
+        <start_braking_koeff>0.5</start_braking_koeff><!-- start x speed in fraction of the 1st cosmic velocity -->
+        <max_mass>20000</max_mass>
+        <max_radius>2.0</max_radius>
+        <max_acceleration>115.0</max_acceleration>
+        <T_start>10</T_start>
+        <aerodynamic_coeff>0.47</aerodynamic_coeff>
+        <construction>
+          <density>400</density>
+        </construction>
+        <isolator>
+          <k>0.04</k>
+          <density>4000</density>
+        </isolator>
+        <absorber>
+          <state>hard</state>
+          <density>1570</density>
+          <T_melting>303</T_melting>
+          <L>439000</L>
+          <C_hard>2435</C_hard>
+          <C_liquid>4200</C_liquid>
+        </absorber>
+        <score>si</score>
+        <result>landing,scientificinformation</result>
+    </mission>
+    <mission name="Moon" full_name="Луна">
+      <planet>Moon</planet>
+      <models>landing</models>
+      <devices>camera,generator,moon_damper,transmitter,diagn,cpu,engine_g,fueltank_large</devices>
+      <start_braking_koeff>0</start_braking_koeff>
+      <max_mass>20000</max_mass>
+      <max_radius>2.0</max_radius>
+      <max_acceleration>115.0</max_acceleration>
+      <T_start>10</T_start>
+      <construction>
+	<density>100</density>
+	<program>
+	  <![CDATA[t1 = # CALCULATE AND SET t1
+t2 = # CALCULATE AND SET t2
+engine = False
+probe.set_device_period('D1', 10)
+while probe.run():
+    t = probe.cpu_get_flight_time()
+    if not engine and t1 <= t < t1 + t2:
+        probe.set_device_state('EG1', STATE_ON)
+        engine = True
+        continue
+    if engine and t >= t1 + t2:
+        probe.set_device_state('EG1', STATE_OFF)
+        engine = False
+        continue
+    if probe.navigation_has_landed():
+        # SUCCESSFULL LANDING
+        break
+]]>
+	</program>
+      </construction>
+      <result>landing</result>
+    </mission>
+    <mission name="Mars" full_name="Посадка на Марс">
+      <planet>Mars</planet>
+      <models>landing,stokes</models>
+      <devices>camera,generator,accumulator,solar_battery,damper,transmitter,diagn,diagnadv,
+cpu,engine_l,engine_g,fueltank,fueltank_large,parachute_supersonic,heatshield_light</devices>
+      <start_braking_koeff>1</start_braking_koeff>
+      <max_mass>20000</max_mass>
+      <max_radius>2.0</max_radius>
+      <max_acceleration>155.0</max_acceleration>
+      <T_start>10</T_start>
+      <aerodynamic_coeff>0.47</aerodynamic_coeff>
+      <construction>
+	<density>100</density>
+      </construction>
+      <result>landing</result>
+    </mission>
+    <mission name="Mercury">
+      <planet>Mercury</planet>
+      <models>landing,surfacelimited</models>
+      <devices>
+diagnadv,cpu,diagn,engine,engine_g,engine_l,fueltank,fueltank_large,
+generator,parachute,parachute_supersonic,heatshield,heatshield_light,parachute_armed,
+damper,moon_damper,
+spectrometr,mass-spectrometr,camera,videocamera,infrared_camera,radiometer,magnetometer,LIDAR,
+seismograph,barometer,termometer,gas-chromatograph,laser-evaporator,
+transmitter,wr_transmitter,accumulator,solar_battery,solar_battery_expanding
+      </devices>
+      <start_braking_koeff>0</start_braking_koeff>
+      <max_mass>20000</max_mass>
+      <max_radius>2.0</max_radius>
+      <max_acceleration>115.0</max_acceleration>
+      <T_start>10</T_start>
+      <construction>
+	<density>100</density>
+      </construction>
+      <surface_max_time>86400</surface_max_time>
+      <score>si_per_m</score>
+      <result>landing</result>
+    </mission>
+    <mission name="Mars2" full_name="Экспедиция на Марс">
+      <planet>Mars</planet>
+      <models>landing,stokes,surfacelimited</models>
+      <devices>
+diagnadv,cpu,diagn,engine,engine_g,engine_l,fueltank,fueltank_large,
+generator,parachute,parachute_supersonic,heatshield,heatshield_light,parachute_armed,
+damper,moon_damper,
+spectrometr,mass-spectrometr,camera,videocamera,infrared_camera,radiometer,magnetometer,LIDAR,
+seismograph,barometer,termometer,gas-chromatograph,laser-evaporator,
+transmitter,wr_transmitter,accumulator,solar_battery,solar_battery_expanding
+      </devices>
+      <start_braking_koeff>1</start_braking_koeff>
+      <max_mass>20000</max_mass>
+      <max_radius>2.0</max_radius>
+      <max_acceleration>155.0</max_acceleration>
+      <T_start>10</T_start>
+      <aerodynamic_coeff>0.47</aerodynamic_coeff>
+      <construction>
+	<density>100</density>
+      </construction>
+      <surface_max_time>259200</surface_max_time>
+      <score>si_per_m</score>
+      <result>landing,scientificinformation</result>
+    </mission>
+    <mission name="Mars-surface" full_name="Работа на поверхности Марса">
+      <planet>Mars</planet>
+      <models>surfacelimited</models>
+      <devices>
+diagnadv,cpu,diagn,videocamera,infrared_camera,transmitter,accumulator,solar_battery
+      </devices>
+      <start_braking_koeff>1</start_braking_koeff>
+      <max_mass>550</max_mass>
+      <max_radius>0.45</max_radius>
+      <max_acceleration>155.0</max_acceleration>
+      <T_start>10</T_start>
+      <construction>
+	<density>100</density>
+      </construction>
+      <surface_max_time>288000</surface_max_time><!-- 80 Earth hours-->
+      <score>si_per_m</score>
+      <result>scientificinformation</result>
+    </mission>
+    <mission name="Moon-Launch1">
+      <planet>Moon</planet>
+      <models>launch</models>
+      <devices>
+diagnadv,cpu,diagn,engine,engine_g,engine_l,fueltank,fueltank_large,
+generator,
+damper,
+transmitter,wr_transmitter,accumulator,solar_battery,solar_battery_expanding
+      </devices>
+      <start_braking_koeff>0</start_braking_koeff>
+      <max_mass>20000</max_mass>
+      <max_radius>2.0</max_radius>
+      <max_acceleration>155.0</max_acceleration>
+      <T_start>0</T_start>
+      <construction>
+        <density>100</density>
+      </construction>
+      <result>reach_height,fuel_used</result>
+      <launch>
+          <cycles>22</cycles>
+          <max_height>40000</max_height> <!-- max height (from the ground) -->
+          <max_wait_time>1200</max_wait_time><!-- max time of the launch -->
+      </launch>
+    </mission>
+    <mission name="Moon-Launch2">
+      <planet>Moon</planet>
+      <models>launch</models>
+      <devices>
+diagnadv,cpu,diagn,engine,engine_g,engine_l,fueltank,fueltank_large,
+generator,transmitter,accumulator
+      </devices>
+      <start_braking_koeff>0</start_braking_koeff>
+      <max_mass>20000</max_mass>
+      <max_radius>2.0</max_radius>
+      <max_acceleration>155.0</max_acceleration>
+      <T_start>10</T_start>
+      <construction>
+        <density>100</density>
+      </construction>
+      <result>reach_height,fuel_used</result>
+      <launch>
+          <cycles>22</cycles>
+          <max_height>100000</max_height> <!-- max height (from the ground)  -->
+          <max_wait_time>1200</max_wait_time><!-- max time of the launch -->
+      </launch>
+    </mission>
+    <mission name="Ballistics" full_name="Баллистика">
+      <planet>Earth</planet>
+      <models>launch</models>
+      <devices>
+diagnadv,cpu,diagn,engine,engine_g,engine_l,engine_rd,fueltank,fueltank_large,
+generator,transmitter,accumulator
+      </devices>
+      <start_braking_koeff>0</start_braking_koeff>
+      <max_mass>20000</max_mass>
+      <max_radius>2.0</max_radius>
+      <max_acceleration>500.0</max_acceleration>
+      <T_start>0</T_start>      
+      <construction>
+        <density>30</density>
+        <program>
+	  <![CDATA[t_off = # CALCULATE AND SET t_off
+start_angle = # CALCULATE AND SET start_angle
+
+probe.engine_set_angle('ERD1', start_angle)
+probe.set_device_state('ERD1', STATE_ON)
+engine = True
+
+probe.set_device_period('D1', 10)
+
+while probe.run():
+    t = probe.cpu_get_flight_time()
+    if engine and t >= t_off:
+        probe.set_device_state('ERD1', STATE_OFF)
+        engine = False
+        continue
+]]>
+        </program>
+      </construction>
+      <result>hit_target</result>
+      <launch>
+          <target_distance>3000000</target_distance>
+          <accuracy>0.16</accuracy>
+          <cycles>22</cycles>
+          <max_height>3000000</max_height> <!-- max height (from the ground) -->
+          <max_wait_time>1200</max_wait_time><!-- max time of the launch -->
+      </launch>
+    </mission>
+    <mission name="Moon-touchdown">
+        <planet>Moon</planet>
+        <models>landing</models>
+        <devices>camera,generator,custom_damper,transmitter,diagn,cpu,engine_g,fueltank_large</devices>
+        <start_braking_koeff>0</start_braking_koeff>
+        <max_mass>2400</max_mass>
+        <max_radius>2.0</max_radius>
+        <max_acceleration>115.0</max_acceleration>
+        <T_start>0</T_start>
+        <construction>
+            <density>100</density>
+        </construction>
+        <result>landing</result>
+    </mission>
+    <mission name="Earth-Launch">
+      <planet>Earth</planet>
+      <models>launch,stokes</models>
+      <devices>
+diagnadv,cpu,diagn,engine,engine_g,engine_l,engine_m,fueltank,fueltank_large,engine_rd,
+generator,parachute,parachute_supersonic,heatshield,heatshield_light,parachute_armed,
+damper,moon_damper,
+spectrometr,mass-spectrometr,camera,videocamera,infrared_camera,radiometer,magnetometer,LIDAR,
+seismograph,barometer,termometer,gas-chromatograph,spectrophotometr,laser-evaporator,anemometer,
+transmitter,wr_transmitter,accumulator,solar_battery,solar_battery_expanding
+      </devices>
+      <start_braking_koeff>0</start_braking_koeff>
+      <max_mass>20000</max_mass>
+      <max_radius>2.0</max_radius>
+      <max_length>10.0</max_length>
+      <max_acceleration>115.0</max_acceleration>
+      <T_start>10</T_start>
+      <aerodynamic_coeff>0.47</aerodynamic_coeff>
+      <construction>
+      <density>100</density>
+      </construction>
+      <result>reach_orbit,fuel_used</result>
+      <launch>
+          <cycles>2</cycles>
+          <max_height>10000000</max_height> <!-- max height (from the ground) -->
+          <max_wait_time>1200</max_wait_time><!-- max time of the launch  -->
+      </launch>
+    </mission>
+    <mission name="Moon-Orbit">
+      <planet>Moon</planet>
+      <models>launch</models>
+      <devices>
+diagnadv,cpu,diagn,engine,engine_l,fueltank,fueltank_large,
+generator,transmitter,accumulator
+      </devices>
+      <start_braking_koeff>0</start_braking_koeff>
+      <max_mass>20000</max_mass>
+      <max_radius>2.0</max_radius>
+      <max_acceleration>155.0</max_acceleration>
+      <T_start>10</T_start>
+      <construction>
+        <density>100</density>
+      </construction>
+      <result>reach_orbit,fuel_used</result>
+      <launch>
+          <cycles>2</cycles>
+          <max_height>10000000</max_height> <!-- max height (from the ground) -->
+          <max_wait_time>1200</max_wait_time><!-- max time of the launch -->
+      </launch>
+    </mission>
+  </missions>
+</v:global_parameters>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:planets xmlns:v="venus">
+    <planet name="Venus">
+      <radius>6051800.0</radius>
+      <mass>4.8685e24</mass>
+      <atmosphere>
+	<height>250000.0</height>
+	<density_border>0.01</density_border>
+	<T_ground>461</T_ground> <!-- celsium -->
+	<T_grad>7.76</T_grad> <!-- per km -->
+	<P_ground>67.0</P_ground> <!-- kg/m^3 -->
+	<P_coeff>10000</P_coeff>
+	<C>0.8</C>
+      </atmosphere>
+    </planet>
+    <planet name="Moon">
+      <radius>1737100.0</radius>
+      <mass>7.3477e22</mass>
+      <rotation>
+        <hours>708</hours>
+        <minutes>44</minutes>
+        <seconds>3</seconds>
+      </rotation>
+      <atmosphere>
+	<height>50000.0</height>
+	<density_border>0.01</density_border>
+	<T_ground>130</T_ground> <!-- celsium -->
+	<T_grad>0</T_grad> <!-- per km -->
+	<P_ground>0</P_ground>
+	<P_coeff>1</P_coeff>
+      </atmosphere>
+    </planet>
+    <planet name="Mars">
+      <radius>3389500.0</radius>
+      <mass>0.64185e24</mass>
+      <rotation>
+        <hours>24</hours>
+        <minutes>39</minutes>
+        <seconds>35</seconds>
+      </rotation>      
+      <atmosphere>
+	<height>80000.0</height>
+	<density_border>0.01</density_border>
+	<T_ground>461</T_ground> <!-- celsium --><!-- TODO fix this bullshit-->
+	<T_grad>7.76</T_grad> <!-- per km --><!-- TODO fix this bullshit-->
+	<P_ground>0.026</P_ground><!-- kg/m^3 -->
+	<P_coeff>12500</P_coeff>
+      </atmosphere>
+    </planet>
+    <planet name="Mercury">
+      <radius>2439700.0</radius>
+      <mass>3.33022e23</mass>
+      <atmosphere>
+	<height>100000.0</height>
+	<density_border>0.01</density_border>
+	<T_ground>230</T_ground> <!-- celsium -->
+	<T_grad>0</T_grad> <!-- per km -->
+	<P_ground>0</P_ground>
+	<P_coeff>1</P_coeff>
+      </atmosphere>
+    </planet>
+    <planet name="Earth">
+        <radius>6371000.0</radius>
+        <mass>5.9726e24</mass>
+        <rotation>
+            <hours>24</hours>
+            <minutes>00</minutes>
+            <seconds>0</seconds>
+        </rotation>
+        <atmosphere>
+            <height>120000.0</height>
+            <density_border>0.01</density_border>
+            <T_ground>303</T_ground> <!-- celsium -->
+            <T_grad>0</T_grad> <!-- per km -->
+            <P_ground>1.225</P_ground>
+            <P_coeff>9300</P_coeff>
+            <C>0.8</C>
+        </atmosphere>
+    </planet>
+</v:planets>

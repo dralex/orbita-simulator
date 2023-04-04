@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	    xmlns:v="venus" targetNamespace="venus">
+  <xsd:element name="testmodel">
+    <xsd:complexType>
+      <xsd:sequence>
+	<xsd:element name="planet" minOccurs="1" maxOccurs="1" type="xsd:string"/>
+	<xsd:element name="tick" minOccurs="1" maxOccurs="1" type="xsd:decimal"/>
+	<xsd:element name="square" minOccurs="1" maxOccurs="1" type="xsd:decimal"/>
+	<xsd:element name="mass" minOccurs="1" maxOccurs="1" type="xsd:decimal"/>
+	<xsd:element name="h" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+	<xsd:element name="x" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+	<xsd:element name="vy" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+	<xsd:element name="vx" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+	<xsd:element name="aerodynamic_coeff" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+      </xsd:sequence> 
+      <xsd:attribute name="name" type="xsd:string"/>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

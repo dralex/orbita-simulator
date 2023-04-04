@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:global_config xmlns:v="venus">
+  <logging>
+    <debug_diagn_period>1.0</debug_diagn_period>
+    <short_log_len>100</short_log_len>
+    <empty_image>/home/www/orbita/public_html/results/empty.png</empty_image>
+    <mission name="Venus">
+        <landing>
+            <mission_log>
+              <diagnostics>Ti X H Vx Vy Ang Ac Ae As Te</diagnostics>
+              <adv_diagnostics>F Devs</adv_diagnostics>
+            </mission_log>
+            <debug_log>Ti X H Vx Vy Ang Ac Ae As Tg Te Datm</debug_log>
+            <short_log>Ti X H Vx Vy Ac As Te</short_log>
+            <image params="H" ymin="0" ymax="250000" label="Высота"/>
+            <image params="Vx Vy" label="Vy | Vx"/>
+            <image params="Ac" ymin="0" ymax="120" label="Ускорение"/>
+            <image params="Te" ymin="0" ymax="450" label="Температура"/>
+            <image params="As" label="As"/>
+        </landing>
+        <surface_activity>
+            <mission_log>
+              <diagnostics>Ti PB BW Te</diagnostics>
+              <adv_diagnostics>Ti PG PC BWG BWC SI Devs</adv_diagnostics>
+            </mission_log>
+            <debug_log>Ti PG PC BWG BWC Te SI Devs</debug_log>
+            <short_log>Ti PG PC BWG BWC Te SI</short_log>
+            <image params="Te" ymin="0" ymax="450" label="Температура"/>
+            <image params="PG PC" ymin="0" label="Потребление энергии | Генерация энергии"/>
+            <image params="BWG BWC" ymin="0" label="Потребление канала связи | Доступность канала связи"/>
+        </surface_activity>
+    </mission>
+    <mission name="Moon">
+        <debug_constants>NO</debug_constants>
+        <debug_probe>NO</debug_probe>
+        <landing>
+            <mission_log>
+              <diagnostics>Ti H Vy Ac Ae</diagnostics>
+              <adv_diagnostics>Ti Devs</adv_diagnostics>
+            </mission_log>
+            <debug_log>Ti H Vy Ac Ae Devs</debug_log>
+            <short_log>Ti H Vy Ae</short_log>
+            <image params="H" ymin="0" label="Высота"/>
+            <image params="Vy" label="Vy"/>
+        </landing>
+        <surface_activity>
+            <mission_log>
+              <diagnostics></diagnostics>
+              <adv_diagnostics></adv_diagnostics>
+            </mission_log>
+            <debug_log></debug_log>
+            <short_log>Ti</short_log>
+        </surface_activity>
+    </mission>
+    <mission name="Mars">
+      <landing>
+	<mission_log>
+	  <diagnostics>Ti X H Vx Vy Ac Ae As </diagnostics>
+	  <adv_diagnostics>Ti Devs</adv_diagnostics>
+	</mission_log>
+	<debug_log>Ti H V Vx Vy Ac Ae As Devs</debug_log>
+	<short_log>Ti X H Vx Vy V Ac Ae As</short_log>
+	<image params="H" ymin="0" ymax="80000" label="Высота"/>
+	<image params="Vx Vy" label="Vy | Vx"/>
+	<image params="Ac" label="Ускорение"/>
+	<image params="Ae" label="Ae"/>
+	<image params="As" label="As"/>
+      </landing>
+      <surface_activity>
+	<mission_log>
+	  <diagnostics>Ti PB BW Te</diagnostics>
+	  <adv_diagnostics>SI Devs</adv_diagnostics>
+	</mission_log>
+	<debug_log>Ti PB BW Te SI Devs</debug_log>
+	<short_log>Ti X H Vx Vy</short_log>
+      </surface_activity>
+    </mission>
+    <mission name="Mercury">
+      <landing>
+	<mission_log>
+	  <diagnostics>Ti H Vy Ac Ae</diagnostics>
+	  <adv_diagnostics>Ti Devs</adv_diagnostics>
+	</mission_log>
+	<debug_log>Ti H Vy Ac Ae Devs</debug_log>
+	<short_log>Ti H Vy</short_log>
+	<image params="H" ymin="0" ymax="100000" label="Высота"/>
+	<image params="Vy" label="Vy"/>
+      </landing>
+      <surface_activity>
+	<mission_log>
+	  <diagnostics>Ti PB BW SI</diagnostics>
+	  <adv_diagnostics></adv_diagnostics>
+	</mission_log>
+	<debug_log>Ti PB BW SI</debug_log>
+	<short_log>Ti PB BW SI</short_log>
+      </surface_activity>
+    </mission>
+    <mission name="Mars2">
+        <landing>
+            <mission_log>
+                <diagnostics>Ti X H Vx Vy Ac Ae As </diagnostics>
+                <adv_diagnostics>Ti F Devs</adv_diagnostics>
+            </mission_log>
+            <debug_log>Ti H V Vx Vy Ac Ae As Devs</debug_log>
+            <short_log>Ti X H Vx Vy V Ac Ae As</short_log>
+            <image params="H" ymin="0" ymax="80000" label="Высота"/>
+            <image params="Vx Vy" label="Vy | Vx"/>
+            <image params="Ac" label="Ускорение"/>
+            <image params="Ae" label="Ae"/>
+            <image params="As" label="As"/>
+        </landing>
+        <surface_activity>
+            <mission_log>
+                <diagnostics>Ti PB BW</diagnostics>
+                <adv_diagnostics>Ti PG PC BWG BWC SI Devs</adv_diagnostics>
+            </mission_log>
+            <debug_log>Ti PG PC ERs BWG BWC SI</debug_log>
+            <short_log>Ti PG PC BWG BWC SI</short_log>
+            <image params="PG PC" ymin="0" label="Потребление энергии | Генерация энергии"/>
+            <image params="BWG BWC" ymin="0" label="Потребление канала связи | Доступность канала связи"/>
+        </surface_activity>
+    </mission>
+    <mission name="Mars-surface">
+        <surface_activity>
+            <mission_log>
+                <diagnostics>Ti PB BW</diagnostics>
+                <adv_diagnostics>Ti PG PC BWG BWC SI Devs</adv_diagnostics>
+            </mission_log>
+            <debug_log>Ti PG PC ERs BWG BWC SI</debug_log>
+            <short_log>Ti PG PC BWG BWC SI</short_log>
+            <image params="PG PC" ymin="0" label="Потребление энергии | Генерация энергии"/>
+            <image params="BWG BWC" ymin="0" label="Потребление канала связи | Доступность канала связи"/>
+        </surface_activity>
+    </mission>
+    <mission name="Moon-Launch1">
+        <debug_constants>NO</debug_constants>
+        <launch>
+            <mission_log>
+                <diagnostics>Ti X H Vx Vy Ac Ae</diagnostics>
+                <adv_diagnostics>Ti F Devs</adv_diagnostics>
+            </mission_log>
+            <debug_log>Ti H X Y Vx Vy V Vr Vt Ac Ae</debug_log>
+            <short_log>Ti X H Vx Vy V Ac Ae</short_log>
+            <image params="Ac" label="Ускорение"/>
+        </launch>
+    </mission>
+    <mission name="Moon-Launch2">
+        <launch>
+            <mission_log>
+                <diagnostics>Ti X Y H Vx Vy Ac Ae</diagnostics>
+                <adv_diagnostics>Ti F Vr Vt Devs</adv_diagnostics>
+            </mission_log>
+            <debug_log>Ti H X Y Vx Vy V Vr Vt Ac Ae</debug_log>
+            <short_log>Ti X H Vx Vy V Ac Ae</short_log>
+            <image params="Ac" label="Ускорение"/>
+        </launch>
+    </mission>
+    <mission name="Ballistics">
+        <launch>
+            <mission_log>
+                <diagnostics>Ti D H Vt Vr Ac Ae</diagnostics>
+                <adv_diagnostics>Ti F X Y Vx Vy Devs</adv_diagnostics>
+            </mission_log>
+            <debug_log>Ti X Y D H Vx Vy Vt Vr V Ac Ae</debug_log>
+            <short_log>Ti D H Vt Vr V Ac Ae</short_log>
+            <image params="D" ymin="0" label="Расстояние"/>
+            <image params="H" ymin="0" label="Высота"/>
+            <image params="Vt" ymin="0" label="Горизонтальная скорость"/>
+            <image params="Vr" ymin="0" label="Радиальная скорость"/>
+            <image params="Ac" ymin="0" label="Ускорение"/>
+        </launch>
+    </mission>
+    <mission name="Moon-touchdown">
+        <debug_constants>NO</debug_constants>
+        <landing>
+            <mission_log>
+              <diagnostics>Ti H Vy Ac Ae</diagnostics>
+              <adv_diagnostics>Ti Devs</adv_diagnostics>
+            </mission_log>
+            <debug_log>Ti H Vy Ac Ae</debug_log>
+            <short_log>Ti H Vy Ae</short_log>
+        </landing>
+    </mission>
+    <mission name="Moon-Orbit">
+        <launch>
+            <mission_log>
+                <diagnostics>Ti X Y H Vx Vy Ac Ae</diagnostics>
+                <adv_diagnostics>Ti F Vr Vt Devs</adv_diagnostics>
+            </mission_log>
+            <debug_log>Ti H X Y Vx Vy V Vr Vt Ac Ae</debug_log>
+            <short_log>Ti X H Vx Vy V Ac Ae</short_log>
+            <image params="Ac" label="Ускорение"/>
+        </launch>
+    </mission>
+    <mission name="Earth-Launch">
+        <launch>
+            <mission_log>
+                <diagnostics>Ti X Y H Vx Vy Ac Ae</diagnostics>
+                <adv_diagnostics>Ti F Vr Vt Devs</adv_diagnostics>
+            </mission_log>
+            <debug_log>Ti H X Y Vx Vy V Vr Vt Ac Ae</debug_log>
+            <short_log>Ti X H Vx Vy V Ac Ae</short_log>
+            <image params="Ac" label="Ускорение"/>
+        </launch>
+    </mission>
+  </logging>  
+</v:global_config>

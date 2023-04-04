@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:testmodel name="test" xmlns:v="venus">
+  <planet>Mars</planet>
+  <tick>10</tick>
+  <square>10.0</square>
+  <mass>100.0</mass>
+  <h>50000</h>
+  <x>0</x>
+  <vy>0</vy>
+  <vx>5000</vx>
+  <aerodynamic_coeff>0.47</aerodynamic_coeff>
+</v:testmodel>
