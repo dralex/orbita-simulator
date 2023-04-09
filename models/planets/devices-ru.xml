@@ -235,7 +235,7 @@
     <critical_temperature>310</critical_temperature>
     <scientific_limit>4600000</scientific_limit>
   </device>
-  <device name="mass-spectrometr" full_name="Масс-Спектрометр" code="MSS">
+  <device name="mass-spectrometr" full_name="Масс-спектрометр" code="MSS">
     <type>Scientific equipment</type>
     <mass>200</mass>
     <volume>0.08</volume>
