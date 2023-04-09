@@ -1,0 +1,910 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="solar_graph.svg">
+  <defs
+     id="defs4">
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow2Lend"
+       style="overflow:visible;">
+      <path
+         id="path8556"
+         style="fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round;"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(1.1) rotate(180) translate(1,0)" />
+    </marker>
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective7311" />
+    <linearGradient
+       id="linearGradient5261">
+      <stop
+         id="stop5263"
+         offset="0"
+         style="stop-color:#dfe1eb;stop-opacity:0.69921875;" />
+      <stop
+         id="stop5265"
+         offset="1"
+         style="stop-color:#394093;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient10794">
+      <stop
+         style="stop-color:#ebe4d0;stop-opacity:1;"
+         offset="0"
+         id="stop10796" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1"
+         offset="1"
+         id="stop10798" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient10732">
+      <stop
+         id="stop10734"
+         offset="0"
+         style="stop-color:#ebe4d0;stop-opacity:1;" />
+      <stop
+         id="stop10736"
+         offset="1"
+         style="stop-color:#542f4e;stop-opacity:0;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient10688">
+      <stop
+         style="stop-color:#9b9b9b;stop-opacity:1;"
+         offset="0"
+         id="stop10690" />
+      <stop
+         style="stop-color:#f5f2ed;stop-opacity:0;"
+         offset="1"
+         id="stop10692" />
+    </linearGradient>
+    <marker
+       inkscape:stockid="TriangleInM"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="TriangleInM"
+       style="overflow:visible">
+      <path
+         id="path8980"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt"
+         transform="scale(-0.4)" />
+    </marker>
+    <marker
+       inkscape:stockid="TriangleOutM"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="TriangleOutM"
+       style="overflow:visible">
+      <path
+         id="path8989"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt"
+         transform="scale(0.4)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Mend"
+       style="overflow:visible;">
+      <path
+         id="path8853"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;"
+         transform="scale(0.4) rotate(180) translate(10,0)" />
+    </marker>
+    <linearGradient
+       id="linearGradient5609">
+      <stop
+         style="stop-color:#d77943;stop-opacity:1;"
+         offset="0"
+         id="stop5611" />
+      <stop
+         style="stop-color:#ac9393;stop-opacity:0"
+         offset="1"
+         id="stop5613" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient5344">
+      <stop
+         id="stop5346"
+         offset="0"
+         style="stop-color:#f2f6fb;stop-opacity:1;" />
+      <stop
+         id="stop5348"
+         offset="1"
+         style="stop-color:#9f9ca9;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4073">
+      <stop
+         style="stop-color:#ffd08f;stop-opacity:1;"
+         offset="0"
+         id="stop4075" />
+      <stop
+         style="stop-color:#c87137;stop-opacity:1;"
+         offset="1"
+         id="stop4077" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4065">
+      <stop
+         style="stop-color:#ff9955;stop-opacity:1;"
+         offset="0"
+         id="stop4067" />
+      <stop
+         style="stop-color:#ff9955;stop-opacity:1;"
+         offset="1"
+         id="stop4069" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4833">
+      <stop
+         id="stop4835"
+         offset="0"
+         style="stop-color:#dac819;stop-opacity:1;" />
+      <stop
+         id="stop4837"
+         offset="1"
+         style="stop-color:#dac893;stop-opacity:0;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4757">
+      <stop
+         style="stop-color:#ff0700;stop-opacity:1;"
+         offset="0"
+         id="stop4759" />
+      <stop
+         style="stop-color:#ff6600;stop-opacity:0;"
+         offset="1"
+         id="stop4761" />
+    </linearGradient>
+    <marker
+       inkscape:stockid="Arrow2Mstart"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow2Mstart"
+       style="overflow:visible">
+      <path
+         id="path4055"
+         style="fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(0.6) translate(0,0)" />
+    </marker>
+    <linearGradient
+       id="linearGradient3831">
+      <stop
+         style="stop-color:#d77943;stop-opacity:0.64453125;"
+         offset="0"
+         id="stop3833" />
+      <stop
+         style="stop-color:#ac9393;stop-opacity:0;"
+         offset="1"
+         id="stop3835" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3815">
+      <stop
+         id="stop3817"
+         offset="0"
+         style="stop-color:#d77943;stop-opacity:1;" />
+      <stop
+         id="stop3819"
+         offset="1"
+         style="stop-color:#ac9393;stop-opacity:0;" />
+    </linearGradient>
+    <marker
+       inkscape:stockid="DotM"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="DotM"
+       style="overflow:visible">
+      <path
+         id="path3956"
+         d="M -2.5,-1.0 C -2.5,1.7600000 -4.7400000,4.0 -7.5,4.0 C -10.260000,4.0 -12.5,1.7600000 -12.5,-1.0 C -12.5,-3.7600000 -10.260000,-6.0 -7.5,-6.0 C -4.7400000,-6.0 -2.5,-3.7600000 -2.5,-1.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt"
+         transform="scale(0.4) translate(7.4, 1)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow2Mend"
+       style="overflow:visible;">
+      <path
+         id="path3919"
+         style="fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round;"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(0.6) rotate(180) translate(0,0)" />
+    </marker>
+    <linearGradient
+       id="linearGradient3878">
+      <stop
+         style="stop-color:#ac9393;stop-opacity:1;"
+         offset="0"
+         id="stop3880" />
+      <stop
+         style="stop-color:#ac9393;stop-opacity:0;"
+         offset="1"
+         id="stop3882" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4757"
+       id="linearGradient4763"
+       x1="459.491"
+       y1="691.36993"
+       x2="468.58945"
+       y2="708.03748"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.2242138,0.38998074,-0.33597958,1.4209786,128.08143,-280.39632)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4757-6"
+       id="linearGradient4845-5"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.1440195,0.58481087,-0.56369306,1.3469642,900.21086,-973.03691)"
+       x1="459.491"
+       y1="691.36993"
+       x2="468.58945"
+       y2="708.03748" />
+    <linearGradient
+       id="linearGradient4757-6">
+      <stop
+         style="stop-color:#ff0700;stop-opacity:1;"
+         offset="0"
+         id="stop4759-3" />
+      <stop
+         style="stop-color:#ff6600;stop-opacity:0;"
+         offset="1"
+         id="stop4761-5" />
+    </linearGradient>
+    <clipPath
+       id="clipPath348">
+      <path
+         d="m353.81 294.65h62.813v201.61h-62.813v-201.61z"
+         id="path350" />
+    </clipPath>
+    <clipPath
+       id="clipPath344">
+      <path
+         d="m353.81 496.26h62.813v-201.62h-62.813v201.62z"
+         id="path346" />
+    </clipPath>
+    <clipPath
+       id="clipPath284">
+      <path
+         d="m376.94 289.86h49.046v7.703h-49.046v-7.703z"
+         id="path286" />
+    </clipPath>
+    <clipPath
+       id="clipPath280">
+      <path
+         d="m376.94 297.56h49.046v-7.704h-49.046v7.704z"
+         id="path282" />
+    </clipPath>
+    <linearGradient
+       gradientTransform="matrix(-3.8e-6,86.543,-86.543,-3.8e-6,401.44,203.81)"
+       gradientUnits="userSpaceOnUse"
+       id="linearGradient236">
+      <stop
+         offset="0"
+         stop-color="#fff"
+         id="stop238" />
+      <stop
+         offset="1"
+         stop-color="#fff"
+         id="stop240" />
+    </linearGradient>
+    <clipPath
+       id="clipPath228">
+      <path
+         d="m380.46 290.36h42.022v-86.543h-42.022v86.543z"
+         id="path230" />
+    </clipPath>
+    <mask
+       id="mask202">
+      <g
+         id="g204">
+        <g
+           clip-path="url(#clipPath184)"
+           id="g206">
+          <path
+             d="m380.46 290.36h42.021v-86.543h-42.021v86.543z"
+             id="path208" />
+          <g
+             id="g210">
+            <g
+               id="g214">
+              <g
+                 clip-path="url(#clipPath188)"
+                 id="g216">
+                <g
+                   id="g218">
+                  <g
+                     id="g220">
+                    <g
+                       id="g222">
+                      <g
+                         id="g224">
+                        <path
+                           fill="url(#linearGradient196)"
+                           d="m380.46 290.36h42.021v-86.543h-42.021v86.543z"
+                           id="path226" />
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </mask>
+    <linearGradient
+       gradientTransform="matrix(-.0000038 86.543 -86.543 -.0000038 401.44 203.81)"
+       gradientUnits="userSpaceOnUse"
+       id="linearGradient196">
+      <stop
+         offset="0"
+         stop-color="#231f20"
+         id="stop198" />
+      <stop
+         offset="1"
+         stop-color="#fff"
+         id="stop200" />
+    </linearGradient>
+    <clipPath
+       id="clipPath188">
+      <path
+         d="m380.46 290.36h42.022v-86.543h-42.022v86.543z"
+         id="path190" />
+    </clipPath>
+    <clipPath
+       id="clipPath184">
+      <path
+         d="m380.46 290.36h42.022v-86.543h-42.022v86.543z"
+         id="path186" />
+    </clipPath>
+    <clipPath
+       id="clipPath180">
+      <path
+         d="m380.46 203.82h42.021v86.543h-42.021v-86.543z"
+         id="path182" />
+    </clipPath>
+    <clipPath
+       id="clipPath176">
+      <path
+         d="m380.45 290.36h42.023v-86.543h-42.023v86.543z"
+         id="path178" />
+    </clipPath>
+    <clipPath
+       id="clipPath152">
+      <path
+         d="m503.09 311.97h9.031v9.03h-9.031v-9.03z"
+         id="path154" />
+    </clipPath>
+    <clipPath
+       id="clipPath148">
+      <path
+         d="m503.09 321h9.031v-9.031h-9.031v9.031z"
+         id="path150" />
+    </clipPath>
+    <clipPath
+       id="clipPath128">
+      <path
+         d="m273.75 358.83h11.682v11.683h-11.682v-11.683z"
+         id="path130" />
+    </clipPath>
+    <clipPath
+       id="clipPath124">
+      <path
+         d="m273.75 370.52h11.683v-11.683h-11.683v11.683z"
+         id="path126" />
+    </clipPath>
+    <clipPath
+       id="clipPath104">
+      <path
+         d="m528.51 345.56h11.683v11.682h-11.683v-11.682z"
+         id="path106" />
+    </clipPath>
+    <clipPath
+       id="clipPath100">
+      <path
+         d="m528.51 357.24h11.682v-11.682h-11.682v11.682z"
+         id="path102" />
+    </clipPath>
+    <clipPath
+       id="clipPath80">
+      <path
+         d="m285.43 395.82h17.831v17.831h-17.831v-17.831z"
+         id="path82" />
+    </clipPath>
+    <clipPath
+       id="clipPath76">
+      <path
+         d="m285.43 413.65h17.831v-17.831h-17.831v17.831z"
+         id="path78" />
+    </clipPath>
+    <clipPath
+       id="clipPath56">
+      <path
+         d="m507.61 370.69h17.831v17.832h-17.831v-17.832z"
+         id="path58" />
+    </clipPath>
+    <clipPath
+       id="clipPath52">
+      <path
+         d="m507.61 388.52h17.831v-17.832h-17.831v17.832z"
+         id="path54" />
+    </clipPath>
+    <clipPath
+       id="clipPath32">
+      <path
+         d="m233.23 132.26h335.48v145.16h-335.48v-145.16z"
+         id="path34" />
+    </clipPath>
+    <clipPath
+       id="clipPath28">
+      <path
+         d="m233.23 277.42h335.48v-145.16h-335.48v145.16z"
+         id="path30" />
+    </clipPath>
+    <clipPath
+       id="clipPath16">
+      <path
+         d="m0 0h800v600h-800v-600z"
+         id="path18" />
+    </clipPath>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient236"
+       id="linearGradient8834"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-3.8e-6,86.543,-86.543,-3.8e-6,401.44,203.81)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient236"
+       id="linearGradient10664"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-3.8e-6,86.543,-86.543,-3.8e-6,401.44,203.81)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4757"
+       id="linearGradient10774"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.54745837,-0.09647704,0.15669612,0.61201115,588.89027,-943.66914)"
+       x1="459.491"
+       y1="691.36993"
+       x2="468.58945"
+       y2="708.03748" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4757"
+       id="linearGradient10777"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.52966872,0.16872919,-0.14536503,0.61480105,819.98188,-1028.3252)"
+       x1="459.491"
+       y1="691.36993"
+       x2="468.58945"
+       y2="708.03748" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient10794"
+       id="linearGradient10784"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-168.52665,0)"
+       x1="1063.7129"
+       y1="-492.38843"
+       x2="1063.7129"
+       y2="-619.85187" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient236"
+       id="linearGradient11183"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-3.8e-6,86.543,-86.543,-3.8e-6,401.44,203.81)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3831"
+       id="linearGradient3803"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(0,1055.0634)"
+       x1="354.45901"
+       y1="314.94449"
+       x2="354.45901"
+       y2="126.36748" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4757-6"
+       id="linearGradient3805"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.2476982,0.30664875,-0.23951875,1.4403795,-76.491839,103.84285)"
+       x1="459.491"
+       y1="691.36993"
+       x2="468.58945"
+       y2="708.03748" />
+    <linearGradient
+       id="linearGradient5261-8">
+      <stop
+         id="stop5263-6"
+         offset="0"
+         style="stop-color:#dfe1eb;stop-opacity:0.69921875;" />
+      <stop
+         id="stop5265-2"
+         offset="1"
+         style="stop-color:#394093;stop-opacity:1;" />
+    </linearGradient>
+    <radialGradient
+       r="176"
+       fy="739.22925"
+       fx="1302.9578"
+       cy="739.22925"
+       cx="1302.9578"
+       gradientTransform="matrix(1,0,0,0.71122504,0,113.99767)"
+       gradientUnits="userSpaceOnUse"
+       id="radialGradient4540"
+       xlink:href="#linearGradient5261-8"
+       inkscape:collect="always" />
+    <linearGradient
+       id="linearGradient5261-7">
+      <stop
+         id="stop5263-2"
+         offset="0"
+         style="stop-color:#dfe1eb;stop-opacity:0.69921875;" />
+      <stop
+         id="stop5265-26"
+         offset="1"
+         style="stop-color:#394093;stop-opacity:1;" />
+    </linearGradient>
+    <radialGradient
+       r="176"
+       fy="801.08014"
+       fx="1477.7198"
+       cy="801.08014"
+       cx="1477.7198"
+       gradientTransform="matrix(1.1685272,0,0,1.5529465,-252.59971,-511.32583)"
+       gradientUnits="userSpaceOnUse"
+       id="radialGradient4731"
+       xlink:href="#linearGradient5261-7"
+       inkscape:collect="always" />
+    <linearGradient
+       id="linearGradient5261-1">
+      <stop
+         id="stop5263-0"
+         offset="0"
+         style="stop-color:#dfe1eb;stop-opacity:0.69921875;" />
+      <stop
+         id="stop5265-6"
+         offset="1"
+         style="stop-color:#394093;stop-opacity:1;" />
+    </linearGradient>
+    <radialGradient
+       r="176"
+       fy="801.08014"
+       fx="1477.7198"
+       cy="801.08014"
+       cx="1477.7198"
+       gradientTransform="matrix(1.1685272,0,0,1.5529465,-252.59971,-511.32583)"
+       gradientUnits="userSpaceOnUse"
+       id="radialGradient4731-9"
+       xlink:href="#linearGradient5261-1"
+       inkscape:collect="always" />
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Mend-5"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3919-2"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6,-0.6)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.32315858"
+     inkscape:cx="-1133.3958"
+     inkscape:cy="991.61609"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="2452"
+     inkscape:window-height="1486"
+     inkscape:window-x="108"
+     inkscape:window-y="40"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       orientation="1,0"
+       position="3878.4028,2318.8873"
+       id="guide5818"
+       inkscape:locked="false" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow2Mstart);marker-end:url(#Arrow2Mend)"
+       d="m 171.63709,108.63237 v 250.52924 h 449.1457"
+       id="path4324"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/суточный график.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       id="text4326"
+       y="118.90031"
+       x="161.50401"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';text-align:end;letter-spacing:0px;word-spacing:0px;text-anchor:end;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/суточный график.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;text-align:end;text-anchor:end"
+         y="118.90031"
+         x="161.50401"
+         sodipodi:role="line"
+         id="tspan4337">E</tspan></text>
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/суточный график.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="610.18994"
+       y="386.00998"
+       id="text4330"><tspan
+         sodipodi:role="line"
+         id="tspan4332"
+         x="610.18994"
+         y="386.00998"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana">t</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2, 4;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 170.37019,213.97152 h 449.4609"
+       id="path4343"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/суточный график.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path5161"
+       d="M 384.26979,357.91281 V 213.40254"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2, 4;stroke-dashoffset:0;stroke-opacity:1"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/суточный график.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2, 4;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 528.30829,357.91281 V 213.40254"
+       id="path5163"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/суточный график.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       id="text5167"
+       y="386.00998"
+       x="157.31541"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/суточный график.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana"
+         y="386.00998"
+         x="157.31541"
+         id="tspan5169"
+         sodipodi:role="line">0</tspan></text>
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2, 4;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 240.23119,357.91281 V 213.40254"
+       id="path5171"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/суточный график.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path5173"
+       d="M 312.25049,357.91281 V 213.40254"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2, 4;stroke-dashoffset:0;stroke-opacity:1"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/суточный график.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2, 4;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 456.28909,357.91281 V 213.40254"
+       id="path5175"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/суточный график.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path5177"
+       d="M 600.32759,357.91281 V 213.40254"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2, 4;stroke-dashoffset:0;stroke-opacity:1"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/суточный график.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       id="text5179"
+       y="379.57321"
+       x="312.26059"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:Verdana;-inkscape-font-specification:Verdana;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/суточный график.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;text-align:center;text-anchor:middle"
+         y="379.57321"
+         x="312.26059"
+         id="tspan5181"
+         sodipodi:role="line">1</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;text-align:center;text-anchor:middle"
+         y="399.57321"
+         x="312.26059"
+         sodipodi:role="line"
+         id="tspan5183">сутки</tspan></text>
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/суточный график.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:Verdana;-inkscape-font-specification:Verdana;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+       x="455.47934"
+       y="379.57321"
+       id="text5185"><tspan
+         sodipodi:role="line"
+         id="tspan5187"
+         x="455.47934"
+         y="379.57321"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;text-align:center;text-anchor:middle">2</tspan><tspan
+         id="tspan5189"
+         sodipodi:role="line"
+         x="455.47934"
+         y="399.57321"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;text-align:center;text-anchor:middle">суток</tspan></text>
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/суточный график.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:Verdana;-inkscape-font-specification:Verdana;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="224.90172"
+       y="379.57321"
+       id="text5191"><tspan
+         sodipodi:role="line"
+         id="tspan5193"
+         x="224.90172"
+         y="379.57321"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana">1/2</tspan></text>
+    <text
+       id="text5195"
+       y="379.57321"
+       x="357.66061"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:Verdana;-inkscape-font-specification:Verdana;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/суточный график.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana"
+         y="379.57321"
+         x="357.66061"
+         id="tspan5197"
+         sodipodi:role="line">1 1/2</tspan></text>
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/суточный график.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:Verdana;-inkscape-font-specification:Verdana;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="505.70688"
+       y="379.57321"
+       id="text5199"><tspan
+         sodipodi:role="line"
+         id="tspan5201"
+         x="505.70688"
+         y="379.57321"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana">2 1/2</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:3;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 170.79779,213.74616 h 68.391 v 145.63252 h 72.414 V 212.94156 h 70.8047 v 145.63252 h 74.0232 l 0.8046,-144.82792 h 70.0002 v 146.43712 h 74.0231"
+       id="path5211"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/суточный график.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#Arrow2Lend)"
+       d="m 223.90139,168.68859 -48.276,39.42538"
+       id="path5215"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/суточный график.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/суточный график.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:Verdana;-inkscape-font-specification:Verdana;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+       x="259.96164"
+       y="159.91753"
+       id="text5413"><tspan
+         id="tspan5417"
+         sodipodi:role="line"
+         x="259.96164"
+         y="159.91753"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;text-align:center;text-anchor:middle">Начало</tspan><tspan
+         sodipodi:role="line"
+         x="259.96164"
+         y="179.91753"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;text-align:center;text-anchor:middle"
+         id="tspan5421">полета</tspan></text>
+  </g>
+</svg>
