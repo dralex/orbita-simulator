@@ -218,6 +218,9 @@ class Probe(ProbeBase):
             raise BadParametersError
         return self.make_call(proto.CALL_ENGINE_SET_ANGLE, 'text', device_id, 'real', float(angle))
 
+    def heat_control_get_temperature(self):
+        return self.make_call(proto.CALL_HC_GET_TEMPERATURE)
+
     def heat_control_get_ext_temperature(self):
         return self.make_call(proto.CALL_HC_GET_EXT_TEMPERATURE)
 

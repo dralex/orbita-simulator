@@ -101,6 +101,9 @@ class Probe(object):
     def heat_control_get_ext_temperature(self):
         return 100
 
+    def heat_control_get_temperature(self):
+        return 10
+
 # -----------------------------------------------------------------------------
 # Build global namespace for user code
 # -----------------------------------------------------------------------------

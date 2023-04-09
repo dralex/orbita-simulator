@@ -55,6 +55,7 @@ class ProbeRuntime:
             proto.CALL_TRANSMITTER_GET_BANDWIDTH: [],
             proto.CALL_TRANSMITTER_GET_TRAFFIC: [],
             proto.CALL_HC_GET_EXT_TEMPERATURE: [],
+            proto.CALL_HC_GET_TEMPERATURE: [],
             proto.CALL_ENGINE_GET_FUEL: [],
             proto.CALL_ENGINE_SET_ANGLE: ['text', 'real'],
         }
@@ -176,9 +177,10 @@ class ProbeRuntime:
             response.result.real = self.probe.bandwidth / self.probe.tick_length
         elif cmd == proto.CALL_HC_GET_EXT_TEMPERATURE:
             response.result.real = self.probe.T_gas
+        elif cmd == proto.CALL_HC_GET_TEMPERATURE:
+            response.result.real = self.probe.T
         elif cmd == proto.CALL_ENGINE_GET_FUEL:
             response.result.real = data.probe_available_fuel(self.probe,
                                                              self.probe.minimal_fuel_threshold *
                                                              self.probe.tick_length)
-
         return response, False
