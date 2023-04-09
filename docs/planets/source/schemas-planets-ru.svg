@@ -1,0 +1,2112 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="schemas-planets-ru.svg">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient4844">
+      <stop
+         style="stop-color:#d4aa00;stop-opacity:1;"
+         offset="0"
+         id="stop4846" />
+      <stop
+         style="stop-color:#a98c00;stop-opacity:1;"
+         offset="1"
+         id="stop4848" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4836">
+      <stop
+         style="stop-color:#917c6f;stop-opacity:1;"
+         offset="0"
+         id="stop4838" />
+      <stop
+         style="stop-color:#565040;stop-opacity:1;"
+         offset="1"
+         id="stop4840" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4802">
+      <stop
+         style="stop-color:#808080;stop-opacity:1;"
+         offset="0"
+         id="stop4804" />
+      <stop
+         style="stop-color:#464646;stop-opacity:1;"
+         offset="1"
+         id="stop4806" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4666">
+      <stop
+         style="stop-color:#ac9393;stop-opacity:1;"
+         offset="0"
+         id="stop4668" />
+      <stop
+         style="stop-color:#e75729;stop-opacity:1;"
+         offset="1"
+         id="stop4670" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4419">
+      <stop
+         id="stop4421"
+         offset="0"
+         style="stop-color:#4b7487;stop-opacity:1;" />
+      <stop
+         id="stop4423"
+         offset="1"
+         style="stop-color:#1a1919;stop-opacity:0;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4413">
+      <stop
+         style="stop-color:#556780;stop-opacity:1;"
+         offset="0"
+         id="stop4415" />
+      <stop
+         style="stop-color:#556780;stop-opacity:0;"
+         offset="1"
+         id="stop4417" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4833">
+      <stop
+         id="stop4835"
+         offset="0"
+         style="stop-color:#dac819;stop-opacity:1;" />
+      <stop
+         id="stop4837"
+         offset="1"
+         style="stop-color:#dac893;stop-opacity:0;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4757">
+      <stop
+         style="stop-color:#ff0700;stop-opacity:1;"
+         offset="0"
+         id="stop4759" />
+      <stop
+         style="stop-color:#ff6600;stop-opacity:0;"
+         offset="1"
+         id="stop4761" />
+    </linearGradient>
+    <marker
+       inkscape:stockid="Arrow2Mstart"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow2Mstart"
+       style="overflow:visible">
+      <path
+         id="path4055"
+         style="fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(0.6) translate(0,0)" />
+    </marker>
+    <linearGradient
+       id="linearGradient3831">
+      <stop
+         style="stop-color:#d77943;stop-opacity:0.64453125;"
+         offset="0"
+         id="stop3833" />
+      <stop
+         style="stop-color:#ac9393;stop-opacity:0;"
+         offset="1"
+         id="stop3835" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3815">
+      <stop
+         id="stop3817"
+         offset="0"
+         style="stop-color:#d77943;stop-opacity:1;" />
+      <stop
+         id="stop3819"
+         offset="1"
+         style="stop-color:#ac9393;stop-opacity:0;" />
+    </linearGradient>
+    <marker
+       inkscape:stockid="DotM"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="DotM"
+       style="overflow:visible">
+      <path
+         id="path3956"
+         d="M -2.5,-1.0 C -2.5,1.7600000 -4.7400000,4.0 -7.5,4.0 C -10.260000,4.0 -12.5,1.7600000 -12.5,-1.0 C -12.5,-3.7600000 -10.260000,-6.0 -7.5,-6.0 C -4.7400000,-6.0 -2.5,-3.7600000 -2.5,-1.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt"
+         transform="scale(0.4) translate(7.4, 1)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow2Mend"
+       style="overflow:visible;">
+      <path
+         id="path3919"
+         style="fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round;"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(0.6) rotate(180) translate(0,0)" />
+    </marker>
+    <linearGradient
+       id="linearGradient3878">
+      <stop
+         style="stop-color:#ac9393;stop-opacity:1;"
+         offset="0"
+         id="stop3880" />
+      <stop
+         style="stop-color:#ac9393;stop-opacity:0;"
+         offset="1"
+         id="stop3882" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3878"
+       id="linearGradient3884"
+       x1="351.42856"
+       y1="328.07648"
+       x2="351.42856"
+       y2="345.63773"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3815"
+       id="linearGradient3033"
+       gradientUnits="userSpaceOnUse"
+       x1="351.42856"
+       y1="328.07648"
+       x2="351.42856"
+       y2="344.75043"
+       gradientTransform="translate(0,439.41636)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3831"
+       id="linearGradient3829"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(0,439.41636)"
+       x1="354.45901"
+       y1="314.94449"
+       x2="354.45901"
+       y2="126.36748" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4757"
+       id="linearGradient4763"
+       x1="459.491"
+       y1="691.36993"
+       x2="468.58945"
+       y2="708.03748"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.2242138,0.38998074,-0.33597958,1.4209786,128.08143,-470.39632)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4833"
+       id="linearGradient4831"
+       gradientUnits="userSpaceOnUse"
+       x1="351.42856"
+       y1="328.07648"
+       x2="351.42856"
+       y2="345.63773"
+       gradientTransform="translate(682.85714,0)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4757"
+       id="linearGradient4845"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.1440195,0.58481087,-0.56369306,1.3469642,900.21086,-973.03691)"
+       x1="459.491"
+       y1="691.36993"
+       x2="468.58945"
+       y2="708.03748" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4413"
+       id="linearGradient4399"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(0,926.55922)"
+       x1="351.42856"
+       y1="328.07648"
+       x2="351.42856"
+       y2="344.75043" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4419"
+       id="linearGradient4401"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(0,926.55922)"
+       x1="354.45901"
+       y1="314.94449"
+       x2="354.45901"
+       y2="-8.674159" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4666"
+       id="linearGradient4672"
+       x1="483.8205"
+       y1="165.68106"
+       x2="490.56671"
+       y2="176.79276"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4802"
+       id="linearGradient4808"
+       x1="936.06562"
+       y1="638.43359"
+       x2="976.0772"
+       y2="638.43359"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4802"
+       id="linearGradient4810"
+       x1="936.06562"
+       y1="638.43359"
+       x2="976.0772"
+       y2="638.43359"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4802"
+       id="linearGradient4812"
+       x1="924.71429"
+       y1="1061.6479"
+       x2="980.28572"
+       y2="1061.6479"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4802"
+       id="linearGradient4814"
+       x1="982.57147"
+       y1="1073.0764"
+       x2="1038.1429"
+       y2="1073.0764"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4802"
+       id="linearGradient4816"
+       x1="1040.4286"
+       y1="1061.6478"
+       x2="1096"
+       y2="1061.6478"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4802"
+       id="linearGradient4818"
+       x1="-968.14783"
+       y1="924.07599"
+       x2="-968.14783"
+       y2="1093.5714"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4802"
+       id="linearGradient4820"
+       x1="1098.2858"
+       y1="1000.9336"
+       x2="1151"
+       y2="1000.9336"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4802"
+       id="linearGradient4822"
+       x1="933.75729"
+       y1="638.43359"
+       x2="978.38553"
+       y2="638.43359"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4802"
+       id="linearGradient4824"
+       x1="1044"
+       y1="902.71938"
+       x2="1099.5714"
+       y2="902.71938"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4802"
+       id="linearGradient4826"
+       x1="972.57147"
+       y1="902.71936"
+       x2="1041.7142"
+       y2="902.71936"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4802"
+       id="linearGradient4828"
+       x1="946.14285"
+       y1="863.78364"
+       x2="1082.4286"
+       y2="863.78364"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4802"
+       id="linearGradient4830"
+       x1="915.42859"
+       y1="902.71938"
+       x2="971"
+       y2="902.71938"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4802"
+       id="linearGradient4832"
+       x1="933.75729"
+       y1="638.43359"
+       x2="978.38553"
+       y2="638.43359"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4802"
+       id="linearGradient4834"
+       x1="871.85718"
+       y1="1002.005"
+       x2="922.42859"
+       y2="1002.005"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4836"
+       id="linearGradient4842"
+       x1="959"
+       y1="662.36218"
+       x2="1261"
+       y2="662.36218"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4844"
+       id="linearGradient4850"
+       x1="958"
+       y1="662.36218"
+       x2="1262"
+       y2="662.36218"
+       gradientUnits="userSpaceOnUse" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="881.79275"
+     inkscape:cy="514.37839"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="2452"
+     inkscape:window-height="1486"
+     inkscape:window-x="108"
+     inkscape:window-y="40"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       transform="translate(-32.829957,8.3411927)"
+       sodipodi:open="true"
+       sodipodi:end="6.1086524"
+       sodipodi:start="5.1487213"
+       d="m 1096.2951,271.90736 a 25.75889,25.75889 0 0 1 14.4814,18.87249"
+       sodipodi:ry="25.75889"
+       sodipodi:rx="25.75889"
+       sodipodi:cy="295.25284"
+       sodipodi:cx="1085.4089"
+       id="path4877"
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       sodipodi:type="arc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       sodipodi:type="arc"
+       style="color:#000000;fill:#ac9393;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="path3106"
+       sodipodi:cx="482.14285"
+       sodipodi:cy="165.93361"
+       sodipodi:rx="15"
+       sodipodi:ry="15"
+       d="m 497.14285,165.93361 a 15,15 0 1 1 -30,0 15,15 0 1 1 30,0 z"
+       transform="translate(-129.28571,-148.475)"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/moon.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       style="fill:url(#linearGradient3884);fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 80,342.36218 c 180.16909,-12.14968 361.74175,-14.47441 545.71429,0"
+       id="path3108"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/moon.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Mend);marker-start:url(#DotM)"
+       d="m 352.54324,17.965976 0,44.446725"
+       id="path3886"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/moon.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="359.61432"
+       y="62.412689"
+       id="text4332"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/moon.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         sodipodi:role="line"
+         id="tspan4334"
+         x="359.61432"
+         y="62.412689"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman'">F<tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.99999762%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';baseline-shift:sub"
+   id="tspan4904">т</tspan>=mg</tspan></text>
+    <path
+       transform="translate(-129.28571,13.149407)"
+       d="m 497.14285,165.93361 a 15,15 0 1 1 -30,0 15,15 0 1 1 30,0 z"
+       sodipodi:ry="15"
+       sodipodi:rx="15"
+       sodipodi:cy="165.93361"
+       sodipodi:cx="482.14285"
+       id="path4336"
+       style="color:#000000;fill:#ac9393;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:6,2;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       sodipodi:type="arc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/moon.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4338"
+       d="m 352.54324,180.60054 0,44.44672"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Mend);marker-start:url(#DotM)"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/moon.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       id="text4710"
+       y="223.02695"
+       x="359.61432"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/moon.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman'"
+         y="223.02695"
+         x="359.61432"
+         id="tspan4712"
+         sodipodi:role="line">F<tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.99999762%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';baseline-shift:sub"
+   id="tspan4910">т</tspan>=mg</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:none;marker-end:url(#Arrow2Mend)"
+       d="m 352.77382,180.68961 0,-57.5787"
+       id="path4714"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/moon.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="359.61432"
+       y="146.25536"
+       id="text4900"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/moon.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         sodipodi:role="line"
+         id="tspan4902"
+         x="359.61432"
+         y="146.25536"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman'">F<tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.99999762%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';baseline-shift:sub"
+   id="tspan4908">дв</tspan></tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 156.88756,180.60053 391.93917,0"
+       id="path4935"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/moon.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path4937"
+       d="m 156.88756,16.955818 391.93917,0"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/moon.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       sodipodi:type="arc"
+       style="color:#000000;fill:#ac9393;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:6, 2;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="path4939"
+       sodipodi:cx="482.14285"
+       sodipodi:cy="165.93361"
+       sodipodi:rx="15"
+       sodipodi:ry="15"
+       d="m 497.14285,165.93361 a 15,15 0 1 1 -30,0 15,15 0 1 1 30,0 z"
+       transform="translate(-129.28571,150.53015)"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/moon.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       id="text4941"
+       y="11.905067"
+       x="156.57365"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/moon.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman'"
+         y="11.905067"
+         x="156.57365"
+         id="tspan4943"
+         sodipodi:role="line">t=0</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="156.57365"
+       y="173.52946"
+       id="text4947"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/moon.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         sodipodi:role="line"
+         id="tspan4949"
+         x="156.57365"
+         y="173.52946"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman'">t=t<tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:65.00091553%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';baseline-shift:sub"
+   id="tspan4951">1</tspan></tspan></text>
+    <text
+       id="text4953"
+       y="328.08279"
+       x="156.57365"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/moon.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman'"
+         y="328.08279"
+         x="156.57365"
+         id="tspan4955"
+         sodipodi:role="line">t=t<tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:64.99999762%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';baseline-shift:sub"
+   id="tspan4959">2</tspan></tspan></text>
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/moon.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4961"
+       d="m 108.3169,332.21249 0,-340.4214127"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:none;marker-end:url(#Arrow2Mend)" />
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/moon.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="115.1574"
+       y="-0.21676292"
+       id="text4963"><tspan
+         sodipodi:role="line"
+         id="tspan4965"
+         x="115.1574"
+         y="-0.21676292"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman'">y</tspan></text>
+    <text
+       id="text4967"
+       y="22.006594"
+       x="87.883286"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/moon.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman'"
+         y="22.006594"
+         x="87.883286"
+         id="tspan4969"
+         sodipodi:role="line">H</tspan></text>
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/moon.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="89.903595"
+       y="335.15387"
+       id="text4971"><tspan
+         sodipodi:role="line"
+         id="tspan4973"
+         x="89.903595"
+         y="335.15387"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman'">0</tspan></text>
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path3031"
+       d="m 80,781.77854 c 160.3985,-24.63637 330.85979,-33.97881 545.71429,0"
+       style="fill:url(#linearGradient3033);fill-opacity:1;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    <path
+       style="fill:url(#linearGradient3829);fill-opacity:1;stroke:none"
+       d="M 625.71429,781.77854 C 410.85979,747.79973 240.3985,757.14217 80,781.77854 L 80,569.6465 c 160.3985,-24.63637 330.85979,-33.97881 545.71429,0 z"
+       id="path3825"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccccc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+       transform="matrix(-1,0,0,1,657.64918,325.28655)"
+       d="m 497.14285,165.93361 a 15,15 0 1 1 -30,0 15,15 0 1 1 30,0 z"
+       sodipodi:ry="15"
+       sodipodi:rx="15"
+       sodipodi:cy="165.93361"
+       sodipodi:cx="482.14285"
+       id="path3837"
+       style="color:#000000;fill:#ac9393;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       sodipodi:type="arc" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path3839"
+       d="m 175.28956,490.46793 57.5787,0"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:none;marker-end:url(#Arrow2Mend)" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow2Mstart);marker-end:url(#Arrow2Mend)"
+       d="m 90.036576,428.17698 0,340.42141 31.545304,0"
+       id="path3841"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       id="text4475"
+       y="436.16916"
+       x="96.974655"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman'"
+         y="436.16916"
+         x="96.974655"
+         id="tspan4477"
+         sodipodi:role="line">y</tspan></text>
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="112.12694"
+       y="762.44836"
+       id="text4479"><tspan
+         sodipodi:role="line"
+         id="tspan4481"
+         x="112.12694"
+         y="762.44836"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman'">x</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4, 4;stroke-dashoffset:0;marker-start:none;marker-end:none"
+       d="m 175.28956,490.46793 c 99.84474,0 285.87318,17.99224 285.87318,271.73104"
+       id="path4485"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+       transform="translate(-67.161329,421.75612)"
+       d="m 497.14285,165.93361 a 15,15 0 1 1 -30,0 15,15 0 1 1 30,0 z"
+       sodipodi:ry="15"
+       sodipodi:rx="15"
+       sodipodi:cy="165.93361"
+       sodipodi:cx="482.14285"
+       id="path4483"
+       style="color:#000000;fill:#ac9393;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:6, 2;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       sodipodi:type="arc" />
+    <path
+       sodipodi:type="arc"
+       style="color:#000000;fill:#ac9393;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:6, 2;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="path4673"
+       sodipodi:cx="482.14285"
+       sodipodi:cy="165.93361"
+       sodipodi:rx="15"
+       sodipodi:ry="15"
+       d="m 497.14285,165.93361 a 15,15 0 1 1 -30,0 15,15 0 1 1 30,0 z"
+       transform="translate(-20.189235,581.86529)"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#DotM);marker-end:url(#Arrow2Mend)"
+       d="m 415.67778,588.19709 0,50.98913"
+       id="path4675"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4677"
+       d="M 414.60067,585.96964 397.86823,563.28423"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:none;marker-end:url(#Arrow2Mend)" />
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="380.95187"
+       y="633.56104"
+       id="text4679"><tspan
+         sodipodi:role="line"
+         id="tspan4681"
+         x="380.95187"
+         y="633.56104"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman'">F<tspan
+   id="tspan4683"
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:65.00091553%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';baseline-shift:sub">т</tspan></tspan></text>
+    <text
+       id="text4685"
+       y="564.03278"
+       x="407.28333"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman'"
+         y="564.03278"
+         x="407.28333"
+         id="tspan4687"
+         sodipodi:role="line">F<tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:65.00091553%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';baseline-shift:sub"
+   id="tspan4689">с</tspan></tspan></text>
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="214.24667"
+       y="479.93521"
+       id="text4691"><tspan
+         sodipodi:role="line"
+         id="tspan4693"
+         x="214.24667"
+         y="479.93521"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman'">v</tspan></text>
+    <path
+       style="fill:#ffffff;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 364.66507,557.38743 c -10.82432,-18.91986 11.64229,-37.09584 27.7792,-27.77919 z"
+       id="path4699"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 391.93919,529.60824 15.15229,44.95179"
+       id="path4701"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 365.67522,556.88236 39.90103,18.18274"
+       id="path4703"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 373.75644,548.29606 31.31473,25.75889"
+       id="path4705"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 383.35289,538.19453 21.21321,32.32489"
+       id="path4707"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 388.90873,533.14377 17.67767,39.39595"
+       id="path4709"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 368.70568,554.35698 404.5661,573.0448"
+       id="path4711"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       sodipodi:type="arc"
+       style="color:#000000;fill:#ac9393;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:6, 2;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="path4713"
+       sodipodi:cx="482.14285"
+       sodipodi:cy="165.93361"
+       sodipodi:rx="15"
+       sodipodi:ry="15"
+       d="m 497.14285,165.93361 a 15,15 0 1 1 -30,0 15,15 0 1 1 30,0 z"
+       transform="translate(-29.280608,509.63939)"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4715"
+       d="m 453.5585,676.08036 0,50.98913"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#DotM);marker-end:url(#Arrow2Mend)"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:none;marker-end:url(#Arrow2Mend)"
+       d="m 452.48139,673.85291 -8.65122,-41.37323"
+       id="path4717"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       id="text4719"
+       y="722.95953"
+       x="419.84274"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman'"
+         y="722.95953"
+         x="419.84274"
+         id="tspan4721"
+         sodipodi:role="line">F<tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:65.00091553%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';baseline-shift:sub"
+   id="tspan4723">т</tspan></tspan></text>
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="453.75034"
+       y="646.36017"
+       id="text4725"><tspan
+         sodipodi:role="line"
+         id="tspan4727"
+         x="453.75034"
+         y="646.36017"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:32px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman'">F<tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:65.00091553%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';baseline-shift:sub"
+   id="tspan4745">с</tspan><tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman'"
+   id="tspan4741">, </tspan>F<tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:65.00091553%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';baseline-shift:sub"
+   id="tspan4743">дв</tspan></tspan></text>
+    <path
+       style="fill:url(#linearGradient4763);fill-opacity:1;stroke:none"
+       d="m 455.42218,690.08835 c -2.19442,6.18213 -2.41898,13.82627 1.52231,19.14656 1.83124,2.63493 3.60998,9.48903 5.97885,9.13079 2.92567,-7.43325 2.41538,-16.25967 0.08,-23.80572 -1.11361,-3.70309 -4.47246,-5.00742 -7.58108,-4.47163 z"
+       id="path4747"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mercury.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4767"
+       d="m 762.85714,342.36218 c 180.16909,-12.14968 361.74176,-14.47441 545.71426,0"
+       style="fill:url(#linearGradient4831);fill-opacity:1.0;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:none;marker-end:url(#Arrow2Mend)"
+       d="m 791.17404,332.21249 0,-340.4214127"
+       id="path4817"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       id="text4819"
+       y="-0.21676292"
+       x="798.01453"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman'"
+         y="-0.21676292"
+         x="798.01453"
+         id="tspan4821"
+         sodipodi:role="line">y</tspan></text>
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mercury.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="770.74042"
+       y="22.006594"
+       id="text4823"><tspan
+         sodipodi:role="line"
+         id="tspan4825"
+         x="770.74042"
+         y="22.006594"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:Jura;-inkscape-font-specification:Jura">H</tspan></text>
+    <text
+       id="text4827"
+       y="335.15387"
+       x="772.76074"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:Jura;-inkscape-font-specification:Jura"
+         y="335.15387"
+         x="772.76074"
+         id="tspan4829"
+         sodipodi:role="line">0</tspan></text>
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mercury.png"
+       inkscape:connector-curvature="0"
+       id="path4841"
+       d="m 1033.4923,225.34228 c -3.1752,5.74038 -4.6461,13.24504 -1.6273,19.13792 1.376,2.89878 2.0107,9.95144 4.4063,9.98516 4.1011,-6.85518 5.0401,-15.64632 3.9695,-23.47257 -0.4935,-3.83532 -3.594,-5.67104 -6.7484,-5.65049 z"
+       style="fill:url(#linearGradient4845);fill-opacity:1;stroke:none" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:4,2;stroke-dashoffset:0"
+       d="m 1035.7143,15.219322 0,304.285718"
+       id="path4863"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mercury.png"
+       transform="translate(553.57143,-148.475)"
+       d="m 497.14285,165.93361 a 15,15 0 1 1 -30,0 15,15 0 1 1 30,0 z"
+       sodipodi:ry="15"
+       sodipodi:rx="15"
+       sodipodi:cy="165.93361"
+       sodipodi:cx="482.14285"
+       id="path4765"
+       style="color:#000000;fill:#ac9393;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       sodipodi:type="arc" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mercury.png"
+       transform="translate(553.57143,150.53015)"
+       d="m 497.14285,165.93361 a 15,15 0 1 1 -30,0 15,15 0 1 1 30,0 z"
+       sodipodi:ry="15"
+       sodipodi:rx="15"
+       sodipodi:cy="165.93361"
+       sodipodi:cx="482.14285"
+       id="path4799"
+       style="color:#000000;fill:#ac9393;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:6, 2;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       sodipodi:type="arc" />
+    <path
+       sodipodi:type="arc"
+       style="color:#000000;fill:#ac9393;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:6, 2;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="path4839"
+       sodipodi:cx="482.14285"
+       sodipodi:cy="165.93361"
+       sodipodi:rx="15"
+       sodipodi:ry="15"
+       d="m 497.14285,165.93361 a 15,15 0 1 1 -30,0 15,15 0 1 1 30,0 z"
+       transform="translate(553.57143,44.815864)"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mercury.png"
+       id="text4865"
+       y="119.55555"
+       x="958.53241"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;line-height:1.25;font-family:Jura;-inkscape-font-specification:Jura"
+         y="119.55555"
+         x="958.53241"
+         id="tspan4867"
+         sodipodi:role="line">этап 1</tspan></text>
+    <path
+       sodipodi:type="arc"
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="path4873"
+       sodipodi:cx="1085.4089"
+       sodipodi:cy="295.25284"
+       sodipodi:rx="25.75889"
+       sodipodi:ry="25.75889"
+       d="m 1098.2884,272.94499 a 25.75889,25.75889 0 0 1 12.0017,15.64096"
+       sodipodi:start="5.2359878"
+       sodipodi:end="6.0213859"
+       sodipodi:open="true"
+       transform="translate(-43.436559,15.412261)"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       transform="translate(-51.51778,21.978252)"
+       sodipodi:open="true"
+       sodipodi:end="5.9341195"
+       sodipodi:start="5.3232542"
+       d="m 1100.1836,274.15239 a 25.75889,25.75889 0 0 1 9.4308,12.29039"
+       sodipodi:ry="25.75889"
+       sodipodi:rx="25.75889"
+       sodipodi:cy="295.25284"
+       sodipodi:cx="1085.4089"
+       id="path4875"
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       sodipodi:type="arc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       sodipodi:type="arc"
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="path4879"
+       sodipodi:cx="1085.4089"
+       sodipodi:cy="295.25284"
+       sodipodi:rx="25.75889"
+       sodipodi:ry="25.75889"
+       d="m 1092.0758,270.37166 a 25.75889,25.75889 0 0 1 19.092,24.88118"
+       sodipodi:start="4.9741884"
+       sodipodi:end="6.2831853"
+       sodipodi:open="true"
+       transform="translate(-18.68782,-1.2552567)"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="1066.7572"
+       y="324.55557"
+       id="text4883"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         sodipodi:role="line"
+         id="tspan4885"
+         x="1066.7572"
+         y="324.55557"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;line-height:1.25;font-family:Jura;-inkscape-font-specification:Jura">этап 2</tspan></text>
+    <path
+       sodipodi:type="arc"
+       style="opacity:0.96904435;color:#000000;fill:#ffffff;fill-opacity:0.82051284;fill-rule:nonzero;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="path3296"
+       sodipodi:cx="1110"
+       sodipodi:cy="662.36218"
+       sodipodi:rx="150"
+       sodipodi:ry="150"
+       d="m 1260,662.36218 a 150,150 0 1 1 -300,0 150,150 0 1 1 300,0 z"
+       transform="translate(-97.142857,-8.5714286)"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 1012.8571,502.36218 -232.8571,0"
+       id="path3298"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path3300"
+       d="m 1012.8571,805.21932 -232.8571,0"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path3302"
+       d="m 789.9635,504.62566 0,298.84627"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow2Mstart);marker-end:url(#Arrow2Mend)"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="759.90356"
+       y="661.21265"
+       id="text4276"><tspan
+         sodipodi:role="line"
+         id="tspan4278"
+         x="759.90356"
+         y="661.21265"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:Jura;-inkscape-font-specification:Jura">2R</tspan></text>
+    <rect
+       style="opacity:0.96904435000000000;color:#000000;fill:#ffffff;fill-opacity:0.82051284000000002;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect4280"
+       width="53.57143"
+       height="107.14286"
+       x="925.71429"
+       y="669.50507"
+       rx="15.562128"
+       ry="11.954082"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <rect
+       ry="11.954082"
+       rx="15.562128"
+       y="670.2193"
+       x="983.57147"
+       height="128.57146"
+       width="53.571472"
+       id="rect4282"
+       style="opacity:0.96904435000000000;color:#000000;fill:#ffffff;fill-opacity:0.82051284000000002;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <rect
+       style="opacity:0.96904435000000000;color:#000000;fill:#ffffff;fill-opacity:0.82051284000000002;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect4284"
+       width="53.57143"
+       height="107.14286"
+       x="1041.4286"
+       y="669.505"
+       rx="15.562128"
+       ry="11.954082"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <rect
+       ry="11.954082"
+       rx="15.562128"
+       y="626.64789"
+       x="872.85718"
+       height="73.571465"
+       width="48.571411"
+       id="rect4286"
+       style="opacity:0.96904435000000000;color:#000000;fill:#ffffff;fill-opacity:0.82051284000000002;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <rect
+       style="opacity:0.96904435000000000;color:#000000;fill:#ffffff;fill-opacity:0.82051284000000002;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect4288"
+       width="50.714268"
+       height="75.714333"
+       x="1099.2858"
+       y="624.505"
+       rx="15.562128"
+       ry="11.954082"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       sodipodi:type="arc"
+       style="opacity:0.96904435000000000;color:#000000;fill:#ffffff;fill-opacity:0.82051284000000002;fill-rule:nonzero;stroke:#323232;stroke-width:2.15444016000000005;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="path4290"
+       sodipodi:cx="956.07141"
+       sodipodi:cy="638.43359"
+       sodipodi:rx="18.928572"
+       sodipodi:ry="18.928572"
+       d="m 974.99998,638.43359 a 18.928572,18.928572 0 1 1 -37.85714,0 18.928572,18.928572 0 1 1 37.85714,0 z"
+       transform="matrix(0.92831541,0,0,0.92831541,16.392727,129.33728)"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       transform="matrix(0.92831541,0,0,0.92831541,230.67844,129.33728)"
+       d="m 974.99998,638.43359 a 18.928572,18.928572 0 1 1 -37.85714,0 18.928572,18.928572 0 1 1 37.85714,0 z"
+       sodipodi:ry="18.928572"
+       sodipodi:rx="18.928572"
+       sodipodi:cy="638.43359"
+       sodipodi:cx="956.07141"
+       id="path4292"
+       style="opacity:0.96904435000000000;color:#000000;fill:#ffffff;fill-opacity:0.82051284000000002;fill-rule:nonzero;stroke:#323232;stroke-width:2.15444016000000005;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       sodipodi:type="arc"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <rect
+       style="opacity:0.96904435000000000;color:#000000;fill:#ffffff;fill-opacity:0.82051284000000002;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect4294"
+       width="74.285759"
+       height="169.28569"
+       x="-665.57648"
+       y="925.35718"
+       rx="15.562128"
+       ry="11.954082"
+       transform="matrix(0,-1,1,0,0,0)"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       sodipodi:type="arc"
+       style="opacity:0.96904435000000000;color:#000000;fill:#ffffff;fill-opacity:0.82051284000000002;fill-rule:nonzero;stroke:#323232;stroke-width:2.15444016000000005;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="path4296"
+       sodipodi:cx="956.07141"
+       sodipodi:cy="638.43359"
+       sodipodi:rx="21.2369"
+       sodipodi:ry="21.2369"
+       d="m 977.30831,638.43359 a 21.2369,21.2369 0 1 1 -42.4738,0 21.2369,21.2369 0 1 1 42.4738,0 z"
+       transform="matrix(0.92831541,0,0,0.92831541,234.24987,5.0515656)"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       transform="matrix(0.92831541,0,0,0.92831541,14.24987,7.9087085)"
+       d="m 977.30831,638.43359 a 21.2369,21.2369 0 1 1 -42.4738,0 21.2369,21.2369 0 1 1 42.4738,0 z"
+       sodipodi:ry="21.2369"
+       sodipodi:rx="21.2369"
+       sodipodi:cy="638.43359"
+       sodipodi:cx="956.07141"
+       id="path4298"
+       style="opacity:0.96904435000000000;color:#000000;fill:#ffffff;fill-opacity:0.82051284000000002;fill-rule:nonzero;stroke:#323232;stroke-width:2.15444016000000005;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       sodipodi:type="arc"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <rect
+       ry="11.954082"
+       rx="15.562128"
+       y="543.07654"
+       x="916.42859"
+       height="42.142853"
+       width="53.571411"
+       id="rect4300"
+       style="opacity:0.96904435000000000;color:#000000;fill:#ffffff;fill-opacity:0.82051284000000002;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <rect
+       style="opacity:0.96904435000000000;color:#000000;fill:#ffffff;fill-opacity:0.82051284000000002;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect4302"
+       width="67.142776"
+       height="42.142822"
+       x="973.57147"
+       y="543.07654"
+       rx="15.562128"
+       ry="11.954082"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <rect
+       ry="11.954082"
+       rx="15.562128"
+       y="543.07654"
+       x="1045"
+       height="42.142853"
+       width="53.571411"
+       id="rect4304"
+       style="opacity:0.96904435000000000;color:#000000;fill:#ffffff;fill-opacity:0.82051284000000002;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       style="fill:none;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none"
+       d="m 947.14285,535.93361 c 50.15923,-32.38388 93.61185,-24.52836 134.28575,0 z"
+       id="path4306"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccc"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path4308"
+       d="m 1144.7557,626.06413 60.95,-59.51553 160.2482,0"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       sodipodi:nodetypes="ccc"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       id="text4310"
+       y="534.06976"
+       x="1286.7943"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:Jura;-inkscape-font-specification:Jura;text-align:center;text-anchor:middle"
+         y="534.06976"
+         x="1286.7943"
+         id="tspan4312"
+         sodipodi:role="line">оборудование</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:Jura;-inkscape-font-specification:Jura;text-align:center;text-anchor:middle"
+         y="559.06976"
+         x="1286.7943"
+         sodipodi:role="line"
+         id="tspan4314">и приборы</tspan></text>
+    <path
+       style="fill:url(#linearGradient4399);fill-opacity:1.0;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 80,1268.9214 c 160.3985,-24.6364 330.85979,-33.9788 545.71429,0"
+       id="path4316"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/venus.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/venus.png"
+       sodipodi:nodetypes="ccccc"
+       inkscape:connector-curvature="0"
+       id="path4318"
+       d="M 625.71429,1268.9214 C 410.85979,1234.9426 240.3985,1244.285 80,1268.9214 l 0,-327.84629 c 160.3985,-24.6364 330.85979,-33.9789 545.71429,0 z"
+       style="fill:url(#linearGradient4401);fill-opacity:1;stroke:none" />
+    <path
+       sodipodi:type="arc"
+       style="color:#000000;fill:#ac9393;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="path4320"
+       sodipodi:cx="482.14285"
+       sodipodi:cy="165.93361"
+       sodipodi:rx="15"
+       sodipodi:ry="15"
+       d="m 497.14285,165.93361 a 15,15 0 1 1 -30,0 15,15 0 1 1 30,0 z"
+       transform="matrix(-1,0,0,1,657.64918,812.42941)"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/venus.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/venus.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4324"
+       d="m 90.036576,915.31984 0,340.42136 31.545304,0"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow2Mstart);marker-end:url(#Arrow2Mend)" />
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/venus.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="96.974655"
+       y="923.31201"
+       id="text4326"><tspan
+         sodipodi:role="line"
+         id="tspan4328"
+         x="96.974655"
+         y="923.31201"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman'">y</tspan></text>
+    <text
+       id="text4330"
+       y="1249.5912"
+       x="112.12694"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/venus.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman'"
+         y="1249.5912"
+         x="112.12694"
+         id="tspan4332"
+         sodipodi:role="line">x</tspan></text>
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/venus.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4334"
+       d="m 175.28956,977.61079 c 99.84474,0 206.58747,17.99224 206.58747,271.73101"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4, 4;stroke-dashoffset:0;marker-start:none;marker-end:none" />
+    <path
+       sodipodi:type="arc"
+       style="color:#000000;fill:url(#linearGradient4672);fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:6, 2;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="path4337"
+       sodipodi:cx="482.14285"
+       sodipodi:cy="165.93361"
+       sodipodi:rx="15"
+       sodipodi:ry="15"
+       d="m 497.14285,165.93361 a 15,15 0 1 1 -30,0 15,15 0 1 1 30,0 z"
+       transform="translate(-148.58989,868.89897)"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/venus.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/venus.png"
+       transform="translate(-102.33209,1069.0081)"
+       d="m 497.14285,165.93361 a 15,15 0 1 1 -30,0 15,15 0 1 1 30,0 z"
+       sodipodi:ry="15"
+       sodipodi:rx="15"
+       sodipodi:cy="165.93361"
+       sodipodi:cx="482.14285"
+       id="path4339"
+       style="color:#000000;fill:#ac9393;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:6, 2;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       sodipodi:type="arc" />
+    <g
+       id="g4425"
+       transform="matrix(0.98847336,0.15139493,-0.15139493,0.98847336,104.59595,-51.372958)"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/venus.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199">
+      <path
+         style="fill:#ffffff;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 416.54924,1116.9174 c -3.96051,-21.4346 23.25192,-31.1608 35.4012,-17.033 z"
+         id="path4361"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="ccc"
+         inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+         inkscape:export-xdpi="199"
+         inkscape:export-ydpi="199" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 451.47376,1099.7174 -0.56132,47.4335"
+         id="path4363"
+         inkscape:connector-curvature="0"
+         inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+         inkscape:export-xdpi="199"
+         inkscape:export-ydpi="199" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 417.66958,1116.7746 31.64584,30.3521"
+         id="path4365"
+         inkscape:connector-curvature="0"
+         inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+         inkscape:export-xdpi="199"
+         inkscape:export-ydpi="199" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 428.13509,1111.3429 21.03764,34.6634"
+         id="path4367"
+         inkscape:connector-curvature="0"
+         inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+         inkscape:export-xdpi="199"
+         inkscape:export-ydpi="199" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 440.53157,1104.9821 9.33336,37.5205"
+         id="path4369"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="cc"
+         inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+         inkscape:export-xdpi="199"
+         inkscape:export-ydpi="199" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 447.44484,1102.0522 3.65885,43.0251"
+         id="path4371"
+         inkscape:connector-curvature="0"
+         inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+         inkscape:export-xdpi="199"
+         inkscape:export-ydpi="199" />
+      <path
+         style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         d="m 421.36455,1115.3932 27.66546,29.4928"
+         id="path4373"
+         inkscape:connector-curvature="0"
+         inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/mars.png"
+         inkscape:export-xdpi="199"
+         inkscape:export-ydpi="199" />
+    </g>
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/venus.png"
+       transform="translate(-105.70918,996.78225)"
+       d="m 497.14285,165.93361 a 15,15 0 1 1 -30,0 15,15 0 1 1 30,0 z"
+       sodipodi:ry="15"
+       sodipodi:rx="15"
+       sodipodi:cy="165.93361"
+       sodipodi:cx="482.14285"
+       id="path4375"
+       style="color:#000000;fill:#ac9393;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:6, 2;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       sodipodi:type="arc" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/venus.png"
+       sodipodi:type="arc"
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="path4434"
+       sodipodi:cx="1085.4089"
+       sodipodi:cy="295.25284"
+       sodipodi:rx="25.75889"
+       sodipodi:ry="25.75889"
+       d="m 1096.2951,271.90736 a 25.75889,25.75889 0 0 1 14.4814,18.87249"
+       sodipodi:start="5.1487213"
+       sodipodi:end="6.1086524"
+       sodipodi:open="true"
+       transform="translate(-689.97281,929.05548)" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="204.42001"
+       y="1013.5453"
+       id="text4436"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/venus.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         sodipodi:role="line"
+         id="tspan4438"
+         x="204.42001"
+         y="1013.5453"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman'">этап 1</tspan></text>
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/venus.png"
+       transform="translate(-700.57942,936.12655)"
+       sodipodi:open="true"
+       sodipodi:end="6.0213859"
+       sodipodi:start="5.2359878"
+       d="m 1098.2884,272.94499 a 25.75889,25.75889 0 0 1 12.0017,15.64096"
+       sodipodi:ry="25.75889"
+       sodipodi:rx="25.75889"
+       sodipodi:cy="295.25284"
+       sodipodi:cx="1085.4089"
+       id="path4440"
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       sodipodi:type="arc" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/venus.png"
+       sodipodi:type="arc"
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="path4442"
+       sodipodi:cx="1085.4089"
+       sodipodi:cy="295.25284"
+       sodipodi:rx="25.75889"
+       sodipodi:ry="25.75889"
+       d="m 1100.1836,274.15239 a 25.75889,25.75889 0 0 1 9.4308,12.29039"
+       sodipodi:start="5.3232542"
+       sodipodi:end="5.9341195"
+       sodipodi:open="true"
+       transform="translate(-708.66064,942.69254)" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/venus.png"
+       transform="translate(-675.83068,919.45903)"
+       sodipodi:open="true"
+       sodipodi:end="6.2831853"
+       sodipodi:start="4.9741884"
+       d="m 1092.0758,270.37166 a 25.75889,25.75889 0 0 1 19.092,24.88118"
+       sodipodi:ry="25.75889"
+       sodipodi:rx="25.75889"
+       sodipodi:cy="295.25284"
+       sodipodi:cx="1085.4089"
+       id="path4444"
+       style="color:#000000;fill:none;stroke:#000000;stroke-width:2;stroke-opacity:1;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       sodipodi:type="arc" />
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/venus.png"
+       id="text4446"
+       y="1244.2598"
+       x="402.54327"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman'"
+         y="1244.2598"
+         x="402.54327"
+         id="tspan4448"
+         sodipodi:role="line">этап 2</tspan></text>
+    <path
+       id="path4467"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Mend)"
+       d="m 269.30569,1203.782 c 5.61274,1.5902 6.2945,-4.0241 12.06462,-2.3893 5.77012,1.6348 2.74322,6.5847 8.75969,8.2893 5.67315,1.6073 6.3549,-4.007 12.12502,-2.3722 5.77012,1.6348 2.74322,6.5846 8.72293,8.2788 5.63637,1.5969 6.31812,-4.0174 12.08824,-2.3826 5.77012,1.6348 2.74322,6.5847 8.7597,8.2892 5.67313,1.6074 8.47467,-5.0568 12.32549,-0.4593 3.23065,3.8571 3.9733,4.5205 12.90853,3.8967"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cssscsssc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/venus.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       sodipodi:nodetypes="cssscsssc"
+       inkscape:connector-curvature="0"
+       d="m 271.44855,1196.6391 c 5.61274,1.5902 6.2945,-4.0241 12.06462,-2.3893 5.77012,1.6348 2.74322,6.5847 8.75969,8.2893 5.67315,1.6073 6.3549,-4.007 12.12502,-2.3722 5.77012,1.6348 2.74322,6.5846 8.72293,8.2788 5.63637,1.5969 6.31812,-4.0174 12.08824,-2.3826 5.77012,1.6348 2.74322,6.5847 8.7597,8.2892 5.67313,1.6074 8.47467,-5.0568 12.32549,-0.4593 3.23065,3.8571 3.9733,4.5205 12.90853,3.8967"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Mend)"
+       id="path4656"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/venus.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       id="path4658"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow2Mend)"
+       d="m 267.16284,1210.9248 c 5.61274,1.5902 6.2945,-4.0241 12.06462,-2.3893 5.77012,1.6348 2.74322,6.5847 8.75969,8.2893 5.67315,1.6073 6.3549,-4.007 12.12502,-2.3722 5.77012,1.6348 2.74322,6.5846 8.72293,8.2788 5.63637,1.5969 6.31812,-4.0174 12.08824,-2.3826 5.77012,1.6348 2.74322,6.5847 8.7597,8.2892 5.67313,1.6074 8.47467,-5.0568 12.32549,-0.4593 3.23065,3.8571 3.9733,4.5205 12.90853,3.8967"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cssscsssc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/venus.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="237.49101"
+       y="1209.2485"
+       id="text4660"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/venus.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         sodipodi:role="line"
+         id="tspan4662"
+         x="237.49101"
+         y="1209.2485"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:39.74423599px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman'">Q</tspan></text>
+    <path
+       sodipodi:type="arc"
+       style="opacity:0.96904435000000000;color:#000000;fill:url(#linearGradient4850);fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="path4724"
+       sodipodi:cx="1110"
+       sodipodi:cy="662.36218"
+       sodipodi:rx="150"
+       sodipodi:ry="150"
+       d="m 1260,662.36218 a 150,150 0 1 1 -300,0 150,150 0 1 1 300,0 z"
+       transform="matrix(1.056391,0,0,1.056391,-159.73687,292.64873)"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       transform="translate(-97.142857,330)"
+       d="m 1260,662.36218 a 150,150 0 1 1 -300,0 150,150 0 1 1 300,0 z"
+       sodipodi:ry="150"
+       sodipodi:rx="150"
+       sodipodi:cy="662.36218"
+       sodipodi:cx="1110"
+       id="path4674"
+       style="opacity:0.96904435000000000;color:#000000;fill:url(#linearGradient4842);fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       sodipodi:type="arc" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       inkscape:connector-curvature="0"
+       id="path4676"
+       d="m 1012.8571,841.64789 -197.8571,0"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       sodipodi:nodetypes="cc" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow2Mstart);marker-end:url(#Arrow2Mend)"
+       d="m 821.39207,843.19709 0,147.41774"
+       id="path4680"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <text
+       id="text4682"
+       y="877.84467"
+       x="823.47498"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman'"
+         y="877.84467"
+         x="823.47498"
+         id="tspan4684"
+         sodipodi:role="line">R<tspan
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:65.00091553%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';baseline-shift:sub"
+   id="tspan4747">внутр</tspan></tspan></text>
+    <rect
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       ry="11.954082"
+       rx="15.562128"
+       y="1008.0765"
+       x="925.71429"
+       height="107.14286"
+       width="53.57143"
+       id="rect4686"
+       style="opacity:0.96904435000000000;color:#000000;fill:url(#linearGradient4812);fill-opacity:1;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+    <rect
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       style="opacity:0.96904435000000000;color:#000000;fill:url(#linearGradient4814);fill-opacity:1;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect4688"
+       width="53.571472"
+       height="128.57146"
+       x="983.57147"
+       y="1008.7907"
+       rx="15.562128"
+       ry="11.954082" />
+    <rect
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       ry="11.954082"
+       rx="15.562128"
+       y="1008.0764"
+       x="1041.4286"
+       height="107.14286"
+       width="53.57143"
+       id="rect4690"
+       style="opacity:0.96904435000000000;color:#000000;fill:url(#linearGradient4816);fill-opacity:1;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+    <rect
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       style="opacity:0.96904435000000000;color:#000000;fill:url(#linearGradient4834);fill-opacity:1;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect4692"
+       width="48.571411"
+       height="73.571465"
+       x="872.85718"
+       y="965.2193"
+       rx="15.562128"
+       ry="11.954082" />
+    <rect
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       ry="11.954082"
+       rx="15.562128"
+       y="963.07642"
+       x="1099.2858"
+       height="75.714333"
+       width="50.714268"
+       id="rect4694"
+       style="opacity:0.96904435000000000;color:#000000;fill:url(#linearGradient4820);fill-opacity:1;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       transform="matrix(0.92831541,0,0,0.92831541,16.392727,467.90871)"
+       d="m 974.99998,638.43359 a 18.928572,18.928572 0 1 1 -37.85714,0 18.928572,18.928572 0 1 1 37.85714,0 z"
+       sodipodi:ry="18.928572"
+       sodipodi:rx="18.928572"
+       sodipodi:cy="638.43359"
+       sodipodi:cx="956.07141"
+       id="path4696"
+       style="opacity:0.96904435000000000;color:#000000;fill:url(#linearGradient4810);fill-opacity:1;fill-rule:nonzero;stroke:#323232;stroke-width:2.15444016000000005;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       sodipodi:type="arc" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       sodipodi:type="arc"
+       style="opacity:0.96904435000000000;color:#000000;fill:url(#linearGradient4808);fill-opacity:1;fill-rule:nonzero;stroke:#323232;stroke-width:2.15444016000000005;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="path4698"
+       sodipodi:cx="956.07141"
+       sodipodi:cy="638.43359"
+       sodipodi:rx="18.928572"
+       sodipodi:ry="18.928572"
+       d="m 974.99998,638.43359 a 18.928572,18.928572 0 1 1 -37.85714,0 18.928572,18.928572 0 1 1 37.85714,0 z"
+       transform="matrix(0.92831541,0,0,0.92831541,230.67844,467.90871)" />
+    <rect
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       transform="matrix(0,-1,1,0,0,0)"
+       ry="11.954082"
+       rx="15.562128"
+       y="925.35718"
+       x="-1004.1479"
+       height="169.28569"
+       width="74.285759"
+       id="rect4700"
+       style="opacity:0.96904435000000000;color:#000000;fill:url(#linearGradient4818);fill-opacity:1;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 1012.8571,992.3621 -232.8571,0"
+       id="path4678"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       transform="matrix(0.92831541,0,0,0.92831541,234.24987,343.62299)"
+       d="m 977.30831,638.43359 a 21.2369,21.2369 0 1 1 -42.4738,0 21.2369,21.2369 0 1 1 42.4738,0 z"
+       sodipodi:ry="21.2369"
+       sodipodi:rx="21.2369"
+       sodipodi:cy="638.43359"
+       sodipodi:cx="956.07141"
+       id="path4702"
+       style="opacity:0.96904435000000000;color:#000000;fill:url(#linearGradient4822);fill-opacity:1;fill-rule:nonzero;stroke:#323232;stroke-width:2.15444016000000005;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       sodipodi:type="arc" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       sodipodi:type="arc"
+       style="opacity:0.96904435000000000;color:#000000;fill:url(#linearGradient4832);fill-opacity:1;fill-rule:nonzero;stroke:#323232;stroke-width:2.15444016000000005;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="path4704"
+       sodipodi:cx="956.07141"
+       sodipodi:cy="638.43359"
+       sodipodi:rx="21.2369"
+       sodipodi:ry="21.2369"
+       d="m 977.30831,638.43359 a 21.2369,21.2369 0 1 1 -42.4738,0 21.2369,21.2369 0 1 1 42.4738,0 z"
+       transform="matrix(0.92831541,0,0,0.92831541,14.24987,346.48014)" />
+    <rect
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       style="opacity:0.96904435000000000;color:#000000;fill:url(#linearGradient4830);fill-opacity:1;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect4706"
+       width="53.571411"
+       height="42.142853"
+       x="916.42859"
+       y="881.64795"
+       rx="15.562128"
+       ry="11.954082" />
+    <rect
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       ry="11.954082"
+       rx="15.562128"
+       y="881.64795"
+       x="973.57147"
+       height="42.142822"
+       width="67.142776"
+       id="rect4708"
+       style="opacity:0.96904435000000000;color:#000000;fill:url(#linearGradient4826);fill-opacity:1;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+    <rect
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       style="opacity:0.96904435000000000;color:#000000;fill:url(#linearGradient4824);fill-opacity:1;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+       id="rect4710"
+       width="53.571411"
+       height="42.142853"
+       x="1045"
+       y="881.64795"
+       rx="15.562128"
+       ry="11.954082" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       sodipodi:nodetypes="ccc"
+       inkscape:connector-curvature="0"
+       id="path4712"
+       d="m 947.14285,874.50504 c 50.15923,-32.38388 93.61185,-24.52836 134.28575,0 z"
+       style="fill:url(#linearGradient4828);stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;opacity:0.96904435000000000;color:#000000;fill-opacity:1;fill-rule:nonzero;stroke-dashoffset:0;marker:none;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       sodipodi:nodetypes="ccc"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 1144.7557,964.63556 60.95,-59.51553 160.2482,0"
+       id="path4716"
+       inkscape:connector-curvature="0" />
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+       x="1283.7638"
+       y="872.64117"
+       id="text4718"><tspan
+         sodipodi:role="line"
+         id="tspan4720"
+         x="1283.7638"
+         y="872.64117"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';text-align:center;text-anchor:middle">оборудование</tspan><tspan
+         id="tspan4722"
+         sodipodi:role="line"
+         x="1283.7638"
+         y="897.64117"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';text-align:center;text-anchor:middle">и приборы</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 1012.8571,832.36218 -232.8571,0"
+       id="path4743"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path4745"
+       d="m 789.9635,833.19709 0,157.41774"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-start:url(#Arrow2Mstart);marker-end:url(#Arrow2Mend)"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="744.83173"
+       y="877.84467"
+       id="text4749"><tspan
+         sodipodi:role="line"
+         id="tspan4751"
+         x="744.83173"
+         y="877.84467"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman'">R<tspan
+   id="tspan4753"
+   style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:65.00091553%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';baseline-shift:sub">внеш</tspan></tspan></text>
+    <path
+       inkscape:connector-curvature="0"
+       id="path4755"
+       d="m 1105.47,1088.6915 60.95,59.5155 191.6768,0"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       sodipodi:nodetypes="ccc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       id="text4757"
+       y="1142.6412"
+       x="1262.3351"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';text-align:center;text-anchor:middle"
+         y="1142.6412"
+         x="1262.3351"
+         sodipodi:role="line"
+         id="tspan4761">теплопоглотитель</tspan></text>
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       sodipodi:nodetypes="ccc"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 1164.0414,1015.1201 60.95,59.5155 100.9625,0"
+       id="path4766"
+       inkscape:connector-curvature="0" />
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/probe-venus.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+       x="1275.1921"
+       y="1071.2126"
+       id="text4852"><tspan
+         id="tspan4854"
+         sodipodi:role="line"
+         x="1275.1921"
+         y="1071.2126"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';text-align:center;text-anchor:middle">изолятор</tspan></text>
+  </g>
+</svg>

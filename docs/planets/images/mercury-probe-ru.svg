@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="mercury-probe.svg">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient4844">
+      <stop
+         style="stop-color:#d4aa00;stop-opacity:1;"
+         offset="0"
+         id="stop4846" />
+      <stop
+         style="stop-color:#a98c00;stop-opacity:1;"
+         offset="1"
+         id="stop4848" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4836">
+      <stop
+         style="stop-color:#917c6f;stop-opacity:1;"
+         offset="0"
+         id="stop4838" />
+      <stop
+         style="stop-color:#565040;stop-opacity:1;"
+         offset="1"
+         id="stop4840" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4802">
+      <stop
+         style="stop-color:#808080;stop-opacity:1;"
+         offset="0"
+         id="stop4804" />
+      <stop
+         style="stop-color:#464646;stop-opacity:1;"
+         offset="1"
+         id="stop4806" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4666">
+      <stop
+         style="stop-color:#ac9393;stop-opacity:1;"
+         offset="0"
+         id="stop4668" />
+      <stop
+         style="stop-color:#e75729;stop-opacity:1;"
+         offset="1"
+         id="stop4670" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4419">
+      <stop
+         id="stop4421"
+         offset="0"
+         style="stop-color:#4b7487;stop-opacity:1;" />
+      <stop
+         id="stop4423"
+         offset="1"
+         style="stop-color:#1a1919;stop-opacity:0;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4413">
+      <stop
+         style="stop-color:#556780;stop-opacity:1;"
+         offset="0"
+         id="stop4415" />
+      <stop
+         style="stop-color:#556780;stop-opacity:0;"
+         offset="1"
+         id="stop4417" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4833">
+      <stop
+         id="stop4835"
+         offset="0"
+         style="stop-color:#dac819;stop-opacity:1;" />
+      <stop
+         id="stop4837"
+         offset="1"
+         style="stop-color:#dac893;stop-opacity:0;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4757">
+      <stop
+         style="stop-color:#ff0700;stop-opacity:1;"
+         offset="0"
+         id="stop4759" />
+      <stop
+         style="stop-color:#ff6600;stop-opacity:0;"
+         offset="1"
+         id="stop4761" />
+    </linearGradient>
+    <marker
+       inkscape:stockid="Arrow2Mstart"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow2Mstart"
+       style="overflow:visible">
+      <path
+         id="path4055"
+         style="fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(0.6) translate(0,0)" />
+    </marker>
+    <linearGradient
+       id="linearGradient3831">
+      <stop
+         style="stop-color:#d77943;stop-opacity:0.64453125;"
+         offset="0"
+         id="stop3833" />
+      <stop
+         style="stop-color:#ac9393;stop-opacity:0;"
+         offset="1"
+         id="stop3835" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3815">
+      <stop
+         id="stop3817"
+         offset="0"
+         style="stop-color:#d77943;stop-opacity:1;" />
+      <stop
+         id="stop3819"
+         offset="1"
+         style="stop-color:#ac9393;stop-opacity:0;" />
+    </linearGradient>
+    <marker
+       inkscape:stockid="DotM"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="DotM"
+       style="overflow:visible">
+      <path
+         id="path3956"
+         d="M -2.5,-1.0 C -2.5,1.7600000 -4.7400000,4.0 -7.5,4.0 C -10.260000,4.0 -12.5,1.7600000 -12.5,-1.0 C -12.5,-3.7600000 -10.260000,-6.0 -7.5,-6.0 C -4.7400000,-6.0 -2.5,-3.7600000 -2.5,-1.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt"
+         transform="scale(0.4) translate(7.4, 1)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow2Mend"
+       style="overflow:visible;">
+      <path
+         id="path3919"
+         style="fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round;"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(0.6) rotate(180) translate(0,0)" />
+    </marker>
+    <linearGradient
+       id="linearGradient3878">
+      <stop
+         style="stop-color:#ac9393;stop-opacity:1;"
+         offset="0"
+         id="stop3880" />
+      <stop
+         style="stop-color:#ac9393;stop-opacity:0;"
+         offset="1"
+         id="stop3882" />
+    </linearGradient>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="1110.3642"
+     inkscape:cy="435.32411"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="2452"
+     inkscape:window-height="1486"
+     inkscape:window-x="108"
+     inkscape:window-y="40"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <circle
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:0.96904435;fill:#ffffff;fill-opacity:0.82051284;fill-rule:nonzero;stroke:#000000;stroke-width:4;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+       id="path3296"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"
+       cx="342.85715"
+       cy="206.6479"
+       r="150" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 342.8571,55.219323 H 110"
+       id="path3298"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path3300"
+       d="M 342.8571,358.07646 H 110"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path3302"
+       d="M 119.9635,57.482803 V 356.32907"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow2Mstart);marker-end:url(#Arrow2Mend)"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="89.903564"
+       y="214.06979"
+       id="text4276"><tspan
+         sodipodi:role="line"
+         id="tspan4278"
+         x="89.903564"
+         y="214.06979"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:Jura;-inkscape-font-specification:Jura">2R</tspan></text>
+    <rect
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:0.96904435;fill:#ffffff;fill-opacity:0.82051284;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+       id="rect4280"
+       width="53.57143"
+       height="107.14286"
+       x="255.71429"
+       y="222.36221"
+       rx="15.562128"
+       ry="11.954082"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <rect
+       ry="11.954082"
+       rx="15.562128"
+       y="223.07645"
+       x="313.57147"
+       height="128.57146"
+       width="53.571472"
+       id="rect4282"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:0.96904435;fill:#ffffff;fill-opacity:0.82051284;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <rect
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:0.96904435;fill:#ffffff;fill-opacity:0.82051284;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+       id="rect4284"
+       width="53.57143"
+       height="107.14286"
+       x="371.42859"
+       y="222.36215"
+       rx="15.562128"
+       ry="11.954082"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <rect
+       ry="11.954082"
+       rx="15.562128"
+       y="179.50504"
+       x="202.85718"
+       height="73.571465"
+       width="48.571411"
+       id="rect4286"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:0.96904435;fill:#ffffff;fill-opacity:0.82051284;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <rect
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:0.96904435;fill:#ffffff;fill-opacity:0.82051284;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+       id="rect4288"
+       width="50.714268"
+       height="75.714333"
+       x="429.28577"
+       y="177.36215"
+       rx="15.562128"
+       ry="11.954082"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <circle
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:0.96904435;fill:#ffffff;fill-opacity:0.82051284;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+       id="path4290"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"
+       cx="233.92856"
+       cy="274.86215"
+       r="17.571684" />
+    <circle
+       id="path4292"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:0.96904435;fill:#ffffff;fill-opacity:0.82051284;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"
+       cx="448.21426"
+       cy="274.86215"
+       r="17.571684" />
+    <rect
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:0.96904435;fill:#ffffff;fill-opacity:0.82051284;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+       id="rect4294"
+       width="74.285759"
+       height="169.28569"
+       x="-218.43362"
+       y="255.35718"
+       rx="15.562128"
+       ry="11.954082"
+       transform="rotate(-90)"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <circle
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:0.96904435;fill:#ffffff;fill-opacity:0.82051284;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+       id="path4296"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"
+       cx="451.78571"
+       cy="150.57645"
+       r="19.714542" />
+    <circle
+       id="path4298"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:0.96904435;fill:#ffffff;fill-opacity:0.82051284;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"
+       cx="231.78569"
+       cy="153.43359"
+       r="19.714542" />
+    <rect
+       ry="11.954082"
+       rx="15.562128"
+       y="95.933678"
+       x="246.42859"
+       height="42.142853"
+       width="53.571411"
+       id="rect4300"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:0.96904435;fill:#ffffff;fill-opacity:0.82051284;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <rect
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:0.96904435;fill:#ffffff;fill-opacity:0.82051284;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+       id="rect4302"
+       width="67.142776"
+       height="42.142822"
+       x="303.57147"
+       y="95.933678"
+       rx="15.562128"
+       ry="11.954082"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <rect
+       ry="11.954082"
+       rx="15.562128"
+       y="95.933678"
+       x="375"
+       height="42.142853"
+       width="53.571411"
+       id="rect4304"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;opacity:0.96904435;fill:#ffffff;fill-opacity:0.82051284;fill-rule:nonzero;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       style="fill:none;stroke:#323232;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       d="m 277.14285,88.790753 c 50.15923,-32.38388 93.61185,-24.52836 134.28575,0 z"
+       id="path4306"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccc"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path4308"
+       d="m 474.7557,178.92127 60.95,-59.51553 h 160.2482"
+       style="fill:none;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       sodipodi:nodetypes="ccc"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       id="text4310"
+       y="86.926903"
+       x="616.79431"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Times New Roman';-inkscape-font-specification:'Times New Roman';text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Desktop/Орбита/Арт/probe-mercury.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:Jura;-inkscape-font-specification:Jura;text-align:center;text-anchor:middle"
+         y="86.926903"
+         x="616.79431"
+         id="tspan4312"
+         sodipodi:role="line">оборудование</tspan><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:Jura;-inkscape-font-specification:Jura;text-align:center;text-anchor:middle"
+         y="111.9269"
+         x="616.79431"
+         sodipodi:role="line"
+         id="tspan4314">и приборы</tspan></text>
+  </g>
+</svg>

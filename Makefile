@@ -12,11 +12,17 @@ pylint:
             $(MAKE) -C $(MODELS_DIR)/$$i pylint; \
         done
 
+docs:
+	$(MAKE) -C docs
+
 clean:
 	@for i in $(MODELS); do \
             $(MAKE) -C $(MODELS_DIR)/$$i clean; \
         done
+	$(MAKE) -C docs clean
 	rm -rf __pycache__ models/__pycache__
 	rm -f *~ *.pyc
 
-.PHONY: all clean
+.PHONY: all clean docs pylint
+
+
