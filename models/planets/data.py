@@ -37,7 +37,7 @@ import venus.global_parameters
 import venus.global_config
 import venus.planets
 
-from logger import load_log_language, debug_log, error_log, mission_log, short_log_xml, get_image_template, html_log
+from logger import load_log_language, debug_log, error_log, mission_log, short_log_xml, get_image_template, html_log # pylint: disable=C0301
 from errors import CriticalError, Terminated
 from plotgraph import plot_graph
 
@@ -70,6 +70,7 @@ DT_BASE_DIAGNOSTIC = 7
 DT_ACCUMULATOR = 8
 DT_SOLARPANEL = 9
 DT_ADV_DIAGNOSTIC = 10
+DT_GENERATOR = 11
 
 def load_language(tr):
     global _ # pylint: disable=W0603
@@ -154,8 +155,11 @@ def planets_load():
 def is_model_on(probe, model):
     return model in Parameters.Missions[probe.mission].Models
 
+def is_device_allowed_in_mission(mission, device):
+    return device in Parameters.Missions[mission].Devices
+
 def is_device_allowed(probe, device):
-    return device in Parameters.Missions[probe.mission].Devices
+    return is_device_allowed_in_mission(probe.mission, device)
 
 def config_load(lang):
     global Config #pylint: disable=W0603
@@ -194,6 +198,108 @@ def devices_load(lang):
     except pyxb.ValidationError as e:
         critical_error(None, _("Cannot load devices: error %s in %s") % (str(e), e.location))
 
+def devices_table():
+    missions = {
+        'Moon': '\\leftmoon',
+        'Mars': '\\male',
+        'Mercury': '\\mercury',
+        'Venus': '\\female'
+        }
+    result = '% common characteristics\n%\n'
+    lines = []
+    avail_devices = []
+    for name in Devices:
+        d = Devices[name]
+        avail = []
+        for planet, symb in missions.items():
+            if is_device_allowed_in_mission(planet, d.name):
+                avail.append(symb)
+        if len(avail) > 0:
+            avail_devices.append(name)
+        else:
+            continue
+        arr = [d.full_name, ''.join(avail),
+               '\\textbf{' + str(d.code) + '}',
+               d.mass, d.volume,
+               abs(d.power_generation) if d.power_generation <= 0 else 0,
+               int(d.critical_temperature)]
+        lines.append(' & '.join(map(lambda a: str(a).replace('.', ','), arr)) + ' \\\\')
+    result += '\n\\hline\n'.join(sorted(lines))
+    result += '\n% engines\n%\n'
+    lines = []
+    for name in avail_devices:
+        if not device_is_engine(name):
+            continue
+        d = Devices[name]
+        arr = [d.full_name,
+               '\\textbf{' + str(d.code) + '}',
+               d.fuel_speed, d.traction]
+        lines.append(' & '.join(map(lambda a: str(a).replace('.', ','), arr)) + ' \\\\')
+    result += '\n\\hline\n'.join(sorted(lines))
+    result += '\n% parachutes\n%\n'
+    lines = []
+    for name in avail_devices:
+        if not device_is_parachute(name):
+            continue
+        d = Devices[name]
+        arr = [d.full_name,
+               '\\textbf{' + str(d.code) + '}',
+               d.parachute_square,
+               d.max_speed,
+               d.thermal_protection]
+        lines.append(' & '.join(map(lambda a: str(a).replace('.', ','), arr)) + ' \\\\')
+    result += '\n\\hline\n'.join(sorted(lines))
+    result += '\n% dampers\n%\n'
+    lines = []
+    for name in avail_devices:
+        if not device_is_damper(name):
+            continue
+        d = Devices[name]
+        arr = [d.full_name,
+               '\\textbf{' + str(d.code) + '}',
+               d.energy_compensation / 1000000]
+        lines.append(' & '.join(map(lambda a: str(a).replace('.', ','), arr)) + ' \\\\')
+    result += '\n\\hline\n'.join(sorted(lines))
+    result += '\n% energy\n%\n'
+    lines = []
+    for name in avail_devices:
+        if not device_is_energy(name):
+            continue
+        d = Devices[name]
+        arr = [d.full_name,
+               '\\textbf{' + str(d.code) + '}',
+               d.solar_power if device_is_solar_panel(name) else d.power_generation,
+               d.capacity if device_is_accumulator(name) else '-']
+        lines.append(' & '.join(map(lambda a: str(a).replace('.', ','), arr)) + ' \\\\')
+    result += '\n\\hline\n'.join(sorted(lines))
+    result += '\n% telecom\n%\n'
+    lines = []
+    for name in avail_devices:
+        if not device_is_transmitter(name):
+            continue
+        d = Devices[name]
+        arr = [d.full_name,
+               '\\textbf{' + str(d.code) + '}',
+               d.traffic_generation,
+               d.period_min]
+        lines.append(' & '.join(map(lambda a: str(a).replace('.', ','), arr)) + ' \\\\')
+    result += '\n\\hline\n'.join(sorted(lines))
+    result += '\n% data & science\n%\n'
+    lines = []
+    for name in avail_devices:
+        if not (device_is_scientific(name) or
+                device_is_diagnostics(name)):
+            continue
+        d = Devices[name]
+        arr = [d.full_name,
+               '\\textbf{' + str(d.code) + '}',
+               abs(d.traffic_generation),
+               "{}-{}".format(d.period_min, d.period_max),
+               d.scientific_limit / 1000000 if device_is_scientific(name) else '-']
+        lines.append(' & '.join(map(lambda a: str(a).replace('.', ','), arr)) + ' \\\\')
+    result += '\n\\hline\n'.join(sorted(lines))
+    return result
+
 def device_get(name):
     return Devices[name]
 
@@ -219,6 +325,8 @@ def device_set_type(name):
         d.ntype = DT_ACCUMULATOR
     elif d.type == 'Solar panels':
         d.ntype = DT_SOLARPANEL
+    elif d.type == 'Generators':
+        d.ntype = DT_GENERATOR
     else:
         d.ntype = 0
 
@@ -254,6 +362,14 @@ def device_is_accumulator(name):
 
 def device_is_solar_panel(name):
     return Devices[name].ntype == DT_SOLARPANEL
+
+def device_is_generator(name):
+    return Devices[name].ntype == DT_GENERATOR
+
+def device_is_energy(name):
+    return (device_is_generator(name) or
+            device_is_accumulator(name) or
+            device_is_solar_panel(name))
 
 def probe_update_total_mass(p):
     p.device_mass = 0.0
@@ -642,9 +758,9 @@ def probe_device_by_identifier(p, ident):
 
 def probe_do_command(p, d, cmd, *other):
     mission_adv_log(_("%s: command %s with device %s%s") % (time_to_str(p.time - p.start_stage_time), # pylint: disable=C0301
-                                                              cmd,
-                                                              d.identifier,
-                                                              (_(" param ") + str(other[0])) if cmd in ['PERIOD', 'ANGLE'] else '')) # pylint: disable=C0301
+                                                            cmd,
+                                                            d.identifier,
+                                                            (_(" param ") + str(other[0])) if cmd in ['PERIOD', 'ANGLE'] else '')) # pylint: disable=C0301
     if d.state == 'DEAD':
         mission_adv_log(_("command error: trying to activate dead device"))
     elif cmd == 'TURNON':
@@ -919,7 +1035,7 @@ def probe_load(name, probefile):  # pylint: disable=R0912
                 mission_params.launch.target_distance = probe.flight.target_distance
             if mission_params.launch.target_distance > (pi * Planets[probe.planet].radius / 2): # pylint: disable=C0301
                 critical_error(probe, _("error decoding probe %s. target distance %d is too large") % (probefile, # pylint: disable=C0301
-                                                                                                         mission_params.launch.target_distance)) # pylint: disable=C0301
+                                                                                                       mission_params.launch.target_distance)) # pylint: disable=C0301
         probe.device_volume = 0.0
         probe.minimal_fuel_threshold = 999999.0
         probe.scientific_devices = {}
@@ -1071,8 +1187,8 @@ def probe_load(name, probefile):  # pylint: disable=R0912
         critical_error(None, _("Cannot load probe %s: bad xml-document") % name)
     except pyxb.ValidationError as e:
         critical_error(None, _("Cannot load probe %s: error %s in %s") % (name,
-                                                                            str(e),
-                                                                            e.location))
+                                                                          str(e),
+                                                                          e.location))
     else:
         debug_log('')
         debug_parameters(probe.mission, probe.planet)
