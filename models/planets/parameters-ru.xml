@@ -3,7 +3,7 @@
   <G>6.6742e-11</G>
   <MaxLaunchTime>500000</MaxLaunchTime><!-- Maximum launch time in ms -->
   <missions>
-    <mission name="Venus" full_name="Венерв">
+    <mission name="Venus" full_name="Венера">
         <planet>Venus</planet>
         <models>landing,stokes,termodynamics,surface</models>
         <devices>
