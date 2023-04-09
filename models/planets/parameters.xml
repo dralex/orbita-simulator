@@ -93,7 +93,7 @@ cpu,engine_l,engine_g,fueltank,fueltank_large,parachute_supersonic,heatshield_li
       <models>landing,surfacelimited</models>
       <devices>
 diagnadv,cpu,diagn,engine,engine_g,engine_l,fueltank,fueltank_large,
-generator,parachute,parachute_supersonic,heatshield,heatshield_light,parachute_armed,
+generator,
 damper,moon_damper,
 spectrometr,mass-spectrometr,camera,videocamera,infrared_camera,radiometer,magnetometer,LIDAR,
 seismograph,barometer,termometer,gas-chromatograph,laser-evaporator,
