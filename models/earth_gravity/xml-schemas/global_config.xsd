@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	    xmlns:v="venus" targetNamespace="venus">
+  <xsd:complexType name="config_parameter">
+    <xsd:attribute name="name" type="xsd:string"/>
+    <xsd:attribute name="full_name" type="xsd:string"/>
+    <xsd:attribute name="unit" type="xsd:string"/>
+    <xsd:attribute name="required" type="xsd:boolean"/>
+  </xsd:complexType>
+  <xsd:element name="global_config">
+    <xsd:complexType>
+      <xsd:sequence>
+	<xsd:element name="ballistics_model">
+	  <xsd:complexType>
+	    <xsd:sequence>
+	      <xsd:element name="config_parameter" minOccurs="0" maxOccurs="unbounded" type="v:config_parameter"/>
+	    </xsd:sequence>
+	  </xsd:complexType>
+	</xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

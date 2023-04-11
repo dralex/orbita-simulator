@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:v="venus" targetNamespace="venus">
+  <xsd:complexType name="vector">
+    <xsd:sequence>
+      <xsd:element name="x" type="xsd:decimal" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="y" type="xsd:decimal" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="z" type="xsd:decimal" minOccurs="1" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:element name="probe">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="flight">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="tournament" minOccurs="1" maxOccurs="1" type="xsd:string"/>
+              <xsd:element name="planet" minOccurs="1" maxOccurs="1">
+                <xsd:complexType>
+                  <xsd:attribute name="name" type="xsd:string"/>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="time" minOccurs="0" maxOccurs="1">
+                <xsd:complexType>
+                  <xsd:attribute name="start" type="xsd:string"/>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="T_start" minOccurs="1" maxOccurs="1" type="xsd:decimal"/>
+              <xsd:element name="mission" minOccurs="1" maxOccurs="1">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="channel" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+                    <xsd:element name="control_stations" minOccurs="1" maxOccurs="1">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="control_station" minOccurs="1" maxOccurs="unbounded">
+                            <xsd:complexType>
+                              <xsd:sequence>
+                                <xsd:element name="location_angle" type="xsd:decimal" minOccurs="1" maxOccurs="1"/>
+                              </xsd:sequence>
+                              <xsd:attribute name="name" type="xsd:string"/>
+                            </xsd:complexType>
+                          </xsd:element>
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="duration" minOccurs="1" maxOccurs="1" type="xsd:decimal"/>
+                    <xsd:element name="messages" minOccurs="0" maxOccurs="1">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="message" minOccurs="1" maxOccurs="unbounded">
+                            <xsd:complexType>
+                              <xsd:attribute name="order" type="xsd:positiveInteger"/>
+                              <xsd:attribute name="msgfrom" type="xsd:string"/>
+                              <xsd:attribute name="msgto" type="xsd:string"/>
+                              <xsd:attribute name="duration" type="xsd:decimal"/>
+                              <xsd:attribute name="data" type="xsd:decimal"/>
+                            </xsd:complexType>
+                          </xsd:element>
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="missiles" minOccurs="0" maxOccurs="1">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="missile" minOccurs="1" maxOccurs="unbounded">
+                            <xsd:complexType>
+                              <xsd:sequence>
+                                <xsd:element name="location_angle" type="xsd:decimal" minOccurs="1" maxOccurs="1"/>
+                                <xsd:element name="launch_time" type="xsd:decimal" minOccurs="1" maxOccurs="1"/>
+                              </xsd:sequence>
+                              <xsd:attribute name="index" type="xsd:decimal"/>
+                            </xsd:complexType>
+                          </xsd:element>
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="oneway_message" minOccurs="0" maxOccurs="1">
+                      <xsd:complexType>
+                        <xsd:attribute name="text" type="xsd:string"/>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="orbit" minOccurs="1" maxOccurs="1" type="xsd:decimal"/>
+                    <xsd:element name="precision" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+                    <xsd:element name="resolution" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+                    <xsd:element name="start_angular_velocity" minOccurs="1" maxOccurs="1" type="xsd:decimal"/>
+                    <xsd:element name="target_angle" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+                    <xsd:element name="target_orbit" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+                  </xsd:sequence>                 
+                  <xsd:attribute name="type" type="xsd:string"/>
+                </xsd:complexType>
+              </xsd:element>
+              <xsd:element name="target" minOccurs="0" maxOccurs="1" type="v:vector"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="construction">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="fuel" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+              <xsd:element name="voltage" minOccurs="1" maxOccurs="1" type="xsd:decimal"/>
+              <xsd:element name="xz_yz_solar_panel_fraction" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+              <xsd:element name="xz_yz_radiator_fraction" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+              <xsd:element name="xy_radiator_fraction" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="systems">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="system" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="program" type="xsd:string" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="placement" type="v:vector" minOccurs="0" maxOccurs="1"/>
+                  </xsd:sequence>             
+                  <xsd:attribute name="name" type="xsd:string"/>
+                  <xsd:attribute name="type" minOccurs="0">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="camera"/>
+                        <xsd:enumeration value="construction"/>
+                        <xsd:enumeration value="container"/>
+                        <xsd:enumeration value="cpu"/>
+                        <xsd:enumeration value="engine"/>
+                        <xsd:enumeration value="heat_control"/>
+                        <xsd:enumeration value="navigation"/>
+                        <xsd:enumeration value="orientation"/>
+                        <xsd:enumeration value="power"/>
+                        <xsd:enumeration value="telemetry"/>
+                        <xsd:enumeration value="transmitter"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                  <xsd:attribute name="start_mode" minOccurs="0">
+                    <xsd:simpleType>
+                      <xsd:restriction base="xsd:string">
+                        <xsd:enumeration value="ON"/>
+                        <xsd:enumeration value="OFF"/>
+                      </xsd:restriction>
+                    </xsd:simpleType>
+                  </xsd:attribute>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence> 
+      <xsd:attribute name="name" type="xsd:string"/>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

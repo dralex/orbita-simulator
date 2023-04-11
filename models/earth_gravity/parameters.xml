@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:global_parameters xmlns:v="venus">
+  <G>6.6742e-11</G>
+  <orbasic>
+    <max_lines>1000</max_lines>
+    <max_running_time>1</max_running_time>
+    <max_call_depth>32</max_call_depth>
+  </orbasic>
+  <planets>
+    <planet name="Earth">
+      <tick>0.1</tick>
+      <models>
+	<model kind="ballistics" modelclass="FlatBallisticModel" order="1"/>
+	<model kind="control" modelclass="PythonControlModel" order="6"/>
+	<model kind="telemetry" modelclass="BasicTelemetryModel" order="5"/>
+	<model kind="power" modelclass="SimplePowerModel" order="4"/>
+	<model kind="mechanics" modelclass="SimpleMechanicalModel" order="2"/>
+	<model kind="load" modelclass="SimpleLoadModel" order="7"/>
+	<model kind="radio" modelclass="SimpleRadioModel" order="8"/>
+	<model kind="thermodynamics" modelclass="SimpleThermodynamicsModel" order="3"/>
+      </models>
+      <radius>6371032.0</radius>
+      <mass>5.9726e24</mass>
+      <rotation_period>86164.1</rotation_period>
+      <max_landing_velocity>20</max_landing_velocity>
+      <atmosphere>
+	<density_border>0.00001</density_border>
+	<T_ground>25</T_ground> <!-- celsium -->
+	<T_grad>5</T_grad> <!-- per km -->
+	<density_ground>1.225</density_ground> <!-- kg/m^3 -->
+	<density_coeff>9300</density_coeff>
+      </atmosphere>
+      <atmosphere_table>
+	<height>0 500 1000 1500 2000 2500 3000 4000 5000 6000 7000 8000 9000 10000 11000 12000 14000 16000 18000 20000 24000 28000 32000 36000 40000 50000 60000 80000</height>
+	<temperature>288.2 284.9 281.7 278.4 275.2 271.9 268.7 262.2 255.7 249.2 242.7 236.2 229.7 223.3 216.8 216.7 216.7 216.7 216.7 216.7 220.6 224.5 228.5 239.3 250.4 270.7 247 198.6</temperature>
+	<density>1.225 1.1673 1.1117 1.0581 1.0065 0.9569 0.9093 0.8194 0.7365 0.6601 0.59 0.5258 0.4671 0.4135 0.3648 0.3119 0.2279 0.1665 0.1216 0.0889 0.0469 0.0251 0.0136 0.0073 0.004 0.00103 0.00031 0.00002</density>
+	<sound_speed>340.3 338.4 336.4 334.5 332.5 330.6 328.6 324.6 320.6 316.5 312.3 308.1 303.9 299.6 295.2 295.1 295.1 295.1 295.1 295.1 297.7 300.4 303 310.1 317.2 329.8 315.1 282.5</sound_speed>
+      </atmosphere_table>
+      <sun_radiation>1400</sun_radiation>
+      <probe>
+	<fuel_density>1185</fuel_density>
+	<max_mass>20000</max_mass>
+	<T_start>290</T_start>
+      </probe>
+      <ground>
+	<control_stations>
+	  <amplification>100</amplification>
+	  <circuit_loss>1</circuit_loss>
+	  <targeting_loss>1</targeting_loss>
+	  <environment_loss>1</environment_loss>
+	</control_stations>
+      </ground>
+    </planet>
+  </planets>
+</v:global_parameters>

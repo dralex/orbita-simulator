@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+            xmlns:v="venus" targetNamespace="venus">
+  <xsd:complexType name="size">
+    <xsd:sequence>
+      <xsd:element name="width" type="xsd:decimal" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="length" type="xsd:decimal" minOccurs="1" maxOccurs="1"/>
+      <xsd:element name="height" type="xsd:decimal" minOccurs="1" maxOccurs="1"/>
+    </xsd:sequence>
+  </xsd:complexType>
+  <xsd:simpleType name="subsystem">
+    <xsd:restriction base="xsd:string">
+      <xsd:enumeration value="construction"/>
+      <xsd:enumeration value="radio"/>
+      <xsd:enumeration value="cpu"/>
+      <xsd:enumeration value="power"/>
+      <xsd:enumeration value="orientation"/>
+      <xsd:enumeration value="navigation"/>
+      <xsd:enumeration value="engine"/>
+      <xsd:enumeration value="telemetry"/>
+      <xsd:enumeration value="heat_control"/>
+      <xsd:enumeration value="load"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+  <xsd:complexType name="parameter">
+    <xsd:attribute name="name" type="xsd:string"/>
+    <xsd:attribute name="full_name" type="xsd:string"/>
+    <xsd:attribute name="unit" type="xsd:string"/>
+    <xsd:attribute name="required" type="xsd:boolean"/>
+  </xsd:complexType>
+  <xsd:element name="devices">
+    <xsd:complexType>
+      <xsd:sequence>
+        <xsd:element name="subsystems" minOccurs="1" maxOccurs="1">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="subsystem" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                  <xsd:attribute name="type" type="v:subsystem"/>
+                  <xsd:attribute name="full_name" type="xsd:string"/>
+                  <xsd:attribute name="allow_empty" type="xsd:boolean"/>
+                  <xsd:attribute name="allow_program" type="xsd:boolean"/>
+                  <xsd:attribute name="allow_state" type="xsd:boolean"/>
+                  <xsd:attribute name="require_program" minOccurs="0" maxOccurs="1" type="xsd:boolean"/>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="construction_parameters" minOccurs="1" maxOccurs="1">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="parameter" minOccurs="0" maxOccurs="unbounded" type="v:parameter"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="parameters" minOccurs="1" maxOccurs="1">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="parameter" minOccurs="0" maxOccurs="unbounded" type="v:parameter"/>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+        <xsd:element name="choices" minOccurs="1" maxOccurs="1">
+          <xsd:complexType>
+            <xsd:sequence>
+              <xsd:element name="device" minOccurs="0" maxOccurs="unbounded">
+                <xsd:complexType>
+                  <xsd:sequence>
+                    <xsd:element name="absorption_factor" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="activation_time" type="xsd:decimal" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="amplification" type="xsd:decimal" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="bar_length" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="bar_mass" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="camera_angle" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="camera_range" minOccurs="0" maxOccurs="1">
+                      <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                          <xsd:enumeration value="visible"/>
+                          <xsd:enumeration value="infrared"/>
+                        </xsd:restriction>
+                      </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="capacity" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="comp_freq" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="circuit_loss" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="data_stream" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="data_volume" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="freq" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="fuel" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="ground_amplification" type="xsd:decimal" minOccurs="0" maxOccurs="1" />
+                    <xsd:element name="heat_absorption" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="heat_capacity" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="heat_production" type="xsd:decimal" minOccurs="1" maxOccurs="1"/>
+                    <xsd:element name="jet_speed" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="mass" type="xsd:decimal"  minOccurs="1" maxOccurs="1"/>
+                    <xsd:element name="max_acceleration" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="max_charge" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="max_period" type="xsd:positiveInteger" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="max_recharge" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="max_temperature" type="xsd:decimal" minOccurs="1" maxOccurs="1"/>
+                    <xsd:element name="max_torsion" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="max_traction" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="memory" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="min_period" type="xsd:positiveInteger" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="min_temperature" type="xsd:decimal" minOccurs="1" maxOccurs="1"/>
+                    <xsd:element name="orientation_type" minOccurs="0" maxOccurs="1">
+                      <xsd:simpleType>
+                        <xsd:restriction base="xsd:string">
+                          <xsd:enumeration value="none"/>
+                          <xsd:enumeration value="bar"/>
+                          <xsd:enumeration value="coil"/>
+                          <xsd:enumeration value="wheel"/>
+                        </xsd:restriction>
+                      </xsd:simpleType>
+                    </xsd:element>
+                    <xsd:element name="parachute_mass" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="parachute_square" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="parachute_velocity" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="pixel_size" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="power" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="radiation_blackness" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="radiation_square" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="radio_angle" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="radio_power" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="resolution" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="size" type="v:size" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="solar_efficiency" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="square" type="xsd:decimal" minOccurs="0" maxOccurs="1"/>
+                    <xsd:element name="type" type="v:subsystem" minOccurs="1" maxOccurs="1"/>
+                    <xsd:element name="volume" type="xsd:decimal" minOccurs="1" maxOccurs="1"/>
+                  </xsd:sequence>
+                  <xsd:attribute name="name" type="xsd:string"/>
+                  <xsd:attribute name="full_name" type="xsd:string"/>
+                </xsd:complexType>
+              </xsd:element>
+            </xsd:sequence>
+          </xsd:complexType>
+        </xsd:element>
+      </xsd:sequence>
+    </xsd:complexType>
+  </xsd:element>
+</xsd:schema>

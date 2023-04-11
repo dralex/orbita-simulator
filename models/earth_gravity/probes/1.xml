@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:testmodel name="testmodel" planet="Earth" xmlns:v="venus">
+  <angular_velocity>1</angular_velocity>
+  <constr_edge>0.1</constr_edge>
+  <duration>43200</duration>
+  <mass>1600.0</mass>
+  <moment>0.0</moment>
+  <orient_angle>0</orient_angle>
+  <tick>10</tick>
+  <vx>9940</vx>
+  <vy>0</vy>
+  <x>0</x>
+  <y>6931032</y>
+</v:testmodel>

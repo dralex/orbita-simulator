@@ -1,0 +1,251 @@
+# -*- coding: utf-8 -*- 
+# Orbita localization file.
+# Copyright (C) Alexey Fedoseev <aleksey@fedoseev.net>, 2023
+
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2023-04-01 13:26+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Alexey Fedoseev <aleksey@fedoseev.net>\n"
+"Language-Team: Russian\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+
+#: logger.py:62
+msgid "Bad logging target \"%s\"\n"
+msgstr "Неверная цель логирования \"%s\"\n"
+
+#: plotgraph.py:122
+msgid "Surface"
+msgstr "Поверхность"
+
+#: plotgraph.py:127
+msgid "Atmosphere"
+msgstr "Атмосфера"
+
+#: plotgraph.py:134
+msgid "Trajectory of the target"
+msgstr "Траектория цели"
+
+#: plotgraph.py:143
+msgid "GS"
+msgstr "НИП"
+
+#: plotgraph.py:146
+msgid "Trajectory"
+msgstr "Траектория"
+
+#: simulation.py:75
+msgid "Error in model parameters"
+msgstr "Ошибка в параметрах модели"
+
+#: simulation.py:93
+msgid "Not enought model parameters"
+msgstr "Недостаточно параметров работы двигателя"
+
+#: simulation.py:110
+msgid "Bad parameters: the probe height %f should be in [%d; 100000000] m"
+msgstr "Ошибка параметров: высота аппарата %f должна быть в диапазоне [%d; 100000000] м"
+
+#: simulation.py:195
+msgid "Bad XML document: %s"
+msgstr "Плохой XML-документ: %s"
+
+#: simulation.py:198
+msgid "XML error: %s"
+msgstr "Ошибка XML: %s"
+
+#: simulation.py:259
+msgid "LANDING"
+msgstr "ПОСАДКА"
+
+#: simulation.py:261
+msgid "The probe has landed"
+msgstr "Аппарат приземлился"
+
+#: simulation.py:263
+msgid "CRUSHED"
+msgstr "ПАДЕНИЕ"
+
+#: simulation.py:265
+msgid "The probe crushed on the surface"
+msgstr "Аппарат разбился о поверхность"
+
+#: simulation.py:284
+msgid "ERROR Ti=%s: the fuel is out"
+msgstr "ОШИБКА Ti=%s: Двигатель исчерпал всю массу топлива"
+
+#: simulation.py:286
+msgid "The fuel is out"
+msgstr "Двигатель исчерпал всю массу топлива"
+
+#: simulation.py:365
+msgid "test model running too long"
+msgstr "Расчет идет слишком долго"
+
+#: simulation.py:368
+msgid "The calculation completed. Ti=%s"
+msgstr "Расчет завершен. Ti=%s"
+
+#: simulation.py:371
+msgid "Calulation completed"
+msgstr "Расчет завершен"
+
+#: simulation.py:377
+msgid "Probe position (km)"
+msgstr "Положение аппарата (км)"
+
+#: simulation.py:386
+msgid "Navigation"
+msgstr "Навигация"
+
+#: simulation.py:386
+msgid "Orientation"
+msgstr "Ориентация"
+
+#: simulation.py:387
+msgid "Angle (degree)"
+msgstr "Угол (градусов)"
+
+#: simulation.py:393
+msgid "Angular Velocity (degree/s)"
+msgstr "Угловая скорость (градусов/с)"
+
+#: simulation.py:400
+msgid "Mass (kg)"
+msgstr "Масса (кг)"
+
+#: simulation.py:406
+msgid "Acceleration (m/s2)"
+msgstr "Ускорение (м/с2)"
+
+#: simulation.py:429
+msgid "The probe calculation file %s is not available"
+msgstr "Файл условий моделирования %s не доступен"
+
+#: simulation.py:433
+msgid "The probe model:"
+msgstr "Модель аппарата:"
+
+#: simulation.py:434 xmlconverters.py:108
+msgid "\tPlanet: %s"
+msgstr "\tПланета: %s"
+
+#: simulation.py:435
+msgid "\tPrint period: %s s"
+msgstr "\tПериод печати: %s с"
+
+#: simulation.py:436
+msgid "\tProbe mass: %.3f kg"
+msgstr "\tМасса: %.3f кг"
+
+#: simulation.py:437
+msgid "\tModelling duration: %.1f s"
+msgstr "\tПродолжительность моделирования: %.1f с"
+
+#: simulation.py:438
+msgid "\tStart X: %.2f m"
+msgstr "\tСтартовая координата X: %.2f м"
+
+#: simulation.py:439
+msgid "\tStart Y: %.2f m"
+msgstr "\tСтартовая координата Y: %.2f м"
+
+#: simulation.py:440
+msgid "\tStart horizontal velocity Vx: %.2f m"
+msgstr "\tСтартовая горизонтальная скорость Vx: %.2f м"
+
+#: simulation.py:441
+msgid "\tStart vertical velocity Vy: %.2f m"
+msgstr "\tСтартовая вертикальная скорость Vy: %.2f м"
+
+#: simulation.py:444
+msgid "\tThe engine impulse speed: %.2f m/sec"
+msgstr "\tУдальный импульс двигательной установки: %.2f м/с"
+
+#: simulation.py:445
+msgid "\tThe engine traction: %.2f kg/sec"
+msgstr "\tМассовый расход двигателя: %.2f кг/с"
+
+#: simulation.py:446
+msgid "\tThe engine start time: %.2f sec"
+msgstr "\tВремя включения двигателя: %.2f с"
+
+#: simulation.py:447
+msgid "\tThe engine duration: %.2f с"
+msgstr "\tПродолжительность работы двигателя: %.2f с"
+
+#: simulation.py:449
+msgid "\tThe start orientation angle: %.2f deg"
+msgstr "\tСтартовый угол ориентации аппарата: %.2f градусов"
+
+#: simulation.py:450
+msgid "\tThe start angular velocity: %.4f deg/sec"
+msgstr "\tСтартовая угловая скорость аппарата: %.4f градусов/с"
+
+#: simulation.py:451
+msgid "\tThe probe size: %f x %f x %f m"
+msgstr "\tРазмер аппарата: %f x %f x %f м"
+
+#: simulation.py:452
+msgid "\tThe moment: %f"
+msgstr "\tМомент вращения: %f"
+
+#: simulation.py:458
+msgid "CriticalError: %s"
+msgstr "Критическая ошибка: %s"
+
+#: xmlconverters.py:67
+msgid "XML Error. Cannot load %s: cannot open file %s"
+msgstr "Ошибка XML. Ошибка загрузки %s: не возможно открыть файл %s"
+
+#: xmlconverters.py:72
+msgid "XML Error. Cannot load %s: bad xml-document %s: %s"
+msgstr "Ошибка XML. Ошибка загрузки %s: плохой xml-документ %s: %s"
+
+#: xmlconverters.py:75
+msgid "XML Error. Cannot load %s: bad xml-документ %s: error in %s"
+msgstr "Ошибка XML. Ошибка загрузки %s: плохой xml-документ %s: ошибка в %s"
+
+#: xmlconverters.py:78
+msgid "XML Error. Cannot load %s: bad xml document %s"
+msgstr "Ошибка XML. Ошибка загрузки %s: плохой xml-документ %s"
+
+#: xmlconverters.py:87
+msgid "parameters"
+msgstr "параметров"
+
+#: xmlconverters.py:103
+msgid "XML Error. Cannot load %s: there are two planets with the same name %s"
+msgstr "Ошибка XML. Ошибка загрузки %s: параметры с одинаковыми именами %s"
+
+#: xmlconverters.py:114
+msgid "Global Parameters:"
+msgstr "Глобальные параметры:"
+
+#: xmlconverters.py:115
+msgid "\tG: %.4e kg m^3 / sec^2"
+msgstr "\tG: %.4e кг куб.м / кв.с"
+
+#: xmlconverters.py:118
+msgid "\t\tRadius: %.4f км,"
+msgstr "\t\tРадиус: %.4f км,"
+
+#: xmlconverters.py:119
+msgid "\t\tMass: %.4e кг"
+msgstr "\t\tМасса: %.4e кг"
+
+#: xmlconverters.py:120
+msgid "\tConstruction limits:"
+msgstr "\tОграничения конструирования:"
+
+#: xmlconverters.py:121
+msgid "\t\tMax mass: %.2f кг"
+msgstr "\t\tМаксимальная масса: %.2f кг"
+
+#: xmlconverters.py:125
+msgid "config"
+msgstr "конфигурации"
