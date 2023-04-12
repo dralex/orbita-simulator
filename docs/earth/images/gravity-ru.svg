@@ -1,0 +1,1090 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="gravity-ru.svg">
+  <defs
+     id="defs4">
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible;"
+       id="marker2179"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Mend">
+      <path
+         transform="scale(0.6) rotate(180) translate(0,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round;stroke:#ff0000;stroke-opacity:1;fill:#ff0000;fill-opacity:1"
+         id="path2177" />
+    </marker>
+    <marker
+       inkscape:isstock="true"
+       style="overflow:visible;"
+       id="marker2166"
+       refX="0.0"
+       refY="0.0"
+       orient="auto"
+       inkscape:stockid="Arrow2Mend">
+      <path
+         transform="scale(0.6) rotate(180) translate(0,0)"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round;stroke:#ff0000;stroke-opacity:1;fill:#ff0000;fill-opacity:1"
+         id="path2164" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="marker2142"
+       style="overflow:visible;"
+       inkscape:isstock="true"
+       inkscape:collect="always">
+      <path
+         id="path1901"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round;stroke:#ff0000;stroke-opacity:1;fill:#ff0000;fill-opacity:1"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(0.6) rotate(180) translate(0,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Lend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Lend"
+       style="overflow:visible;"
+       inkscape:isstock="true">
+      <path
+         id="path1877"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#ff0000;stroke-width:1pt;stroke-opacity:1;fill:#ff0000;fill-opacity:1"
+         transform="scale(0.8) rotate(180) translate(12.5,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mstart"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="marker2137"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         id="path1898"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round;stroke:#ff0000;stroke-opacity:1;fill:#ff0000;fill-opacity:1"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(0.6) translate(0,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow2Lend"
+       style="overflow:visible;">
+      <path
+         id="path8556"
+         style="fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round;"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(1.1) rotate(180) translate(1,0)" />
+    </marker>
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective7311" />
+    <linearGradient
+       id="linearGradient5261">
+      <stop
+         id="stop5263"
+         offset="0"
+         style="stop-color:#dfe1eb;stop-opacity:0.69921875;" />
+      <stop
+         id="stop5265"
+         offset="1"
+         style="stop-color:#394093;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient10794">
+      <stop
+         style="stop-color:#ebe4d0;stop-opacity:1;"
+         offset="0"
+         id="stop10796" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1"
+         offset="1"
+         id="stop10798" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient10732">
+      <stop
+         id="stop10734"
+         offset="0"
+         style="stop-color:#ebe4d0;stop-opacity:1;" />
+      <stop
+         id="stop10736"
+         offset="1"
+         style="stop-color:#542f4e;stop-opacity:0;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient10688">
+      <stop
+         style="stop-color:#9b9b9b;stop-opacity:1;"
+         offset="0"
+         id="stop10690" />
+      <stop
+         style="stop-color:#f5f2ed;stop-opacity:0;"
+         offset="1"
+         id="stop10692" />
+    </linearGradient>
+    <marker
+       inkscape:stockid="TriangleInM"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="TriangleInM"
+       style="overflow:visible">
+      <path
+         id="path8980"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt"
+         transform="scale(-0.4)" />
+    </marker>
+    <marker
+       inkscape:stockid="TriangleOutM"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="TriangleOutM"
+       style="overflow:visible">
+      <path
+         id="path8989"
+         d="M 5.77,0.0 L -2.88,5.0 L -2.88,-5.0 L 5.77,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt"
+         transform="scale(0.4)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Mend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Mend"
+       style="overflow:visible;">
+      <path
+         id="path8853"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;"
+         transform="scale(0.4) rotate(180) translate(10,0)" />
+    </marker>
+    <linearGradient
+       id="linearGradient5609">
+      <stop
+         style="stop-color:#d77943;stop-opacity:1;"
+         offset="0"
+         id="stop5611" />
+      <stop
+         style="stop-color:#ac9393;stop-opacity:0"
+         offset="1"
+         id="stop5613" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient5344">
+      <stop
+         id="stop5346"
+         offset="0"
+         style="stop-color:#f2f6fb;stop-opacity:1;" />
+      <stop
+         id="stop5348"
+         offset="1"
+         style="stop-color:#9f9ca9;stop-opacity:1;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4073">
+      <stop
+         style="stop-color:#ffd08f;stop-opacity:1;"
+         offset="0"
+         id="stop4075" />
+      <stop
+         style="stop-color:#c87137;stop-opacity:1;"
+         offset="1"
+         id="stop4077" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4065">
+      <stop
+         style="stop-color:#ff9955;stop-opacity:1;"
+         offset="0"
+         id="stop4067" />
+      <stop
+         style="stop-color:#ff9955;stop-opacity:1;"
+         offset="1"
+         id="stop4069" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4833">
+      <stop
+         id="stop4835"
+         offset="0"
+         style="stop-color:#dac819;stop-opacity:1;" />
+      <stop
+         id="stop4837"
+         offset="1"
+         style="stop-color:#dac893;stop-opacity:0;" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4757">
+      <stop
+         style="stop-color:#ff0700;stop-opacity:1;"
+         offset="0"
+         id="stop4759" />
+      <stop
+         style="stop-color:#ff6600;stop-opacity:0;"
+         offset="1"
+         id="stop4761" />
+    </linearGradient>
+    <marker
+       inkscape:stockid="Arrow2Mstart"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow2Mstart"
+       style="overflow:visible">
+      <path
+         id="path4055"
+         style="fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(0.6) translate(0,0)" />
+    </marker>
+    <linearGradient
+       id="linearGradient3831">
+      <stop
+         style="stop-color:#d77943;stop-opacity:0.64453125;"
+         offset="0"
+         id="stop3833" />
+      <stop
+         style="stop-color:#ac9393;stop-opacity:0;"
+         offset="1"
+         id="stop3835" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient3815">
+      <stop
+         id="stop3817"
+         offset="0"
+         style="stop-color:#d77943;stop-opacity:1;" />
+      <stop
+         id="stop3819"
+         offset="1"
+         style="stop-color:#ac9393;stop-opacity:0;" />
+    </linearGradient>
+    <marker
+       inkscape:stockid="DotM"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="DotM"
+       style="overflow:visible">
+      <path
+         id="path3956"
+         d="M -2.5,-1.0 C -2.5,1.7600000 -4.7400000,4.0 -7.5,4.0 C -10.260000,4.0 -12.5,1.7600000 -12.5,-1.0 C -12.5,-3.7600000 -10.260000,-6.0 -7.5,-6.0 C -4.7400000,-6.0 -2.5,-3.7600000 -2.5,-1.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt"
+         transform="scale(0.4) translate(7.4, 1)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow2Mend"
+       style="overflow:visible;">
+      <path
+         id="path3919"
+         style="fill-rule:evenodd;stroke-width:0.62500000;stroke-linejoin:round;"
+         d="M 8.7185878,4.0337352 L -2.2072895,0.016013256 L 8.7185884,-4.0017078 C 6.9730900,-1.6296469 6.9831476,1.6157441 8.7185878,4.0337352 z "
+         transform="scale(0.6) rotate(180) translate(0,0)" />
+    </marker>
+    <linearGradient
+       id="linearGradient3878">
+      <stop
+         style="stop-color:#ac9393;stop-opacity:1;"
+         offset="0"
+         id="stop3880" />
+      <stop
+         style="stop-color:#ac9393;stop-opacity:0;"
+         offset="1"
+         id="stop3882" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4757"
+       id="linearGradient4763"
+       x1="459.491"
+       y1="691.36993"
+       x2="468.58945"
+       y2="708.03748"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.2242138,0.38998074,-0.33597958,1.4209786,128.08143,-280.39632)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4757-6"
+       id="linearGradient4845-5"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.1440195,0.58481087,-0.56369306,1.3469642,900.21086,-973.03691)"
+       x1="459.491"
+       y1="691.36993"
+       x2="468.58945"
+       y2="708.03748" />
+    <linearGradient
+       id="linearGradient4757-6">
+      <stop
+         style="stop-color:#ff0700;stop-opacity:1;"
+         offset="0"
+         id="stop4759-3" />
+      <stop
+         style="stop-color:#ff6600;stop-opacity:0;"
+         offset="1"
+         id="stop4761-5" />
+    </linearGradient>
+    <clipPath
+       id="clipPath348">
+      <path
+         d="m353.81 294.65h62.813v201.61h-62.813v-201.61z"
+         id="path350" />
+    </clipPath>
+    <clipPath
+       id="clipPath344">
+      <path
+         d="m353.81 496.26h62.813v-201.62h-62.813v201.62z"
+         id="path346" />
+    </clipPath>
+    <clipPath
+       id="clipPath284">
+      <path
+         d="m376.94 289.86h49.046v7.703h-49.046v-7.703z"
+         id="path286" />
+    </clipPath>
+    <clipPath
+       id="clipPath280">
+      <path
+         d="m376.94 297.56h49.046v-7.704h-49.046v7.704z"
+         id="path282" />
+    </clipPath>
+    <linearGradient
+       gradientTransform="matrix(-3.8e-6,86.543,-86.543,-3.8e-6,401.44,203.81)"
+       gradientUnits="userSpaceOnUse"
+       id="linearGradient236">
+      <stop
+         offset="0"
+         stop-color="#fff"
+         id="stop238" />
+      <stop
+         offset="1"
+         stop-color="#fff"
+         id="stop240" />
+    </linearGradient>
+    <clipPath
+       id="clipPath228">
+      <path
+         d="m380.46 290.36h42.022v-86.543h-42.022v86.543z"
+         id="path230" />
+    </clipPath>
+    <mask
+       id="mask202">
+      <g
+         id="g204">
+        <g
+           clip-path="url(#clipPath184)"
+           id="g206">
+          <path
+             d="m380.46 290.36h42.021v-86.543h-42.021v86.543z"
+             id="path208" />
+          <g
+             id="g210">
+            <g
+               id="g214">
+              <g
+                 clip-path="url(#clipPath188)"
+                 id="g216">
+                <g
+                   id="g218">
+                  <g
+                     id="g220">
+                    <g
+                       id="g222">
+                      <g
+                         id="g224">
+                        <path
+                           fill="url(#linearGradient196)"
+                           d="m380.46 290.36h42.021v-86.543h-42.021v86.543z"
+                           id="path226" />
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </g>
+          </g>
+        </g>
+      </g>
+    </mask>
+    <linearGradient
+       gradientTransform="matrix(-.0000038 86.543 -86.543 -.0000038 401.44 203.81)"
+       gradientUnits="userSpaceOnUse"
+       id="linearGradient196">
+      <stop
+         offset="0"
+         stop-color="#231f20"
+         id="stop198" />
+      <stop
+         offset="1"
+         stop-color="#fff"
+         id="stop200" />
+    </linearGradient>
+    <clipPath
+       id="clipPath188">
+      <path
+         d="m380.46 290.36h42.022v-86.543h-42.022v86.543z"
+         id="path190" />
+    </clipPath>
+    <clipPath
+       id="clipPath184">
+      <path
+         d="m380.46 290.36h42.022v-86.543h-42.022v86.543z"
+         id="path186" />
+    </clipPath>
+    <clipPath
+       id="clipPath180">
+      <path
+         d="m380.46 203.82h42.021v86.543h-42.021v-86.543z"
+         id="path182" />
+    </clipPath>
+    <clipPath
+       id="clipPath176">
+      <path
+         d="m380.45 290.36h42.023v-86.543h-42.023v86.543z"
+         id="path178" />
+    </clipPath>
+    <clipPath
+       id="clipPath152">
+      <path
+         d="m503.09 311.97h9.031v9.03h-9.031v-9.03z"
+         id="path154" />
+    </clipPath>
+    <clipPath
+       id="clipPath148">
+      <path
+         d="m503.09 321h9.031v-9.031h-9.031v9.031z"
+         id="path150" />
+    </clipPath>
+    <clipPath
+       id="clipPath128">
+      <path
+         d="m273.75 358.83h11.682v11.683h-11.682v-11.683z"
+         id="path130" />
+    </clipPath>
+    <clipPath
+       id="clipPath124">
+      <path
+         d="m273.75 370.52h11.683v-11.683h-11.683v11.683z"
+         id="path126" />
+    </clipPath>
+    <clipPath
+       id="clipPath104">
+      <path
+         d="m528.51 345.56h11.683v11.682h-11.683v-11.682z"
+         id="path106" />
+    </clipPath>
+    <clipPath
+       id="clipPath100">
+      <path
+         d="m528.51 357.24h11.682v-11.682h-11.682v11.682z"
+         id="path102" />
+    </clipPath>
+    <clipPath
+       id="clipPath80">
+      <path
+         d="m285.43 395.82h17.831v17.831h-17.831v-17.831z"
+         id="path82" />
+    </clipPath>
+    <clipPath
+       id="clipPath76">
+      <path
+         d="m285.43 413.65h17.831v-17.831h-17.831v17.831z"
+         id="path78" />
+    </clipPath>
+    <clipPath
+       id="clipPath56">
+      <path
+         d="m507.61 370.69h17.831v17.832h-17.831v-17.832z"
+         id="path58" />
+    </clipPath>
+    <clipPath
+       id="clipPath52">
+      <path
+         d="m507.61 388.52h17.831v-17.832h-17.831v17.832z"
+         id="path54" />
+    </clipPath>
+    <clipPath
+       id="clipPath32">
+      <path
+         d="m233.23 132.26h335.48v145.16h-335.48v-145.16z"
+         id="path34" />
+    </clipPath>
+    <clipPath
+       id="clipPath28">
+      <path
+         d="m233.23 277.42h335.48v-145.16h-335.48v145.16z"
+         id="path30" />
+    </clipPath>
+    <clipPath
+       id="clipPath16">
+      <path
+         d="m0 0h800v600h-800v-600z"
+         id="path18" />
+    </clipPath>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient236"
+       id="linearGradient8834"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-3.8e-6,86.543,-86.543,-3.8e-6,401.44,203.81)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient236"
+       id="linearGradient10664"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-3.8e-6,86.543,-86.543,-3.8e-6,401.44,203.81)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4757"
+       id="linearGradient10774"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.54745837,-0.09647704,0.15669612,0.61201115,588.89027,-943.66914)"
+       x1="459.491"
+       y1="691.36993"
+       x2="468.58945"
+       y2="708.03748" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4757"
+       id="linearGradient10777"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(0.52966872,0.16872919,-0.14536503,0.61480105,819.98188,-1028.3252)"
+       x1="459.491"
+       y1="691.36993"
+       x2="468.58945"
+       y2="708.03748" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient10794"
+       id="linearGradient10784"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(-168.52665,0)"
+       x1="1063.7129"
+       y1="-492.38843"
+       x2="1063.7129"
+       y2="-619.85187" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient236"
+       id="linearGradient11183"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-3.8e-6,86.543,-86.543,-3.8e-6,401.44,203.81)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient3831"
+       id="linearGradient3803"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(0,1055.0634)"
+       x1="354.45901"
+       y1="314.94449"
+       x2="354.45901"
+       y2="126.36748" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4757-6"
+       id="linearGradient3805"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.2476982,0.30664875,-0.23951875,1.4403795,-76.491839,103.84285)"
+       x1="459.491"
+       y1="691.36993"
+       x2="468.58945"
+       y2="708.03748" />
+    <linearGradient
+       id="linearGradient5261-8">
+      <stop
+         id="stop5263-6"
+         offset="0"
+         style="stop-color:#dfe1eb;stop-opacity:0.69921875;" />
+      <stop
+         id="stop5265-2"
+         offset="1"
+         style="stop-color:#394093;stop-opacity:1;" />
+    </linearGradient>
+    <radialGradient
+       r="176"
+       fy="739.22925"
+       fx="1302.9578"
+       cy="739.22925"
+       cx="1302.9578"
+       gradientTransform="matrix(1,0,0,0.71122504,0,113.99767)"
+       gradientUnits="userSpaceOnUse"
+       id="radialGradient4540"
+       xlink:href="#linearGradient5261-8"
+       inkscape:collect="always" />
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5261"
+       id="radialGradient4702"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.1685272,0,0,1.5529465,-1365.3708,-810.51653)"
+       cx="1456.5345"
+       cy="801.08014"
+       fx="1456.5345"
+       fy="801.08014"
+       r="176" />
+    <linearGradient
+       id="linearGradient5261-7">
+      <stop
+         id="stop5263-2"
+         offset="0"
+         style="stop-color:#dfe1eb;stop-opacity:0.69921875;" />
+      <stop
+         id="stop5265-26"
+         offset="1"
+         style="stop-color:#394093;stop-opacity:1;" />
+    </linearGradient>
+    <radialGradient
+       r="176"
+       fy="801.08014"
+       fx="1477.7198"
+       cy="801.08014"
+       cx="1477.7198"
+       gradientTransform="matrix(1.1685272,0,0,1.5529465,-252.59971,-511.32583)"
+       gradientUnits="userSpaceOnUse"
+       id="radialGradient4731"
+       xlink:href="#linearGradient5261-7"
+       inkscape:collect="always" />
+    <linearGradient
+       id="linearGradient5261-1">
+      <stop
+         id="stop5263-0"
+         offset="0"
+         style="stop-color:#dfe1eb;stop-opacity:0.69921875;" />
+      <stop
+         id="stop5265-6"
+         offset="1"
+         style="stop-color:#394093;stop-opacity:1;" />
+    </linearGradient>
+    <radialGradient
+       r="176"
+       fy="801.08014"
+       fx="1477.7198"
+       cy="801.08014"
+       cx="1477.7198"
+       gradientTransform="matrix(1.1685272,0,0,1.5529465,-252.59971,-511.32583)"
+       gradientUnits="userSpaceOnUse"
+       id="radialGradient4731-9"
+       xlink:href="#linearGradient5261-1"
+       inkscape:collect="always" />
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Mend-5"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3919-2"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6,-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Mend-3"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3919-6"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker2142-5"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1901-3"
+         style="fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:#ff0000;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker2142-6"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1901-2"
+         style="fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:#ff0000;stroke-width:0.625;stroke-linejoin:round;stroke-opacity:1"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.2926343"
+     inkscape:cx="191.681"
+     inkscape:cy="634.84075"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="2452"
+     inkscape:window-height="1486"
+     inkscape:window-x="108"
+     inkscape:window-y="40"
+     inkscape:window-maximized="1"
+     showguides="false"
+     inkscape:guide-bbox="true" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:url(#radialGradient4702);fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;marker:none;enable-background:accumulate"
+       id="path4654"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/солнце.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"
+       sodipodi:type="arc"
+       sodipodi:cx="186.51469"
+       sodipodi:cy="435.31436"
+       sodipodi:rx="175"
+       sodipodi:ry="175"
+       sodipodi:start="4.712389"
+       sodipodi:end="0"
+       d="m 186.5147,260.31436 a 175,175 0 0 1 174.99999,175 l -175,0 z" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/солнце.png"
+       id="path4660"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:none;stroke:#000000;stroke-width:3;stroke-opacity:1;marker:none;enable-background:accumulate"
+       sodipodi:type="arc"
+       sodipodi:cx="184.33519"
+       sodipodi:cy="436.93533"
+       sodipodi:rx="264.23959"
+       sodipodi:ry="264.23959"
+       sodipodi:start="4.712389"
+       sodipodi:end="0"
+       sodipodi:open="true"
+       d="M 184.3352,172.69574 A 264.23959,264.23959 0 0 1 448.57478,436.93533" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/солнце.png"
+       sodipodi:nodetypes="ccc"
+       inkscape:connector-curvature="0"
+       id="path4662"
+       d="M 186.51469,94.892959 V 435.31437 h 382.97394"
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow2Mstart);marker-end:url(#Arrow2Mend)" />
+    <text
+       id="text4664"
+       y="453.4501"
+       x="560.03375"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/солнце.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana"
+         y="453.4501"
+         x="560.03375"
+         id="tspan4666"
+         sodipodi:role="line">x</tspan></text>
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/солнце.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="164.88133"
+       y="104.31369"
+       id="text4668"><tspan
+         sodipodi:role="line"
+         id="tspan4670"
+         x="164.88133"
+         y="104.31369"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana">y</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:4, 4;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 188.12954,250.20133 183.11932,-2e-5 0,184.5666"
+       id="path4672"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/солнце.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none;marker-end:url(#Arrow2Mend)"
+       d="m 379.27449,253.55998 51.47474,25.80029"
+       id="path4676"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/солнце.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:4, 4;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 371.24886,250.20131 186.47819,434.79245"
+       id="path4678"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/солнце.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       sodipodi:type="arc"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-end:url(#Arrow2Mend);enable-background:accumulate"
+       id="path4682"
+       sodipodi:cx="184.33519"
+       sodipodi:cy="436.93527"
+       sodipodi:rx="36.42857"
+       sodipodi:ry="36.42857"
+       d="m 186.87055,400.59504 a 36.42857,36.42857 0 0 1 23.22353,10.58134"
+       sodipodi:start="4.7820435"
+       sodipodi:end="5.4977871"
+       sodipodi:open="true"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/солнце.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       id="text4704"
+       y="392.16006"
+       x="203.25487"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/солнце.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.44493675px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana"
+         y="392.16006"
+         x="203.25487"
+         id="tspan4706"
+         sodipodi:role="line">𝛂</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow2Mstart);marker-end:none"
+       d="m 371.51949,349.84978 -185.0048,85.46459"
+       id="path5602"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/солнце.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       id="text5604"
+       y="366.63388"
+       x="374.73758"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/солнце.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana"
+         y="366.63388"
+         x="374.73758"
+         id="tspan5606"
+         sodipodi:role="line">z</tspan></text>
+    <rect
+       y="66.230934"
+       x="428.44592"
+       height="28.067997"
+       width="28.067997"
+       id="rect8250"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ac9393;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+       transform="rotate(23.785968)"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/солнце.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       id="text1826"
+       y="232.99043"
+       x="384.16559"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/солнце.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.44493675px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana"
+         y="232.99043"
+         x="384.16559"
+         id="tspan1824"
+         sodipodi:role="line">Z<tspan
+   style="font-size:64.99999762%;baseline-shift:sub"
+   id="tspan1828">КА</tspan> = 0</tspan></text>
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/солнце.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="160.82945"
+       y="253.45705"
+       id="text1834"><tspan
+         sodipodi:role="line"
+         id="tspan1832"
+         x="160.82945"
+         y="253.45705"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.44493675px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana">Y<tspan
+   id="tspan1830"
+   style="font-size:64.99999762%;baseline-shift:sub">КА</tspan></tspan></text>
+    <text
+       id="text1840"
+       y="451.48108"
+       x="367.0589"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/солнце.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.44493675px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana"
+         y="451.48108"
+         x="367.0589"
+         id="tspan1838"
+         sodipodi:role="line">X<tspan
+   style="font-size:64.99999762%;baseline-shift:sub"
+   id="tspan1836">КА</tspan></tspan></text>
+    <text
+       id="text1846"
+       y="350.28094"
+       x="241.24252"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/солнце.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.44493675px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana"
+         y="350.28094"
+         x="241.24252"
+         id="tspan1844"
+         sodipodi:role="line">R<tspan
+   style="font-size:64.99999762%;baseline-shift:sub"
+   id="tspan1842">КА</tspan></tspan></text>
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#ff0000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-variant-east_asian:normal;opacity:1;vector-effect:none;fill-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;marker-start:none;marker-end:url(#marker2142)"
+       d="m 371.24886,250.20131 v 49.45075"
+       id="path1848"
+       inkscape:connector-curvature="0" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path1870"
+       d="M 371.24886,250.20131 H 321.79811"
+       style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#ff0000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:none;marker-end:url(#marker2179);font-variant-east_asian:normal" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path1872"
+       d="m 371.24886,250.20131 -49.5113,49.45075"
+       style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#ff0000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker-start:none;marker-end:url(#marker2166);font-variant-east_asian:normal"
+       sodipodi:nodetypes="cc" />
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/солнце.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="327.30496"
+       y="311.89908"
+       id="text2185"><tspan
+         sodipodi:role="line"
+         id="tspan2183"
+         x="327.30496"
+         y="311.89908"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.44493675px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana">F<tspan
+   id="tspan2181"
+   style="font-size:64.99999762%;baseline-shift:sub">Г</tspan></tspan></text>
+    <text
+       id="text2191"
+       y="311.89908"
+       x="375.65582"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/солнце.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.44493675px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana"
+         y="311.89908"
+         x="375.65582"
+         id="tspan2189"
+         sodipodi:role="line">F<tspan
+   style="font-size:64.99999762%;baseline-shift:sub"
+   id="tspan2187">Г</tspan><tspan
+   id="tspan2195"
+   style="font-size:65%;baseline-shift:super">Y</tspan></tspan></text>
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/солнце.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="307.9646"
+       y="240.72659"
+       id="text2203"><tspan
+         sodipodi:role="line"
+         id="tspan2201"
+         x="307.9646"
+         y="240.72659"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.44493675px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana">F<tspan
+   id="tspan2197"
+   style="font-size:64.99999762%;baseline-shift:sub">Г</tspan><tspan
+   style="font-size:64.99999762%;baseline-shift:super"
+   id="tspan2199">X</tspan></tspan></text>
+  </g>
+</svg>

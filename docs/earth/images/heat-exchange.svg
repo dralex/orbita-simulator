@@ -1,0 +1,523 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg1898"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="heat-exchange.svg">
+  <defs
+     id="defs1892">
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Lend"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path8556"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker1817"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1815"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker1821"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1819"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker1825"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1823"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker1829"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1827"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker1833"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1831"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker1837"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1835"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker1841"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1839"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Lend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker1845"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1843"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="matrix(-1.1,0,0,-1.1,-1.1,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Mstart"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path4055"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mstart"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="marker1851"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1849"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(0.6)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow2Mend"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow2Mend"
+       style="overflow:visible">
+      <path
+         inkscape:connector-curvature="0"
+         id="path3919"
+         style="fill-rule:evenodd;stroke-width:0.625;stroke-linejoin:round"
+         d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
+         transform="scale(-0.6)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="-274.28571"
+     inkscape:cy="560"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="2452"
+     inkscape:window-height="1486"
+     inkscape:window-x="108"
+     inkscape:window-y="40"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata1895">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       inkscape:connector-curvature="0"
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло.png"
+       id="path8277"
+       d="M 95.629291,69.665828 H 138.3518 v 42.722512"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
+    <rect
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло.png"
+       y="79.722748"
+       x="69.364037"
+       height="52.630013"
+       width="52.630013"
+       id="rect8279"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
+    <path
+       inkscape:connector-curvature="0"
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло.png"
+       id="path8281"
+       d="M 138.3518,112.38834 H 95.629291 V 69.665828"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:none;stroke:#000000;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.5875, 1.5875;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path8283"
+       d="m 95.535443,69.723118 -26.393087,9.85041"
+       style="fill:none;stroke:#000000;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло.png"
+       inkscape:connector-curvature="0"
+       id="path8285"
+       d="m 121.99404,79.722748 16.30789,-10.19244"
+       style="fill:none;stroke:#000000;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path8287"
+       d="m 121.99404,132.35275 16.4932,-20.19954"
+       style="fill:none;stroke:#000000;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло.png"
+       inkscape:connector-curvature="0"
+       id="path8289"
+       d="M 95.679033,112.52384 69.364024,132.53809"
+       style="fill:none;stroke:#000000;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.5875, 1.5875;stroke-dashoffset:0;stroke-opacity:1" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow2Mstart);marker-end:url(#Arrow2Mend)"
+       d="m 61.866579,158.20047 24.830855,8.73009 9.145164,-26.01156"
+       id="path8291"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.17499995px;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="-103.284"
+       y="143.43796"
+       id="text8293"
+       transform="rotate(-70.629305)"><tspan
+         sodipodi:role="line"
+         id="tspan8295"
+         x="-103.284"
+         y="143.43796"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;stroke-width:0.26458332">x</tspan></text>
+    <text
+       id="text8297"
+       y="112.95817"
+       x="-134.81979"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.17499995px;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"
+       transform="rotate(-70.629305)"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;stroke-width:0.26458332"
+         y="112.95817"
+         x="-134.81979"
+         id="tspan8299"
+         sodipodi:role="line">y</tspan></text>
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло.png"
+       sodipodi:nodetypes="cc"
+       inkscape:connector-curvature="0"
+       id="path8301"
+       d="m 80.74198,151.45201 5.955454,15.47855"
+       style="fill:none;stroke:#000000;stroke-width:0.52916664;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow2Mstart);marker-end:none" />
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.17499995px;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="-113.76439"
+       y="129.3631"
+       id="text8303"
+       transform="rotate(-70.629305)"><tspan
+         sodipodi:role="line"
+         id="tspan8305"
+         x="-113.76439"
+         y="129.3631"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;stroke-width:0.26458332">z</tspan></text>
+    <circle
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffd157;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1.01622319;marker:none;enable-background:accumulate"
+       id="path8331"
+       transform="rotate(-70.629305)"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"
+       cx="14.903464"
+       cy="134.87453"
+       r="7.6216736" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.3223252;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Lend)"
+       d="m 109.69975,41.273368 c 3.94023,3.31377 -0.19208,4.14361 -3.54248,5.16853 -3.35039,1.02489 2.62086,5.69058 1.32771,7.76671 -1.29315,2.07616 -7.16434,1.77895 -6.10539,4.6972 1.05894,2.91825 4.56816,6.25118 0.99689,7.11446 -3.571238,0.86328 -4.727546,3.73285 -3.313295,5.5067 1.414275,1.77384 0.115517,2.67488 -0.650029,4.72765"
+       id="path8333"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="czzzzzc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       sodipodi:nodetypes="czzzzzc"
+       inkscape:connector-curvature="0"
+       id="path8987"
+       d="m 113.40609,41.643998 c 3.94023,3.31377 -0.19209,4.14364 -3.54248,5.16853 -3.35039,1.02489 2.62086,5.69058 1.3277,7.76674 -1.29315,2.07613 -7.16433,1.77892 -6.10539,4.6972 1.05894,2.91822 4.56817,6.25117 0.9969,7.11443 -3.57124,0.86328 -4.72755,3.73285 -3.3133,5.50669 1.41428,1.77388 0.11552,2.67489 -0.65003,4.72766"
+       style="fill:none;stroke:#000000;stroke-width:0.3223252;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Lend)"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.3223252;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Lend)"
+       d="m 117.48305,42.014648 c 3.94023,3.31375 -0.19208,4.14362 -3.54248,5.16851 -3.35039,1.02489 2.62086,5.69057 1.32771,7.76673 -1.29315,2.07616 -7.16434,1.77893 -6.10539,4.6972 1.05894,2.91823 4.56816,6.25118 0.99689,7.11447 -3.57124,0.86325 -4.72754,3.73282 -3.31329,5.50669 1.41427,1.77384 0.11551,2.67486 -0.65003,4.72763"
+       id="path8990"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="czzzzzc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       sodipodi:nodetypes="czzzzzc"
+       inkscape:connector-curvature="0"
+       id="path8992"
+       d="m 130.72172,96.816528 c 1.92646,-4.77443 3.99843,-1.10405 6.01303,1.76247 2.01459,2.866552 4.59546,-4.25831 6.97052,-3.67374 2.37508,0.58454 3.91565,6.257792 6.36082,4.34504 2.44517,-1.91275 4.52371,-6.28343 6.45324,-3.15677 1.92953,3.12666 5.01629,3.33475 6.26332,1.43962 1.24701,-1.89518 2.50677,-0.94041 4.69578,-0.8501"
+       style="fill:none;stroke:#000000;stroke-width:0.3223252;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Lend)"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.3223252;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Lend)"
+       d="m 119.78464,76.458108 c -3.08766,-4.11977 1.12524,-3.99251 4.62068,-4.23227 3.49544,-0.23977 -1.26444,-6.13619 0.46516,-7.86564 1.72964,-1.72948 7.38109,-0.11073 7.01033,-3.19294 -0.37074,-3.08224 -3.03425,-7.12314 0.63973,-7.15545 3.67395,-0.0323 5.44992,-2.56558 4.474,-4.61356 -0.97594,-2.04798 0.49308,-2.63155 1.70349,-4.4577"
+       id="path8994"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="czzzzzc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       sodipodi:nodetypes="czzzzzc"
+       inkscape:connector-curvature="0"
+       id="path8996"
+       d="m 82.402902,100.27154 c -1.682009,4.86592 -3.937344,1.30527 -6.094624,-1.455482 -2.157281,-2.76074 -4.373749,4.485752 -6.77537,4.022332 -2.401676,-0.46344 -4.227777,-6.051342 -6.572859,-4.017112 -2.345108,2.034222 -4.199466,6.504622 -6.284965,3.479772 -2.085525,-3.024852 -5.178848,-3.076262 -6.328251,-1.12033 -1.14935,1.95591 -2.455889,1.06622 -4.646639,1.08699"
+       style="fill:none;stroke:#000000;stroke-width:0.3223252;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Lend)"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.3223252;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Lend)"
+       d="m 106.28295,122.39377 c 5.12948,0.44127 2.22829,3.49872 0.0788,6.2655 -2.14953,2.7668 5.41896,3.14428 5.55678,5.58633 0.13782,2.44211 -4.83404,5.57898 -2.28817,7.35552 2.54582,1.7766 7.33393,2.48172 4.91075,5.24346 -2.42316,2.76178 -1.7167,5.77379 0.46087,6.41012 2.17758,0.63627 1.63431,2.12066 2.19009,4.23987"
+       id="path8998"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="czzzzzc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       sodipodi:nodetypes="czzzzzc"
+       inkscape:connector-curvature="0"
+       id="path9000"
+       d="m 83.267111,111.81449 c 1.598136,4.8941 -2.349871,3.41826 -5.73659,2.52074 -3.386747,-0.89752 -0.77687,6.21675 -2.970902,7.29784 -2.19411,1.08111 -7.024342,-2.26976 -7.664845,0.7679 -0.640583,3.03763 0.581316,7.7206 -2.907744,6.56921 -3.489061,-1.15136 -5.985563,0.67588 -5.720398,2.92897 0.265218,2.25305 -1.313471,2.33301 -3.046994,3.67268"
+       style="fill:none;stroke:#000000;stroke-width:0.3223252;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Lend)"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.3223252;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow2Lend)"
+       d="m 118.13663,96.904818 c -1.78097,-4.83058 2.21972,-3.50417 5.63779,-2.7346 3.41807,0.76959 0.54264,-6.24157 2.69447,-7.40437 2.15193,-1.16281 7.10469,2.00412 7.63058,-1.05547 0.52594,-3.05954 -0.87114,-7.69326 2.65874,-6.67385 3.52989,1.01939 5.95593,-0.90041 5.60626,-3.14193 -0.34973,-2.24152 1.22484,-2.38075 2.90679,-3.78463"
+       id="path9002"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="czzzzzc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       id="text8181-7"
+       y="104.55334"
+       x="149.91739"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.17499995px;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;fill:#000000;stroke-width:0.26458332"
+         y="104.55334"
+         x="149.91739"
+         id="tspan8183-3"
+         sodipodi:role="line">1</tspan></text>
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.17499995px;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="133.41748"
+       y="62.262512"
+       id="text8208-2"><tspan
+         sodipodi:role="line"
+         id="tspan8210-8"
+         x="133.41748"
+         y="62.262512"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;fill:#000000;stroke-width:0.26458332">2</tspan></text>
+    <text
+       id="text8212-9"
+       y="95.594528"
+       x="63.040779"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.17499995px;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;fill:#000000;stroke-width:0.26458332"
+         y="95.594528"
+         x="63.040779"
+         id="tspan8214-8"
+         sodipodi:role="line">3</tspan></text>
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.17499995px;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="115.92644"
+       y="144.10394"
+       id="text8219-1"><tspan
+         sodipodi:role="line"
+         id="tspan8221-7"
+         x="115.92644"
+         y="144.10394"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;fill:#000000;stroke-width:0.26458332">4</tspan></text>
+    <text
+       id="text8223-6"
+       y="121.15738"
+       x="62.610958"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.17499995px;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;fill:#000000;stroke-width:0.26458332"
+         y="121.15738"
+         x="62.610958"
+         id="tspan8225-8"
+         sodipodi:role="line">6</tspan></text>
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.17499995px;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="141.34335"
+       y="84.332901"
+       id="text8227-6"><tspan
+         sodipodi:role="line"
+         id="tspan8229-5"
+         x="141.34335"
+         y="84.332901"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;fill:#000000;stroke-width:0.26458332">5</tspan></text>
+  </g>
+</svg>
