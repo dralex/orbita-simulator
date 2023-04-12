@@ -8,6 +8,8 @@ Authors:
 
 * [Alexey Fedoseev](mailto:aleksey@fedoseev.net)
 * [Nikolay Safronov](mailto:bfishh@gmail.com)
+* [Alexander Shaenko](mailto:ark4110@gmail.com)
+* [Ilya Tagunov](mailto:tagunil@gmail.com)
 
 ## License
 
