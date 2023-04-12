@@ -4,7 +4,7 @@
 
 The simulation program for probe space station from orbital missions to landing
 including several models (ballistics, landing, radio, surface activity, etc.).
-The Pyhton language is used for satellite flight programs.
+The Python language is used for satellite flight programs.
 
 There are two models available in the current version of the simulator:
 
