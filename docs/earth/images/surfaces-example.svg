@@ -13,11 +13,11 @@
    height="297mm"
    viewBox="0 0 210 297"
    version="1.1"
-   id="svg4805"
+   id="svg2718"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
    sodipodi:docname="surfaces.svg">
   <defs
-     id="defs4799" />
+     id="defs2712" />
   <sodipodi:namedview
      id="base"
      pagecolor="#ffffff"
@@ -37,7 +37,7 @@
      inkscape:window-y="40"
      inkscape:window-maximized="1" />
   <metadata
-     id="metadata4802">
+     id="metadata2715">
     <rdf:RDF>
       <cc:Work
          rdf:about="">
@@ -53,103 +53,90 @@
      inkscape:groupmode="layer"
      id="layer1">
     <g
-       transform="matrix(0.26458333,0,0,0.26458333,-1150.5428,-235.809)"
-       inkscape:export-ydpi="199"
-       inkscape:export-xdpi="199"
+       id="g5199"
        inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/грани.png"
-       id="g4625">
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"
+       transform="matrix(0.26458333,0,0,0.26458333,-1156.8501,-229.00544)">
       <rect
-         inkscape:export-ydpi="199"
-         inkscape:export-xdpi="199"
-         inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло-2.png"
-         y="934.81433"
-         x="4476.3257"
-         height="168.64224"
+         style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffd42a;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+         id="rect4333"
          width="168.64224"
-         id="rect4619"
-         style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffd42a;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
-      <rect
-         inkscape:export-ydpi="199"
-         inkscape:export-xdpi="199"
-         inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло-2.png"
-         y="934.81433"
-         x="4476.3257"
-         height="129.00107"
-         width="168.64209"
-         id="rect4621"
-         style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
-      <rect
-         style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#2c5aa0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
-         id="rect4623"
-         width="168.64209"
-         height="86.957481"
+         height="168.64224"
          x="4476.3257"
          y="934.81433"
          inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло-2.png"
          inkscape:export-xdpi="199"
          inkscape:export-ydpi="199" />
+      <rect
+         style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+         id="rect5149"
+         width="168.64209"
+         height="129.00107"
+         x="4476.3257"
+         y="934.81433"
+         inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло-2.png"
+         inkscape:export-xdpi="199"
+         inkscape:export-ydpi="199" />
+      <rect
+         inkscape:export-ydpi="199"
+         inkscape:export-xdpi="199"
+         inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло-2.png"
+         y="934.81433"
+         x="4476.3257"
+         height="86.957481"
+         width="168.64209"
+         id="rect5147"
+         style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#2c5aa0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
     </g>
     <text
-       inkscape:export-ydpi="199"
-       inkscape:export-xdpi="199"
-       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/грани.png"
-       id="text4629"
-       y="24.953386"
-       x="12.682158"
+       xml:space="preserve"
        style="font-style:normal;font-weight:normal;font-size:3.17499995px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       xml:space="preserve"><tspan
+       x="11.491972"
+       y="31.756968"
+       id="text5151"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/грани.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         sodipodi:role="line"
+         id="tspan5153"
+         x="11.491972"
+         y="31.756968"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;stroke-width:0.26458332">50%</tspan></text>
+    <text
+       id="text5155"
+       y="47.842903"
+       x="11.491972"
+       style="font-style:normal;font-weight:normal;font-size:3.17499995px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/грани.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;stroke-width:0.26458332"
-         y="24.953386"
-         x="12.682158"
-         id="tspan4627"
-         sodipodi:role="line">k<tspan
-   style="font-size:3.4395833px;baseline-shift:super;stroke-width:0.26458332"
-   id="tspan4711">(1-4)</tspan><tspan
-   style="font-size:3.4395833px;baseline-shift:sub;stroke-width:0.26458332"
-   id="tspan4709">сб</tspan></tspan></text>
-    <g
-       inkscape:export-ydpi="199"
-       inkscape:export-xdpi="199"
+         y="47.842903"
+         x="11.491972"
+         id="tspan5157"
+         sodipodi:role="line">25%</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:3.17499995px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="11.491972"
+       y="59.920425"
+       id="text5159"
        inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/грани.png"
-       transform="matrix(0.26458333,0,0,0.26458333,-1101.0673,-235.809)"
-       id="g4645">
-      <rect
-         style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffd42a;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
-         id="rect4639"
-         width="168.64224"
-         height="168.64224"
-         x="4476.3257"
-         y="934.81433"
-         inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло-2.png"
-         inkscape:export-xdpi="199"
-         inkscape:export-ydpi="199" />
-      <rect
-         style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
-         id="rect4641"
-         width="168.64209"
-         height="129.00107"
-         x="4476.3257"
-         y="934.81433"
-         inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло-2.png"
-         inkscape:export-xdpi="199"
-         inkscape:export-ydpi="199" />
-      <rect
-         inkscape:export-ydpi="199"
-         inkscape:export-xdpi="199"
-         inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло-2.png"
-         y="934.81433"
-         x="4476.3257"
-         height="86.957481"
-         width="168.64209"
-         id="rect4643"
-         style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#2c5aa0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
-    </g>
-    <g
-       inkscape:export-ydpi="199"
        inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         sodipodi:role="line"
+         id="tspan5161"
+         x="11.491972"
+         y="59.920425"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;stroke-width:0.26458332">25%</tspan></text>
+    <g
+       id="g5204"
+       transform="matrix(0.26458333,0,0,0.26458333,-1107.3746,-229.00544)"
        inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/грани.png"
-       id="g4653"
-       transform="matrix(0.26458333,0,0,0.26458333,-1051.5919,-235.809)">
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199">
       <rect
          inkscape:export-ydpi="199"
          inkscape:export-xdpi="199"
@@ -158,7 +145,7 @@
          x="4476.3257"
          height="168.64224"
          width="168.64224"
-         id="rect4647"
+         id="rect5206"
          style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffd42a;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
       <rect
          inkscape:export-ydpi="199"
@@ -168,11 +155,11 @@
          x="4476.3257"
          height="129.00107"
          width="168.64209"
-         id="rect4649"
+         id="rect5208"
          style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
       <rect
          style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#2c5aa0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
-         id="rect4651"
+         id="rect5210"
          width="168.64209"
          height="86.957481"
          x="4476.3257"
@@ -182,14 +169,14 @@
          inkscape:export-ydpi="199" />
     </g>
     <g
-       inkscape:export-ydpi="199"
-       inkscape:export-xdpi="199"
+       transform="matrix(0.26458333,0,0,0.26458333,-1057.8992,-229.00544)"
+       id="g5212"
        inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/грани.png"
-       transform="matrix(0.26458333,0,0,0.26458333,-1002.1165,-235.809)"
-       id="g4661">
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199">
       <rect
          style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffd42a;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
-         id="rect4655"
+         id="rect5214"
          width="168.64224"
          height="168.64224"
          x="4476.3257"
@@ -199,7 +186,7 @@
          inkscape:export-ydpi="199" />
       <rect
          style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
-         id="rect4657"
+         id="rect5216"
          width="168.64209"
          height="129.00107"
          x="4476.3257"
@@ -215,18 +202,110 @@
          x="4476.3257"
          height="86.957481"
          width="168.64209"
-         id="rect4659"
+         id="rect5218"
          style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#2c5aa0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
     </g>
     <g
-       inkscape:export-ydpi="199"
-       inkscape:export-xdpi="199"
+       id="g5220"
+       transform="matrix(0.26458333,0,0,0.26458333,-1008.4238,-229.00544)"
        inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/грани.png"
-       transform="matrix(0.26458333,0,0,0.26458333,-930.53598,-235.809)"
-       id="g4667">
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199">
+      <rect
+         inkscape:export-ydpi="199"
+         inkscape:export-xdpi="199"
+         inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло-2.png"
+         y="934.81433"
+         x="4476.3257"
+         height="168.64224"
+         width="168.64224"
+         id="rect5222"
+         style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffd42a;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
+      <rect
+         inkscape:export-ydpi="199"
+         inkscape:export-xdpi="199"
+         inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло-2.png"
+         y="934.81433"
+         x="4476.3257"
+         height="129.00107"
+         width="168.64209"
+         id="rect5224"
+         style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
+      <rect
+         style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#2c5aa0;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+         id="rect5226"
+         width="168.64209"
+         height="86.957481"
+         x="4476.3257"
+         y="934.81433"
+         inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло-2.png"
+         inkscape:export-xdpi="199"
+         inkscape:export-ydpi="199" />
+    </g>
+    <g
+       id="g5228"
+       transform="matrix(0.26458333,0,0,0.26458333,-936.84335,-229.00544)"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/грани.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199">
+      <rect
+         inkscape:export-ydpi="199"
+         inkscape:export-xdpi="199"
+         inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло-2.png"
+         y="934.81433"
+         x="4476.3257"
+         height="168.64224"
+         width="168.64224"
+         id="rect5230"
+         style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffd42a;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
+      <rect
+         inkscape:export-ydpi="199"
+         inkscape:export-xdpi="199"
+         inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло-2.png"
+         y="934.70209"
+         x="4476.2134"
+         height="101.59695"
+         width="168.74857"
+         id="rect5232"
+         style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.77545941;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
+    </g>
+    <text
+       id="text5237"
+       y="31.756968"
+       x="231.49857"
+       style="font-style:normal;font-weight:normal;font-size:3.17499995px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/грани.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;stroke-width:0.26458332"
+         y="31.756968"
+         x="231.49857"
+         id="tspan5239"
+         sodipodi:role="line">60%</tspan></text>
+    <text
+       id="text5246"
+       y="56.106483"
+       x="231.49857"
+       style="font-style:normal;font-weight:normal;font-size:3.17499995px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/грани.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;stroke-width:0.26458332"
+         y="56.106483"
+         x="231.49857"
+         id="tspan5248"
+         sodipodi:role="line">40%</tspan></text>
+    <g
+       transform="matrix(0.26458333,0,0,0.26458333,-887.36795,-229.00544)"
+       id="g5250"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/грани.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199">
       <rect
          style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffd42a;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
-         id="rect4663"
+         id="rect5252"
          width="168.64224"
          height="168.64224"
          x="4476.3257"
@@ -236,189 +315,98 @@
          inkscape:export-ydpi="199" />
       <rect
          style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.77545941;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
-         id="rect4665"
+         id="rect5254"
          width="168.74857"
          height="101.59695"
-         x="4476.2134"
+         x="4476.3315"
          y="934.70209"
          inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло-2.png"
          inkscape:export-xdpi="199"
          inkscape:export-ydpi="199" />
     </g>
-    <g
+    <text
        inkscape:export-ydpi="199"
        inkscape:export-xdpi="199"
        inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/грани.png"
-       id="g4682"
-       transform="matrix(0.26458333,0,0,0.26458333,-881.06058,-235.809)">
-      <rect
-         inkscape:export-ydpi="199"
-         inkscape:export-xdpi="199"
-         inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло-2.png"
-         y="934.81433"
-         x="4476.3257"
-         height="168.64224"
-         width="168.64224"
-         id="rect4678"
-         style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffd42a;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
-      <rect
-         inkscape:export-ydpi="199"
-         inkscape:export-xdpi="199"
-         inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/кубсат-тепло-2.png"
-         y="934.70209"
-         x="4476.3315"
-         height="101.59695"
-         width="168.74857"
-         id="rect4680"
-         style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.77545941;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
-    </g>
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.17499995px;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="48.061554"
+       y="70.877449"
+       id="text5262"><tspan
+         sodipodi:role="line"
+         id="tspan5264"
+         x="48.061554"
+         y="70.877449"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;stroke-width:0.26458332">1</tspan></text>
     <text
-       id="text4686"
-       y="64.073868"
-       x="54.368896"
+       id="text5266"
+       y="70.877449"
+       x="97.578308"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.17499995px;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        xml:space="preserve"
        inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/грани.png"
        inkscape:export-xdpi="199"
        inkscape:export-ydpi="199"><tspan
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;stroke-width:0.26458332"
-         y="64.073868"
-         x="54.368896"
-         id="tspan4684"
-         sodipodi:role="line">1</tspan></text>
+         y="70.877449"
+         x="97.578308"
+         id="tspan5268"
+         sodipodi:role="line">2</tspan></text>
     <text
        inkscape:export-ydpi="199"
        inkscape:export-xdpi="199"
        inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/грани.png"
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.17499995px;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="103.88564"
-       y="64.073868"
-       id="text4690"><tspan
+       x="147.07309"
+       y="70.877449"
+       id="text5274"><tspan
          sodipodi:role="line"
-         id="tspan4688"
-         x="103.88564"
-         y="64.073868"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;stroke-width:0.26458332">2</tspan></text>
+         id="tspan5276"
+         x="147.07309"
+         y="70.877449"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;stroke-width:0.26458332">3</tspan></text>
     <text
-       id="text4694"
-       y="64.073868"
-       x="153.3804"
+       id="text5278"
+       y="70.877449"
+       x="196.59372"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.17499995px;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        xml:space="preserve"
        inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/грани.png"
        inkscape:export-xdpi="199"
        inkscape:export-ydpi="199"><tspan
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;stroke-width:0.26458332"
-         y="64.073868"
-         x="153.3804"
-         id="tspan4692"
-         sodipodi:role="line">3</tspan></text>
+         y="70.877449"
+         x="196.59372"
+         id="tspan5280"
+         sodipodi:role="line">4</tspan></text>
     <text
        inkscape:export-ydpi="199"
        inkscape:export-xdpi="199"
        inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/грани.png"
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.17499995px;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="202.90105"
-       y="64.073868"
-       id="text4698"><tspan
+       x="268.09143"
+       y="70.877449"
+       id="text5286"><tspan
          sodipodi:role="line"
-         id="tspan4696"
-         x="202.90105"
-         y="64.073868"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;stroke-width:0.26458332">4</tspan></text>
+         id="tspan5288"
+         x="268.09143"
+         y="70.877449"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;stroke-width:0.26458332">5</tspan></text>
     <text
-       id="text4702"
-       y="64.073868"
-       x="274.39874"
+       id="text5290"
+       y="70.877449"
+       x="318.82526"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.17499995px;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        xml:space="preserve"
        inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/грани.png"
        inkscape:export-xdpi="199"
        inkscape:export-ydpi="199"><tspan
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;stroke-width:0.26458332"
-         y="64.073868"
-         x="274.39874"
-         id="tspan4700"
-         sodipodi:role="line">5</tspan></text>
-    <text
-       inkscape:export-ydpi="199"
-       inkscape:export-xdpi="199"
-       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/грани.png"
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.17499995px;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="325.1326"
-       y="64.073868"
-       id="text4707"><tspan
-         sodipodi:role="line"
-         id="tspan4704"
-         x="325.1326"
-         y="64.073868"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;stroke-width:0.26458332">6</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:3.17499995px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="12.682158"
-       y="41.123524"
-       id="text4719"
-       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/грани.png"
-       inkscape:export-xdpi="199"
-       inkscape:export-ydpi="199"><tspan
-         sodipodi:role="line"
-         id="tspan4717"
-         x="12.682158"
-         y="41.123524"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;stroke-width:0.26458332">k<tspan
-   id="tspan4713"
-   style="font-size:3.4395833px;baseline-shift:super;stroke-width:0.26458332">(1-4)</tspan><tspan
-   id="tspan4715"
-   style="font-size:3.4395833px;baseline-shift:sub;stroke-width:0.26458332">рад</tspan></tspan></text>
-    <text
-       inkscape:export-ydpi="199"
-       inkscape:export-xdpi="199"
-       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/грани.png"
-       id="text4727"
-       y="52.995281"
-       x="12.682158"
-       style="font-style:normal;font-weight:normal;font-size:3.17499995px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       xml:space="preserve"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;stroke-width:0.26458332"
-         y="52.995281"
-         x="12.682158"
-         id="tspan4725"
-         sodipodi:role="line">изол.</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:3.17499995px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="232.92357"
-       y="27.204927"
-       id="text4735"
-       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/грани.png"
-       inkscape:export-xdpi="199"
-       inkscape:export-ydpi="199"><tspan
-         sodipodi:role="line"
-         id="tspan4733"
-         x="232.92357"
-         y="27.204927"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;stroke-width:0.26458332">k<tspan
-   id="tspan4729"
-   style="font-size:3.4395833px;baseline-shift:super;stroke-width:0.26458332">(5-6)</tspan><tspan
-   id="tspan4731"
-   style="font-size:3.4395833px;baseline-shift:sub;stroke-width:0.26458332">рад</tspan></tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-weight:normal;font-size:3.17499995px;line-height:0%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="232.94423"
-       y="48.492199"
-       id="text4739"
-       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/грани.png"
-       inkscape:export-xdpi="199"
-       inkscape:export-ydpi="199"><tspan
-         sodipodi:role="line"
-         id="tspan4737"
-         x="232.94423"
-         y="48.492199"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana;stroke-width:0.26458332">изол.</tspan></text>
+         y="70.877449"
+         x="318.82526"
+         id="tspan5292"
+         sodipodi:role="line">6</tspan></text>
   </g>
 </svg>
