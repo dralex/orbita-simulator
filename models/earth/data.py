@@ -244,9 +244,9 @@ class LogicDevice(Device):
                 self.timer = None
                 self.set_mode(STATE_WAKEUP)
             else:
-                # do not run program in the safe mode
+                # do not run program in the sleep mode
                 return
-        if self.mode == STATE_ON or self.mode == STATE_SAFE:
+        if self.mode == STATE_ON:
             if self.program_instance:
                 self.program_instance.run()  # pylint: disable=E1103
 
