@@ -326,6 +326,27 @@ class Missions(XMLLoader):
         result += '</mission>\n'
         return result
 
+    def table(self):
+        result = ''
+        for mission in self.Miss.values():
+            result += ('  \\multicolumn{3}{|c|}{\\textbf{%s}}\\\\\n' %
+                       mission.full_name)
+            result += '  \\hline\n'
+            for a in mission.achievements.achievement:
+                if a.type != 'spec':
+                    for s in a.score:
+                        d = s.description if hasattr(s, 'description') else ''
+                        result += '  %s & %s & %s\\\\\n' % (s.full_name,
+                                                            d,
+                                                            s.score_value)
+                        result += '  \\hline\n'
+                else:
+                    result += '  %s & %s & %s\\\\\n' % (a.full_name,
+                                                        '',
+                                                        a.score[0].score_value)
+                    result += '  \\hline\n'
+        return result
+
 class Devices(XMLLoader):
 
     ORIGIN = _('devices')
