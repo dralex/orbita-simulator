@@ -781,6 +781,17 @@
          d="M 8.7185878,4.0337352 -2.2072895,0.01601326 8.7185884,-4.0017078 c -1.7454984,2.3720609 -1.7354408,5.6174519 -6e-7,8.035443 z"
          transform="scale(-0.6)" />
     </marker>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5261-7"
+       id="radialGradient1985"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.1685272,0,0,1.5529465,2989.3688,1097.3003)"
+       cx="1477.7198"
+       cy="801.08014"
+       fx="1477.7198"
+       fy="801.08014"
+       r="176" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -789,9 +800,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.2926343"
-     inkscape:cx="-804.10321"
-     inkscape:cy="997.65634"
+     inkscape:zoom="0.91403048"
+     inkscape:cx="5063.1023"
+     inkscape:cy="-1496.622"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -7961,5 +7972,264 @@
          x="-703.01111"
          y="116.45966"
          style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana">q</tspan></text>
+    <path
+       sodipodi:nodetypes="sscs"
+       inkscape:connector-curvature="0"
+       id="path1911"
+       d="m 4596.5088,2512.6645 c -4.6199,-1.4504 0.7648,-13.0588 4.5182,-11.4539 l 113.2598,48.4297 z"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ffd42a;fill-opacity:0.51968503;stroke:none;stroke-width:3;marker:none;enable-background:accumulate"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/фотозоны.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <circle
+       r="175"
+       cy="2343.1313"
+       cx="4541.2544"
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/фотозоны.png"
+       id="circle1913"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:url(#radialGradient1985);fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate" />
+    <path
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#aa0000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.99717581;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate;opacity:0.6"
+       id="circle1989"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/фотозоны.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"
+       sodipodi:type="arc"
+       sodipodi:cx="2154.5068"
+       sodipodi:cy="-4631.8184"
+       sodipodi:rx="176.35474"
+       sodipodi:ry="173.16559"
+       sodipodi:start="4.712389"
+       sodipodi:end="0"
+       d="m 2154.5068,-4804.9839 a 176.35474,173.16559 0 0 1 176.3548,173.1655 h -176.3548 z"
+       inkscape:transform-center-x="-84.109802"
+       inkscape:transform-center-y="89.35118"
+       transform="matrix(-0.03927113,0.99922859,-0.99917005,-0.04073334,0,0)" />
+    <circle
+       r="264.23959"
+       cy="2343.1311"
+       cx="4541.2544"
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/фотозоны.png"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:none;stroke:#000000;stroke-width:3;stroke-opacity:1;marker:none;enable-background:accumulate"
+       id="circle1919" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Arrow2Mstart);marker-end:url(#Arrow2Mend)"
+       d="m 4543.4337,2001.0889 v 340.4214 h 382.9739"
+       id="path1921"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/фотозоны.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/фотозоны.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="4916.9526"
+       y="2359.646"
+       id="text1925"><tspan
+         sodipodi:role="line"
+         id="tspan1923"
+         x="4916.9526"
+         y="2359.646"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana">x</tspan></text>
+    <text
+       id="text1929"
+       y="2010.5096"
+       x="4521.8003"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/фотозоны.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:20px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana"
+         y="2010.5096"
+         x="4521.8003"
+         id="tspan1927"
+         sodipodi:role="line">y</tspan></text>
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/фотозоны.png"
+       inkscape:connector-curvature="0"
+       id="path1933"
+       d="m 4543.3972,2340.9884 166.0787,205.1103"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:4, 4;stroke-dashoffset:0;stroke-opacity:1"
+       sodipodi:nodetypes="cc" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/фотозоны.png"
+       sodipodi:type="arc"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:none;stroke:#000000;stroke-width:0.99999994;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-end:url(#Arrow2Mend);enable-background:accumulate"
+       id="path1937"
+       sodipodi:cx="4540.0542"
+       sodipodi:cy="2358.0276"
+       sodipodi:rx="57.912155"
+       sodipodi:ry="57.912155"
+       d="m 4544.0848,2300.2559 a 57.912155,57.912155 0 0 1 48.5402,33.4791 57.912155,57.912155 0 0 1 -5.9616,58.664"
+       sodipodi:start="4.7820435"
+       sodipodi:end="0.63541289"
+       sodipodi:open="true" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-start:none;marker-end:url(#Arrow2Mend)"
+       d="M 4710.3548,2548.1618 4661.504,2529.987"
+       id="path1939"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/фотозоны.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/фотозоны.png"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:4, 4;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 4831.9285,2451.8109 -235.2073,182.9715"
+       id="path1941"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:4, 4;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 4568.3179,2547.1508 297.9951,0"
+       id="path1951"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/фотозоны.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/фотозоны.png"
+       sodipodi:type="arc"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:url(#Arrow2Mstart);marker-end:url(#Arrow2Mend);enable-background:accumulate"
+       id="path1953"
+       sodipodi:cx="3684.7168"
+       sodipodi:cy="3890.4548"
+       sodipodi:rx="36.42857"
+       sodipodi:ry="36.42857"
+       d="m 3687.6987,3926.7612 a 36.42857,36.42857 0 0 1 -36.476,-21.982 36.42857,36.42857 0 0 1 9.3013,-41.5595"
+       transform="matrix(0.25881906,0.96592582,0.96592582,-0.25881906,0,0)"
+       sodipodi:start="1.4888475"
+       sodipodi:end="3.9860796"
+       sodipodi:open="true" />
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/фотозоны.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="4724.0151"
+       y="2511.1108"
+       id="text1957"><tspan
+         sodipodi:role="line"
+         id="tspan1955"
+         x="4724.0151"
+         y="2511.1108"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.44493675px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana">𝛗</tspan></text>
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:4, 4;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 4543.3972,2340.9884 86.6767,250.018"
+       id="path1961"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/фотозоны.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       sodipodi:nodetypes="cc"
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:4, 4;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 4601.844,2508.7352 107.6319,37.3635"
+       id="path1963"
+       inkscape:connector-curvature="0"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/фотозоны.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <path
+       sodipodi:open="true"
+       sodipodi:end="2.3561945"
+       sodipodi:start="1.4888475"
+       transform="matrix(-0.96398227,0.26596652,0.26596652,0.96398227,0,0)"
+       d="m -3772.1279,3676.1383 a 36.42857,36.42857 0 0 1 -28.7409,-10.5474"
+       sodipodi:ry="36.42857"
+       sodipodi:rx="36.42857"
+       sodipodi:cy="3639.832"
+       sodipodi:cx="-3775.1099"
+       id="path1965"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;marker:none;marker-start:url(#Arrow2Mstart);marker-end:url(#Arrow2Mend);enable-background:accumulate"
+       sodipodi:type="arc"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/фотозоны.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199" />
+    <text
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/фотозоны.png"
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       x="4585.2642"
+       y="2367.0605"
+       id="text1973"><tspan
+         sodipodi:role="line"
+         x="4585.2642"
+         y="2367.0605"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.44493675px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana"
+         id="tspan1971">𝛂</tspan></text>
+    <text
+       id="text1977"
+       y="2530.8958"
+       x="4619.3198"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:0%;font-family:'Courier New';-inkscape-font-specification:'Courier New';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none"
+       xml:space="preserve"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/фотозоны.png"
+       inkscape:export-xdpi="199"
+       inkscape:export-ydpi="199"><tspan
+         id="tspan1975"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:13.44493675px;line-height:1.25;font-family:Verdana;-inkscape-font-specification:Verdana"
+         y="2530.8958"
+         x="4619.3198"
+         sodipodi:role="line">𝛃</tspan></text>
+    <rect
+       inkscape:export-ydpi="199"
+       inkscape:export-xdpi="199"
+       inkscape:export-filename="/home/dralex/Рабочий стол/Орбита/Тексты и методички/фотозоны.png"
+       y="217.70522"
+       x="5339.8672"
+       height="28.067997"
+       width="28.067997"
+       id="rect1983"
+       style="color:#000000;display:inline;overflow:visible;visibility:visible;fill:#ac9393;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:5.99999993, 1.99999994;stroke-dashoffset:0;stroke-opacity:1;marker:none;enable-background:accumulate"
+       transform="rotate(25.945023)" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-variant-east_asian:normal;opacity:1;vector-effect:none;fill-opacity:1;stroke-miterlimit:4;stroke-dasharray:4, 4;stroke-dashoffset:0"
+       d="m 4536.5008,2519.217 173.854,28.9448"
+       id="path1991"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-variant-east_asian:normal;opacity:1;vector-effect:none;fill-opacity:1;stroke-miterlimit:4;stroke-dasharray:4, 4;stroke-dashoffset:0"
+       d="m 4710.3548,2548.1618 6.6651,-195.2412"
+       id="path1993"
+       inkscape:connector-curvature="0" />
+    <g
+       id="g2023"
+       transform="matrix(-1.3948314,0.49850011,-0.49850011,-1.3948314,12558.29,3751.0873)">
+      <path
+         sodipodi:nodetypes="ccc"
+         inkscape:connector-curvature="0"
+         d="m 4775.8959,2578.3302 c -5.557,5.3463 -1.6301,12.4991 0,19.2144 1.6301,-6.7153 5.557,-13.8681 0,-19.2144 z"
+         style="fill:#ff0000;fill-rule:evenodd;stroke:#ff6600;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         id="path2018" />
+      <path
+         sodipodi:nodetypes="cccccc"
+         inkscape:connector-curvature="0"
+         id="path2014"
+         d="m 4773.7039,2578.296 0.2736,-21.6076 2.11,-3.6547 2.0067,3.4757 v 21.8208 z"
+         style="fill:#666666;fill-rule:evenodd;stroke:#000000;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+    </g>
   </g>
 </svg>
