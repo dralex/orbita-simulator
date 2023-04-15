@@ -18,8 +18,8 @@ pylint:
 
 clean:
 	rm -rf venus
-	rm -rf __pycache__ api/__pycache__ pycontrol/__pycache__ missions/__pycache__ calcmodels/__pycache__
+	rm -rf __pycache__ api/__pycache__ api-test/__pycache__ pycontrol/__pycache__ missions/__pycache__ calcmodels/__pycache__
 	rm -rf ru	
-	rm -f *~ pycontrol/*~ api/*~ xml-schemas/*~ probes/*~ missions/*~ calcmodels/*~ api/systems_pb2.py
+	rm -f *~ pycontrol/*~ api/*~ xml-schemas/*~ probes/*~ missions/*~ calcmodels/*~ api-test/*~ api/systems_pb2.py
 
 .PHONY: all clean
