@@ -2538,7 +2538,18 @@ TBD
 
 Данный интерфейс позволяет управлять аппаратом на уровне отдельных подсистем через объект
 \verb'sputnik' класса \verb'Sputnik'. Космический аппарат состоит из подсистем, которые представлены как
-объекты классов подсистем:
+объекты классов подсистем (см. рисунок \ref{Pic:subsystems-prog}).
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=12cm]{images/subsystems-prog-ru.eps}
+    \caption{Программируемые подсистемы КА}
+    \label{Pic:subsystems-prog}
+  \end{center}
+\end{figure}
+
+На рисунке \ref{Pic:subsystems-prog} желтым цветом выделены подсистемы, которые могут содержать
+самостоятельные программы полета.
 
 \begin{itemize}
 \item \verb'sputnik.cpu'~--- БЦВМ (класс \verb'CPU');
