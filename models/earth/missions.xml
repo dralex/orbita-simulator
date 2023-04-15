@@ -460,7 +460,7 @@ while sputnik.cpu.run():
           <score level="6" compare="moreeq" full_name="Mission accomplished" score_value="2000"/>
         </achievement>
         <achievement type="spec" full_name="High resolution" xmlname="result_resolution">
-          <score level="10" compare="moreeq" score_value="10000"/>
+          <score level="1" compare="lesseq" score_value="10000"/>
         </achievement>
         <achievement type="spec" full_name="Sneaked to the Target" xmlname="result_targetdest">
           <score level="1000" compare="lesseq" score_value="10000"/>
