@@ -24,6 +24,7 @@
 # -----------------------------------------------------------------------------
 
 import random
+import math
 from os.path import isfile
 from collections import deque
 from xml.sax.saxutils import escape
@@ -36,6 +37,7 @@ import venus.global_config
 import venus.missions
 import venus.shortlog
 
+import constants
 from logger import logging
 from errors import CriticalError
 from language import Language
@@ -362,10 +364,88 @@ class Devices(XMLLoader):
         devices_map = {}
         for d in devices.choices.device:
             if d.name in devices_map:
-                raise CriticalError(_("XML Error. Cannot load %s: there are two devices with the same nameд %s") % # pylint: disable=C0301
+                raise CriticalError(_("XML Error. Cannot load %s: there are two devices with the same name %s") % # pylint: disable=C0301
                                     (cls.ORIGIN, d.name))
             devices_map[d.name] = d
         return devices_map
+
+    @classmethod
+    def load_devices_all(cls, lang, devices_file=XML_FILE):
+        devices = cls.load(lang, devices_file)
+        subsystems_map = {}
+        for s in devices.subsystems.subsystem:
+            subsystems_map[s.type] = s
+        devices_map = {}
+        for d in devices.choices.device:
+            if d.name in devices_map:
+                raise CriticalError(_("XML Error. Cannot load %s: there are two devices with the same name %s") % # pylint: disable=C0301
+                                    (cls.ORIGIN, d.name))
+            devices_map[d.name] = d
+        parameters_map = {}
+        for p in devices.parameters.parameter:
+            parameters_map[p.name] = p
+        return {
+            's': subsystems_map,
+            'd': devices_map,
+            'p': parameters_map
+        }
+
+    @classmethod
+    def table(cls, sm, dm, pm):
+        base_params = ('heat_production',
+                       'mass',
+                       'min_temperature',
+                       'max_temperature',
+                       'power',
+                       'type',
+                       'volume')
+        result = ''
+        for ss in (constants.SUBSYSTEM_CONSTRUCTION,
+                   constants.SUBSYSTEM_CPU,
+                   constants.SUBSYSTEM_NAVIGATION,
+                   constants.SUBSYSTEM_ORIENTATION,
+                   constants.SUBSYSTEM_POWER,
+                   constants.SUBSYSTEM_TELEMETRY,
+                   constants.SUBSYSTEM_HEAT_CONTROL,
+                   constants.SUBSYSTEM_ENGINE,
+                   constants.SUBSYSTEM_RADIO,
+                   constants.SUBSYSTEM_LOAD):
+            result += '\n  \\hline'
+            result += ('\n  \\multicolumn{6}{|c|}{\\textbf{%s}}\\\\\n' %
+                       sm[ss].full_name)
+            result += '  \\hline\n'
+            lines = []
+            for d in sorted(dm.values(), key=lambda dev: dev.volume):
+                if d.type == ss:
+                    if ss == constants.SUBSYSTEM_CONSTRUCTION:
+                        add = [_('Cube edge length: %f $\\text{m}^3$') % math.pow(d.volume,
+                                                                                  1/3)]
+                    else:
+                        add = []
+                        for p,pv in pm.items():
+                            if p in base_params:
+                                continue
+                            if hasattr(d, p) and getattr(d, p) != None:
+                                par = getattr(d, p)
+                                add.append('%s: %s %s' %
+                                           (pv.full_name,
+                                            str(par),
+                                            pv.unit))
+                    addstr = ("\n  \\begin{tabular}{p{3.5cm}}\n  " +
+                              "\\\\\n  ".join(add) +
+                              "\n  \\end{tabular}")
+                    params = [d.full_name,
+                              d.mass,
+                              d.volume,
+                              '%d / %d' % (d.min_temperature,
+                                           d.max_temperature),
+                              d.power,
+                              addstr]
+                    lines.append('  ' +
+                                 ' & '.join(map(lambda a: str(a).replace('.', ','), params)) +
+                                 ' \\\\')
+            result += '\n  \\hline\n'.join(lines)
+        return result
 
 class ProbeLoader(XMLLoader):
 
