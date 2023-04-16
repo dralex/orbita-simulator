@@ -16,10 +16,13 @@ Each model is supplemented by gravity calculators (**planets_gravity** and **ear
 The code is distributed under the GNU Public License (version 3), the documentation -- under
 the GNU Free Documentation License (version 1.3).
 
+The simulator interface and the user manual are available in English and Russian.
+
 Authors:
 * [Alexey Fedoseev](mailto:aleksey@fedoseev.net)
 * [Nikolay Safronov](mailto:bfishh@gmail.com)
 * [Ilya Tagunov](mailto:tagunil@gmail.com)
 
 The simulation was created with the support of
-[Education of the Future LLC](https://introsat.ru/en/education_of_the_future).
+[Education of the Future LLC](https://introsat.ru/en/education_of_the_future) and
+[the Kruzhok Association](https://kruzhok.org/en/).
