@@ -138,6 +138,10 @@ class Telemetry(System):
     def send_message(self, text):
         return None
 
+    @classmethod
+    def debug(cls, text):
+        print(test)
+
 # -----------------------------------------------------------------------------
 # High-performance radio system class
 # -----------------------------------------------------------------------------
