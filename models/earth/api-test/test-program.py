@@ -11,6 +11,7 @@ M0 = -0.000009
 M = 0.000001
 dw = 0.00001
 
+debug('start')
 mode = 'rotate'
 sputnik.orientation.set_motor_moment(AXIS_Z, M0);
 sputnik.orientation.start_motor(AXIS_Z);
