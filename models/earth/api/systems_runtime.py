@@ -77,6 +77,7 @@ class SputnikRuntime:
             proto.CALL_CPU_SUCCESS: [],
             proto.CALL_TELEMETRY_SET_PERIOD: ['integer'],
             proto.CALL_TELEMETRY_SEND_MESSAGE: ['text'],
+            proto.CALL_TELEMETRY_DEBUG: ['text'],
             proto.CALL_TRANSMITTER_SEND_DATA: ['message'],
             proto.CALL_TRANSMITTER_SEND_PHOTO: ['integer'],
             proto.CALL_TRANSMITTER_SEND_PHOTO_TO: ['integer', 'integer'],
@@ -218,6 +219,8 @@ class SputnikRuntime:
                 obj.send_log_message(parsed_args[0])
             elif cmd == proto.CALL_TELEMETRY_SET_PERIOD:
                 obj.set_period(parsed_args[0])
+            elif cmd == proto.CALL_TELEMETRY_DEBUG:
+                obj.debug(parsed_args[0])
         elif system == proto.SYSTEM_TRANSMITTER:
             if cmd == proto.CALL_TRANSMITTER_RECEIVE:
                 obj.receive(parsed_args[0])

@@ -745,6 +745,10 @@ class TelemetryDevice(RadioDevice):
         debug_log(_('Telemetry message: %s'), s)
         self.put_data_broadcast(self.data_volume, ('telemetry', s))
 
+    @classmethod
+    def debug(cls, s):
+        debug_log(_('Program debug: %s'), s)
+
 class HeatControlDevice(LogicDevice):
 
     VARIABLES = LogicDevice.VARIABLES + ['temperature', 'heating']
