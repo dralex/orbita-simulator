@@ -138,6 +138,10 @@ class Telemetry(System):
     def send_message(self, text):
         return None
 
+    @classmethod
+    def debug(cls, text):
+        print(text)
+
 # -----------------------------------------------------------------------------
 # High-performance radio system class
 # -----------------------------------------------------------------------------
@@ -346,3 +350,5 @@ engine = sputnik.engine
 heat_control = sputnik.heat_control
 camera = sputnik.camera
 container = sputnik.container
+
+debug = sputnik.telemetry.debug

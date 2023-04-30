@@ -985,3 +985,6 @@ msgstr "Ошибка при чтении кратного журнала: %s"
 
 msgid "Language {} installed"
 msgstr "Установлен язык {}"
+
+msgid "Program debug: %s"
+msgstr "Отладка программы: %s"

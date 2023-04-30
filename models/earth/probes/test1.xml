@@ -39,6 +39,7 @@ M = 0.000001
 dw = 0.00001
 
 sputnik.telemetry.set_period(60)
+debug('start')
 mode = 'rotate'
 sputnik.orientation.set_motor_moment(AXIS_Z, M0);
 sputnik.orientation.start_motor(AXIS_Z);
@@ -51,6 +52,7 @@ while sputnik.cpu.run():
         mode = 'ok'
         sputnik.orientation.stop_motor(AXIS_Z)
         moment = False
+        debug('idle')
 
     if mode == 'ok':
         av = sputnik.orientation.get_angular_velocity(AXIS_Z)
@@ -58,6 +60,7 @@ while sputnik.cpu.run():
             if moment:
                 sputnik.orientation.stop_motor(AXIS_Z)
                 moment = False
+                debug('stabilized')
         else:
             if av > w:
                 if not negative:
@@ -70,6 +73,7 @@ while sputnik.cpu.run():
             if not moment:
                 sputnik.orientation.start_motor(AXIS_Z)
                 moment = True
+                debug('correction ' + ('cw' if not negative else 'ccw'))
 ]]></program>
 </system>
 </systems>

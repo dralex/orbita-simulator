@@ -192,13 +192,20 @@ class Telemetry(System):
         if not isinstance(period, int):
             raise BadParametersError
         return self.make_call(proto.CALL_TELEMETRY_SET_PERIOD, 'integer', period)
-        
+
     def send_message(self, text):
         if text is None:
             raise BadParametersError
         if not isinstance(text, str):
             raise BadParametersError
         return self.make_call(proto.CALL_TELEMETRY_SEND_MESSAGE, 'text', text)
+
+    def debug(self, text):
+        if text is None:
+            raise BadParametersError
+        if not isinstance(text, str):
+            raise BadParametersError
+        return self.make_call(proto.CALL_TELEMETRY_DEBUG, 'text', text)
 
 # -----------------------------------------------------------------------------
 # High-performance radio system class
@@ -500,6 +507,7 @@ def build_globals(send_to_controller, receive_from_controller):
                     'heat_control': sputnik.heat_control,
                     'camera': sputnik.camera,
                     'container': sputnik.container,
+                    'debug': sputnik.telemetry.debug,
                     'STATE_NOT_INITIALIZED': proto.STATE_NOT_INITIALIZED,
                     'STATE_OFF': proto.STATE_OFF,
                     'STATE_ON': proto.STATE_ON,
