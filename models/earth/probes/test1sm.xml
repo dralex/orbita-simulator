@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:probe name="Test1" xmlns:v="venus">
+<flight>
+<tournament>tournament</tournament>
+<planet name="Earth"/>
+<time start="2015-01-01 00:00:00"/>
+<T_start>290.000000</T_start>
+<mission type="test1">
+<control_stations>
+        <control_station name="GS1">
+                <location_angle>300.000000</location_angle>
+        </control_station>
+</control_stations>
+<duration>6.000000</duration>
+<orbit>604.000000</orbit>
+<start_angular_velocity>1.000000</start_angular_velocity>
+</mission>
+</flight>
+<construction>
+  <fuel>0.000000</fuel>
+  <voltage>27.000000</voltage>
+  <xz_yz_solar_panel_fraction>100</xz_yz_solar_panel_fraction>
+  <xz_yz_radiator_fraction>0</xz_yz_radiator_fraction>
+  <xy_radiator_fraction>62</xy_radiator_fraction>
+</construction>
+<systems>
+<system name="Cubesat-Case-1U"/>
+<system name="Orient-1" start_mode="ON"/>
+<system name="Telemetry-2" start_mode="ON"/>
+<system name="Navi-1" start_mode="ON"/>
+<system name="Power-1" start_mode="ON"/>
+<system name="Therm-1" start_mode="ON"/>
+<system name="CPU-1" start_mode="ON">
+<program>
+<![CDATA[# Constants
+
+Tick = 'TICK'
+TickEvent = pysm.Event(Tick)
+
+# Entry & Exit Handlers:
+
+def on_st_orientation_entry(state, event):
+    pass
+
+def on_st_rotate_entry(state, event):
+    orientation.set_motor_moment(AXIS_Z, M0)
+    orientation.start_motor(AXIS_Z)
+
+def on_st_idle_entry(state, event):
+    orientation.stop_motor(AXIS_Z)
+
+def on_st_correct_cw_entry(state, event):
+    orientation.start_motor(AXIS_Z)
+    orientation.set_motor_moment(AXIS_Z, -M)
+
+def on_st_correct_ccw_entry(state, event):
+    orientation.start_motor(AXIS_Z)
+    orientation.set_motor_moment(AXIS_Z, M)
+
+# Transition Conditions:
+    
+def is_ROTATION_COMPLETED(state, event):
+    return cpu.get_flight_time() >= T
+
+def is_CW_VARIANCE(state, event):
+    return orientation.get_angular_velocity(AXIS_Z) > W
+
+def is_CCW_VARIANCE(state, event):
+    return orientation.get_angular_velocity(AXIS_Z) < W
+
+def is_STABILIZED(state, event):
+    return abs(orientation.get_angular_velocity(AXIS_Z) - W) < DW
+
+# Hierarchical States:
+
+st_orientation = pysm.StateMachine('orientation')
+st_orientation.handlers = {'enter': on_st_orientation_entry}
+st_rotate = pysm.State('rotate')
+st_rotate.handlers = {'enter': on_st_rotate_entry}
+st_correct = pysm.StateMachine('correct')
+st_idle = pysm.State('idle')
+st_idle.handlers = {'enter': on_st_idle_entry}
+st_correct_cw = pysm.State('correct_cw')
+st_correct_cw.handlers = {'enter': on_st_correct_cw_entry}
+st_correct_ccw = pysm.State('correct_ccw')
+st_correct_ccw.handlers = {'enter': on_st_correct_ccw_entry}
+
+sm = pysm.StateMachine('test1-sm')
+sm.add_state(st_orientation, initial=True)
+st_orientation.add_state(st_rotate, initial=True)
+st_orientation.add_state(st_correct)
+st_correct.add_state(st_idle, initial=True)
+st_correct.add_state(st_correct_cw)
+st_correct.add_state(st_correct_ccw)
+
+# On-tick Transitions:
+
+st_orientation.add_transition(st_rotate, st_idle,
+                              events=[Tick], condition=is_ROTATION_COMPLETED)
+st_correct.add_transition(st_idle, st_correct_cw,
+                          events=[Tick], condition=is_CW_VARIANCE)
+st_correct.add_transition(st_idle, st_correct_ccw,
+                          events=[Tick], condition=is_CCW_VARIANCE)
+st_correct.add_transition(st_correct_cw, st_idle,
+                          events=[Tick], condition=is_STABILIZED)
+st_correct.add_transition(st_correct_ccw, st_idle,
+                          events=[Tick], condition=is_STABILIZED)
+
+# Non-tick Transitions:
+
+
+# User Initializations:
+
+T = 508
+W = -0.06
+M0 = -0.000009
+M = 0.000001
+DW = 0.00001
+
+telemetry.set_period(60)
+
+sm.initialize()
+while cpu.run():
+    sm.dispatch(TickEvent)
+]]></program>
+</system>
+</systems>
+</v:probe>

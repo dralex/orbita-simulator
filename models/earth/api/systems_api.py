@@ -485,8 +485,10 @@ class Container(System):
 
 def build_globals(send_to_controller, receive_from_controller):
     math = importlib.import_module('math')
+    pysm = importlib.import_module('pysm')
     sputnik = Sputnik(send_to_controller, receive_from_controller)
     user_globals = {'math' : math,
+                    'pysm' : pysm,
                     'sputnik': sputnik,
                     'cpu': sputnik.cpu,
                     'telemetry': sputnik.telemetry,
