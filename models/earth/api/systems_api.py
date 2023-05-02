@@ -178,6 +178,9 @@ class CPU(System):
     def mission_completed(self):
         return self.make_call(proto.CALL_CPU_SUCCESS)
 
+    def terminate(self):
+        return self.make_call(proto.CALL_CPU_TERMINATE)
+
 # -----------------------------------------------------------------------------
 # Telemetry system class
 # -----------------------------------------------------------------------------

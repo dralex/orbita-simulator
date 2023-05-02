@@ -75,6 +75,7 @@ class SputnikRuntime:
             proto.CALL_CPU_RUN: [],
             proto.CALL_CPU_GET_FLIGHT_TIME: [],
             proto.CALL_CPU_SUCCESS: [],
+            proto.CALL_CPU_TERMINATE: [],
             proto.CALL_TELEMETRY_SET_PERIOD: ['integer'],
             proto.CALL_TELEMETRY_SEND_MESSAGE: ['text'],
             proto.CALL_TELEMETRY_DEBUG: ['text'],
@@ -214,6 +215,8 @@ class SputnikRuntime:
                 response.result.real = obj.flight_time
             elif cmd == proto.CALL_CPU_SUCCESS:
                 response.result.boolean = self._probe.success
+            elif cmd == proto.CALL_CPU_TERMINATE:
+                obj.turn_off()
         elif system == proto.SYSTEM_TELEMETRY:
             if cmd == proto.CALL_TELEMETRY_SEND_MESSAGE:
                 obj.send_log_message(parsed_args[0])

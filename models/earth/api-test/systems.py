@@ -124,6 +124,10 @@ class CPU(System):
     def mission_completed(self):
         return False
 
+    def terminate(self):
+        from sys import exit
+        exit(0)
+
 # -----------------------------------------------------------------------------
 # Telemetry system class
 # -----------------------------------------------------------------------------
@@ -141,6 +145,8 @@ class Telemetry(System):
     @classmethod
     def debug(cls, text):
         print(text)
+
+debug = Telemetry.debug
 
 # -----------------------------------------------------------------------------
 # High-performance radio system class
