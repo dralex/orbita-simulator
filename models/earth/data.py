@@ -23,6 +23,7 @@
 # along with this program. If not, see https://www.gnu.org/licenses/
 # -----------------------------------------------------------------------------
 
+import os
 import time
 import math
 
@@ -33,6 +34,7 @@ from logger import debug_log, error_log, mission_log, time_to_str
 from errors import CriticalError, Terminated
 from xmlconverters import ProbeLoader, ShortLogLoader
 from language import Language
+import sm.python_hsm
 
 _ = Language.get_tr()
 
@@ -1201,6 +1203,26 @@ class Probe: # pylint: disable=R0902
             if self.systems[typ] is not None:
                 critical_error(self, _("More than one subsystem of type %s") % typ)
             program = d.program if hasattr(d, 'program') else None
+            if ((program is None and
+                 hasattr(d, 'hsm_diagram') and d.hsm_diagram is not None)):
+                if d.hsm_diagram.type != sm.python_hsm.SUPPORTED_TYPE:
+                    critical_error(self,
+                                   _("HSM diagram of unsupported type %s in %s subsystem") %
+                                   d.hsm_diagram.type, typ)
+                try:
+                    hsm_path = d.hsm_diagram.path
+                    if not os.path.isfile(hsm_path):
+                        hsm_path = os.path.join(os.path.dirname(probefile),
+                                                hsm_path)
+                        if not os.path.isfile(hsm_path):
+                            critical_error(self,
+                                           _("Cannot file HSM diagram file %s") %
+                                           d.hsm_diagram.path)
+                    program = sm.python_hsm.convert_graphml(hsm_path)
+                except sm.python_hsm.HSMException as e:
+                    critical_error(self,
+                                   _("Error while converting HSM diagram %s: %s") %
+                                   hsm_path, str(e))
             placement = d.placement if hasattr(d, 'placement') else None
             if hasattr(d, 'start_mode') and d.start_mode is not None:
                 mode = d.start_mode

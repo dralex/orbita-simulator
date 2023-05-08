@@ -35,6 +35,8 @@ from time import sleep
 import configparser
 import importlib
 
+TASK_EXTENSION = '.xml'
+
 def server_log(msg):
     if the_logfile:
         data = '%s [%d] %s\n' % (datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -61,7 +63,7 @@ def get_oldest_file(checkdir):
 
     for f in files:
         filename = join(checkdir, f)
-        if os.path.isfile(filename):
+        if os.path.isfile(filename) and filename.find(TASK_EXTENSION) > 0:
             filetime = modification_date(filename)
             if filetime < oldesttime:
                 oldesttime = filetime
@@ -107,6 +109,18 @@ def take_file(f, fromdir, todir):
                                                           e.strerror))
     return True
 
+def take_add_files(name, fromdir, todir):
+    try:
+        additional_files = name + '.'
+        for f in os.listdir(fromdir):
+            if f.find(additional_files) == 0:
+                os.rename(join(fromdir, f), join(todir, f))
+    except OSError as e:
+        server_log('Cannot process additional file: {} {} {}'.format(f,
+                                                                     errno.errorcode[e.errno],
+                                                                     e.strerror))
+    return True
+
 def write_shortfile_error(shortfile, msg):
     f = open(shortfile, 'w')
     f.truncate()
@@ -123,6 +137,7 @@ def process_file(filename, model, idir, wdir, odir, imdir, language, debuglog):
         return -1
     task = filename.split('.')[0]
     server_log('process task: {}'.format(task))
+    take_add_files(task, idir, wdir)
 
     taskfile = join(wdir, filename)
     if debuglog:
