@@ -26,6 +26,7 @@
 import sys
 import os
 import subprocess
+import re
 
 TESTS_DIR = 'graphs'
 PROGRAM_PREAMBLE = """import sys
@@ -34,21 +35,37 @@ sys.path.append('..')
 sys.path.append('../../api-test')
 from systems import *
 """
+TEST_PATTERN = re.compile('(?P<filebase>[^-]+)(-(?P<number>\d+))?.graphml$')
 
 sys.path.append('../..')
 import sm.python_hsm
 
+tests = {}
+
 for filename in os.listdir(TESTS_DIR):
-    idx = filename.find('.graphml')
-    if idx < 0:
+    m = TEST_PATTERN.match(filename)
+    if not m:
         continue
-    filebase = filename[0:idx]
+    fields = m.groupdict()
+    filebase = fields['filebase']
+    if filebase not in tests:
+        tests[filebase] = []
+    n = fields['number']
+    if n:
+        tests[filebase].append(n)
+
+for filebase, numbers in tests.items():
+    if numbers:
+        # multiple diagrams are not supported yet
+        continue
+    filename = filebase + '.graphml'
     graphfile = os.path.join(TESTS_DIR, filename)
     outputfile = os.path.join(TESTS_DIR, filebase + '.txt') 
     if not os.path.isfile(graphfile) or not os.path.isfile(outputfile):
         continue
     print('Test {}: '.format(filebase), end='')
     output = open(outputfile).read()
+    code = None
     try:
         code = sm.python_hsm.convert_graphml(graphfile)
         code = PROGRAM_PREAMBLE + code

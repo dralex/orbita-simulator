@@ -46,6 +46,8 @@ enum Command {
     CALL_GET_STATE = 1;
     CALL_SET_STATE = 2;
     CALL_SLEEP = 3;
+    CALL_DISPATCH = 4;
+    CALL_HAS_EVENT = 5;
 
     CALL_CPU_RUN = 11;
     CALL_CPU_GET_FLIGHT_TIME = 12;

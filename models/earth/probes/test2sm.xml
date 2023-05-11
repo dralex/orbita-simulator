@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:probe name="Test2" xmlns:v="venus">
+<flight>
+<tournament>tournament</tournament>
+<planet name="Earth"/>
+<time start="2015-01-01 00:00:00"/>
+<T_start>290.000000</T_start>
+<mission type="test2">
+<control_stations>
+        <control_station name="GS">
+                <location_angle>337.000000</location_angle>
+        </control_station>
+</control_stations>
+<duration>6.000000</duration>
+<oneway_message text="b4OYKYLjBpzwmyan7BGATOd"/>
+<orbit>600.000000</orbit>
+<start_angular_velocity>1.000000</start_angular_velocity>
+</mission>
+</flight>
+<construction>
+  <fuel>0.000000</fuel>
+  <voltage>27.000000</voltage>
+  <xz_yz_solar_panel_fraction>100</xz_yz_solar_panel_fraction>
+  <xz_yz_radiator_fraction>0</xz_yz_radiator_fraction>
+  <xy_radiator_fraction>65</xy_radiator_fraction>
+</construction>
+<systems>
+<system name="Cubesat-Case-3U"/>
+<system name="Orient-2" start_mode="ON">
+  <hsm_diagram type="yEd" path="test2sm-orient.graphml"/>
+</system>
+<system name="Telemetry-1" start_mode="ON"/>
+<system name="Navi-1" start_mode="ON"/>
+<system name="Power-1" start_mode="ON"/>
+<system name="Therm-1" start_mode="ON"/>
+<system name="Radio-1" start_mode="OFF"/>
+<system name="CPU-1" start_mode="ON">
+  <hsm_diagram type="yEd" path="test2sm-main.graphml"/>
+</system>
+</systems>
+</v:probe>

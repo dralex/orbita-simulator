@@ -161,6 +161,14 @@ class System:
             raise BadParametersError
         return self.make_call(proto.CALL_SLEEP, 'real', timeout)
 
+    def dispatch(self, event):
+        if not isinstance(event, str):
+            raise BadParametersError
+        return self.make_call(proto.CALL_DISPATCH, 'text', event)
+
+    def has_event(self):
+        return self.make_call(proto.CALL_HAS_EVENT)
+
 # -----------------------------------------------------------------------------
 # CPU system class
 # -----------------------------------------------------------------------------

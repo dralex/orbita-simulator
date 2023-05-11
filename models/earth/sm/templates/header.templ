@@ -5,3 +5,8 @@ InitEvent = pysm.Event(Init)
 Tick = 'TICK'
 TickEvent = pysm.Event(Tick)
 
+# Dispatch function
+
+def DISPATCH(origin, event):
+    origin.dispatch(event)
+

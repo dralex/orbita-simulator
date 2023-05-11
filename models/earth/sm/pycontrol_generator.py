@@ -76,7 +76,8 @@ class PyControlGenerator:
                 if note['y:UMLNoteNode']['y:NodeLabel']['#text'].startswith(prefix):
                     text = note['y:UMLNoteNode']['y:NodeLabel']['#text']
                     if key == 'non_tick_events':
-                        value = text.split('\n'))
+                        value = list(filter(lambda s: s != '', map(lambda v: v.strip(),
+                                                                   text.split('\n'))))
                     else:
                         value = text
                     self.notes_dict[key] = value
@@ -328,10 +329,10 @@ class PyControlGenerator:
         return result + self._write_states_recursively(state, "sm", False, handlers)
 
     @classmethod
-    def _write_check_events(cls, state_name):
+    def _write_check_event(cls, state_name):
         result = '\n# Check incoming event function:\n\n'
         result += 'def check_event():\n'
-        result += '    return {}.has_event()\n\n'
+        result += '    return {}.has_event()\n\n'.format(state_name)
         return result
 
     def _write_states_recursively(self, state: State, parent: str,
@@ -377,7 +378,7 @@ class PyControlGenerator:
             if not event_name:
                 continue
             if event_name in self.notes_dict['non_tick_events']:
-                event = 'Event({})'.format(event_name)
+                event = "'{}'".format(event_name)
             else:
                 event = 'Tick'
             parts = ["st_{}".format(from_state),

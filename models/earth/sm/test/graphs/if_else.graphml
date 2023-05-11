@@ -22,7 +22,7 @@
               <y:Geometry height="624.7451616666011" width="784.5814872489123" x="-335.48242187500006" y="-154.89233229839965"/>
               <y:Fill color="#F5F5F5" transparent="false"/>
               <y:BorderStyle color="#000000" type="line" width="1.0"/>
-              <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Consolas" fontSize="15" fontStyle="plain" hasLineColor="false" height="21.4609375" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="784.5814872489123" x="0.0" xml:space="preserve" y="0.0">A</y:NodeLabel>
+              <y:NodeLabel alignment="center" autoSizePolicy="node_width" backgroundColor="#EBEBEB" borderDistance="0.0" fontFamily="Consolas" fontSize="15" fontStyle="plain" hasLineColor="false" height="21.4609375" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="784.5814872489123" x="0.0" xml:space="preserve" y="0.0">cpu</y:NodeLabel>
               <y:NodeLabel alignment="left" autoSizePolicy="node_size" fontFamily="Consolas" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="624.7451616666011" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="t" textColor="#000000" verticalTextPosition="bottom" visible="true" width="784.5814872489123" x="0.0" xml:space="preserve" y="4.0">
 
 entry/

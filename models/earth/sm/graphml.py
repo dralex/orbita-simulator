@@ -179,7 +179,8 @@ def get_start_nodes_data(nodes: List[Dict[str, Any]], edges) -> List[Tuple[str, 
     start_nodes = []
     for node in nodes:
         if 'y:GenericNode' in node.keys() and '@configuration' in node['y:GenericNode'].keys():
-            if node['y:GenericNode']['@configuration'] == 'com.yworks.bpmn.Event.withShadow':
+            if (node['y:GenericNode']['@configuration'] == 'com.yworks.bpmn.Event.withShadow' or
+                node['y:GenericNode']['@configuration'] == 'com.yworks.bpmn.Event'):
                 found_start = False
                 for prop in node['y:GenericNode']['y:StyleProperties']['y:Property']:
                     if (prop['@name'] == 'com.yworks.bpmn.type' and
@@ -222,7 +223,8 @@ def get_finish_nodes_data(nodes: List[Dict[str, Any]], edges) -> List[Tuple[str,
     finish_nodes = []
     for node in nodes:
         if 'y:GenericNode' in node.keys() and '@configuration' in node['y:GenericNode'].keys():
-            if node['y:GenericNode']['@configuration'] == 'com.yworks.bpmn.Event.withShadow':
+            if (node['y:GenericNode']['@configuration'] == 'com.yworks.bpmn.Event.withShadow' or
+                node['y:GenericNode']['@configuration'] == 'com.yworks.bpmn.Event'):
                 found_finish = False
                 for prop in node['y:GenericNode']['y:StyleProperties']['y:Property']:
                     if (prop['@name'] == 'com.yworks.bpmn.type' and

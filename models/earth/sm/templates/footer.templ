@@ -2,4 +2,8 @@
 sm.initialize()
 sm.dispatch(InitEvent)
 while cpu.run():
-    sm.dispatch(TickEvent)
+    ev = check_event()
+    if ev:
+        sm.dispatch(pysm.Event(ev))
+    else:
+        sm.dispatch(TickEvent)

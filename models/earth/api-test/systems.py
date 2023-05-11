@@ -87,6 +87,7 @@ class Sputnik:
 class System:
     def __init__(self, kind):
         self._kind = kind
+        self.events = []
 
     def get_state(self):
         return STATE_ON
@@ -106,6 +107,15 @@ class System:
 
     def sleep(self, timeout):
         return None
+
+    def has_event(self):
+        if self.events:
+            return self.events.pop(0)
+        else:
+            return ''
+
+    def dispatch(self, event):
+        self.events.append(event)
 
 # -----------------------------------------------------------------------------
 # CPU system class

@@ -183,6 +183,7 @@ class LogicDevice(Device):
         else:
             self.memory_size = 0
         self.program_error = False
+        self.events = []
 
     def available_systems(self):
         # all the systems has access to the variables - both self and CPU
@@ -251,6 +252,19 @@ class LogicDevice(Device):
         if self.mode == STATE_ON:
             if self.program_instance:
                 self.program_instance.run()  # pylint: disable=E1103
+
+    def dispatch_event(self, event_name):
+        debug_log(_('Subsystem {} dispatch event {}').format(self.device.type,
+                                                             event_name))
+        self.events.append(event_name)
+
+    def get_event(self):
+        if self.events:
+            ev = self.events.pop(0)
+            debug_log(_('Subsystem {} return event {}').format(self.device.type,
+                                                               ev))
+            return ev
+        return None
 
 class CPUDevice(LogicDevice):
 
@@ -1222,7 +1236,7 @@ class Probe: # pylint: disable=R0902
                 except sm.python_hsm.HSMException as e:
                     critical_error(self,
                                    _("Error while converting HSM diagram %s: %s") %
-                                   hsm_path, str(e))
+                                   (hsm_path, str(e)))
             placement = d.placement if hasattr(d, 'placement') else None
             if hasattr(d, 'start_mode') and d.start_mode is not None:
                 mode = d.start_mode
