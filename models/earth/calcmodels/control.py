@@ -24,7 +24,6 @@
 # -----------------------------------------------------------------------------
 
 import data
-import constants
 from abstractmodel import AbstractModel
 from logger import mission_log
 import pycontrol.program
@@ -45,7 +44,7 @@ class PythonControlModel(AbstractModel):
     def init_model(self, probe, initial_tick):
         global _ # pylint: disable=W0603
         _ = Language.get_tr()
-        for k,s in probe.systems.items():
+        for s in probe.systems.values():
             if s and s.program is not None:
                 if len(str(s.program).strip()) != 0:
                     try:
