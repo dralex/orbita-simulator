@@ -35,7 +35,7 @@ sys.path.append('..')
 sys.path.append('../../api-test')
 from systems import *
 """
-TEST_PATTERN = re.compile('(?P<filebase>[^-]+)(-(?P<number>\d+))?.graphml$')
+TEST_PATTERN = re.compile(r'(?P<filebase>[^-]+)(-(?P<number>\d+))?.graphml$')
 
 sys.path.append('../..')
 import sm.python_hsm
@@ -60,7 +60,7 @@ for filebase, numbers in tests.items():
         continue
     filename = filebase + '.graphml'
     graphfile = os.path.join(TESTS_DIR, filename)
-    outputfile = os.path.join(TESTS_DIR, filebase + '.txt') 
+    outputfile = os.path.join(TESTS_DIR, filebase + '.txt')
     if not os.path.isfile(graphfile) or not os.path.isfile(outputfile):
         continue
     print('Test {}: '.format(filebase), end='')
@@ -70,11 +70,10 @@ for filebase, numbers in tests.items():
         code = sm.python_hsm.convert_graphml(graphfile)
         code = PROGRAM_PREAMBLE + code
         sys.stdout.flush()
-        result = subprocess.run(['python3', '-c', code], capture_output=True, text=True)
-        if result.returncode != 0:
-            raise Exception('failed: res={} output={} error={}'.format(result.returncode,
-                                                                       result.stdout,
-                                                                       result.stderr))
+        result = subprocess.run(['python3', '-c', code],
+                                capture_output=True,
+                                text=True,
+                                check=True)
         if result.stdout != output:
             raise Exception('failed: output mismatch, output={}'.format(result.stdout))
         print('OK')
@@ -82,10 +81,9 @@ for filebase, numbers in tests.items():
         if output == 'HSMException\n':
             print('OK')
             continue
-        else:
-            print('failed: {}\n\n Program code:{}\n'.format(s, code))
+        print('failed: {}\n\n Program code:{}\n'.format(s, code))
         sys.exit(1)
-    except Exception as e:
-        print('failed: {}\n\n Program code:{}\n'.format(str(e), code))
+    except subprocess.CalledProcessError as e:
+        print('Script failed: {}\n\n Program code:{}\n'.format(str(e), code))
         sys.exit(1)
 sys.exit(0)
