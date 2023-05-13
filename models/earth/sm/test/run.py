@@ -57,7 +57,7 @@ def run_script(filename):
         print('Script failed: {}\n\n Program code:{}\n'.format(str(s), code))
         sys.exit(1)
     except subprocess.CalledProcessError as e:
-        print('Script failed: {}\n\n Program code:{}\n'.format(str(e), code))
+        print('Script failed: {}\n\n Program code:{}\n'.format(e.stderr, code))
         sys.exit(1)
 
 if __name__ == '__main__':
