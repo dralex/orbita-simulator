@@ -274,7 +274,14 @@ debug('INIT')</y:NodeLabel>
           <y:Geometry height="169.3841807909605" width="251.34440867456897" x="-120.99999999999989" y="792.3822536278434"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="left" autoSizePolicy="content" fontFamily="Consolas" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="17.96875" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="tl" textColor="#000000" verticalTextPosition="bottom" visible="true" width="102.126953125" x="4.0" xml:space="preserve" y="4.0">Non-tick events:</y:NodeLabel>
+          <y:NodeLabel alignment="left" autoSizePolicy="content" fontFamily="Consolas" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="115.75" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="tl" textColor="#000000" verticalTextPosition="bottom" visible="true" width="76.498046875" x="4.0" xml:space="preserve" y="4.0">Tick events:
+
+B_C
+VARIANCE
+STABILIZED
+MORE
+LESS
+TERMINATE</y:NodeLabel>
         </y:UMLNoteNode>
       </data>
     </node>

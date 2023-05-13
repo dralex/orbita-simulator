@@ -48,7 +48,7 @@ FOOTER_TEMPLATE = os.path.join(TEMPLATES_DIR, 'footer.templ')
 # -----------------------------------------------------------------------------
 
 INIT_CODE_HEADER = 'Initialization'
-NON_TICK_EVENTS_HEADER = 'Non-tick events'
+TICK_EVENTS_HEADER = 'Tick events'
 
 # -----------------------------------------------------------------------------
 # The Generator Code
@@ -68,14 +68,14 @@ class PyControlGenerator:
         self.player_signal = player_signal
 
         notes_mapping = [(INIT_CODE_HEADER, 'init'),
-                         (NON_TICK_EVENTS_HEADER, 'non_tick_events')]
+                         (TICK_EVENTS_HEADER, 'tick_events')]
         self.notes_dict = {key: '' for _, key in notes_mapping}
 
         for note in notes:
             for prefix, key in notes_mapping:
                 if note['y:UMLNoteNode']['y:NodeLabel']['#text'].startswith(prefix):
                     text = note['y:UMLNoteNode']['y:NodeLabel']['#text']
-                    if key == 'non_tick_events':
+                    if key == 'tick_events':
                         value = list(filter(lambda s: s != '', map(lambda v: v.strip(),
                                                                    text.split('\n'))))
                     else:
@@ -142,10 +142,7 @@ class PyControlGenerator:
     @classmethod
     def _write_trigger_action(cls, state_name: str, event_name: str, action: str):
         result = ""
-        if event_name:
-            handler_name = "on_{}".format(event_name)
-        else:
-            handler_name = "on_{}_event".format(state_name)
+        handler_name = "on_{}".format(event_name)
         result += "def {}(state, event):\n".format(handler_name)
         result += '\n'.join(['    ' + line for line in action.split('\n')]) + "\n\n"
         return result
@@ -173,6 +170,8 @@ class PyControlGenerator:
             else:
                 trig_to = self.id_to_name[trigger.target]
             trigger_name = base_name + ("_IF" if trigger == trigger_if else "_ELSE")
+            if base_name in self.notes_dict['tick_events']:
+                self.notes_dict['tick_events'].append(trigger_name)
             key = (trig_from, trig_to)
             transitions[key] = (trigger_name,
                                 True,
@@ -288,19 +287,20 @@ class PyControlGenerator:
                                 len(trigger.guard) > 0,
                                 len(trigger.action) > 0,
                                 parent)
+
+            if trigger.name:
+                name = trigger.name
+            elif trigger.type == 'internal':
+                name = state.name + '_INT'
+            else:
+                name = trig_from + '_TO_' + trig_to
+
             if trigger.action:
-                result += self._write_trigger_action(state.name, trigger.name, trigger.action)
+                result += self._write_trigger_action(state.name, name, trigger.action)
 
-        triggers_merged: List[Tuple[str, List[Trigger]]] = sorted(
-            [(name, name_to_triggers[name]) for name in name_to_triggers],
-            key=lambda t: name_to_position[t[0]])
+            if trigger.guard:
+                result += self._write_guard_handler(name, trigger.guard)
 
-        for event_name, triggers in triggers_merged:
-            if not event_name:
-                continue
-            if len(triggers) == 1:
-                if triggers[0].guard:
-                    result += self._write_guard_handler(event_name, triggers[0].guard)
         for child_state in state.childs:
             result += self._write_guards_recursively(child_state, state.name, transitions)
         return result
@@ -375,12 +375,19 @@ class PyControlGenerator:
         for pair, value in transitions.items():
             from_state, to_state = pair
             event_name, has_guard, has_action, parent = value
-            if not event_name:
+            if not event_name and not has_guard and not has_action:
                 continue
-            if event_name in self.notes_dict['non_tick_events']:
-                event = "'{}'".format(event_name)
-            else:
+            if not event_name:
+                if to_state != 'None':
+                    event_name = from_state + '_TO_' + to_state
+                else:
+                    event_name = from_state + '_INT'
                 event = 'Tick'
+            else:
+                if event_name not in self.notes_dict['tick_events']:
+                    event = "'{}'".format(event_name)
+                else:
+                    event = 'Tick'
             parts = ["st_{}".format(from_state),
                      "st_{}".format(to_state),
                      "events=[{}]".format(event)]

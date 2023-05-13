@@ -133,9 +133,9 @@ debug('INIT')</y:NodeLabel>
           <y:Geometry height="169.3841807909605" width="251.34440867456897" x="157.90690867456885" y="487.1257039820177"/>
           <y:Fill color="#FFCC00" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
-          <y:NodeLabel alignment="left" autoSizePolicy="content" fontFamily="Consolas" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="45.90625" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="tl" textColor="#000000" verticalTextPosition="bottom" visible="true" width="102.126953125" x="4.0" xml:space="preserve" y="4.0">Non-tick events:
+          <y:NodeLabel alignment="left" autoSizePolicy="content" fontFamily="Consolas" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" height="45.90625" horizontalTextPosition="center" iconTextGap="4" modelName="internal" modelPosition="tl" textColor="#000000" verticalTextPosition="bottom" visible="true" width="76.498046875" x="4.0" xml:space="preserve" y="4.000000000000057">Tick events:
 
-WAKEUP</y:NodeLabel>
+TERMINATE</y:NodeLabel>
         </y:UMLNoteNode>
       </data>
     </node>
@@ -185,7 +185,6 @@ WAKEUP</y:NodeLabel>
       </data>
     </edge>
     <edge id="n0::e0" source="n0::n0" target="n0::n1">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
