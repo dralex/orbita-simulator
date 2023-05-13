@@ -52,7 +52,7 @@ def run_script(filename):
                                 capture_output=True,
                                 text=True,
                                 check=True)
-        print(result.stdout)
+        print(result.stdout, end='')
     except sm.python_hsm.HSMException as s:
         print('Script failed: {}\n\n Program code:{}\n'.format(str(s), code))
         sys.exit(1)
