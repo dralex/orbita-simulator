@@ -314,7 +314,6 @@ class PyControlGenerator:
                                 len(trigger.guard) > 0,
                                 len(trigger.action) > 0,
                                 parent)
-
             if trigger_name:
                 name = trigger_name
             elif trigger.type == 'internal':
@@ -429,10 +428,13 @@ class PyControlGenerator:
                                                             to_state,
                                                             event_name))
             if to_state != 'None':
-                owner = parent
+                if not parent:
+                    owner = 'sm'
+                else:
+                    owner = 'st_{}'.format(parent)
             else:
-                owner = from_state
-            result += "st_{}.add_transition({})\n".format(owner, ', '.join(parts))
+                owner = 'st_{}'.format(from_state)
+            result += "{}.add_transition({})\n".format(owner, ', '.join(parts))
         return result
 
     @classmethod
