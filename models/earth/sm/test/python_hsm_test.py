@@ -40,50 +40,61 @@ TEST_PATTERN = re.compile(r'(?P<filebase>[^-]+)(-(?P<number>\d+))?.graphml$')
 sys.path.append('../..')
 import sm.python_hsm
 
-tests = {}
-
-for filename in os.listdir(TESTS_DIR):
-    m = TEST_PATTERN.match(filename)
-    if not m:
-        continue
-    fields = m.groupdict()
-    filebase = fields['filebase']
-    if filebase not in tests:
-        tests[filebase] = []
-    n = fields['number']
-    if n:
-        tests[filebase].append(n)
-
-for filebase, numbers in tests.items():
-    if numbers:
-        # multiple diagrams are not supported yet
-        continue
-    filename = filebase + '.graphml'
-    graphfile = os.path.join(TESTS_DIR, filename)
-    outputfile = os.path.join(TESTS_DIR, filebase + '.txt')
-    if not os.path.isfile(graphfile) or not os.path.isfile(outputfile):
-        continue
-    print('Test {}: '.format(filebase), end='')
-    output = open(outputfile).read()
-    code = None
-    try:
-        code = sm.python_hsm.convert_graphml(graphfile)
-        code = PROGRAM_PREAMBLE + code
-        sys.stdout.flush()
-        result = subprocess.run(['python3', '-c', code],
-                                capture_output=True,
-                                text=True,
-                                check=True)
-        if result.stdout != output:
-            raise Exception('failed: output mismatch, output={}'.format(result.stdout))
-        print('OK')
-    except sm.python_hsm.HSMException as s:
-        if output == 'HSMException\n':
-            print('OK')
+def get_tests():
+    tests = {}
+    
+    for filename in os.listdir(TESTS_DIR):
+        m = TEST_PATTERN.match(filename)
+        if not m:
             continue
-        print('failed: {}\n\n Program code:{}\n'.format(s, code))
-        sys.exit(1)
-    except subprocess.CalledProcessError as e:
-        print('Script failed: {}\n\n Program code:{}\n'.format(str(e), code))
-        sys.exit(1)
-sys.exit(0)
+        fields = m.groupdict()
+        filebase = fields['filebase']
+        if filebase not in tests:
+            tests[filebase] = []
+        n = fields['number']
+        if n:
+            tests[filebase].append(n)
+
+    return tests
+
+def run_tests(tests, verbose=False):
+    for filebase, numbers in tests.items():
+        if numbers:
+            # multiple diagrams are not supported yet
+            continue
+        filename = filebase + '.graphml'
+        graphfile = os.path.join(TESTS_DIR, filename)
+        outputfile = os.path.join(TESTS_DIR, filebase + '.txt')
+        if not os.path.isfile(graphfile) or not os.path.isfile(outputfile):
+            continue
+        print('Test {}: '.format(filebase), end='')
+        output = open(outputfile).read()
+        code = None
+        try:
+            code = sm.python_hsm.convert_graphml(graphfile)
+            code = PROGRAM_PREAMBLE + code
+            if verbose:
+                print(code)
+            sys.stdout.flush()
+            result = subprocess.run(['python3', '-c', code],
+                                    capture_output=True,
+                                    text=True,
+                                    check=True)
+            if result.stdout != output:
+                raise Exception('failed: output mismatch, output={}'.format(result.stdout))
+            print('OK')
+        except sm.python_hsm.HSMException as s:
+            if output == 'HSMException\n':
+                print('OK')
+                continue
+            print('failed: {}\n\n Program code:{}\n'.format(s, code))
+            sys.exit(1)
+        except subprocess.CalledProcessError as e:
+            print('Script failed: {}\n\n Program code:{}\n'.format(e.stderr, code))
+            sys.exit(1)
+
+if __name__ == '__main__':
+    verbose =  len(sys.argv) > 1 and sys.argv[1] == '-v'
+    tests = get_tests()
+    run_tests(tests, verbose)
+    sys.exit(0)
