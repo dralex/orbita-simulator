@@ -10,7 +10,7 @@ Has_ifelse_timers = False
 # Dispatch function
 
 def DISPATCH_VALUE(origin, event, name, value):
-    origin.dispatch((event, name, value))
+    origin.dispatch(event, name, value)
 
 def DISPATCH(origin, event):
     DISPATCH_VALUE(origin, event, None, None)

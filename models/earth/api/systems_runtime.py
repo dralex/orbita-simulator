@@ -215,7 +215,7 @@ class SputnikRuntime:
         elif cmd == proto.CALL_DISPATCH:
             txt = parsed_args[0]
             if txt.find(':') < 0:
-                obj.dispatch_event((txt, None))
+                obj.dispatch_event((txt, None, None))
             else:
                 obj.dispatch_event(txt.split(':'))
         elif cmd == proto.CALL_HAS_EVENT:
@@ -223,11 +223,11 @@ class SputnikRuntime:
             if ev is not None:
                 assert len(ev) == 3
                 if ev[1] is None:
-                    response.result.text = ev
+                    response.result.text = ev[0]
                 else:
                     response.result.text = ':'.join(ev)
             else:
-                response.result.text = ''          
+                response.result.text = ''
         elif system == proto.SYSTEM_CPU:
             if cmd == proto.CALL_CPU_GET_FLIGHT_TIME:
                 response.result.real = obj.flight_time

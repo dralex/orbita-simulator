@@ -163,26 +163,23 @@ class System:
 
     def dispatch(self, event, name=None, value=None):
         if not isinstance(event, str):
-            raise BadParametersError        
+            raise BadParametersError
         if name is None:
-            return self.make_call(proto.CALL_DISPATCH, 'text', event))
-        else:
-            if value is None:
-                raise BadParametersError
-            if not isinstance(name, str) or not isinstance(value, str):
-                raise BadParametersError
-            return self.make_call(proto.CALL_DISPATCH, 'text',
-                                  "{}:{}:{}".format(event, name, value))
+            return self.make_call(proto.CALL_DISPATCH, 'text', event)
+        if value is None:
+            raise BadParametersError
+        if not isinstance(name, str) or not isinstance(value, str):
+            raise BadParametersError
+        return self.make_call(proto.CALL_DISPATCH, 'text',
+                              "{}:{}:{}".format(event, name, value))
 
     def has_event(self):
         ev = self.make_call(proto.CALL_HAS_EVENT)
         if not ev:
             return None
-        else:
-            if ev.find(':') < 0:
-                return ev
-            else:
-                return ev.split(':')
+        if ev.find(':') < 0:
+            return ev
+        return ev.split(':')
 
 # -----------------------------------------------------------------------------
 # CPU system class

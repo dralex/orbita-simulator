@@ -19,10 +19,10 @@ sm.dispatch(InitEvent)
 while cpu.run():
     ev = check_event()
     if ev:
-        assert len(ev) == 3
-        if ev[1] is None:
-            sm.dispatch(pysm.Event(ev[0]))
+        if isinstance(ev, str):
+            sm.dispatch(pysm.Event(ev))
         else:
+            assert len(ev) == 3
             args = {}
             args[ev[1]] = ev[2]
             sm.dispatch(pysm.Event(ev[0], **args))
