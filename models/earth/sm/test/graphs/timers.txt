@@ -1,0 +1,7 @@
+INIT
+ENTRY A
+ENTRY B
+C t 1
+D t 2
+E t 3
+TERM

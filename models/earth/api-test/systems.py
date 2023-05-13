@@ -23,6 +23,7 @@
 # -----------------------------------------------------------------------------
 
 import math
+import time
 
 STATE_NOT_INITIALIZED = int(0)
 STATE_OFF = int(1)
@@ -129,7 +130,7 @@ class CPU(System):
         return True
 
     def get_flight_time(self):
-        return 123.5
+        return time.time()
 
     def mission_completed(self):
         return False

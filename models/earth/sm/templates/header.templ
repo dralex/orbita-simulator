@@ -4,9 +4,10 @@ Init = 'INIT'
 InitEvent = pysm.Event(Init)
 Tick = 'TICK'
 TickEvent = pysm.Event(Tick)
+Has_timers = False
+Has_ifelse_timers = False 
 
 # Dispatch function
 
 def DISPATCH(origin, event):
     origin.dispatch(event)
-

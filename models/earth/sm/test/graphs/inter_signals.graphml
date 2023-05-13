@@ -62,7 +62,7 @@ entry/
 debug('ENTRY B')
 DISPATCH(cpu, 'WAKEUP')</y:NodeLabel>
               <y:StyleProperties>
-                <y:Property class="java.lang.Boolean" name="y.view.ShadowNodePainter.SHADOW_PAINTING" value="true"/>
+                <y:Property class="java.lang.Boolean" name="y.view.ShadowNodePainter.SHADOW_PAINTING" value="false"/>
                 <y:Property class="java.lang.Boolean" name="doubleBorder" value="false"/>
               </y:StyleProperties>
             </y:GenericNode>
@@ -81,7 +81,7 @@ DISPATCH(cpu, 'WAKEUP')</y:NodeLabel>
 entry/
 debug('ENTRY C')</y:NodeLabel>
               <y:StyleProperties>
-                <y:Property class="java.lang.Boolean" name="y.view.ShadowNodePainter.SHADOW_PAINTING" value="true"/>
+                <y:Property class="java.lang.Boolean" name="y.view.ShadowNodePainter.SHADOW_PAINTING" value="false"/>
                 <y:Property class="java.lang.Boolean" name="doubleBorder" value="false"/>
               </y:StyleProperties>
             </y:GenericNode>

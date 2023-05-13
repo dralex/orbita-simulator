@@ -1,4 +1,19 @@
 
+if Has_timers:
+    TIMER_sec = TIMER_min = TIMER_hour = cpu.get_flight_time()
+    if Has_ifelse_timers:
+        IfElseTimers = {}
+        for k in ('TIMER_1S', 'TIMER_1M', 'TIMER_1H'):
+            IfElseTimers[k] = map(lambda s: pysm.Event(s),
+                                  (k, k + '_IF', k + '_ELSE'))
+    else:
+        Timer1S = 'TIMER_1S'
+        Timer1SEvent = pysm.Event(Timer1S)
+        Timer1M = 'TIMER_1M'
+        Timer1MEvent = pysm.Event(Timer1M)
+        Timer1H = 'TIMER_1H'
+        Timer1HEvent = pysm.Event(Timer1H)
+
 sm.initialize()
 sm.dispatch(InitEvent)
 while cpu.run():
@@ -6,4 +21,27 @@ while cpu.run():
     if ev:
         sm.dispatch(pysm.Event(ev))
     else:
+        if Has_timers:
+            TIMER_t = cpu.get_flight_time()
+            if TIMER_t - TIMER_sec >= 1.0:
+                if not Has_ifelse_timers:
+                    sm.dispatch(Timer1SEvent)
+                else:
+                    for t in IfElseTimers('TIMER_1S'):
+                        sm.dispatch(t)
+                TIMER_sec = TIMER_t
+            if TIMER_t - TIMER_min >= 60.0:
+                if not Has_ifelse_timers:
+                    sm.dispatch(Timer1MEvent)
+                else:
+                    for t in IfElseTimers('TIMER_1M'):
+                        sm.dispatch(t)
+                TIMER_min = TIMER_t
+            if TIMER_t - TIMER_hour >= 3600.0:
+                if not Has_ifelse_timers:
+                    sm.dispatch(Timer1HEvent)
+                else:
+                    for t in IfElseTimers('TIMER_1H'):
+                        sm.dispatch(t)
+                TIMER_hour = TIMER_t
         sm.dispatch(TickEvent)

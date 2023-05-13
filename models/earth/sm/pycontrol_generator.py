@@ -50,6 +50,8 @@ FOOTER_TEMPLATE = os.path.join(TEMPLATES_DIR, 'footer.templ')
 INIT_CODE_HEADER = 'Initialization'
 TICK_EVENTS_HEADER = 'Tick events'
 
+TIMER_EVENTS = ['TIMER_1S', 'TIMER_1M', 'TIMER_1H']
+
 # -----------------------------------------------------------------------------
 # The Generator Code
 # -----------------------------------------------------------------------------
@@ -66,6 +68,8 @@ class PyControlGenerator:
 
         self.sm_name = sm_name
         self.player_signal = player_signal
+        self.has_timers = False
+        self.has_ifelse_timers = False
 
         notes_mapping = [(INIT_CODE_HEADER, 'init'),
                          (TICK_EVENTS_HEADER, 'tick_events')]
@@ -121,6 +125,10 @@ class PyControlGenerator:
         result += self._write_guards(self.states[0], transitions)
         result += self._write_states(self.sm_name, self.states[0], handlers)
         result += self._write_transitions(transitions)
+        if self.has_ifelse_timers or self.has_timers:
+            result += '\nHas_timers = True\n'
+            if self.has_ifelse_timers:
+                result += '\nHas_ifelse_timers = True\n\n'
         if self.notes_dict['init']:
             result += self._insert_string('\n# User Initializations:\n')
             result += self._insert_string('\n'.join(self.notes_dict['init'].split('\n')[1:]) + '\n')
@@ -132,17 +140,21 @@ class PyControlGenerator:
             f.write(self.generate_code())
 
     @classmethod
-    def _write_guard_handler(cls, transition_name: str, condition: str):
+    def _write_guard_handler(cls, from_state: str, to_state: str,
+                             transition_name: str, condition: str):
         result = ""
-        handler_name = "is_{}".format(transition_name)
+        handler_name = "is_{}_TO_{}_{}".format(from_state, to_state,
+                                               transition_name)
         result += "def {}(state, event):\n".format(handler_name)
         result += '    return ({})\n\n'.format(condition)
         return result
 
     @classmethod
-    def _write_trigger_action(cls, state_name: str, event_name: str, action: str):
+    def _write_trigger_action(cls, from_state: str, to_state: str,
+                              event_name: str, action: str):
         result = ""
-        handler_name = "on_{}".format(event_name)
+        handler_name = "on_{}_TO_{}_{}".format(from_state, to_state,
+                                               event_name)
         result += "def {}(state, event):\n".format(handler_name)
         result += '\n'.join(['    ' + line for line in action.split('\n')]) + "\n\n"
         return result
@@ -170,6 +182,8 @@ class PyControlGenerator:
             else:
                 trig_to = self.id_to_name[trigger.target]
             trigger_name = base_name + ("_IF" if trigger == trigger_if else "_ELSE")
+            if not self.has_ifelse_timers and base_name in TIMER_EVENTS:
+                self.has_ifelse_timers = True
             if base_name in self.notes_dict['tick_events']:
                 self.notes_dict['tick_events'].append(trigger_name)
             key = (trig_from, trig_to)
@@ -182,10 +196,11 @@ class PyControlGenerator:
             else:
                 trigger_guard = "not ({})".format(condition)
             if trigger.action:
-                result += self._write_trigger_action(source_name,
+                result += self._write_trigger_action(trig_from, trig_to,
                                                      trigger_name,
                                                      trigger.action)
-            result += self._write_guard_handler(trigger_name,
+            result += self._write_guard_handler(trig_from, trig_to,
+                                                trigger_name,
                                                 trigger_guard)
         return result
 
@@ -283,6 +298,8 @@ class PyControlGenerator:
                 assert trigger.type == 'internal'
                 trig_to = 'None'
             key = (trig_from, trig_to)
+            if not self.has_timers and trigger.name in TIMER_EVENTS:
+                self.has_timers = True
             transitions[key] = (trigger.name,
                                 len(trigger.guard) > 0,
                                 len(trigger.action) > 0,
@@ -296,10 +313,10 @@ class PyControlGenerator:
                 name = trig_from + '_TO_' + trig_to
 
             if trigger.action:
-                result += self._write_trigger_action(state.name, name, trigger.action)
+                result += self._write_trigger_action(trig_from, trig_to, name, trigger.action)
 
             if trigger.guard:
-                result += self._write_guard_handler(name, trigger.guard)
+                result += self._write_guard_handler(trig_from, trig_to, name, trigger.guard)
 
         for child_state in state.childs:
             result += self._write_guards_recursively(child_state, state.name, transitions)
@@ -392,12 +409,13 @@ class PyControlGenerator:
                      "st_{}".format(to_state),
                      "events=[{}]".format(event)]
             if has_guard:
-                parts.append("condition=is_{}".format(event_name))
+                parts.append("condition=is_{}_TO_{}_{}".format(from_state,
+                                                               to_state,
+                                                               event_name))
             if has_action:
-                if event_name:
-                    parts.append("action=on_{}".format(event_name))
-                else:
-                    parts.append("action=on_{}".format(from_state))
+                parts.append("action=on_{}_TO_{}_{}".format(from_state,
+                                                            to_state,
+                                                            event_name))
             if to_state != 'None':
                 owner = parent
             else:

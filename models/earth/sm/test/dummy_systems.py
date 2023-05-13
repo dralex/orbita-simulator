@@ -23,6 +23,7 @@
 # -----------------------------------------------------------------------------
 
 import sys
+import time
 
 class CPU:
     def __init__(self):
@@ -42,6 +43,9 @@ class CPU:
 
     def terminate(self):
         sys.exit(0)
+
+    def get_flight_time():
+        return time.time()
 
 cpu = CPU()
 debug = print
