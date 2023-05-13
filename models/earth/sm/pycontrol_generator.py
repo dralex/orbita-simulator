@@ -29,7 +29,6 @@
 
 import os.path
 import re
-from collections import defaultdict
 from typing import List, Tuple, Any, Dict
 
 from sm.stateclasses import State, Trigger
@@ -141,21 +140,27 @@ class PyControlGenerator:
 
     @classmethod
     def _write_guard_handler(cls, from_state: str, to_state: str,
-                             transition_name: str, condition: str):
+                             transition_name: str, condition: str,
+                             argument: str):
         result = ""
         handler_name = "is_{}_TO_{}_{}".format(from_state, to_state,
                                                transition_name)
         result += "def {}(state, event):\n".format(handler_name)
+        if argument:
+            result += '    {0} = event.cargo["{0}"]\n'.format(argument)
         result += '    return ({})\n\n'.format(condition)
         return result
 
     @classmethod
     def _write_trigger_action(cls, from_state: str, to_state: str,
-                              event_name: str, action: str):
+                              event_name: str, action: str,
+                              argument: str):
         result = ""
         handler_name = "on_{}_TO_{}_{}".format(from_state, to_state,
                                                event_name)
         result += "def {}(state, event):\n".format(handler_name)
+        if argument:
+            result += '    {0} = event.cargo["{0}"]\n'.format(argument)
         result += '\n'.join(['    ' + line for line in action.split('\n')]) + "\n\n"
         return result
 
@@ -198,10 +203,12 @@ class PyControlGenerator:
             if trigger.action:
                 result += self._write_trigger_action(trig_from, trig_to,
                                                      trigger_name,
-                                                     trigger.action)
+                                                     trigger.action,
+                                                     None)
             result += self._write_guard_handler(trig_from, trig_to,
                                                 trigger_name,
-                                                trigger_guard)
+                                                trigger_guard,
+                                                None)
         return result
 
     def _write_choices(self, transitions: Dict[Tuple[str, str], Any]):
@@ -274,18 +281,21 @@ class PyControlGenerator:
                                   transitions: Dict[Tuple[str, str], Any]):
         result = ""
 
-        name_to_triggers = defaultdict(list)
-        name_to_position = {}
-
-        for i, trigger in enumerate(state.trigs):
-
-            name_to_triggers[trigger.name].append(trigger)
-            name_to_position[trigger.name] = i
+        for trigger in state.trigs:
 
             trig_from = self.id_to_name[trigger.source]
 
             if trigger.type == 'choice_start' or trigger.type == 'choice_result':
                 continue
+
+            if trigger.name.find('(') > 0 and trigger.name.find(')') > 0:
+                idx1 = trigger.name.find('(')
+                idx2 = trigger.name.find(')')
+                trigger_name = trigger.name[0:idx1]
+                argument = trigger.name[idx1+1:idx2]
+            else:
+                trigger_name = trigger.name
+                argument = None
 
             if trigger.type == 'external':
                 if ((trigger.source in self.finish_nodes and
@@ -298,25 +308,27 @@ class PyControlGenerator:
                 assert trigger.type == 'internal'
                 trig_to = 'None'
             key = (trig_from, trig_to)
-            if not self.has_timers and trigger.name in TIMER_EVENTS:
+            if not self.has_timers and trigger_name in TIMER_EVENTS:
                 self.has_timers = True
-            transitions[key] = (trigger.name,
+            transitions[key] = (trigger_name,
                                 len(trigger.guard) > 0,
                                 len(trigger.action) > 0,
                                 parent)
 
-            if trigger.name:
-                name = trigger.name
+            if trigger_name:
+                name = trigger_name
             elif trigger.type == 'internal':
                 name = state.name + '_INT'
             else:
                 name = trig_from + '_TO_' + trig_to
 
             if trigger.action:
-                result += self._write_trigger_action(trig_from, trig_to, name, trigger.action)
+                result += self._write_trigger_action(trig_from, trig_to, name,
+                                                     trigger.action, argument)
 
             if trigger.guard:
-                result += self._write_guard_handler(trig_from, trig_to, name, trigger.guard)
+                result += self._write_guard_handler(trig_from, trig_to, name,
+                                                    trigger.guard, argument)
 
         for child_state in state.childs:
             result += self._write_guards_recursively(child_state, state.name, transitions)

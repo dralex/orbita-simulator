@@ -111,12 +111,16 @@ class System:
 
     def has_event(self):
         if self.events:
-            return self.events.pop(0)
+            ev = self.events.pop(0)
+            if ev[1] is None:
+                return ev[0]
+            else:
+                return ev
         else:
-            return ''
+            return None
 
-    def dispatch(self, event):
-        self.events.append(event)
+    def dispatch(self, event, name=None,value=None):
+        self.events.append((event, name, value))
 
 # -----------------------------------------------------------------------------
 # CPU system class

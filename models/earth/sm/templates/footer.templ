@@ -19,7 +19,13 @@ sm.dispatch(InitEvent)
 while cpu.run():
     ev = check_event()
     if ev:
-        sm.dispatch(pysm.Event(ev))
+        assert len(ev) == 3
+        if ev[1] is None:
+            sm.dispatch(pysm.Event(ev[0]))
+        else:
+            args = {}
+            args[ev[1]] = ev[2]
+            sm.dispatch(pysm.Event(ev[0], **args))
     else:
         if Has_timers:
             TIMER_t = cpu.get_flight_time()
