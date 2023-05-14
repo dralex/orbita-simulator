@@ -119,8 +119,8 @@ class System:
         else:
             return None
 
-    def dispatch(self, event, name=None, value=None):
-        self.events.append((event, name, value))
+    def dispatch(self, event, value=None):
+        self.events.append((event, value))
 
 # -----------------------------------------------------------------------------
 # CPU system class

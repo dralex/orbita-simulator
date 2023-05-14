@@ -42,8 +42,8 @@ class CPU:
         else:
             return ''
 
-    def dispatch(self, event, name=None, value=None):
-        self.events.append((event, name, value))
+    def dispatch(self, event, value=None):
+        self.events.append((event, value))
 
     def terminate(self):
         sys.exit(0)

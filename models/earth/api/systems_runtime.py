@@ -215,13 +215,13 @@ class SputnikRuntime:
         elif cmd == proto.CALL_DISPATCH:
             txt = parsed_args[0]
             if txt.find(':') < 0:
-                obj.dispatch_event((txt, None, None))
+                obj.dispatch_event((txt, None))
             else:
                 obj.dispatch_event(txt.split(':'))
         elif cmd == proto.CALL_HAS_EVENT:
             ev = obj.get_event()
             if ev is not None:
-                assert len(ev) == 3
+                assert len(ev) == 2
                 if ev[1] is None:
                     response.result.text = ev[0]
                 else:

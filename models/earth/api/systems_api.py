@@ -161,17 +161,16 @@ class System:
             raise BadParametersError
         return self.make_call(proto.CALL_SLEEP, 'real', timeout)
 
-    def dispatch(self, event, name=None, value=None):
+    def dispatch(self, event, value=None):
         if not isinstance(event, str):
             raise BadParametersError
-        if name is None:
-            return self.make_call(proto.CALL_DISPATCH, 'text', event)
         if value is None:
+            return self.make_call(proto.CALL_DISPATCH, 'text', event)
             raise BadParametersError
-        if not isinstance(name, str) or not isinstance(value, str):
+        if not isinstance(value, str):
             raise BadParametersError
         return self.make_call(proto.CALL_DISPATCH, 'text',
-                              "{}:{}:{}".format(event, name, value))
+                              "{}:{}".format(event, value))
 
     def has_event(self):
         ev = self.make_call(proto.CALL_HAS_EVENT)

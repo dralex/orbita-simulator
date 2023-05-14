@@ -22,9 +22,9 @@ while cpu.run():
         if isinstance(ev, str):
             sm.dispatch(pysm.Event(ev))
         else:
-            assert len(ev) == 3
+            assert len(ev) == 2
             args = {}
-            args[ev[1]] = ev[2]
+            args['value'] = ev[1]
             sm.dispatch(pysm.Event(ev[0], **args))
     else:
         if Has_timers:

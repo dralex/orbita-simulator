@@ -254,15 +254,19 @@ class LogicDevice(Device):
                 self.program_instance.run()  # pylint: disable=E1103
 
     def dispatch_event(self, event):
-        debug_log(_('Subsystem {} dispatch event {}').format(self.device.type,
-                                                             event))
+        if event[1] is None:
+            debug_log(_('Subsystem {} dispatch simple event {}').format(self.device.type,
+                                                                        event[0]))
+        else:
+            debug_log(_('Subsystem {} dispatch value event {}').format(self.device.type,
+                                                                       event))
         self.events.append(event)
 
     def get_event(self):
         if self.events:
             ev = self.events.pop(0)
-            debug_log(_('Subsystem {} return event {}').format(self.device.type,
-                                                               ev))
+            debug_log(_('Subsystem {} returned event {}').format(self.device.type,
+                                                                 ev[0]))
             return ev
         return None
 

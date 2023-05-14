@@ -147,7 +147,7 @@ class PyControlGenerator:
                                                transition_name)
         result += "def {}(state, event):\n".format(handler_name)
         if argument:
-            result += '    {0} = event.cargo["{0}"]\n'.format(argument)
+            result += '    {0} = event.cargo["value"]\n'.format(argument)
         result += '    return ({})\n\n'.format(condition)
         return result
 
@@ -160,7 +160,7 @@ class PyControlGenerator:
                                                event_name)
         result += "def {}(state, event):\n".format(handler_name)
         if argument:
-            result += '    {0} = event.cargo["{0}"]\n'.format(argument)
+            result += '    {0} = event.cargo["value"]\n'.format(argument)
         result += '\n'.join(['    ' + line for line in action.split('\n')]) + "\n\n"
         return result
 
