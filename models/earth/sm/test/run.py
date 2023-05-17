@@ -49,15 +49,18 @@ def run_script(filename):
         code = sm.python_hsm.convert_graphml(filename)
         code = PROGRAM_PREAMBLE + code
         result = subprocess.run(['python3', '-c', code],
-                                capture_output=True,
-                                text=True,
+                                stdin=sys.stdin,
+                                stderr=sys.stderr,
+                                stdout=sys.stdout,
                                 check=True)
-        print(result.stdout, end='')
     except sm.python_hsm.HSMException as s:
         print('Script failed: {}\n\n Program code:{}\n'.format(str(s), code))
         sys.exit(1)
     except subprocess.CalledProcessError as e:
         print('Script failed: {}\n\n Program code:{}\n'.format(e.stderr, code))
+        sys.exit(1)
+    except KeyboardInterrupt as e:
+        print('Script failed: {}\n\n Program code:{}\n'.format(e, code))
         sys.exit(1)
 
 if __name__ == '__main__':
