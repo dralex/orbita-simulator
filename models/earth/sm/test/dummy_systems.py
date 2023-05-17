@@ -48,7 +48,7 @@ class CPU:
     def terminate(self):
         sys.exit(0)
 
-    def get_flight_time():
+    def get_flight_time(self):
         return time.time()
 
 cpu = CPU()

@@ -47,7 +47,6 @@ FOOTER_TEMPLATE = os.path.join(TEMPLATES_DIR, 'footer.templ')
 # -----------------------------------------------------------------------------
 
 INIT_CODE_HEADER = 'Initialization'
-TICK_EVENTS_HEADER = 'Tick events'
 
 TIMER_EVENTS = ['TIMER_1S', 'TIMER_1M', 'TIMER_1H']
 
@@ -70,20 +69,14 @@ class PyControlGenerator:
         self.has_timers = False
         self.has_ifelse_timers = False
 
-        notes_mapping = [(INIT_CODE_HEADER, 'init'),
-                         (TICK_EVENTS_HEADER, 'tick_events')]
+        notes_mapping = [(INIT_CODE_HEADER, 'init'),]
         self.notes_dict = {key: '' for _, key in notes_mapping}
 
         for note in notes:
             for prefix, key in notes_mapping:
                 if note['y:UMLNoteNode']['y:NodeLabel']['#text'].startswith(prefix):
                     text = note['y:UMLNoteNode']['y:NodeLabel']['#text']
-                    if key == 'tick_events':
-                        value = list(filter(lambda s: s != '', map(lambda v: v.strip(),
-                                                                   text.split('\n'))))
-                    else:
-                        value = text
-                    self.notes_dict[key] = value
+                    self.notes_dict[key] = text
 
         self.states = states
         self.choices = []
@@ -189,9 +182,7 @@ class PyControlGenerator:
             trigger_name = base_name + ("_IF" if trigger == trigger_if else "_ELSE")
             if not self.has_ifelse_timers and base_name in TIMER_EVENTS:
                 self.has_ifelse_timers = True
-            if base_name in self.notes_dict['tick_events']:
-                self.notes_dict['tick_events'].append(trigger_name)
-            key = (trig_from, trig_to)
+            key = (trig_from, trig_to, trigger_name)
             transitions[key] = (trigger_name,
                                 True,
                                 len(trigger.action) > 0,
@@ -282,7 +273,6 @@ class PyControlGenerator:
         result = ""
 
         for trigger in state.trigs:
-
             trig_from = self.id_to_name[trigger.source]
 
             if trigger.type == 'choice_start' or trigger.type == 'choice_result':
@@ -307,7 +297,7 @@ class PyControlGenerator:
             else:
                 assert trigger.type == 'internal'
                 trig_to = 'None'
-            key = (trig_from, trig_to)
+            key = (trig_from, trig_to, trigger_name)
             if not self.has_timers and trigger_name in TIMER_EVENTS:
                 self.has_timers = True
             transitions[key] = (trigger_name,
@@ -401,7 +391,7 @@ class PyControlGenerator:
         result = "\n# On-tick Transitions:\n\n"
         result += "sm.add_transition(st_initial, st_{}, events=[Init])\n".format(self.start_node)
         for pair, value in transitions.items():
-            from_state, to_state = pair
+            from_state, to_state, _ = pair
             event_name, has_guard, has_action, parent = value
             if not event_name and not has_guard and not has_action:
                 continue
@@ -412,12 +402,12 @@ class PyControlGenerator:
                     event_name = from_state + '_INT'
                 event = 'Tick'
             else:
-                if event_name not in self.notes_dict['tick_events']:
+                if len(event_name) > 0 and event_name.find('TIME_TICK') != 0:
                     event = "'{}'".format(event_name)
                 else:
                     event = 'Tick'
             parts = ["st_{}".format(from_state),
-                     "st_{}".format(to_state),
+                     "st_{}".format(to_state) if to_state != 'None' else 'None',
                      "events=[{}]".format(event)]
             if has_guard:
                 parts.append("condition=is_{}_TO_{}_{}".format(from_state,
@@ -427,13 +417,10 @@ class PyControlGenerator:
                 parts.append("action=on_{}_TO_{}_{}".format(from_state,
                                                             to_state,
                                                             event_name))
-            if to_state != 'None':
-                if not parent:
-                    owner = 'sm'
-                else:
-                    owner = 'st_{}'.format(parent)
+            if to_state != 'None' and not parent:
+                owner = 'sm'
             else:
-                owner = 'st_{}'.format(from_state)
+                owner = 'st_{}'.format(parent)
             result += "{}.add_transition({})\n".format(owner, ', '.join(parts))
         return result
 
