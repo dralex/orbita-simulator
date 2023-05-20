@@ -40,7 +40,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -190,28 +190,28 @@
      id="path909"
      inkscape:connector-curvature="0"
      style="fill:#ffcc00;stroke:none;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
-     transform="translate(-258.50515,39.133805)" />
+     transform="matrix(0.61827484,0,0,0.61827484,-137.43227,42.975182)" />
   <path
      d="m 554.0173,10.5632 v 15 h 15 z"
      clip-path="url(#clipPath2)"
      id="path911"
      inkscape:connector-curvature="0"
      style="fill:#ffffff;fill-rule:evenodd;stroke:none;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
-     transform="translate(-258.50515,39.133805)" />
+     transform="matrix(0.61827484,0,0,0.61827484,-137.43227,42.975182)" />
   <path
      d="m 317.6729,10.5632 h 236.3444 v 15 h 15 V 179.9474 H 317.6729 Z"
      clip-path="url(#clipPath2)"
      id="path915"
      inkscape:connector-curvature="0"
      style="fill:none;stroke-linecap:butt;stroke-miterlimit:1.45000005;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
-     transform="translate(-258.50515,39.133805)" />
+     transform="matrix(0.61827484,0,0,0.61827484,-137.43227,42.975182)" />
   <path
      d="m 554.0173,10.5632 v 15 h 15 z"
      clip-path="url(#clipPath2)"
      id="path917"
      inkscape:connector-curvature="0"
      style="fill:none;fill-rule:evenodd;stroke-linecap:butt;stroke-miterlimit:1.45000005;shape-rendering:geometricPrecision;text-rendering:geometricPrecision"
-     transform="translate(-258.50515,39.133805)" />
+     transform="matrix(0.61827484,0,0,0.61827484,-137.43227,42.975182)" />
   <text
      x="323.67291"
      xml:space="preserve"
