@@ -24,12 +24,14 @@
 
 import sys
 import time
+import select
 
 class CPU:
     def __init__(self):
         self.events = []        
-    
+
     def run(self):
+        self.__getchar()
         return True
 
     def has_event(self):
@@ -50,6 +52,13 @@ class CPU:
 
     def get_flight_time(self):
         return time.time()
+
+    def __getchar(self):
+        # This line is working on Linux. TODO: write portable code
+        if sys.stdin in select.select([sys.stdin], [], [], 0)[0]:
+            c = sys.stdin.read(1)
+            if c:
+                self.dispatch('GETCHAR', c)
 
 cpu = CPU()
 debug = print
