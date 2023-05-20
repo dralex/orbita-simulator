@@ -256,7 +256,8 @@ def is_node_a_choice(node: Dict[str, Any]) -> bool:
     :return: true if state otherwise false
     """
     if 'y:GenericNode' in node.keys() and '@configuration' in node['y:GenericNode'].keys():
-        if node['y:GenericNode']['@configuration'] == "com.yworks.bpmn.Gateway.withShadow":
+        if ((node['y:GenericNode']['@configuration'] == "com.yworks.bpmn.Gateway.withShadow" or
+             node['y:GenericNode']['@configuration'] == "com.yworks.bpmn.Gateway")):
             return True
     return False
 
