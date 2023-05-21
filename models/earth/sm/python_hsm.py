@@ -34,6 +34,7 @@ import sm.graphml as gr
 from sm.pycontrol_generator import PyControlGenerator
 
 SUPPORTED_TYPE = 'yEd'
+INIT_SCRIPTS_NOTE = 'Init scripts:'
 
 class HSMException(Exception):
     def __init__(self, msg):
@@ -41,6 +42,21 @@ class HSMException(Exception):
         self.msg = msg
     def __str__(self):
         return self.msg
+
+def load_python_modules(xmlfile, filenames: List[str]):
+    xmlpath = os.path.dirname(os.path.abspath(xmlfile))
+    result = 'from sys import path\n'
+    result += 'path.append("{}")'.format(xmlpath)
+    for name in filenames:
+        index = name.find('.py')
+        if index < 0:
+            continue
+        filename = os.path.join(xmlpath, name)
+        if not os.path.isfile(filename):
+            raise HSMException('Cannot open impotred Python file {}'.format(filename))
+        result += '\n# code imported from {}\n'.format(name)
+        result += 'from {} import *\n'.format(name[0:index])
+    return result
 
 def convert_graphml(filename: str):
 
@@ -88,8 +104,20 @@ def convert_graphml(filename: str):
                                                 coords[1])
     # get notes
     notes = [node for node in flat_nodes if gr.is_node_a_note(node)]
+
+    # load addional modules
+    init_modules_code = ''
+    for note in notes:
+        note_text = note['y:UMLNoteNode']['y:NodeLabel']['#text']
+        if note_text.startswith(INIT_SCRIPTS_NOTE):
+            modules = filter(lambda t: len(t) > 0,
+                             map(lambda t: t.strip(),
+                                 note_text.split('\n')[1:]))
+            init_modules_code = load_python_modules(filename, modules)
+            break
+
     code = PyControlGenerator(modelname, start_nodes, finish_nodes, qm_states,
-                              notes, player_signal).generate_code()
+                              notes, init_modules_code).generate_code()
     code = ("# Python program generated from %s HSM diagram located in %s\n\n" %
             (SUPPORTED_TYPE, filename)) + code
     return code

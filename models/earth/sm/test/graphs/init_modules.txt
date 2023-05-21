@@ -1,0 +1,5 @@
+INIT
+ENTRY A
+ENTRY B
+test TEST
+TERM

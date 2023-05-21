@@ -58,14 +58,13 @@ class PyControlGenerator:
     def __init__(self, sm_name: str, start_nodes: List[Tuple[str, str, List[str], str]],
                  finish_nodes: List[Tuple[str, str, str]],
                  states: List[State], notes: List[Dict[str, Any]],
-                 player_signal: List[str]):
+                 init_modules_code: str):
 
         self.id_to_name = {}
         self.notes_dict = {}
         self.all_signals = []
 
         self.sm_name = sm_name
-        self.player_signal = player_signal
         self.has_timers = False
         self.has_ifelse_timers = False
 
@@ -77,6 +76,7 @@ class PyControlGenerator:
                 if note['y:UMLNoteNode']['y:NodeLabel']['#text'].startswith(prefix):
                     text = note['y:UMLNoteNode']['y:NodeLabel']['#text']
                     self.notes_dict[key] = text
+        self.init_modules = init_modules_code
 
         self.states = states
         self.choices = []
@@ -124,6 +124,7 @@ class PyControlGenerator:
         if self.notes_dict['init']:
             result += self._insert_string('\n# User Initializations:\n')
             result += self._insert_string('\n'.join(self.notes_dict['init'].split('\n')[1:]) + '\n')
+        result += self.init_modules
         result += self._insert_file_template(FOOTER_TEMPLATE)
         return result
 
