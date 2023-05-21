@@ -121,10 +121,10 @@ class PyControlGenerator:
             result += '\nHas_timers = True\n'
             if self.has_ifelse_timers:
                 result += '\nHas_ifelse_timers = True\n\n'
+        result += self.init_modules
         if self.notes_dict['init']:
             result += self._insert_string('\n# User Initializations:\n')
             result += self._insert_string('\n'.join(self.notes_dict['init'].split('\n')[1:]) + '\n')
-        result += self.init_modules
         result += self._insert_file_template(FOOTER_TEMPLATE)
         return result
 
