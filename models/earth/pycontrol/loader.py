@@ -61,7 +61,7 @@ def send_to_controller(data, timeout=None):
     return True
 
 def receive_from_controller(timeout=None):
-    global response_queue
+    global response_queue # pylint: disable=W0603
     if response_queue is None:
         return None
     try:
@@ -74,7 +74,7 @@ if __name__ == '__main__':
 
     if len(sys.argv) < 3:
         sys.exit(1)
-        
+
     request_queue_name = sys.argv[1]
     response_queue_name = sys.argv[2]
 
@@ -89,7 +89,7 @@ if __name__ == '__main__':
 
     if len(sys.argv) >= 4:
         api_module_name = sys.argv[3]
-        
+
         api_module = importlib.import_module(api_module_name)
 
         user_globals = api_module.build_globals(send_to_controller,
@@ -150,16 +150,16 @@ if __name__ == '__main__':
         syscall_filter.add_rule_exactly(seccomp.ALLOW, "exit_group")
 
         syscall_filter.load()
-        
+
     send_to_controller('READY')
-    
+
     status = 0
 
     try:
         exec(user_code, user_globals) # pylint: disable=W0122
     except Exception: #pylint: disable=W0703
         status = 1
-        
+
         exc_type, exc_value, exc_tb = sys.exc_info()
 
         first_tb = exc_tb.tb_next
@@ -179,7 +179,7 @@ if __name__ == '__main__':
             current_tb = current_tb.tb_next
 
         traceback.print_exception(exc_type, exc_value, first_tb, limit)
-        
+
     request_queue.close()
     response_queue.close()
 

@@ -1,0 +1,9 @@
+INIT
+entry A
+entry C
+foo 1
+entry D
+entry C
+foo 2
+entry B
+exit A

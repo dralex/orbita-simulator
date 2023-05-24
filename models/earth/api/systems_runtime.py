@@ -72,9 +72,12 @@ class SputnikRuntime:
             proto.CALL_GET_STATE: [],
             proto.CALL_SET_STATE: ['integer'],
             proto.CALL_SLEEP: ['real'],
+            proto.CALL_DISPATCH: ['text'],
+            proto.CALL_HAS_EVENT: [],
             proto.CALL_CPU_RUN: [],
             proto.CALL_CPU_GET_FLIGHT_TIME: [],
             proto.CALL_CPU_SUCCESS: [],
+            proto.CALL_CPU_TERMINATE: [],
             proto.CALL_TELEMETRY_SET_PERIOD: ['integer'],
             proto.CALL_TELEMETRY_SEND_MESSAGE: ['text'],
             proto.CALL_TELEMETRY_DEBUG: ['text'],
@@ -209,11 +212,29 @@ class SputnikRuntime:
                 response.error = proto.ERROR_BAD_PARAMETERS
                 return response, False
             obj.sleep(timeout)
+        elif cmd == proto.CALL_DISPATCH:
+            txt = parsed_args[0]
+            if txt.find(':') < 0:
+                obj.dispatch_event((txt, None))
+            else:
+                obj.dispatch_event(txt.split(':'))
+        elif cmd == proto.CALL_HAS_EVENT:
+            ev = obj.get_event()
+            if ev is not None:
+                assert len(ev) == 2
+                if ev[1] is None:
+                    response.result.text = ev[0]
+                else:
+                    response.result.text = ':'.join(ev)
+            else:
+                response.result.text = ''
         elif system == proto.SYSTEM_CPU:
             if cmd == proto.CALL_CPU_GET_FLIGHT_TIME:
                 response.result.real = obj.flight_time
             elif cmd == proto.CALL_CPU_SUCCESS:
                 response.result.boolean = self._probe.success
+            elif cmd == proto.CALL_CPU_TERMINATE:
+                obj.turn_off()
         elif system == proto.SYSTEM_TELEMETRY:
             if cmd == proto.CALL_TELEMETRY_SEND_MESSAGE:
                 obj.send_log_message(parsed_args[0])

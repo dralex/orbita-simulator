@@ -24,7 +24,6 @@
 # -----------------------------------------------------------------------------
 
 import data
-import constants
 from abstractmodel import AbstractModel
 from logger import mission_log
 import pycontrol.program
@@ -40,13 +39,13 @@ _ = Language.get_tr()
 class PythonControlModel(AbstractModel):
     def __init__(self, global_parameters):
         AbstractModel.__init__(self, global_parameters)
+        self.programs = []
 
     def init_model(self, probe, initial_tick):
         global _ # pylint: disable=W0603
         _ = Language.get_tr()
-        s = probe.systems[constants.SUBSYSTEM_CPU]
-        if s is not None:
-            if s.program is not None:
+        for s in probe.systems.values():
+            if s and s.program is not None:
                 if len(str(s.program).strip()) != 0:
                     try:
                         s.program_text = str(s.program).lstrip().split('\n')
@@ -55,6 +54,7 @@ class PythonControlModel(AbstractModel):
                                                                        'systems_api',
                                                                        s.program_text,
                                                                        Language)
+                        self.programs.append(s)
                     except pycontrol.program.ProgramError as e:
                         str_e = str(e).replace('%', '%%')
                         data.critical_error(probe,
@@ -72,8 +72,7 @@ class PythonControlModel(AbstractModel):
                                             str_e)
 
     def step(self, probe, tick):
-        s = probe.systems[constants.SUBSYSTEM_CPU]
-        if s:
+        for s in self.programs:
             try:
                 s.run_program()
             except pycontrol.program.ProgramError as e:

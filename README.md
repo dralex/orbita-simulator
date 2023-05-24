@@ -4,7 +4,8 @@
 
 The simulation program for probe space station from orbital missions to landing
 including several models (ballistics, landing, radio, surface activity, etc.).
-The Python language is used for satellite flight programs.
+The Python language is used for satellite flight programs. Hierarchical State
+Macnines Diagrams can be automatically translated into the program code also.
 
 There are two models available in the current version of the simulator:
 

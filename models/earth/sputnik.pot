@@ -988,3 +988,21 @@ msgstr "Установлен язык {}"
 
 msgid "Program debug: %s"
 msgstr "Отладка программы: %s"
+
+msgid "HSM diagram of unsupported type %s in %s subsystem"
+msgstr "Неизвестный тип %s диаграммы машины состояний для подсистемы %s"
+
+msgid "Error while converting HSM diagram %s: %s"
+msgstr "Ошибка при загрузке диаграммы машины состояний %s: %s"
+
+msgid "Cannot file HSM diagram file %s"
+msgstr "Невозможно загрудить файл с диаграммой машины состояний %s"
+
+msgid "Subsystem {} dispatch simple event {}"
+msgstr "Подсистема {} получила простое сообщение {}"
+
+msgid "Subsystem {} dispatch value event {}"
+msgstr "Подсистема {} получила сообщение с параметром {}"
+
+msgid "Subsystem {} return event {}"
+msgstr "Подсистема {} обработала сообщение {}"

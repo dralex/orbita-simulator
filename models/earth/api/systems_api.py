@@ -161,6 +161,25 @@ class System:
             raise BadParametersError
         return self.make_call(proto.CALL_SLEEP, 'real', timeout)
 
+    def dispatch(self, event, value=None):
+        if not isinstance(event, str):
+            raise BadParametersError
+        if value is None:
+            return self.make_call(proto.CALL_DISPATCH, 'text', event)
+            raise BadParametersError
+        if not isinstance(value, str):
+            raise BadParametersError
+        return self.make_call(proto.CALL_DISPATCH, 'text',
+                              "{}:{}".format(event, value))
+
+    def has_event(self):
+        ev = self.make_call(proto.CALL_HAS_EVENT)
+        if not ev:
+            return None
+        if ev.find(':') < 0:
+            return ev
+        return ev.split(':')
+
 # -----------------------------------------------------------------------------
 # CPU system class
 # -----------------------------------------------------------------------------
@@ -177,6 +196,9 @@ class CPU(System):
 
     def mission_completed(self):
         return self.make_call(proto.CALL_CPU_SUCCESS)
+
+    def terminate(self):
+        return self.make_call(proto.CALL_CPU_TERMINATE)
 
 # -----------------------------------------------------------------------------
 # Telemetry system class
@@ -492,8 +514,10 @@ class Container(System):
 
 def build_globals(send_to_controller, receive_from_controller):
     math = importlib.import_module('math')
+    pysm = importlib.import_module('pysm')
     sputnik = Sputnik(send_to_controller, receive_from_controller)
     user_globals = {'math' : math,
+                    'pysm' : pysm,
                     'sputnik': sputnik,
                     'cpu': sputnik.cpu,
                     'telemetry': sputnik.telemetry,

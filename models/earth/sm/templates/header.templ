@@ -1,0 +1,16 @@
+# Constants
+
+Init = 'INIT'
+InitEvent = pysm.Event(Init)
+Tick = 'TIME_TICK'
+TickEvent = pysm.Event(Tick)
+Has_timers = False
+Has_ifelse_timers = False 
+
+# Dispatch function
+
+def DISPATCH_VALUE(origin, event, value):
+    origin.dispatch(event, str(value) if value is not None else None)
+
+def DISPATCH(origin, event):
+    DISPATCH_VALUE(origin, event, None)

@@ -30,8 +30,9 @@ import subprocess
 import threading
 import atexit
 from collections import deque
-import posix_ipc
 import gettext
+import posix_ipc
+
 _ = gettext.gettext
 
 THIS_MODULE_PATH = os.path.dirname(os.path.abspath(__file__))

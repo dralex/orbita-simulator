@@ -23,6 +23,7 @@
 # -----------------------------------------------------------------------------
 
 import math
+import time
 
 STATE_NOT_INITIALIZED = int(0)
 STATE_OFF = int(1)
@@ -87,6 +88,7 @@ class Sputnik:
 class System:
     def __init__(self, kind):
         self._kind = kind
+        self.events = []
 
     def get_state(self):
         return STATE_ON
@@ -107,6 +109,19 @@ class System:
     def sleep(self, timeout):
         return None
 
+    def has_event(self):
+        if self.events:
+            ev = self.events.pop(0)
+            if ev[1] is None:
+                return ev[0]
+            else:
+                return ev
+        else:
+            return None
+
+    def dispatch(self, event, value=None):
+        self.events.append((event, value))
+
 # -----------------------------------------------------------------------------
 # CPU system class
 # -----------------------------------------------------------------------------
@@ -119,10 +134,14 @@ class CPU(System):
         return True
 
     def get_flight_time(self):
-        return 123.5
+        return time.time()
 
     def mission_completed(self):
         return False
+
+    def terminate(self):
+        from sys import exit
+        exit(0)
 
 # -----------------------------------------------------------------------------
 # Telemetry system class
@@ -141,6 +160,8 @@ class Telemetry(System):
     @classmethod
     def debug(cls, text):
         print(text)
+
+debug = Telemetry.debug
 
 # -----------------------------------------------------------------------------
 # High-performance radio system class
