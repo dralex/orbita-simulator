@@ -45,8 +45,8 @@ class HSMException(Exception):
 
 def load_python_modules(xmlfile, filenames: List[str]):
     xmlpath = os.path.dirname(os.path.abspath(xmlfile))
-    result = 'from sys import path\n'
-    result += 'path.append("{}")'.format(xmlpath)
+    modules = {}
+    result = '\n\n#Init script code:\n'
     for name in filenames:
         index = name.find('.py')
         if index < 0:
@@ -55,7 +55,7 @@ def load_python_modules(xmlfile, filenames: List[str]):
         if not os.path.isfile(filename):
             raise HSMException('Cannot open impotred Python file {}'.format(filename))
         result += '\n# code imported from {}\n'.format(name)
-        result += 'from {} import *\n'.format(name[0:index])
+        result += open(filename).read()
     return result
 
 def convert_graphml(filename: str):
