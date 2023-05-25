@@ -21,7 +21,7 @@ $(HSM_TARGET): $(HSM_SOURCE) $(IMAGES)
 
 pdf: $(TARGET) $(HSM_TARGET)
 	dvipdf $(TARGET) $(TARGET_PDF)
-	dvipdf $(TARGET) $(HSM_TARGET_PDF)
+	dvipdf $(HSM_TARGET) $(HSM_TARGET_PDF)
 
 clean:
 	-rm -f sources/*~
