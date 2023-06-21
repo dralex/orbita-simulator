@@ -1,11 +1,11 @@
 all:
 	rm -rf venus
-	pyxbgen xml-schemas/devices.xsd -m venus.devices
-	pyxbgen xml-schemas/missions.xsd -m venus.missions
-	pyxbgen xml-schemas/probe.xsd -m venus.probe
-	pyxbgen xml-schemas/global_parameters.xsd -m venus.global_parameters
-	pyxbgen xml-schemas/global_config.xsd -m venus.global_config
-	pyxbgen xml-schemas/shortlog.xsd -m venus.shortlog
+	python3 ../../pyxbgen.py xml-schemas/devices.xsd -m venus.devices
+	python3 ../../pyxbgen.py xml-schemas/missions.xsd -m venus.missions
+	python3 ../../pyxbgen.py xml-schemas/probe.xsd -m venus.probe
+	python3 ../../pyxbgen.py xml-schemas/global_parameters.xsd -m venus.global_parameters
+	python3 ../../pyxbgen.py xml-schemas/global_config.xsd -m venus.global_config
+	python3 ../../pyxbgen.py xml-schemas/shortlog.xsd -m venus.shortlog
 
 	protoc --python_out=. api/systems.proto
 

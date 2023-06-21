@@ -1,9 +1,9 @@
 all:
 	rm -rf venus
-	pyxbgen xml-schemas/global_parameters.xsd -m venus.global_parameters
-	pyxbgen xml-schemas/global_config.xsd -m venus.global_config
-	pyxbgen xml-schemas/planets.xsd -m venus.planets
-	pyxbgen xml-schemas/testmodel.xsd -m venus.testmodel
+	python3 ../../pyxbgen.py xml-schemas/global_parameters.xsd -m venus.global_parameters
+	python3 ../../pyxbgen.py xml-schemas/global_config.xsd -m venus.global_config
+	python3 ../../pyxbgen.py xml-schemas/planets.xsd -m venus.planets
+	python3 ../../pyxbgen.py xml-schemas/testmodel.xsd -m venus.testmodel
 
 messages:
 	mkdir -p ru/LC_MESSAGES
