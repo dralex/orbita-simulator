@@ -27,4 +27,7 @@ $ python3 simulation.py probes/test1.xml --debug-log=debug.log --mission-log=tel
 
 5. Run the `simulation.py` script without arguments to see the possible command arguments.
 
-6. To run servers-side calculator correct the config file `orbit_server.cfg` and run the server as daemon
+6. To run servers-side calculator correct the config file `orbit_server.cfg` and run the server as daemon.
+
+7. To localize the simulator messages you need to install `gettext` package and run `make messages` command. 
+
