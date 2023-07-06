@@ -29,7 +29,6 @@ if sys.version_info.minor >= 10:
     import collections.abc
     collections.MutableSequence = collections.abc.MutableSequence
 
-import sys
 import os
 import os.path
 import gettext
