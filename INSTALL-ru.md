@@ -22,7 +22,7 @@ Makefile собирает необходимые для работы симул�
 4. Попробуйте запустить тестовый аппарат из директории `probes`:
 
 ```
-$ python3 simulation.py probes/test1.xml --debug-log=debug.log --mission-log=telemetry.log --images=.
+$ python3 simulation.py probes/test1.xml --debug-log=debug.log --mission-log=telemetry.log --image=.
 ```
 
 5. Чтобы узнать аргументы для запуска в командной строке выполните скрипт `simulation.py` без параметров.

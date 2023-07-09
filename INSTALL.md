@@ -22,7 +22,7 @@ The Makefile builds the required Python encoders/decoders for XML documents and 
 4. Try to run the model with the test probes located in `probes`:
 
 ```
-$ python3 simulation.py probes/test1.xml --debug-log=debug.log --mission-log=telemetry.log --images=.
+$ python3 simulation.py probes/test1.xml --debug-log=debug.log --mission-log=telemetry.log --image=.
 ```
 
 5. Run the `simulation.py` script without arguments to see the possible command arguments.
