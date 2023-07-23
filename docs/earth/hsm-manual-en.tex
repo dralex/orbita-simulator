@@ -1,0 +1,576 @@
+%
+% Copyright (c) 2023 Aleksey Fedoseev <aleksey@fedoseev.net>
+%
+% Permission is granted to copy, distribute and/or modify this document
+% under the terms of the GNU Free Documentation License, Version 1.3
+% or any later version published by the Free Software Foundation;
+% with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+% A copy of the license is located here: http://www.gnu.org/copyleft/fdl.html.
+%
+
+\documentclass[12pt,a4paper]{article}
+\usepackage[T2A]{fontenc}
+\usepackage{ucs}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{indentfirst}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{array}
+\usepackage{titlesec}
+\usepackage{subcaption}
+\usepackage{wasysym}
+\usepackage{longtable}
+\usepackage{multirow}
+
+\pagestyle{plain}
+\parindent=1.25cm
+\textheight=24cm
+\textwidth=16cm
+\topmargin=-1cm
+\frenchspacing
+\renewcommand{\theequation}{\thesection.\arabic{equation}}
+\newcommand{\sectionbreak}{\clearpage}
+
+\begin{document}
+
+\title{%
+  \textbf{Hierarchical state machines for
+spacecraft flight programs} \\
+    Orbita simulator 2.0 Programming Guide}
+
+\author{
+  Alexey Fedoseev\\
+  \texttt{aleksey@fedoseev.net}
+}
+
+\date{Version 1.0, \today}
+
+\maketitle
+
+This text is distributed under the GNU Free Documentation License (FDL) version
+1.3. You can find more information about this license on the
+\footnote{\url{http://www.gnu.org/copyleft/fdl.html}}.
+
+The source code is in the project repository on GitHub
+\footnote{\url{https://github.com/dralex/orbita-simulator}}.
+
+\tableofcontents
+
+\clearpage
+\section{Introduction}
+
+This guide complements the \textbf{Orbita Simulator 2.0 educator's guide} and introduces the \emph{hierarchical state machines} graphical notation to creating flight programs for Earth-orbiting satellites within the simulator. For a general acquaintance with state machine diagrams, it is better to refer to specialized books and articles (for example, \cite{CRASHCOURSE}) or to the description of Statecharts diagrams in the UML 2.0 standard.
+
+The guide consists of a review of flight program diagrams for missions included in the basic version of the Orbita Simulator 2.0: from three training missions to the most difficult final missions. The source files for diagrams and descriptions of devices can be found in the \verb'probes' directory of the repository.
+
+The simulator uses flight programs in Python (version 3.x) using a special API to access the subsystems of the vehicle, more details about this are in the \textbf{Creating Python flight programs} section of the Orbita Simulator main guide. In order to use state machine diagrams as flight programs, you should:
+
+\begin{description}
+\item[Diagram editor] The editor is required for editing and saving diagrams as a \verb'.graphml'-file. Currently only diagrams created with a free but proprietary editor are supported.
+  \textbf{yEd}\footnote{\url{https://www.yworks.com/products/yed}}.
+\item[Diagram translator to flight program in Python] This version of the simulator uses a translator to Python code using the state machine library
+  \textbf{PySM}\footnote{\url{https://github.com/pgularski/pysm/}}. In the flight log, you can see the program code that is generated based on the proposed diagram.
+\end{description}
+
+Thus, you can create a diagram in \textbf{yEd}, following the established design rules, and then automatically generate the Python program code when the simulator starts, that is, carry out the entire development of the flight program in a graphical editor.
+This approach has its limitations: you have to carefully monitor the correctness of the Python code, but the developer does not need to work with the generated source code of the program at all.
+
+\clearpage
+\section{Looking at the Earth: Introducing State Machines}
+
+\paragraph{Mission requirements} In the first training mission, the spacecraft starts in an orbit of a given altitude. It is necessary to extinguish the initial rotation of the spacecraft and make a complete Earth's rotation with the spacecraft oriented to the nadir (normally relative to the surface). In this training mission, the spacecraft will be fully constructed, it will only be necessary to make calculations and insert the necessary constants into the flight program.
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=10cm]{images/test1-ru.eps}
+    \caption{Spacecraft positions in the first training mission}
+    \label{Pic:test1}
+  \end{center}
+\end{figure}
+
+\paragraph{The general logic} Recall that the flight program in this mission can be divided into two stages:
+
+\begin{enumerate}
+\item The damping of the initial angular velocity of the spacecraft and reaching the angular velocity required to constantly maintain the orientation normal to the earth's surface, the target angular velocity, the required time and flywheel moment for the maneuver are calculated by the formula:
+
+  $$
+  \begin{array}{l}
+    \omega = \frac{-360 \degree \sqrt{\frac{G M}{R + h_{\text{орб}}}}}{2 \pi (R + h_{\text{орб}})},\\
+    t = \frac{2 \cdot 270 \degree}{\omega_0 - \omega},\\
+    M_0 = \frac{(\omega - \omega_0) \cdot I_z}{t}.
+  \end{array}
+  $$
+\item Maintaining the spacecraft in the desired orientation and angular velocity.
+\end{enumerate}
+
+\paragraph{State machine diagram}
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=16cm]{images/test1-sm.eps}
+    \caption{State machine diagram for the mission <<Looking at the Earth>>}
+    \label{Pic:Test1SM}
+  \end{center}
+\end{figure}
+
+Such a sequence of work stages allows us to build a simple state machine diagram of our spacecraft ( \verb'test1sm.graphml'). Let's take a look at the diagram (fig.
+\ref{Pic:Test1SM}) and highlight its key components.
+
+The diagram shows the hierarchy of states:
+
+\begin{description}
+\item[orientation] Parental state that characterizes the entire process of spacecraft orientation.
+\item[rotate] The first child state associated with the initial maneuver.
+\item[maintain] The second child state associated with the further maintenance of the correct orientation of the spacecraft.
+\item[idle] At the next level of the hierarchy, the base state is associated with waiting when
+the spacecraft orientation does not require adjustment.
+\item[correct] And the second state associated with the correction of the angular velocity\footnote{Please note that not the best way to control the parameter is implemented here. It's better to use a more complex controller to cross the value boundary to avoid <bounce>> on the transition. For example, you might think of a diagram for a more complex transient, a PID controller, and so on.}, в including:
+\item[correct\textunderscore cw] A child state that corrects excess angular velocity in a clockwise direction.
+\item[correct\textunderscore ccw] And likewise~--- in a counterclock-wise direction.
+\end{description}
+
+Also on the diagram you can see the initial state for the entire diagram (we start execution by getting into the state\verb'rotate') and separately for the situation getting into a state \verb'correct'.
+
+States contain triggers (\emph{trigger}) on input (\verb'entry') and exit (\verb'exit'), that contain executable Python code. The code refers to the subsystems of the spacecraft described in the programming reference in the main manual for Orbita Simulator 2.0. For example, when entering the state \verb'correct' the flywheel turns on
+
+\begin{verbatim}
+orientation.start_motor(AXIS_Z)
+\end{verbatim}
+
+and when it comes out it turns off:
+
+\begin{verbatim}
+orientation.stop_motor(AXIS_Z)
+\end{verbatim}
+
+The transition between states occurs through events (transition, \emph{transition}). In this example, only so-called \emph{external events} associated with a change in the current state are used. Each event contains:
+
+\begin{description}
+\item[Name] Event names are written in Latin letters. We will and recommend using a notation in which event names are written in capital letters. May not be specified, in which case it is considered a standard event \verb'TIME_TICK'. We do not recommend misusing unnamed events.
+\item[Condition] If the condition is true(\emph{guard}) a transition occurs. The conditions are also Python code enclosed in square brackets. If the transition does not contain a condition, it occurs unconditionally. An example of such code in a diagram:
+  \verb'[abs(orientation.get_angular_velocity(AXIS_Z) - W) < DW]'.
+\item[Action] It is also possible to perform a special action (\emph{action}) в
+  пduring the transition (if the condition is true) he action is a Python program code in the form of lines after the symbol \verb'/'. For example: \verb'/ orientation.stop_motor(AXIS_Z)'.
+\end{description}
+
+The diagram also contains special notes~--- yellow blocks with service titles.
+\begin{description}
+\item[Initialization:] An initialization block that contains the flight program code that will be executed before entering the diagram. In the case of a Python program, it is convenient to carry out initial calculations here and place the initialization of global variables, which will then be used in the program. For example \footnote{Note that in our example specified some values for the variables $t$, $M0$ and etc., most likely they will not lead to the correct execution of the mission program, for this you need to independently carry out correct calculations.}:
+
+\begin{verbatim}
+Initialization:
+
+T = 508
+W = -0.06
+M0 = -0.00001
+M = 0.000001
+DW = 0.00001
+\end{verbatim}
+
+\item[Init scripts:] An alternative way to add code to a diagram is a listing python code files to be imported with all symbols into the generated flight program.\textbf{Note:} all scripts must be in the same directory,
+  что и \verb'.graphml'-file. Block content example:
+
+\begin{verbatim}
+Init scripts:
+
+constants.py
+orientation.py
+\end{verbatim}
+
+\end{description}
+
+When generating the flight program code, first all modules from the block are included
+\verb'Init scripts', and then the code from the block \verb'Initialization'. This allows you to more logically distribute code between blocks and diagrams of several subsystems. (see example on page \pageref{MULTIPLE_MODULES}).
+
+\paragraph{Features of writing code in diagrams} This approach has a number of coding features that must be taken into account when creating a flight program.
+
+First, the state machine programming paradigm is most effective if nothing happens during the main program time, and control actions are carried out at the moment of occurrence of events and take relatively little time. This means that you need to try to minimize the amount of code (calculations, calls to external devices, etc.) when executing individual events, checking conditions, firing triggers, etc. For example, parts of complex calculations can be done in advance and placed in the initialization block.
+
+Secondly, the \textbf{yEd} editor is not intended for writing a large amount of text. It does not have built-in Python syntax checking mechanisms and other developer-friendly tools. This means that you need to write code more carefully and debug the diagram already at the start of the devices. Don't forget the \textbf{Sputnik API} library, which can be combined with statechart debugging
+(see \verb'/models/earth/sm/test'). You can read more about the diagram testing system in Appendix 1.
+
+\clearpage
+\section{Communication with the Earth: using events}
+
+\paragraph{Mission conditions} In the second training mission, the spacecraft starts in an orbit of a given altitude. It is necessary to program the spacecraft to send a message to Earth through a high-performance communication subsystem. In this training mission, the spacecraft will be completely constructed, it will only be necessary to write its flight program.
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=10cm]{images/test2.eps}
+    \caption{Spacecraft and ground station in the second training mission}
+    \label{Pic:test2}
+  \end{center}
+\end{figure}
+
+This mission is not fundamentally different from the previous one. It is necessary not only to orient the spacecraft to the Earth, but also to send a message to the Earth at the moment when the spacecraft approaches the location of the НИП on Earth.
+
+\paragraph{General solution} From the point of view of flight programming using state machines in this mission, we will work more closely with \emph{events} and show how a spacecraft mission can be controlled using several state diagrams.
+
+In this case, the mission can be divided into three stages:
+
+\begin{enumerate}
+\item Orient the spacecraft in nadir so that the antenna with a directivity angle
+  $180\degree$ is oriented as much as possible towards the target.
+\item Wait until the ground station appears over the horizon.
+\item Turn on the transmitter and send the message.
+\end{enumerate}
+
+At the same time, it is necessary to maintain the temperature regime of the spacecraft in the mission, which will require a separate diagram for the corresponding subsystem of the spacecraft.
+
+\paragraph{Spacecraft orientation}
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=16cm]{images/test2sm-orient-1.eps}
+    \caption{State Machine Diagram for Orientation Subsystem (a)}
+    \label{Pic:Test2SM-Orient-1}
+  \end{center}
+\end{figure}
+
+First, let's get acquainted with the diagram that provides the orientation of the spacecraft. It basically inherits the diagram from the previous mission~--- the figure \ref{Pic:Test2SM-Orient-1}) shows the first part of our diagram. It has a couple of differences: firstly, the constants for the first
+turns are now calculated depending on the current movement of the spacecraft; secondly, some of the conditions were hidden in a function in the Python language; but most importantly~--- a new logic appears here, connected with the transmission of a message between different diagrams of the spacecraft subsystems.
+
+Upon receipt of the external message \verb'TO_NADIR' the orientation system starts the starting turn to nadir. And at the end of the manner, a corresponding message is sent to another subsystem (in this case, \verb'cpu'):
+
+\begin{center}
+\begin{verbatim}
+DISPATCH(cpu, 'ORIENTED')
+\end{verbatim}
+\end{center}
+
+\verb'DISPATCH'~--- this is a service function that sends a message to this or another spacecraft subsystem.  The function takes two parameters:
+
+\begin{description}
+\item[Subsystem name] to which the message is sent, in this case it is the on-board central computer
+  (\verb'cpu').
+\item[Message name] that should be processed in the diagram of the corresponding subsystem as a string, in this case \verb"'ORIENTED'".
+\end{description}
+
+The following is the initialization code that is used in the state machine for the orientation subsystem. The service fields contain the initialization code, including the necessary
+functions for calculations and checking conditions.
+
+\begin{verbatim}
+Initialization:
+
+mass = 5.5
+volume = 3.4
+a = math.pow(volume, 1.0 / 3.0) / 10.0
+I_z = (1.0/12.0) * (2.0 * a ** 2) * mass
+GM = 6.6742e-11 * 5.9726e24
+R_z = 6371032.0
+
+def calculate_nadir_rotation():
+    h = navigation.get_orbit_height()
+    w0 = orientation.get_angular_velocity(AXIS_Z)
+
+    w = -360.0 * math.sqrt(GM / (R_z + h)) / (2 * math.pi * (R_z + h))
+    t = 2 * 270.0 / (w0 - w)
+    m0 = (w - w0) * I_z / t
+
+    return w, t, m0
+
+def is_target_dw():
+    return abs(orientation.get_angular_velocity(AXIS_Z) - W) < DW
+
+def is_target_oa():
+    a = navigation.get_z_axis_angle()
+    oa = orientation.get_angle(AXIS_Z)
+    sum = a + oa
+    if sum >= 360.0: sum = sum - 360.0
+    return abs(sum - 270.0) < DA
+
+M = 0.000001
+DW = 0.00001
+DA = 0.01
+Start_T = 0
+\end{verbatim}
+
+\paragraph{Main diagram} The onboard central computer contains the actual flight program in the form of the following diagram (see figure \ref{Pic:Test2SM-Main}).
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=15cm]{images/test2sm-main.eps}
+    \caption{State machine diagram for the CPU}
+    \label{Pic:Test2SM-Main}
+  \end{center}
+\end{figure}
+
+In this diagram, three stages of flight are sequentially implemented: first, by sending a message to the attitude control subsystem, a turn to nadir is initiated. Then, after completing the turn, the spacecraft goes into the ground station standby mode, after which it goes into the state associated with sending a message.
+
+In total, the spacecraft may contain independently operating programs for individual subsystems. Within a subsystem and between subsystems, you can forward events using
+\verb'DISPATCH'. \textbf{Note}, that the name of the top-level state in each of the diagrams is the same as the name of the subsystem. It's no coincidence! To correctly send and receive events between subsystems, you need to use this state naming requirement in diagrams for individual subsystem programs.
+
+\paragraph{Temperature regime} The third diagram is related to the operation of the subsystem for ensuring the thermal regime of the spacecraft. Next diagram (figure \ref{Pic:Test2SM-Therm}) shows the transition between standby and heating states of the machine, if it is necessary to increase its temperature due to free cooling.
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=15cm]{images/test2sm-therm.eps}
+    \caption{Diagram of the state machine for maintaining the required spacecraft temperature}
+    \label{Pic:Test2SM-Therm}
+  \end{center}
+\end{figure}
+
+This diagram represents the special event \verb'TIMER_1M'. his is a service event that fires not at every step of the simulator, but regularly in time, in this case once per minute. In this case, we do not need to track subtle temperature changes over short time intervals, it is enough to check the temperature once a minute and, if necessary, change the state of the subsystem.
+
+It's time to consider service events that can be used in diagrams, these are:
+
+\begin{itemize}
+\item \verb'TIME_TICK'~--- fires at every step of the simulator; all unnamed events also correspond to this event;
+\item \verb'TIMER_1S', \verb'TIMER_1M', \verb'TIMER_1H'~--- fires on timer once per second, once per minute, and once per hour, respectively.
+\end{itemize}
+
+\paragraph{Conclusions} Thus, you can use various events in diagrams, as well as create flight programs from several interacting or completely independent diagrams tied to individual subsystems of the spacecraft. In the Orbita Simulator 2.0, all these programs are executed in parallel (as if each one worked on a separate controller) and are somewhat analogous to orthogonal diagrams from UML 2.0. In the Orbita Simulator 2.0, all these programs are executed in parallel (as if each one worked on a separate controller) and are somewhat analogous to orthogonal diagrams from UML 2.0.
+
+\clearpage
+\section{Orbital maneuver: we continue to study events}
+
+\paragraph{Mission conditions} In the last of the training missions, the spacecraft starts in an orbit of a given altitude. It is necessary to program the spacecraft to go to a higher orbit. The spacecraft will again be fully constructed, it will only be necessary to calculate the required fuel mass and create a flight program.
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=12cm]{images/maneuvre.eps}
+    \caption{Changing the spacecraft orbit by means of a two-pulse transition}
+    \label{Pic:Maneuvre}
+  \end{center}
+\end{figure}
+
+\paragraph{General solution} We will be using a two orbital transition, which is detailed in the main simulator manual. The sequence of actions during an orbital transition can be divided into the following steps:
+
+\begin{enumerate}
+\item orient the spacecraft tangentially and extinguish the starting angular velocity;
+\item set the first momentum;
+\item turn the spacecraft around and wait for the moment when the device is on the opposite side of the Earth;;
+\item set the second momentum;
+\item wait for a complete revolution already in a new orbit.
+\end{enumerate}
+
+In solving this problem, we will introduce several new tricks that will complete our acquaintance with state machines for the Orbita Simulator 2.0. The first one is the development forwarding events within and between state machines.
+
+\paragraph{Events with a parameter}
+
+Events within a state machine or between two machines can be passed along with a parameter. You can use the \verb'DISPATCH_VALUE' function for this. This function is similar to the previously discussed \verb'DISPATCH', function, only you need to pass a value as the third parameter. On the state machine diagram (figure \ref{Pic:Test3SM-Navi})
+for the navigation system, you can see the state transfer with a parameter.
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=16cm]{images/test3sm-navi.eps}
+    \caption{State machine diagram for navigation subsystem}
+    \label{Pic:Test3SM-Navi}
+  \end{center}
+\end{figure}
+
+\label{MULTIPLE_MODULES}
+The code for the navigation program is contained in two files \verb'test3sm_constants.py' и
+\verb'test3sm_navi.py'.
+
+Here we use forwarding the \verb'TANGENT' message to the orientation subsystem with the value
+$180$:
+
+\begin{verbatim}
+DISPATCH_VALUE(orientation, 'TANGENT', 180)
+\end{verbatim}
+
+The idea is that the attitude subsystem should turn the spacecraft tangentially, and complete this transition at the point where the engine will make an impulse, in this case~--- at a position of $180 \degree$ relative to the $Z$ axis.
+
+In the same diagram, you can see how events with a parameter are processed. When the \verb'TRANS_ORBIT(h)' vent is received, the value of the height of the orbit to which the device needs to be transferred is used, the height is specified in the $h$ variable. \textbf{Note},
+the event variable can only be used in a condition (\emph{guard}) or action
+(\emph{action}), associated with this transition. Therefore, you need to save it somehow or use it immediately. When passing events, the values are stored as strings, so you will need to convert back in your handler code.
+
+The following diagram of the orientation subsystem (figure \ref{Pic:Test3SM-Orient}) also shows the handling of events with a value.
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=16cm]{images/test3sm-orient.eps}
+    \caption{State machine diagram for orientation subsystem}
+    \label{Pic:Test3SM-Orient}
+  \end{center}
+\end{figure}
+
+The orientation program code is contained in two files \verb'test3sm_constants.py' and
+\verb'test3sm_orient.py'. Note, that storing diagram code in files allows you to combine common flight program constants and methods in one place.
+
+The turn itself is carried out in three successive stages (rotation damping, the first half of the turn with acceleration, and the second half of the turn with deceleration), after which the attitude control subsystem goes into standby mode and maintains a zero angular velocity. Please note that after the orientation is completed, the corresponding event is sent to the two subsystems of the device (although this is not necessary, as we will see below).
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=11cm]{images/test3sm-main.eps}
+    \caption{State machine diagram for onboard central computer}
+    \label{Pic:Test3SM-Main}
+  \end{center}
+\end{figure}
+
+In the main flight program (figure \ref{Pic:Test3SM-Main}) you can also see the application of an event with a value~--- at the start of an orbital transition, for which the navigation subsystem is responsible, because it is associated with the movement of the center of mass of the spacecraft.
+
+Upon completion of the program, the orientation subsystem is brought to a state of inactivity using the \verb'STOP' command.
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=12cm]{images/test3sm-heat.eps}
+    \caption{State machine diagram for spacecraft temperature control}
+    \label{Pic:Test3SM-Heat}
+  \end{center}
+\end{figure}
+
+\paragraph{Internal events}
+
+The last important language construct in state machine diagrams is \emph{internal events}. Дefore that, we worked with transitions that change the current state of the state machine. Sometimes there is no need to change the state, but it is necessary to respond to an external or internal signal.
+
+The diagram of the spacecraft thermal regime maintenance subsystem (figure \ref{Pic:Test3SM-Heat})
+contains an internal event within the \verb'heat' state. Internal events are similar to \verb'entry' and \verb'exit', actions, but they can contain not only actions, but also
+conditions \footnote{Please note that in this implementation of the Python code generator for internal events, you must specify the \textbf{/} character without leading spaces.}. n this case, the event will be called every minute to change the heater power~--- so we achieve a smoother transition curve.
+
+\paragraph{Conclusions}
+
+In this mission, we switched to a more universal approach to writing flight programs: the Python program code is stored in files and does not make the scheme heavier. Separate actions of the spacecraft are logically divided into subsystems, which are controlled through events.
+
+Now you know all the possibilities of hierarchical state machines and you can take up the flight program diagrams for the main missions of the simulator.
+
+\begin{thebibliography}{2}
+\addcontentsline{toc}{section}{List of references}
+\bibitem{CRASHCOURSE} Samek M., A Crash Course in UML State Machines~---
+  \url{https://www.state-machine.com/doc/AN_Crash_Course_in_UML_State_Machines.pdf}
+\end{thebibliography}
+
+\clearpage
+\section*{Appendix 1: Instructions for programming tools}
+\addcontentsline{toc}{section}{Appendix 1: Instructions for programming tools}
+
+\subsection*{Creating diagrams}
+\addcontentsline{toc}{subsection}{Creating diagrams}
+
+To work with state diagrams in the Orbita Simulator 2.0, you need to create a diagram in the \textbf{yEd} editor with the following restrictions.
+
+Diagrams should contain the following basic primitives:
+
+\begin{description}
+\item[Atomic state] The simplest block of the diagram~--- a state that does not contain
+   other states in itself. Depicted using  the \textbf{Entity Relationship}
+  primitive with the name of the state in the header and triggers in the body of the block.
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=6cm]{images/diagrams-state.eps}
+  \end{center}
+\end{figure}
+
+\item[Parent state] A hierarchical diagram block that contains other states. Depicted using the \textbf{Group Node} primitive. Similarly, it contains the name of the state in the header and the description of triggers in the body of the block.
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=6cm]{images/diagrams-hstate.eps}
+  \end{center}
+\end{figure}
+
+\item[Initial state] Start state both for the entire diagram and for defining the start for child states within the parent. Depicted using the \textbf{BPMN Plain Event} primitive and looks like a black circle according to the UML 2.0 standard.
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=0.3cm]{images/diagrams-start.eps}
+  \end{center}
+\end{figure}
+
+\item[Events / Transitions] These are events with the corresponding parameters described above. Depicted using standard transitions \textbf{Edge}.
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=6cm]{images/diagrams-transition.eps}
+  \end{center}
+\end{figure}
+
+\item[Final states] The final state for the diagram, may not be included in the spacecraft flight diagram. Depicted using the \textbf{BPMN
+    Terminate Event} primitive.
+
+\begin{figure}[h]
+  \begin{center}
+    \includegraphics[width=2cm]{images/diagrams-finish.eps}
+  \end{center}
+\end{figure}
+
+\item[Conditions] Conditions can split the execution of the program into two threads using the service state of the condition, which is depicted using the \textbf{BPMN Gateway} primitive.
+
+\begin{figure}[h]
+  \begin{center}
+    \begin{subfigure}{0.4\textwidth}
+      \includegraphics[width=5cm]{images/diagrams-ifelse.eps}
+    \end{subfigure}
+    \hfill
+    \begin{subfigure}{0.4\textwidth}
+      \includegraphics[width=4cm]{images/diagrams-note.eps}
+    \end{subfigure}
+  \end{center}
+\end{figure}
+
+\item[Technical Descriptions] Additional fields required to create a valid flight program. May contain help information for developers and specific information for the code generator. In the current version, there are two options for optional service fields with headers: \verb'Initialization:', containing the initialization code for Python programs, and \verb'Init scripts:', containing a list of imported Python modules. Depicted using the \textbf{UML Note} primitive.
+
+\end{description}
+
+We recommend using existing examples (for example, see the directories
+\verb'models/earth/probes/' and \verb'models/earth/sm/test/graphs/') to create flight diagrams based on them.
+
+\subsection*{Including diagrams in the spacecraft description}
+\addcontentsline{toc}{subsection}{Including diagrams in the spacecraft description}
+
+Descriptions of the design and programs of the spacecraft, the conditions of its flight are contained in an XML file corresponding to the description in \verb'/models/earth/xml-schemas/probes.xsd'. Examples of finished spacecrafts can be found in the\verb'/models/earth/probes'.
+
+In the description of the spacecraft there is a section devoted to individual subsystems. Instead of specifying Python code, you can link state diagrams to spacecraft subsystems in the following way:
+
+\begin{verbatim}
+<systems>
+  <system name="Cubesat-Case-3U"/>
+  <system name="Orient-2" start_mode="ON">
+    <hsm_diagram type="yEd" path="test2sm-orient.graphml"/>
+  </system>
+  <system name="Telemetry-1" start_mode="ON"/>
+  <system name="Navi-1" start_mode="ON"/>
+  <system name="Power-1" start_mode="ON"/>
+  <system name="Therm-1" start_mode="ON">
+    <hsm_diagram type="yEd" path="test2sm-heat.graphml"/>
+  </system>
+  <system name="Radio-1" start_mode="OFF"/>
+  <system name="CPU-1" start_mode="ON">
+    <hsm_diagram type="yEd" path="test2sm-main.graphml"/>
+  </system>
+</systems>
+\end{verbatim}
+
+Files with diagrams in the \verb'.graphml' format must be located in the same directory as the spacecraft description, or the full path to the diagram must be specified in the \verb'path' attribute
+
+\subsection*{Diagram testing tools}
+\addcontentsline{toc}{subsection}{Diagram testing tools}
+
+The \verb'/models/earth/sm/test' directory contains scripts for testing state machines. There you can also find examples of test diagrams that implement the basic functionality of state machines..
+
+To master the language of state machine diagrams, it is recommended to use a special \verb'run.py', To master the language of state machine diagrams, it is recommended to use a special spacecraft simulator. In this case, a number of limitations must be taken into account:
+
+\begin{itemize}
+\item the top-level state in the diagram should be called \verb'cpu';
+\item the diagram must have a start state;
+\item you will have to use the function \verb'debug(str)' to output messages to the console;
+\item you can use the \verb'GETCHAR' event with a parameter to get a character from the keyboard (see diagram example \verb'/sm/test/graph/getchar.graphml').
+\end{itemize}
+
+For example, when running the diagram shown in the figure \ref{Pic:TestDiagr}) the following result will be obtained:
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=15cm]{images/test-diagram.eps}
+    \caption{Test diagram example}
+    \label{Pic:TestDiagr}
+  \end{center}
+\end{figure}
+
+\begin{verbatim}
+INIT
+ENTRY A
+ENTRY B
+ENTRY C
+TERM
+\end{verbatim}
+
+If you want to test a full-fledged flight program with calls to the functions of the spacecraft subsystems, we recommend using the test API (\verb'/models/earth/api-test') and implementing all the necessary functions in it.
+
+\end{document}
