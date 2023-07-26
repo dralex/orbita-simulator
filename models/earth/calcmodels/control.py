@@ -42,6 +42,8 @@ class PythonControlModel(AbstractModel):
         self.programs = []
 
     def init_model(self, probe, initial_tick):
+        print("init")
+        
         global _ # pylint: disable=W0603
         _ = Language.get_tr()
         for s in probe.systems.values():
@@ -52,9 +54,11 @@ class PythonControlModel(AbstractModel):
                         runtime = SputnikRuntime(probe)
                         s.program_instance = pycontrol.program.Program(runtime,
                                                                        'systems_api',
-                                                                       s.program_text,
-                                                                       Language)
+                                                                       s.program_text
+                                                                       )
+                        print(4)
                         self.programs.append(s)
+                        
                     except pycontrol.program.ProgramError as e:
                         str_e = str(e).replace('%', '%%')
                         data.critical_error(probe,
