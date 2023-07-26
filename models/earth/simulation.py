@@ -100,18 +100,21 @@ def run(probename, probefile, missionfile, debugfile, shortfile, #pylint: disabl
         planet_params = parameters.Planets[probe.planet]
         tick_length = float(planet_params.tick)
         probe.print_probe()
-
+        
         models = []
         telemetry = None
+        print(planet_params.Models)
         for kind, modelclass in planet_params.Models:
             try:
                 pkg = 'calcmodels.{}'.format(kind)
                 module = importlib.import_module(pkg, pkg)
+                
                 if not hasattr(module, modelclass):
                     raise CriticalError(_('Module load error: cannot find class %s in module %s') %
                                         (modelclass, kind))
                 cls = getattr(module, modelclass)
                 model = cls(parameters)
+                print(model)
                 models.append(model)
                 if kind == 'telemetry':
                     telemetry = model
@@ -123,17 +126,24 @@ def run(probename, probefile, missionfile, debugfile, shortfile, #pylint: disabl
         mission = cls(parameters)
 
         try:
+
             probe.systems[constants.SUBSYSTEM_CPU].flight_time = 0.0
-
+            print(models)
+            print(len(models))
             for m in models:
-                m.init_model(probe, tick_length)
 
+                try:
+                    m.init_model(probe, tick_length)
+                except RuntimeError:
+                    print('time')
+            print(1)
             mission.init(probe, tick_length, Language.get_tr())
-
+            print(3)
             simulation_time = 0.0
             iteration = 0
 
             while True:
+                
                 for m in models:
                     m.step(probe, tick_length)
 
