@@ -11,12 +11,12 @@
       <tick>0.1</tick>
       <models>
 	<model kind="ballistics" modelclass="FlatBallisticModel" order="1"/>
-	<model kind="control" modelclass="PythonControlModel" order="6"/>
+	<model kind="control" modelclass="PythonControlModel" order="8"/>
 	<model kind="telemetry" modelclass="BasicTelemetryModel" order="5"/>
 	<model kind="power" modelclass="SimplePowerModel" order="4"/>
 	<model kind="mechanics" modelclass="SimpleMechanicalModel" order="2"/>
-	<model kind="load" modelclass="SimpleLoadModel" order="7"/>
-	<model kind="radio" modelclass="SimpleRadioModel" order="8"/>
+	<model kind="load" modelclass="SimpleLoadModel" order="6"/>
+	<model kind="radio" modelclass="SimpleRadioModel" order="7"/>
 	<model kind="thermodynamics" modelclass="SimpleThermodynamicsModel" order="3"/>
       </models>
       <radius>6371032.0</radius>
