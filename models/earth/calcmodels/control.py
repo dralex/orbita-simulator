@@ -71,7 +71,7 @@ class PythonControlModel(AbstractModel):
                                             _('System error while running program: %s'),
                                             str_e)
 
-    def step(self, probe, tick):
+    def step(self, probe, tick, probes):
         for s in self.programs:
             try:
                 s.run_program()

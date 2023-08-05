@@ -12,13 +12,17 @@
         </control_station>
 </control_stations>
 <duration>6.000000</duration>
-<orbit>182.000000</orbit>
+<orbits>
+    <orbit>182.000000</orbit>
+</orbits>
 <resolution>0.000000</resolution>
 <start_angular_velocity>1.000000</start_angular_velocity>
 <target_angle>61.000000</target_angle>
 <target_orbit>790.000000</target_orbit>
 </mission>
 </flight>
+<apparatuses>
+<apparatus>
 <construction>
   <fuel>29.000000</fuel>
   <voltage>27.000000</voltage>
@@ -428,4 +432,6 @@ while sputnik.cpu.run():
 <system name="Telemetry-1" start_mode="ON"/>
 <system name="Camera-1" start_mode="OFF"/>
 </systems>
+</apparatus>
+</apparatuses>
 </v:probe>

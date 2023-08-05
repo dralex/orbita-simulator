@@ -47,3 +47,11 @@ class CriticalError(VenusError):
 class Terminated(VenusError):
     def __init__(self, msg):
         VenusError.__init__(self, msg)
+
+class QuantityApparatusException(Exception):
+    def __init__(self, msg):
+        super().__init__(self)
+        self.msg = msg
+
+    def __str__(self):
+        return self.msg

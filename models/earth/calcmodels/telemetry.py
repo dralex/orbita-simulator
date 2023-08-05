@@ -66,7 +66,7 @@ class BasicTelemetryModel(AbstractModel):
 
         self.last_sec = 0
 
-    def step(self, probe, tick):
+    def step(self, probe, tick, probes):
         tel = probe.systems[data.SUBSYSTEM_TELEMETRY]
         nowtime = probe.systems[data.SUBSYSTEM_CPU].flight_time
         if tel.mode == STATE_ON and (tel.last_telemetry + tel.period) < (nowtime + 0.001):

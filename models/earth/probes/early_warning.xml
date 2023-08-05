@@ -57,11 +57,15 @@
         <launch_time>57908.000000</launch_time>
     </missile>
 </missiles>
-<orbit>35794.000000</orbit>
+<orbits>
+    <orbit>35794.000000</orbit>
+</orbits>
 <resolution>0.000000</resolution>
 <start_angular_velocity>1.000000</start_angular_velocity>
 </mission>
 </flight>
+<apparatuses>
+<apparatus>
 <construction>
   <fuel>0.000000</fuel>
   <voltage>27.000000</voltage>
@@ -294,4 +298,6 @@ while sputnik.cpu.run():
 <system name="Telemetry-1" start_mode="ON"/>
 <system name="Infrared-Telescope" start_mode="ON"/>
 </systems>
+</apparatus>
+</apparatuses>
 </v:probe>

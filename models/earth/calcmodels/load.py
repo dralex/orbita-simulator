@@ -46,7 +46,7 @@ class SimpleLoadModel(AbstractModel):
             probe.photo_incidence_angle = None
             probe.photo_distance = None
 
-    def step(self, probe, tick): # pylint: disable=R0912
+    def step(self, probe, tick, probes): # pylint: disable=R0912
         load = probe.systems[constants.SUBSYSTEM_LOAD]
         if not load:
             return

@@ -96,7 +96,7 @@ class SimpleMechanicalModel(AbstractModel):
 
         return (x, y, z)
 
-    def step(self, probe, tick):
+    def step(self, probe, tick, probes):
         orient = probe.systems[constants.SUBSYSTEM_ORIENTATION]
         navig = probe.systems[constants.SUBSYSTEM_NAVIGATION]
         radio = probe.systems[constants.SUBSYSTEM_RADIO]

@@ -22,7 +22,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see https://www.gnu.org/licenses/
 # -----------------------------------------------------------------------------
-
+import copy
 import sys
 if sys.version_info.minor >= 10:
     import collections
@@ -82,7 +82,7 @@ def run(probename, probefile, missionfile, debugfile, shortfile, #pylint: disabl
     else:
         imagetmpl = None
 
-    probe = None
+    probes = None
     try:
 
         parameters = xmlconverters.GlobalParameters.load(Language, PARAMETERS_FILE)
@@ -92,14 +92,15 @@ def run(probename, probefile, missionfile, debugfile, shortfile, #pylint: disabl
         devices_map = xmlconverters.Devices.load_devices_map(Language,
                                                              DEVICES_FILE.format(lang_postfix))
 
-        probe = data.Probe(probename,
+        probes = data.Probes(probename,
                            probefile,
                            parameters,
                            devices_map)
 
-        planet_params = parameters.Planets[probe.planet]
+        planet_params = parameters.Planets[probes.get()[0].planet]
         tick_length = float(planet_params.tick)
-        probe.print_probe()
+        for probe in probes.get():
+            probe.print_probe()
 
         models = []
         telemetry = None
@@ -119,33 +120,42 @@ def run(probename, probefile, missionfile, debugfile, shortfile, #pylint: disabl
                 raise CriticalError(_('Module load error: module %s cannot be loaded: %s') %
                                     (kind, str(e)))
 
-        cls = data.available_missions[probe.mission]
+        cls = data.available_missions[probes.get()[0].mission]
         mission = cls(parameters)
+        models_lst = {}
 
         try:
-            probe.systems[constants.SUBSYSTEM_CPU].flight_time = 0.0
+            for probe in probes.get():
+                probe.systems[constants.SUBSYSTEM_CPU].flight_time = 0.0
 
-            for m in models:
-                m.init_model(probe, tick_length)
+                models_lst[probe] = copy.deepcopy(models)
+                for m in models_lst[probe]:
+                    m.init_model(probe, tick_length)
 
-            mission.init(probe, tick_length, Language.get_tr())
+            mission.init(probes.get()[0], tick_length, Language.get_tr())
 
             simulation_time = 0.0
             iteration = 0
 
+            flag_for_end = False
+
             while True:
-                for m in models:
-                    m.step(probe, tick_length)
+                for probe in probes.get():
+                    for m in models_lst[probe]:
+                        m.step(probe, tick_length, probes)
 
-                mission.step(probe, tick_length)
+                    mission.step(probe, tick_length)
 
-                probe.update_mass()
+                    probe.update_mass()
 
-                probe.systems[constants.SUBSYSTEM_CPU].update_time(tick_length)
+                    probe.systems[constants.SUBSYSTEM_CPU].update_time(tick_length)
 
-                if probe.mission_ended():
-                    debug_log(_('MISSION ENDED. Duration = %s'),
-                              data.time_to_str(simulation_time + tick_length))
+                    if probe.mission_ended():
+                        debug_log(_('MISSION ENDED. Duration = %s'),
+                                  data.time_to_str(simulation_time + tick_length))
+                        flag_for_end = True
+
+                if flag_for_end:
                     break
 
                 simulation_time += tick_length

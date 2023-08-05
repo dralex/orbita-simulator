@@ -56,7 +56,7 @@ class SimpleThermodynamicsModel(AbstractModel):
         hc.sun_flow = 0
         hc.radiation = 0
 
-    def step(self, probe, tick):
+    def step(self, probe, tick, probes):
         hc = probe.systems[data.SUBSYSTEM_HEAT_CONTROL]
         navig = probe.systems[data.SUBSYSTEM_NAVIGATION]
 

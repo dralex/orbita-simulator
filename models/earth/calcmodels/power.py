@@ -49,7 +49,7 @@ class SimplePowerModel(AbstractModel):
             power.max_capacity = 0
         power.accumulator = power.max_capacity
 
-    def step(self, probe, tick): # pylint: disable=R0912
+    def step(self, probe, tick, probes): # pylint: disable=R0912
         power = probe.systems[data.SUBSYSTEM_POWER]
 
         if power.mode == constants.STATE_OFF or power.mode == constants.STATE_DEAD:

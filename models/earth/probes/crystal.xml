@@ -12,13 +12,17 @@
 	</control_station>
       </control_stations>
       <duration>6</duration>
-      <orbit>600</orbit>
+      <orbits>
+        <orbit>600</orbit>
+      </orbits>
       <precision>0.1</precision>
       <start_angular_velocity>1.0</start_angular_velocity>
       <target_angle>120</target_angle>
       <target_orbit>700</target_orbit>
     </mission>
 </flight>
+<apparatuses>
+<apparatus>
 <construction><fuel>0.75</fuel>
 <voltage>27.000000</voltage>
 <xz_yz_solar_panel_fraction>100.000000</xz_yz_solar_panel_fraction>
@@ -222,4 +226,6 @@ while sputnik.cpu.run():
 ]]></program>
 </system>
 </systems>
+</apparatus>
+</apparatuses>
 </v:probe>

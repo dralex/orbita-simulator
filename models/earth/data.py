@@ -22,7 +22,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see https://www.gnu.org/licenses/
 # -----------------------------------------------------------------------------
-
+import copy
 import os
 import time
 import math
@@ -31,7 +31,7 @@ from constants import * # pylint: disable=W0401,W0614
 import calcmodels.planet
 
 from logger import debug_log, error_log, mission_log, time_to_str
-from errors import CriticalError, Terminated
+from errors import CriticalError, Terminated, QuantityApparatusException
 from xmlconverters import ProbeLoader, ShortLogLoader
 from language import Language
 import sm.python_hsm
@@ -1151,10 +1151,42 @@ Device.DEVICE_CLASS = {
     SUBSYSTEM_LOAD: LoadDevice
 }
 
+
+class Probes:
+
+    probes = []
+
+    def __init__(self, name, probefile, parameters, devices_map):
+        probe = ProbeLoader.load_probe(Language, probefile)
+        if len(probe.apparatuses.apparatus) != len(probe.flight.mission.orbits.orbit):
+            raise QuantityApparatusException("The number of specified launch orbital altitudes does not match the number of specified spacecrafts")
+
+        for i in range(len(probe.apparatuses.apparatus)):
+            wrapper_probe = WrapperProbe(
+                probe.name,
+                probe.flight,
+                probe.apparatuses.apparatus[i].construction,
+                probe.apparatuses.apparatus[i].systems,
+                probe.flight.mission.orbits.orbit[i]
+            )
+            self.probes.append(Probe(name, probefile, wrapper_probe, parameters, devices_map))
+
+    def get(self):
+        return self.probes
+
+
+class WrapperProbe:
+    def __init__(self, name, flight, construction, systems, orbit):
+        self.name = name
+        self.flight = flight
+        self.construction = construction
+        self.systems = systems
+        self.orbit = orbit
+
+
 class Probe: # pylint: disable=R0902
 
-    def __init__(self, name, probefile, parameters, devices_map): #pylint: disable=R0912
-        probe = ProbeLoader.load_probe(Language, probefile)
+    def __init__(self, name, probefile, probe, parameters, devices_map): #pylint: disable=R0912
 
         global _ # pylint: disable=W0603
         _ = Language.get_tr()
@@ -1301,7 +1333,7 @@ class Probe: # pylint: disable=R0902
         cpu.time_left = float(probe.flight.mission.duration) * 3600
 
         navigation = self.systems[SUBSYSTEM_NAVIGATION]
-        navigation.initialize_flight(float(probe.flight.mission.orbit), 0.0)
+        navigation.initialize_flight(float(probe.orbit), 0.0)
 
         orientation = self.systems[SUBSYSTEM_ORIENTATION]
         orientation.initialize_flight(float(probe.flight.mission.start_angular_velocity))

@@ -115,10 +115,16 @@ class FlatBallisticModel(AbstractModel):
         navig.ground_visibility_angle = math.degrees(math.acos(navig.planet_radius /
                                                                navig.height)) * 2
 
-    def step(self, probe, tick): # pylint: disable=R0912,R0914
+    def step(self, probe, tick, probes): # pylint: disable=R0912,R0914
         navig = probe.systems[constants.SUBSYSTEM_NAVIGATION]
         orient = probe.systems[constants.SUBSYSTEM_ORIENTATION]
         engine = probe.systems[constants.SUBSYSTEM_ENGINE]
+
+        for probe_a in probes.get():
+            if probe_a != probe:
+                navig_a = probe_a.systems[constants.SUBSYSTEM_NAVIGATION]
+                if data.calculate_distance(navig, navig_a) < 1:
+                    data.terminate(probe, "Spacecraft collision")
 
         if navig.height <= navig.planet_radius:
             if abs(navig.velocity) <= probe.Parameters.Planets[probe.planet].max_landing_velocity:
