@@ -326,7 +326,7 @@ It's time to consider service events that can be used in diagrams, these are:
 \paragraph{Conclusions} Thus, you can use various events in diagrams, as well as create flight programs from several interacting or completely independent diagrams tied to individual subsystems of the spacecraft. In the Orbita Simulator 2.0, all these programs are executed in parallel (as if each one worked on a separate controller) and are somewhat analogous to orthogonal diagrams from UML 2.0. In the Orbita Simulator 2.0, all these programs are executed in parallel (as if each one worked on a separate controller) and are somewhat analogous to orthogonal diagrams from UML 2.0.
 
 \clearpage
-\section{Orbital maneuver: we continue to study events}
+\section{Orbit maneuver: we continue to study events}
 
 \paragraph{Mission conditions} In the last of the training missions, the spacecraft starts in an orbit of a given altitude. It is necessary to program the spacecraft to go to a higher orbit. The spacecraft will again be fully constructed, it will only be necessary to calculate the required fuel mass and create a flight program.
 
@@ -338,12 +338,12 @@ It's time to consider service events that can be used in diagrams, these are:
   \end{center}
 \end{figure}
 
-\paragraph{General solution} We will be using a two orbital transition, which is detailed in the main simulator manual. The sequence of actions during an orbital transition can be divided into the following steps:
+\paragraph{General solution} We will be using an orbit transfer with two impulsive engine burns, which is detailed in the main simulator manual. The sequence of actions during an orbit transfer can be divided into the following steps:
 
 \begin{enumerate}
 \item orient the spacecraft tangentially and extinguish the starting angular velocity;
 \item set the first momentum;
-\item turn the spacecraft around and wait for the moment when the device is on the opposite side of the Earth;;
+\item turn the spacecraft around and wait for the moment when the device is on the opposite side of the Earth;
 \item set the second momentum;
 \item wait for a complete revolution already in a new orbit.
 \end{enumerate}
