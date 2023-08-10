@@ -103,7 +103,7 @@ def run(probename, probefile, missionfile, debugfile, shortfile, #pylint: disabl
         
         models = []
         telemetry = None
-        print(planet_params.Models)
+        
         for kind, modelclass in planet_params.Models:
             try:
                 pkg = 'calcmodels.{}'.format(kind)
@@ -114,7 +114,7 @@ def run(probename, probefile, missionfile, debugfile, shortfile, #pylint: disabl
                                         (modelclass, kind))
                 cls = getattr(module, modelclass)
                 model = cls(parameters)
-                print(model)
+                
                 models.append(model)
                 if kind == 'telemetry':
                     telemetry = model
@@ -128,17 +128,16 @@ def run(probename, probefile, missionfile, debugfile, shortfile, #pylint: disabl
         try:
 
             probe.systems[constants.SUBSYSTEM_CPU].flight_time = 0.0
-            print(models)
-            print(len(models))
+           
             for m in models:
 
                 try:
                     m.init_model(probe, tick_length)
                 except RuntimeError:
                     print('time')
-            print(1)
+            
             mission.init(probe, tick_length, Language.get_tr())
-            print(3)
+           
             simulation_time = 0.0
             iteration = 0
 
