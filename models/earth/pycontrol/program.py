@@ -32,6 +32,8 @@ import atexit
 from collections import deque
 import gettext
 import sysv_ipc
+import zmq
+import multiprocessing
 
 _ = gettext.gettext
 
@@ -51,6 +53,9 @@ DEFAULT_PARAMS_MAX_STEP_TIME = 0.1
 STDOUT_BUFFER_LINES = 4096
 STDERR_BUFFER_LINES = 64
 MAX_LINE_LENGTH = 256
+
+RECEIVE_PORT = 5454
+REQUEST_PORT = 4545
 
 def buffer_to_message(buf):
     msg = ''
@@ -168,27 +173,33 @@ class Program:
             self._stderr_reader = None
 
         if self._request_queue is not None:
-            self._request_queue.remove()
+            self._request_queue.close()
             self._request_queue = None
 
         if self._response_queue is not None:
-            self._response_queue.remove()
+            self._response_queue.close()
             self._response_queue = None
 
     def reset(self):
         self._destroy_worker()
 
-        self._request_queue = sysv_ipc.MessageQueue(None,
-                                                     flags=sysv_ipc.IPC_CREX)
-        self._response_queue = sysv_ipc.MessageQueue(None,
-                                                      flags=sysv_ipc.IPC_CREX)
+        self._request_context = zmq.Context()
+        self._response_context = zmq.Context()
+
+        
+
+        self._response_queue = self._request_context.socket(zmq.PUSH)
+        self._response_queue.bind(f"tcp://*:{RECEIVE_PORT}")
+
+        self._request_queue = self._request_context.socket(zmq.PULL)
+        self._request_queue.connect(f"tcp://localhost:{REQUEST_PORT}")
 
         self._first_step = True
         self._deferred_response = None
 
         command = (WORKER_LAUNCH_COMMAND +
-                   [str(self._request_queue.key),
-                    str(self._response_queue.key)])
+                   [str(REQUEST_PORT),
+                    str(RECEIVE_PORT)])
         
         
         if self._api_module_name is not None:
@@ -225,36 +236,46 @@ class Program:
         self._worker.stdin.write(self._code.encode('utf-8'))
         self._worker.stdin.close()
         
-        time.sleep(0.2)
-        print(self._request_queue)
+        time.sleep(3)
+        
+
+
         try:
-            print(self._request_queue.receive())
+            print(self._request_queue)
         except:
             print('not exist')
+
+
         if self._receive_from_worker(WORKER_LAUNCH_TIMEOUT) != b'READY':
             
             self._destroy_worker()
             raise WorkerError('Child worker does not respond')
 
+                
+            
+
     def _send_to_worker(self, data, timeout):
         try:
-            self._response_queue.send(message = data)
-        except sysv_ipc.BusyError:
-            print('time error') 
+            #print('trying to send')
+            #print(f'!!! data for send {data} !!!')
+            #print(self._response_queue)
+            self._response_queue.send_pyobj(data)
+            #print("send process done")
+        except zmq.ZMQError:
             return False
 
         return True
 
     def _receive_from_worker(self, timeout):
-        if self._request_queue.current_messages != 0:
             try:
-                data = self._request_queue.receive()
-            except sysv_ipc.BusyError:
-                print('time error')
+                #print('trying to receive')
+                data = self._request_queue.recv_pyobj()
+                #print(f'!!! received data {data} !!!')
+
+            except zmq.ZMQError:
                 return None
-            return data[0]
-        else:
-            print('waiting for msg')
+            return data
+
     def run(self):
         if self._worker is not None:
             # TODO: implement monotone time
@@ -267,6 +288,7 @@ class Program:
             next_step = False
 
             if not self._first_step:
+                #print(f'send data = {self._deferred_response}')
                 self._send_to_worker(self._deferred_response, remaining_time)
 
                 current_time = time.time()
@@ -276,8 +298,9 @@ class Program:
                 self._deferred_response = None
 
             while remaining_time >= 0:
-                print(1)
+                #print(remaining_time)
                 request = self._receive_from_worker(remaining_time)
+               
                 if request is None:
                     break
 
@@ -287,7 +310,9 @@ class Program:
 
                 if self._runtime is not None:
                     response, next_step = self._runtime.process_call(request)
+
                 else:
+                    print('are u here?')
                     response = ''
                     next_step = True
 
@@ -304,12 +329,15 @@ class Program:
                     break
 
                 success = self._send_to_worker(response, remaining_time)
+              
                 if not success:
+                    print('break')
                     break
 
                 current_time = time.time()
                 remaining_time -= current_time - previous_time
                 previous_time = current_time
+                #print(remaining_time)
 
             if not next_step:
                 ret_code = self._worker.poll()
