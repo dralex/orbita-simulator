@@ -28,10 +28,16 @@ import os
 import importlib
 import traceback
 import sysv_ipc
+import zmq
 
-USE_RLIMIT = True
+
+USE_RLIMIT = False
 MEMORY_LIMIT = 256 * 1024 * 1024
 USE_SECCOMP = True
+
+RECEIVE_PORT = 5454
+REQUEST_PORT = 4545
+
 THIS_MODULE_PATH = os.path.dirname(os.path.abspath(__file__))
 API_PATH = os.path.abspath(os.path.join(THIS_MODULE_PATH, '..', 'api'))
 sys.path.append(API_PATH)
@@ -55,24 +61,24 @@ def send_to_controller(data, timeout=None):
     if request_queue is None:
         return False
     try:
-        request_queue.send(data)
-        print('send done')
-    except sysv_ipc.BusyError:
+        request_queue.send_pyobj(data)
+        #print('send done')
+    except zmq.ZMQError:
         return False
     return True
 
 def receive_from_controller(timeout=None):
     global response_queue # pylint: disable=W0603
-    if response_queue.current_messages != 0:
-        if response_queue is None:
-            return None
-        try:
-            data = response_queue.receive(timeout)
-        except sysv_ipc.BusyError:
-            return None
-        return data[0]
-    else:
+
+    if response_queue is None:
         return None
+    try:
+        data = response_queue.recv_pyobj()
+    except zmq.ZMQError:
+
+        return None
+    return data
+
 if __name__ == '__main__':
     print(sys.argv)
     
@@ -81,11 +87,15 @@ if __name__ == '__main__':
     
     request_queue_name = int(sys.argv[1])
     response_queue_name = int(sys.argv[2])
-    
-    request_queue = sysv_ipc.MessageQueue(request_queue_name,
-                                           flags = 0)
-    response_queue = sysv_ipc.MessageQueue(response_queue_name,
-                                            flags = 0)
+
+    request_context = zmq.Context()
+    response_context = zmq.Context()
+
+    request_queue = request_context.socket(zmq.PUSH)
+    request_queue.bind(f"tcp://*:{REQUEST_PORT}")
+
+    response_queue = request_context.socket(zmq.PULL)
+    response_queue.connect(f"tcp://localhost:{RECEIVE_PORT}")
     
     user_code = sys.stdin.read()
 
@@ -154,7 +164,7 @@ if __name__ == '__main__':
 
         syscall_filter.load()
 
-    send_to_controller('READY')
+    send_to_controller(b'READY')
 
     status = 0
 
@@ -183,7 +193,7 @@ if __name__ == '__main__':
 
         traceback.print_exception(exc_type, exc_value, first_tb, limit)
 
-    request_queue.remove()
-    response_queue.remove()
+    request_queue.close()
+    response_queue.close()
 
     sys.exit(status)
