@@ -56,7 +56,7 @@ class PythonControlModel(AbstractModel):
                                                                        'systems_api',
                                                                        s.program_text
                                                                        )
-                        print(4)
+                        
                         self.programs.append(s)
                         
                     except pycontrol.program.ProgramError as e:
