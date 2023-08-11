@@ -42,7 +42,6 @@ class PythonControlModel(AbstractModel):
         self.programs = []
 
     def init_model(self, probe, initial_tick):
-        print("init")
         
         global _ # pylint: disable=W0603
         _ = Language.get_tr()
@@ -54,7 +53,8 @@ class PythonControlModel(AbstractModel):
                         runtime = SputnikRuntime(probe)
                         s.program_instance = pycontrol.program.Program(runtime,
                                                                        'systems_api',
-                                                                       s.program_text
+                                                                       s.program_text,
+                                                                       Language
                                                                        )
                         
                         self.programs.append(s)
