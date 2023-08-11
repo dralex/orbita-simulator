@@ -16,7 +16,7 @@ $ sudo apt install python3-pip
 $ sudo apt install protobuf-compiler
 ```
 
-3. Установите все необходимы библиотеки из файла `requirements.txt` с помощью `pip`:
+3. Установите все необходимые библиотеки из файла `requirements.txt` с помощью `pip`:
 
 ```
 $ pip3 install -r requirements.txt
