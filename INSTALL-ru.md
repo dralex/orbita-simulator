@@ -66,7 +66,7 @@ $ brew install python3
 $ brew install protobuf
 ```
 
-3. Установите все необходимы библиотеки из файла `requirements.txt` с помощью `pip`:
+3. Установите все необходимые библиотеки из файла `requirements.txt` с помощью `pip`:
 
 ```
 $ pip3 install -r requirements.txt
@@ -100,17 +100,21 @@ $ python3 simulation.py probes/test1.xml --debug-log=debug.log --mission-log=tel
 Для работы симулятора вам нужен Python (версии 3.x).
 
 
-
-1. Прежде всего установим установим python3 (https://www.python.org/downloads/windows).
+1. Прежде всего установим python3 (https://www.python.org/downloads/windows).
 
 2. Установите Google Protocol Buffers (https://protobuf.dev) версии 3.
 
 2.1 Устанавливаем архив win64/win32 из официального репозитория (https://github.com/protocolbuffers/protobuf/releases).
+
 2.2 Разархивируйте архив в удобное для вас место.
+
 2.3 Скопируйте путь до файла protoc.exe, который будет находиться в архиве.
+
 2.4 Добавьте путь до файла в параметры среды (в поле PATH)
 
-3. Установите все необходимы библиотеки из файла `requirements.txt` с помощью `pip`:
+
+
+3. Установите все необходимые библиотеки из файла `requirements.txt` с помощью `pip`:
 
 ```
 $ pip3 install -r requirements.txt
