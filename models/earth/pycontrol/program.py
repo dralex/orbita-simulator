@@ -31,9 +31,7 @@ import threading
 import atexit
 from collections import deque
 import gettext
-import sysv_ipc
 import zmq
-import multiprocessing
 
 _ = gettext.gettext
 
@@ -89,42 +87,17 @@ class ProgramError(ControlError):
         self.dump = dump
 
 
-import os
-import gettext
-
-DEFAULT_LANGUAGE = 'en'
-LANGUAGE_ORIGIN = 'sputnik'
-
-class Language:
-
-    Lang = DEFAULT_LANGUAGE
-    __tr = gettext.gettext
-
-    @classmethod
-    def set_lang(cls, lang):
-        if lang != DEFAULT_LANGUAGE:
-            cls.Lang = lang
-            t = gettext.translation(LANGUAGE_ORIGIN,
-                                    os.path.dirname(os.path.abspath(__file__)),
-                                    languages=[lang])
-            cls.__tr = t.gettext
-            t.install()
-
-    @classmethod
-    def get_tr(cls):
-        return cls.__tr
-
-
 class Program:
     def __init__(self,
                  runtime,
                  api_module_name,
                  code_lines,
+                 lang,
                  params_max_lines=DEFAULT_PARAMS_MAX_LINES,
                  params_max_init_time=DEFAULT_PARAMS_MAX_INIT_TIME,
                  params_max_step_time=DEFAULT_PARAMS_MAX_STEP_TIME):
         global _ # pylint: disable=W0603
-        _ = Language.get_tr()
+        _ = lang.get_tr()
 
         if len(code_lines) > params_max_lines:
             raise SecurityError(_('Program was not run because contains more than {} lines').format(params_max_lines)) # pylint: disable=C0301
@@ -205,7 +178,6 @@ class Program:
         if self._api_module_name is not None:
             
             command += [self._api_module_name]
-        print(command)
         
         self._worker = subprocess.Popen(command,
                                         stdin=subprocess.PIPE,
@@ -237,13 +209,6 @@ class Program:
         self._worker.stdin.close()
         
         time.sleep(3)
-        
-
-
-        try:
-            print(self._request_queue)
-        except:
-            print('not exist')
 
 
         if self._receive_from_worker(WORKER_LAUNCH_TIMEOUT) != b'READY':
