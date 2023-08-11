@@ -27,7 +27,6 @@ import sys
 import os
 import importlib
 import traceback
-import sysv_ipc
 import zmq
 
 
@@ -62,7 +61,6 @@ def send_to_controller(data, timeout=None):
         return False
     try:
         request_queue.send_pyobj(data)
-        #print('send done')
     except zmq.ZMQError:
         return False
     return True
@@ -80,8 +78,7 @@ def receive_from_controller(timeout=None):
     return data
 
 if __name__ == '__main__':
-    print(sys.argv)
-    
+
     if len(sys.argv) < 3:
         sys.exit(1)
     
@@ -100,7 +97,7 @@ if __name__ == '__main__':
     user_code = sys.stdin.read()
 
     user_globals = {}
-    print(1)
+
     if len(sys.argv) >= 4:
         api_module_name = sys.argv[3]
 
