@@ -127,7 +127,7 @@ $ pip3 install -r requirements.txt
 $ cd models/earth
 $ make win
 ```
-4.2 Если вы запускаете симулятор повторно:
+4.2 Если вы запускаете симулятор повторно и внесли какие-то изменения:
 ```
 $ cd models/earth
 $ make clean_win
