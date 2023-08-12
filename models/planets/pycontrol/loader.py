@@ -27,11 +27,15 @@ import sys
 import os
 import importlib
 import traceback
-import posix_ipc
+import zmq
 
-USE_RLIMIT = True
+USE_RLIMIT = False
 MEMORY_LIMIT = 256 * 1024 * 1024
 USE_SECCOMP = True
+
+RECEIVE_PORT = 5454
+REQUEST_PORT = 4545
+
 THIS_MODULE_PATH = os.path.dirname(os.path.abspath(__file__))
 API_PATH = os.path.abspath(os.path.join(THIS_MODULE_PATH, '..', 'api'))
 sys.path.append(API_PATH)
@@ -55,20 +59,22 @@ def send_to_controller(data, timeout=None):
     if request_queue is None:
         return False
     try:
-        request_queue.send(data, timeout=timeout)
-    except posix_ipc.BusyError:
+        request_queue.send_pyobj(data)
+    except zmq.ZMQError:
         return False
     return True
 
 def receive_from_controller(timeout=None):
-    global response_queue
+    global response_queue # pylint: disable=W0603
+
     if response_queue is None:
         return None
     try:
-        data = response_queue.receive(timeout)
-    except posix_ipc.BusyError:
+        data = response_queue.recv_pyobj()
+    except zmq.ZMQError:
+
         return None
-    return data[0]
+    return data
 
 if __name__ == '__main__':
 
@@ -78,10 +84,14 @@ if __name__ == '__main__':
     request_queue_name = sys.argv[1]
     response_queue_name = sys.argv[2]
 
-    request_queue = posix_ipc.MessageQueue(request_queue_name,
-                                           read=False)
-    response_queue = posix_ipc.MessageQueue(response_queue_name,
-                                            write=False)
+    request_context = zmq.Context()
+    response_context = zmq.Context()
+
+    request_queue = request_context.socket(zmq.PUSH)
+    request_queue.bind(f"tcp://*:{REQUEST_PORT}")
+
+    response_queue = request_context.socket(zmq.PULL)
+    response_queue.connect(f"tcp://localhost:{RECEIVE_PORT}")
 
     user_code = sys.stdin.read()
     
