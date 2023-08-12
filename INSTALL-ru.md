@@ -46,7 +46,6 @@ $ python3 simulation.py probes/test1.xml --debug-log=debug.log --mission-log=tel
 
 # Руководство по установке на MacOS
 
-Для работы симулятора вам нужен Python (версии 3.x).
 
 1. Прежде всего установим менеджер пакетов brew (https://brew.sh/index_ru).
 
@@ -96,8 +95,6 @@ $ python3 simulation.py probes/test1.xml --debug-log=debug.log --mission-log=tel
 
 
 # Руководство по установке на Windows
-
-Для работы симулятора вам нужен Python (версии 3.x).
 
 
 1. Прежде всего установим python3 (https://www.python.org/downloads/windows).
