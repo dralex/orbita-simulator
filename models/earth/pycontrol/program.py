@@ -176,7 +176,6 @@ class Program:
         
         
         if self._api_module_name is not None:
-            
             command += [self._api_module_name]
         
         self._worker = subprocess.Popen(command,
@@ -212,7 +211,6 @@ class Program:
 
 
         if self._receive_from_worker(WORKER_LAUNCH_TIMEOUT) != b'READY':
-            
             self._destroy_worker()
             raise WorkerError('Child worker does not respond')
 
@@ -221,11 +219,7 @@ class Program:
 
     def _send_to_worker(self, data, timeout):
         try:
-            #print('trying to send')
-            #print(f'!!! data for send {data} !!!')
-            #print(self._response_queue)
             self._response_queue.send_pyobj(data)
-            #print("send process done")
         except zmq.ZMQError:
             return False
 
@@ -233,10 +227,7 @@ class Program:
 
     def _receive_from_worker(self, timeout):
             try:
-                #print('trying to receive')
                 data = self._request_queue.recv_pyobj()
-                #print(f'!!! received data {data} !!!')
-
             except zmq.ZMQError:
                 return None
             return data
@@ -253,7 +244,6 @@ class Program:
             next_step = False
 
             if not self._first_step:
-                #print(f'send data = {self._deferred_response}')
                 self._send_to_worker(self._deferred_response, remaining_time)
 
                 current_time = time.time()
@@ -263,7 +253,6 @@ class Program:
                 self._deferred_response = None
 
             while remaining_time >= 0:
-                #print(remaining_time)
                 request = self._receive_from_worker(remaining_time)
                
                 if request is None:
@@ -277,7 +266,6 @@ class Program:
                     response, next_step = self._runtime.process_call(request)
 
                 else:
-                    print('are u here?')
                     response = ''
                     next_step = True
 
@@ -302,7 +290,6 @@ class Program:
                 current_time = time.time()
                 remaining_time -= current_time - previous_time
                 previous_time = current_time
-                #print(remaining_time)
 
             if not next_step:
                 ret_code = self._worker.poll()
