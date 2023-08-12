@@ -53,7 +53,7 @@ $ python3 simulation.py probes/test1.xml --debug-log=debug.log --mission-log=tel
 $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-2. Установим python3 .
+2. Установим python3.
 
 ```
 $ brew install python3
