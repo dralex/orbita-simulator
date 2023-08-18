@@ -73,7 +73,7 @@ class SimpleRadioModel(AbstractModel):
                                    noise_temperature *
                                    math.log(2)))
 
-        debug_log(_('The basic radio model for %s is: %f (%f MHz; %f W)'),
+        debug_log(probe, _('The basic radio model for %s is: %f (%f MHz; %f W)'),
                   radio.device.name,
                   radio.base_calculation,
                   radio.device.freq,
@@ -148,11 +148,11 @@ class SimpleRadioModel(AbstractModel):
                                 senttoprobe_data += volume
                                 msg = (_('The probe received (channel %s) from %s the data type %s, size %d bytes') % # pylint: disable=C0301
                                        (radio.radio_type, gs, realdata[0], volume))
-                                debug_log(msg)
+                                debug_log(probe, msg)
                                 #mission_log(msg)
 
                                 if gs in radio.receiving_requests:
-                                    debug_log(_('The message received'))
+                                    debug_log(probe, _('The message received'))
                                     radio.receiving_progress[gs] = 100.0
                                     radio.received_messages[gs] = (message_id,
                                                                    realdata[0],
@@ -161,7 +161,7 @@ class SimpleRadioModel(AbstractModel):
                                                                    gs, now, realdata[3])
                                     del radio.receiving_requests[gs]
                             else:
-                                debug_log(_('Error: the unexpected message received'))
+                                debug_log(probe, _('Error: the unexpected message received'))
                             radio.receive_queues_pop(gs)
                         else:
                             radio.receive_queues[gs][0][3] = received
@@ -185,11 +185,11 @@ class SimpleRadioModel(AbstractModel):
                                 received_data += volume
                                 msg = (_('The ground station %s received (channel %s) the data %d type %s, size %d bytes') % # pylint: disable=C0301
                                        (gs, radio.radio_type, message_id, realdata[0], volume))
-                                debug_log(msg)
+                                debug_log(probe, msg)
                                 #if realdata[0] in data.available_missions or realdata[1] is None:
-                                #    mission_log(msg)
+                                #    mission_log(probe, msg)
                                 #else:
-                                #    mission_log(msg + ': %s' % realdata[1])
+                                #    mission_log(probe, msg + ': %s' % realdata[1])
                             radio.send_queues_pop(gs)
                             radio.message_sent = True
                         else:
@@ -213,7 +213,7 @@ class SimpleRadioModel(AbstractModel):
                                 msg = ('The ground station %s received (channel %s) the data %d type %s, size %d bytes' % # pylint: disable=C0301
                                        (gs, radio.radio_type, message_id, realdata[0], volume))
                                 if realdata[0] != 'telemetry':
-                                    debug_log(msg)
+                                    debug_log(probe, msg)
                                     #if ((realdata[0] in data.available_missions or
                                     #     realdata[1] is None):
                                     #    mission_log(msg)
@@ -221,7 +221,7 @@ class SimpleRadioModel(AbstractModel):
                                     #    mission_log(msg + ': %s' % realdata[1])
                                 else:
                                     if probe.telemetry_received < message_id:
-                                        mission_log(str(realdata[1]))
+                                        mission_log(probe, str(realdata[1]))
                                         probe.telemetry_received = message_id
                                         probe.max_telemetry_time = message_time
                             radio.broadcast_queue_pop()
@@ -231,8 +231,8 @@ class SimpleRadioModel(AbstractModel):
                             channel = 0
 
                 if senttoprobe > 0:
-                    debug_log(_('%d data packets sent to Earth by channel %s: total value %.1f bytes') % # pylint: disable=C0301
+                    debug_log(probe, _('%d data packets sent to Earth by channel %s: total value %.1f bytes') % # pylint: disable=C0301
                               (senttoprobe, radio.radio_type, senttoprobe_data))
                 if received_data > 0:
-                    debug_log(_('%d data packets received to Earth by channel %s: total value  %.1f bytes') % # pylint: disable=C0301
+                    debug_log(probe, _('%d data packets received to Earth by channel %s: total value  %.1f bytes') % # pylint: disable=C0301
                               (received, radio.radio_type, received_data))

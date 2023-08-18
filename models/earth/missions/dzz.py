@@ -118,12 +118,12 @@ class DzzMission(Mission):
                     if header == self.name:
                         payload = message[3][1]
 
-                        debug_log(_('Image %s received from camera'),
+                        debug_log(probe, _('Image %s received from camera'),
                                   str(payload['visible_target']))
 
                         if (((payload['visible_target'] == self.target_index) and
                              (payload['camera_range'] == 'visible'))):
-                            mission_log(_('MISSION ACCOMPLISHED! The image of the target received.')) # pylint: disable=C0301
+                            mission_log(probe, _('MISSION ACCOMPLISHED! The image of the target received.')) # pylint: disable=C0301
                             probe.success = True
                             offset_angle = payload['target_offset_angle']
                             resolution = payload['target_resolution']

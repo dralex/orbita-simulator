@@ -89,7 +89,7 @@ class PythonControlModel(AbstractModel):
                                     s.device.name, str_e)
             except pycontrol.program.FinishError as e:
                 str_e = str(e).replace('%', '%%')
-                mission_log(_('Program finished.'))
+                mission_log(probe, _('Program finished.'))
                 if probe.success:
                     probe.completed = True
                 else:

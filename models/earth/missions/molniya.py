@@ -79,7 +79,7 @@ class MolniyaMission(Mission):
                                             if duration >= self.acceptable_duration]
             if len(acceptable_session_durations) >= self.acceptable_count:
                 if not probe.success:
-                    mission_log(_('MISSION ACCOMPLISHED! The required telecommunication session completed.')) # pylint: disable=C0301
+                    mission_log(probe, _('MISSION ACCOMPLISHED! The required telecommunication session completed.')) # pylint: disable=C0301
                     probe.success = True
 
                 probe.session_count = len(acceptable_session_durations)

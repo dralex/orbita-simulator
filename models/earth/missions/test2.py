@@ -63,14 +63,14 @@ class TestSmsMission(Mission):
                             msg += _('Error: the message was changed while being transferred. ')
                             error = True
 
-                        mission_log(msg + errmsg)
-                        debug_log(msg + errmsg)
+                        mission_log(probe, msg + errmsg)
+                        debug_log(probe, msg + errmsg)
 
                         if error:
                             data.terminate(probe,
                                            _('The probe transferred wrong message. {}').format(errmsg)) # pylint: disable=C0301
                         else:
-                            mission_log(_('MISSION ACCOMPLISHED! The message was transferred.'))
+                            mission_log(probe, _('MISSION ACCOMPLISHED! The message was transferred.'))
                             probe.success = True
                             probe.success_timestamp = time.time()
                             probe.completed = True

@@ -54,7 +54,7 @@ class SimplePowerModel(AbstractModel):
 
         if power.mode == constants.STATE_OFF or power.mode == constants.STATE_DEAD:
             if not probe.safe_mode:
-                debug_log(_('Power subsystem is not working'))
+                debug_log(probe, _('Power subsystem is not working'))
                 probe.safe_mode_on()
             elif probe.mission != constants.MISSION_CRYSTAL:
                 data.terminate(probe, _('Entering SAFE MODE twice'))
@@ -76,7 +76,7 @@ class SimplePowerModel(AbstractModel):
         if dw < 0 or power.accumulator < power.max_capacity:
             charge_current = dw / power.voltage
             if charge_current < -float(power.device.max_recharge):
-                debug_log(_('Power consumption %.4f A exceeds maximum recharge current of the accumulator %.4f A'), # pylint: disable=C0301
+                debug_log(probe, _('Power consumption %.4f A exceeds maximum recharge current of the accumulator %.4f A'), # pylint: disable=C0301
                           abs(charge_current), float(power.device.max_recharge))
                 probe.safe_mode_on()
             elif charge_current > power.device.max_charge:
@@ -84,8 +84,8 @@ class SimplePowerModel(AbstractModel):
             power.accumulator += dw * tick
 
             if power.accumulator < 0:
-                debug_log(_('The battery is low'))
+                debug_log(probe, _('The battery is low'))
                 probe.safe_mode_on()
             elif power.accumulator > power.max_capacity:
                 power.accumulator = power.max_capacity
-                debug_log(_('The battery is charged'))
+                debug_log(probe, _('The battery is charged'))

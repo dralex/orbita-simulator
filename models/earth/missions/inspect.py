@@ -139,12 +139,12 @@ class InspectMission(Mission):
                     if header == self.name:
                         payload = message[3][1]
 
-                        debug_log(_('Image received from camera: %s'),
+                        debug_log(probe, _('Image received from camera: %s'),
                                   str(payload['visible_target']))
 
                         if (((payload['visible_target'] == self.target_index)
                              and (payload['camera_range'] == 'visible'))):
-                            mission_log(_('MISSION ACCOMPLISHED! The target image received.'))
+                            mission_log(probe, _('MISSION ACCOMPLISHED! The target image received.'))
                             probe.success = True
                             offset_angle = payload['target_offset_angle']
                             distance = payload['target_distance']

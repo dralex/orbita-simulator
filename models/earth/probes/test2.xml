@@ -13,7 +13,9 @@
 </control_stations>
 <duration>6.000000</duration>
 <oneway_message text="b4OYKYLjBpzwmyan7BGATOd"/>
-<orbit>600.000000</orbit>
+<orbits>
+    <orbit>600.000000</orbit>
+</orbits>
 <start_angular_velocity>1.000000</start_angular_velocity>
 </mission>
 </flight>

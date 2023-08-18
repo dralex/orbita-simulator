@@ -33,6 +33,7 @@ import os
 import os.path
 import gettext
 import importlib
+from functools import reduce
 
 import xmlconverters
 import data
@@ -69,19 +70,6 @@ def run(probename, probefile, missionfile, debugfile, shortfile, #pylint: disabl
     global _ # pylint: disable=W0603
     _ = Language.get_tr()
 
-    if missionfile:
-        set_logging('mission', missionfile)
-    if debugfile:
-        set_logging('debug', debugfile)
-    if imagedir:
-        if os.path.isdir(imagedir):
-            imagetmpl = imagedir + "/"
-        else:
-            imagetmpl = imagedir
-        set_logging('image', imagetmpl)
-    else:
-        imagetmpl = None
-
     probes = None
     try:
 
@@ -96,6 +84,19 @@ def run(probename, probefile, missionfile, debugfile, shortfile, #pylint: disabl
                            probefile,
                            parameters,
                            devices_map)
+
+        if missionfile:
+            set_logging('mission', missionfile, probes.get())
+        if debugfile:
+            set_logging('debug', debugfile, probes.get())
+        if imagedir:
+            if os.path.isdir(imagedir):
+                imagetmpl = imagedir + "/"
+            else:
+                imagetmpl = imagedir
+            set_logging('image', imagetmpl, probes.get())
+        else:
+            imagetmpl = None
 
         planet_params = parameters.Planets[probes.get()[0].planet]
         tick_length = float(planet_params.tick)
@@ -151,95 +152,106 @@ def run(probename, probefile, missionfile, debugfile, shortfile, #pylint: disabl
                     probe.systems[constants.SUBSYSTEM_CPU].update_time(tick_length)
 
                     if probe.mission_ended():
-                        debug_log(_('MISSION ENDED. Duration = %s'),
+                        debug_log(probe, _('MISSION ENDED. Duration = %s'),
                                   data.time_to_str(simulation_time + tick_length))
                         flag_for_end = True
+                        break
 
                 if flag_for_end:
                     break
+
+                # if reduce(lambda x, y: x.mission_ended() and y.mission_ended(), probes.get()):
+                #     for probe in probes.get():
+                #         debug_log(probe, _('MISSION ENDED. Duration = %s'),
+                #                   data.time_to_str(simulation_time + tick_length))
+                #     break
 
                 simulation_time += tick_length
                 logger.simulation_time += tick_length
 
                 if iteration % SYNC_LOGS_PERIOD == 0:
-                    sync_logs()
+                    for probe in probes.get():
+                        sync_logs(probe)
                 iteration += 1
 
         except Terminated as e:
-            debug_log(_('Terminated: ') + str(e))
+            for probe in probes.get():
+                debug_log(probe, _('Terminated: ') + str(e))
 
-        if probe.success:
-            code = 'completed'
-            if probe.success_score is not None:
-                res = _('Mission accomplished with the score %f') % probe.success_score
+        for probe in probes.get():
+            if probe.success:
+                code = 'completed'
+                if probe.success_score is not None:
+                    res = _('Mission accomplished with the score %f') % probe.success_score
+                else:
+                    res = _('Mission accomplished')
+            elif probe.telemetry_received > 0 or probe.program_error:
+                code = 'failed'
+                res = _('Mission failed')
             else:
-                res = _('Mission accomplished')
-        elif probe.telemetry_received > 0 or probe.program_error:
-            code = 'failed'
-            res = _('Mission failed')
-        else:
-            code = 'notelemetry'
-            res = _('No telemetry from the probe')
+                code = 'notelemetry'
+                res = _('No telemetry from the probe')
 
-        mission_log(_('%s. Duration: %s'),
-                    res, data.time_to_str(probe.time()))
-        probe.flight_result = (code, res)
+            mission_log(probe, _('%s. Duration: %s'),
+                        res, data.time_to_str(probe.time()))
+            probe.flight_result = (code, res)
 
-        if code != 'completed':
-            telemetry.clear_extra_telemetry(probe)
+            if code != 'completed':
+                telemetry.clear_extra_telemetry(probe)
 
-        if imagetmpl:
-            telemetry.draw_images(probe, imagetmpl)
+            if imagetmpl:
+                telemetry.draw_images(probe, imagetmpl)
 
-        if shortfile:
-            d = telemetry.get_short_results(probe)
-            events = telemetry.get_events(probe)
+            if shortfile:
+                d = telemetry.get_short_results(probe)
+                events = telemetry.get_events(probe)
 
-            addparams = {}
+                addparams = {}
 
-            if ((probe.mission == constants.MISSION_TEST_LOOK or
-                 probe.mission == constants.MISSION_TEST_SMS)):
-                addparams['result_turns'] = probe.systems[constants.SUBSYSTEM_NAVIGATION].turns
-            elif probe.mission == constants.MISSION_TEST_ORBIT:
-                if probe.orbit_diff is not None:
-                    addparams['result_targetdiff'] = probe.orbit_diff
-            elif probe.mission == constants.MISSION_SMS:
-                if probe.message_number is not None:
-                    addparams['result_msgnum'] = probe.message_number
-            elif probe.mission == constants.MISSION_INSPECT:
-                if probe.photo_resolution is not None:
-                    addparams['result_resolution'] = probe.photo_resolution
-                if probe.photo_distance is not None:
-                    addparams['result_targetdest'] = probe.photo_distance
-            elif probe.mission == constants.MISSION_DZZ:
-                if probe.photo_resolution is not None:
-                    addparams['result_resolution'] = probe.photo_resolution
-                if probe.photo_offset_angle is not None:
-                    addparams['result_targetangle'] = probe.photo_offset_angle
-                if probe.photo_incidence_angle is not None:
-                    addparams['result_targetnormal'] = probe.photo_incidence_angle
-            elif probe.mission == constants.MISSION_CRYSTAL:
-                load = probe.systems[constants.SUBSYSTEM_LOAD]
-                if load.valid_environment:
-                    if probe.landing_error is not None:
-                        addparams['result_targetdiff'] = probe.landing_error
-                    if load.max_temperature_diff is not None:
-                        addparams['result_tempdelta'] = load.max_temperature_diff
-            elif probe.mission == constants.MISSION_MOLNIYA:
-                if probe.session_count is not None:
-                    addparams['result_sessioncount'] = probe.session_count
-                if probe.session_length is not None:
-                    addparams['result_sessionlength'] = probe.session_length
-            elif probe.mission == constants.MISSION_EARLY_WARNING:
-                if probe.detection_delay is not None:
-                    addparams['result_detectiondelay'] = probe.detection_delay
-                if probe.missiles_unintercepted is not None:
-                    addparams['result_unintercepted'] = probe.missiles_unintercepted
+                if ((probe.mission == constants.MISSION_TEST_LOOK or
+                     probe.mission == constants.MISSION_TEST_SMS)):
+                    addparams['result_turns'] = probe.systems[constants.SUBSYSTEM_NAVIGATION].turns
+                elif probe.mission == constants.MISSION_TEST_ORBIT:
+                    if probe.orbit_diff is not None:
+                        addparams['result_targetdiff'] = probe.orbit_diff
+                elif probe.mission == constants.MISSION_SMS:
+                    if probe.message_number is not None:
+                        addparams['result_msgnum'] = probe.message_number
+                elif probe.mission == constants.MISSION_INSPECT:
+                    if probe.photo_resolution is not None:
+                        addparams['result_resolution'] = probe.photo_resolution
+                    if probe.photo_distance is not None:
+                        addparams['result_targetdest'] = probe.photo_distance
+                elif probe.mission == constants.MISSION_DZZ:
+                    if probe.photo_resolution is not None:
+                        addparams['result_resolution'] = probe.photo_resolution
+                    if probe.photo_offset_angle is not None:
+                        addparams['result_targetangle'] = probe.photo_offset_angle
+                    if probe.photo_incidence_angle is not None:
+                        addparams['result_targetnormal'] = probe.photo_incidence_angle
+                elif probe.mission == constants.MISSION_CRYSTAL:
+                    load = probe.systems[constants.SUBSYSTEM_LOAD]
+                    if load.valid_environment:
+                        if probe.landing_error is not None:
+                            addparams['result_targetdiff'] = probe.landing_error
+                        if load.max_temperature_diff is not None:
+                            addparams['result_tempdelta'] = load.max_temperature_diff
+                elif probe.mission == constants.MISSION_MOLNIYA:
+                    if probe.session_count is not None:
+                        addparams['result_sessioncount'] = probe.session_count
+                    if probe.session_length is not None:
+                        addparams['result_sessionlength'] = probe.session_length
+                elif probe.mission == constants.MISSION_EARLY_WARNING:
+                    if probe.detection_delay is not None:
+                        addparams['result_detectiondelay'] = probe.detection_delay
+                    if probe.missiles_unintercepted is not None:
+                        addparams['result_unintercepted'] = probe.missiles_unintercepted
 
-            probe.write_short_log(shortfile, d, events, addparams)
+                probe.write_short_log(shortfile, d, events, addparams)
 
     except CriticalError as e:
-        debug_log(_('CriticalError: {}').format(str(e)))
+        for probe in probes.get():
+            debug_log(probe, _('CriticalError: {}').format(str(e)))
         if shortfile:
             f = open(shortfile, 'w')
             f.truncate()

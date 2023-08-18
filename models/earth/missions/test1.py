@@ -70,7 +70,7 @@ class TestLookMission(Mission):
         if self.is_normal:
             if (((probe.time() - self.normal_start_time > 600) and
                  abs(navig.angle - self.normal_start_angle) < 1.0)):
-                mission_log(_('MISSION ACCOMPLISHED! The probe completed the orbital revolution with the normal orientation.')) # pylint: disable=C0301
+                mission_log(probe, _('MISSION ACCOMPLISHED! The probe completed the orbital revolution with the normal orientation.')) # pylint: disable=C0301
                 probe.success = True
                 probe.success_timestamp = time.time()
                 probe.completed = True

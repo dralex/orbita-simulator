@@ -98,7 +98,7 @@ class EarlyWarningMission(Mission):
             target_index = self.unlaunched_targets[int(flight_time)]
             del self.unlaunched_targets[int(flight_time)]
             self.current_target_index = target_index
-            debug_log(_('Rocket launch: %s'), str(target_index))
+            debug_log(probe, _('Rocket launch: %s'), str(target_index))
 
         if self.current_target_index is not None:
             target = self.targets[self.current_target_index]
@@ -108,7 +108,7 @@ class EarlyWarningMission(Mission):
                 location_angle = data.normalize_angle(location_angle + angle_offset)
 
                 height = self.boost_acceleration * ((flight_time - launch_time) ** 2) / 2
-                debug_log(_('Rocket height: %s'), str(height))
+                debug_log(probe, _('Rocket height: %s'), str(height))
 
                 radius = height + float(planet_params.radius)
 
@@ -156,7 +156,7 @@ class EarlyWarningMission(Mission):
                 load.target_distance = target_distance if target_visible else None
             else:
                 if self.current_target_index is not None:
-                    debug_log(_('The end of the active trajectory of the target'))
+                    debug_log(probe, _('The end of the active trajectory of the target'))
 
                 self.current_target_index = None
 
@@ -176,12 +176,12 @@ class EarlyWarningMission(Mission):
                     if header == self.name:
                         payload = message[3][1]
 
-                        debug_log(_('Image received from camera: %s'),
+                        debug_log(probe, _('Image received from camera: %s'),
                                   str(payload['visible_target']))
 
                         if (((payload['visible_target'] in self.undetected_targets) and
                              (payload['camera_range'] == 'infrared'))):
-                            mission_log(_('Ballistic launch detected!!'))
+                            mission_log(probe, _('Ballistic launch detected!!'))
                             receive_time = flight_time
                             launch_time = self.targets[payload['visible_target']]['launch_time']
 
@@ -189,7 +189,7 @@ class EarlyWarningMission(Mission):
 
                             detection_delay = receive_time - launch_time
                             if detection_delay <= self.acceptable_detection_delay:
-                                mission_log(_('Data sent in time.'))
+                                mission_log(probe, _('Data sent in time.'))
 
                                 if detection_delay > self.max_detection_delay:
                                     self.max_detection_delay = detection_delay
@@ -198,7 +198,7 @@ class EarlyWarningMission(Mission):
 
                                 if ((self.missiles_intercepted >=
                                      len(self.targets) * self.acceptable_intercept_rate)):
-                                    mission_log(_('MISSION ACCOMPLISHED! More than %d%%%% targets intercepted.') % # pylint: disable=C0301
+                                    mission_log(probe, _('MISSION ACCOMPLISHED! More than %d%%%% targets intercepted.') % # pylint: disable=C0301
                                                 int(self.acceptable_intercept_rate * 100))
                                     probe.success = True
                                     probe.missiles_unintercepted = (len(self.targets) -
@@ -207,6 +207,6 @@ class EarlyWarningMission(Mission):
                                     probe.success_score = None
                                     probe.success_timestamp = time.time()
                             else:
-                                mission_log(_('Data sent with delay.'))
+                                mission_log(probe, _('Data sent with delay.'))
 
 data.available_missions[EarlyWarningMission.name] = EarlyWarningMission

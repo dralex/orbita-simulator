@@ -58,7 +58,7 @@ class SmsMission(Mission):
         self.sms_messages = []
         for order in sorted(sms.keys()):
             self.sms_messages.append(sms[order])
-            debug_log(_('Message %d: %s->%s'),
+            debug_log(probe, _('Message %d: %s->%s'),
                       order, sms[order][0], sms[order][1])
 
         if len(self.sms_messages) == 0:
@@ -79,8 +79,8 @@ class SmsMission(Mission):
                     if realdata[0] == self.name:
                         msg = _('SMS received form %s, time interval %f sec') % (realdata[1],
                                                                                  realdata[3])
-                        debug_log(msg)
-                        mission_log(msg)
+                        debug_log(probe, msg)
+                        mission_log(probe, msg)
                         self.sms_messages[0][4] = probe.time()
 
         for gs in radio.sent_packets.keys():
@@ -122,13 +122,13 @@ class SmsMission(Mission):
                             errmsg += _('Error: all the messages were sent. ')
                             error = True
 
-                        mission_log(msg + errmsg)
-                        debug_log(msg + errmsg)
+                        mission_log(probe, msg + errmsg)
+                        debug_log(probe, msg + errmsg)
 
                         if error:
-                            mission_log(_('Problems while sending SMS-message. ') + errmsg)
+                            mission_log(probe, _('Problems while sending SMS-message. ') + errmsg)
                         else:
-                            mission_log(_('MISSION ACCOMPLISHED! SMS-message was transferred correctly.')) # pylint: disable=C0301
+                            mission_log(probe, _('MISSION ACCOMPLISHED! SMS-message was transferred correctly.')) # pylint: disable=C0301
                             probe.success = True
                             if probe.message_number is None:
                                 probe.message_number = 1
@@ -141,7 +141,7 @@ class SmsMission(Mission):
 
                         if len(self.sms_messages) > 0:
                             msgfrom, msgto, text, duration = self.sms_messages[0][0:4]
-                            debug_log(_('New SMS-message %s->%s'), msgfrom, msgto)
+                            debug_log(probe, _('New SMS-message %s->%s'), msgfrom, msgto)
                             radio.receive_queues_flush()
                             radio.receive_data(msgfrom, len(text),
                                                (constants.MISSION_SMS, msgto, text, duration))

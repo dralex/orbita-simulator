@@ -77,7 +77,7 @@ class TestOrbitMission(Mission):
                 self.orbit_start_time = probe.time()
             elif (((probe.time() - self.orbit_start_time > 600) and
                    abs(navig.angle - self.orbit_start_angle) < 1.0)):
-                mission_log(_('MISSION ACCOMPLISHED! The probe completed the revolution on the new orbit.')) # pylint: disable=C0301
+                mission_log(probe, _('MISSION ACCOMPLISHED! The probe completed the revolution on the new orbit.')) # pylint: disable=C0301
                 probe.orbit_diff = self.worst_target_diff
                 probe.success = True
                 probe.completed = True
