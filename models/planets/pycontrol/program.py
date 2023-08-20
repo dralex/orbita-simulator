@@ -222,11 +222,11 @@ class Program:
         return True
 
     def _receive_from_worker(self, timeout):
-            try:
-                data = self._request_queue.recv_pyobj()
-            except zmq.ZMQError:
-                return None
-            return data
+        try:
+            data = self._request_queue.recv_pyobj()
+        except zmq.ZMQError:
+            return None
+        return data
 
     def run(self):
         if self._worker is not None:
