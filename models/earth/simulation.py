@@ -100,10 +100,10 @@ def run(probename, probefile, missionfile, debugfile, shortfile, #pylint: disabl
         planet_params = parameters.Planets[probe.planet]
         tick_length = float(planet_params.tick)
         probe.print_probe()
-        
+
         models = []
         telemetry = None
-        
+
         for kind, modelclass in planet_params.Models:
             try:
                 pkg = 'calcmodels.{}'.format(kind)
@@ -137,7 +137,7 @@ def run(probename, probefile, missionfile, debugfile, shortfile, #pylint: disabl
                     print('time')
             
             mission.init(probe, tick_length, Language.get_tr())
-           
+
             simulation_time = 0.0
             iteration = 0
 
