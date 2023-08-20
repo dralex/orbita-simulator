@@ -226,11 +226,11 @@ class Program:
         return True
 
     def _receive_from_worker(self, timeout):
-            try:
-                data = self._request_queue.recv_pyobj()
-            except zmq.ZMQError:
-                return None
-            return data
+        try:
+            data = self._request_queue.recv_pyobj()
+        except zmq.ZMQError:
+            return None
+        return data
 
     def run(self):
         if self._worker is not None:
@@ -284,7 +284,6 @@ class Program:
                 success = self._send_to_worker(response, remaining_time)
               
                 if not success:
-                    print('break')
                     break
 
                 current_time = time.time()
