@@ -101,8 +101,8 @@ $ python3 Simulation.py probes/test1.xml --debug-log=debug.log --mission-log=tel
 
 2. Install the make tool (we execute all commands in the PowerShell window).
 ```
-$ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New System.Net.WebClient object).DownloadString('https://community.chocolatey.org/install.ps1'))
-$ chocolate set make
+$ Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
+$ choco install make
 ```
 
 3. Install Google Protocol Buffers (https://protobuf.dev) version 3.
@@ -128,13 +128,13 @@ $ pip3 install -r requirements.txt
 5.1 if you are running the simulator for the first time:
 ```
 $ cd models/ground
-$make a win
+$ make win
 ```
 5.2 If you are running the simulator again or make some changes:
 ```
 $ cd models/ground
 $ make clean_win
-$make a win
+$ make win
 ```
 
 The Makefile builds the required Python encoders/decoders for XML documents and protocols.
