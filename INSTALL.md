@@ -25,7 +25,7 @@ $ pip3 install -r requirements.txt
 4. Select the model you are interested in and run the Makefile to build the chosen model:
 
 ```
-$ cd models/ground
+$ cd models/earth
 $ make unix
 ```
 
@@ -34,7 +34,7 @@ The Makefile builds the required Python encoders/decoders for XML documents and 
 5. Try to run the model with the test probes located in `probes`:
 
 ```
-$ python3 Simulation.py probes/test1.xml --debug-log=debug.log --mission-log=telemetry.log --image=.
+$ python3 simulation.py probes/test1.xml --debug-log=debug.log --mission-log=telemetry.log --image=.
 ```
 
 6. Run the `simulation.py` script without arguments to see the possible command arguments.
@@ -56,7 +56,7 @@ $ /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/
 2. Install python3.
 
 ```
-$ cook install python3
+$ brew install python3
 ```
 
 3. Install Google Protocol Buffers (https://protobuf.dev) version 3.
@@ -74,7 +74,7 @@ $ pip3 install -r requirements.txt
 5. Select the model you are interested in and run the Makefile to build the chosen model:
 
 ```
-$ cd models/ground
+$ cd models/earth
 $ make unix
 ```
 
@@ -83,7 +83,7 @@ The Makefile builds the required Python encoders/decoders for XML documents and 
 6. Try to run the model with the test probes located in `probes`:
 
 ```
-$ python3 Simulation.py probes/test1.xml --debug-log=debug.log --mission-log=telemetry.log --image=.
+$ python3 simulation.py probes/test1.xml --debug-log=debug.log --mission-log=telemetry.log --image=.
 ```
 
 7. Run the `simulation.py` script without arguments to see the possible command arguments.
@@ -127,12 +127,12 @@ $ pip3 install -r requirements.txt
 
 5.1 if you are running the simulator for the first time:
 ```
-$ cd models/ground
+$ cd models/earth
 $ make win
 ```
 5.2 If you are running the simulator again or make some changes:
 ```
-$ cd models/ground
+$ cd models/earth
 $ make clean_win
 $ make win
 ```
@@ -142,7 +142,7 @@ The Makefile builds the required Python encoders/decoders for XML documents and 
 6. Try starting the test apparatus from the `probes` directory:
 
 ```
-$ python3 Simulation.py probes/test1.xml --debug-log=debug.log --mission-log=telemetry.log --image=.
+$ python3 simulation.py probes/test1.xml --debug-log=debug.log --mission-log=telemetry.log --image=.
 ```
 
 7. Run the `simulation.py` script without arguments to see the possible command arguments.
