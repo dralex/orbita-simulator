@@ -175,15 +175,13 @@ class Program:
                 s.connect(('127.0.0.1', RECEIVE_PORT))
             except socket.error:
                 receive_is_good = True
-            else:
-                s.close
+
             
             try:
                 s.connect(('127.0.0.1', REQUEST_PORT))
             except socket.error:
                 request_is_good = True
-            else:
-                s.close
+
 
         self._response_queue = self._request_context.socket(zmq.PUSH)
         self._response_queue.bind(f"tcp://*:{RECEIVE_PORT}")
