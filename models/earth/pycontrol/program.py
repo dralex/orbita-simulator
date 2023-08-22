@@ -31,7 +31,7 @@ import threading
 import atexit
 from collections import deque
 import gettext
-import posix_ipc
+import zmq
 
 _ = gettext.gettext
 
@@ -45,12 +45,15 @@ WORKER_LAUNCH_COMMAND = [sys.executable,
 WORKER_LAUNCH_TIMEOUT = 5.0
 
 DEFAULT_PARAMS_MAX_LINES = 1000
-DEFAULT_PARAMS_MAX_INIT_TIME = 2.0
+DEFAULT_PARAMS_MAX_INIT_TIME = 1.0
 DEFAULT_PARAMS_MAX_STEP_TIME = 0.1
 
 STDOUT_BUFFER_LINES = 4096
 STDERR_BUFFER_LINES = 64
 MAX_LINE_LENGTH = 256
+
+RECEIVE_PORT = 5454
+REQUEST_PORT = 4545
 
 def buffer_to_message(buf):
     msg = ''
@@ -82,6 +85,7 @@ class ProgramError(ControlError):
     def __init__(self, msg, dump):
         ControlError.__init__(self, msg)
         self.dump = dump
+
 
 class Program:
     def __init__(self,
@@ -142,40 +146,43 @@ class Program:
             self._stderr_reader = None
 
         if self._request_queue is not None:
-            self._request_queue.unlink()
             self._request_queue.close()
             self._request_queue = None
 
         if self._response_queue is not None:
-            self._response_queue.unlink()
             self._response_queue.close()
             self._response_queue = None
 
     def reset(self):
         self._destroy_worker()
 
-        self._request_queue = posix_ipc.MessageQueue(None,
-                                                     flags=posix_ipc.O_CREX,
-                                                     max_messages=1)
-        self._response_queue = posix_ipc.MessageQueue(None,
-                                                      flags=posix_ipc.O_CREX,
-                                                      max_messages=1)
+        self._request_context = zmq.Context()
+        self._response_context = zmq.Context()
+
+        
+
+        self._response_queue = self._request_context.socket(zmq.PUSH)
+        self._response_queue.bind(f"tcp://*:{RECEIVE_PORT}")
+
+        self._request_queue = self._request_context.socket(zmq.PULL)
+        self._request_queue.connect(f"tcp://localhost:{REQUEST_PORT}")
 
         self._first_step = True
         self._deferred_response = None
 
         command = (WORKER_LAUNCH_COMMAND +
-                   [self._request_queue.name,
-                    self._response_queue.name])
+                   [str(REQUEST_PORT),
+                    str(RECEIVE_PORT)])
+        
+        
         if self._api_module_name is not None:
             command += [self._api_module_name]
-
+        
         self._worker = subprocess.Popen(command,
                                         stdin=subprocess.PIPE,
                                         stdout=subprocess.PIPE,
-                                        stderr=subprocess.PIPE,
-                                        close_fds=True)
-
+                                        stderr=subprocess.PIPE)
+        
         def reader_task(pipe, queue_):
             while True:
                 line = pipe.readline(MAX_LINE_LENGTH)
@@ -190,34 +197,40 @@ class Program:
         self._stderr_reader = threading.Thread(target=reader_task,
                                                args=(self._worker.stderr,
                                                      self._stderr_buffer))
-
+        
         self._stdout_reader.daemon = True
         self._stderr_reader.daemon = True
-
+        
         self._stdout_reader.start()
         self._stderr_reader.start()
-
+        
         self._worker.stdin.write(self._code.encode('utf-8'))
         self._worker.stdin.close()
+        
+        time.sleep(3)
+
 
         if self._receive_from_worker(WORKER_LAUNCH_TIMEOUT) != b'READY':
             self._destroy_worker()
             raise WorkerError('Child worker does not respond')
 
+                
+            
+
     def _send_to_worker(self, data, timeout):
         try:
-            self._response_queue.send(data, timeout=timeout)
-        except posix_ipc.BusyError:
+            self._response_queue.send_pyobj(data)
+        except zmq.ZMQError:
             return False
 
         return True
 
     def _receive_from_worker(self, timeout):
         try:
-            data = self._request_queue.receive(timeout)
-        except posix_ipc.BusyError:
+            data = self._request_queue.recv_pyobj()
+        except zmq.ZMQError:
             return None
-        return data[0]
+        return data
 
     def run(self):
         if self._worker is not None:
@@ -241,6 +254,7 @@ class Program:
 
             while remaining_time >= 0:
                 request = self._receive_from_worker(remaining_time)
+               
                 if request is None:
                     break
 
@@ -250,6 +264,7 @@ class Program:
 
                 if self._runtime is not None:
                     response, next_step = self._runtime.process_call(request)
+
                 else:
                     response = ''
                     next_step = True
@@ -267,6 +282,7 @@ class Program:
                     break
 
                 success = self._send_to_worker(response, remaining_time)
+              
                 if not success:
                     break
 
