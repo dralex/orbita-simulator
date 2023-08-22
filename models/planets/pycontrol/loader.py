@@ -33,8 +33,6 @@ USE_RLIMIT = False
 MEMORY_LIMIT = 256 * 1024 * 1024
 USE_SECCOMP = True
 
-RECEIVE_PORT = 5454
-REQUEST_PORT = 4545
 
 THIS_MODULE_PATH = os.path.dirname(os.path.abspath(__file__))
 API_PATH = os.path.abspath(os.path.join(THIS_MODULE_PATH, '..', 'api'))
@@ -81,8 +79,8 @@ if __name__ == '__main__':
     if len(sys.argv) < 3:
         sys.exit(1)
         
-    request_queue_name = sys.argv[1]
-    response_queue_name = sys.argv[2]
+    REQUEST_PORT = int(sys.argv[1])
+    RECEIVE_PORT = int(sys.argv[2])
 
     request_context = zmq.Context()
     response_context = zmq.Context()
