@@ -164,20 +164,26 @@ class Program:
         receive_is_good = False
         request_is_good = False
 
-        s = socket.socket()
+        
 
         while not receive_is_good and not request_is_good:
+            s = socket.socket()
+            s.settimeout(0.1)
             RECEIVE_PORT = random.randint(5000, 49151)
             REQUEST_PORT = random.randint(5000, 49151)
             try:
                 s.connect(('127.0.0.1', RECEIVE_PORT))
-            except:
+            except socket.error:
                 receive_is_good = True
+            else:
+                s.close
             
             try:
                 s.connect(('127.0.0.1', REQUEST_PORT))
-            except:
+            except socket.error:
                 request_is_good = True
+            else:
+                s.close
 
         self._response_queue = self._request_context.socket(zmq.PUSH)
         self._response_queue.bind(f"tcp://*:{RECEIVE_PORT}")
