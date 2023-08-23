@@ -32,7 +32,8 @@ import atexit
 from collections import deque
 import gettext
 import zmq
-
+import random
+import socket
 _ = gettext.gettext
 
 THIS_MODULE_PATH = os.path.dirname(os.path.abspath(__file__))
@@ -52,8 +53,6 @@ STDOUT_BUFFER_LINES = 4096
 STDERR_BUFFER_LINES = 64
 MAX_LINE_LENGTH = 256
 
-RECEIVE_PORT = 5454
-REQUEST_PORT = 4545
 
 def buffer_to_message(buf):
     msg = ''
@@ -159,7 +158,25 @@ class Program:
         self._request_context = zmq.Context()
         self._response_context = zmq.Context()
 
-        
+        receive_is_good = False
+        request_is_good = False
+
+        while not receive_is_good and not request_is_good:
+            s = socket.socket()
+            s.settimeout(0.1)
+            RECEIVE_PORT = random.randint(5000, 49151)
+            REQUEST_PORT = random.randint(5000, 49151)
+            try:
+                s.connect(('127.0.0.1', RECEIVE_PORT))
+            except socket.error:
+                receive_is_good = True
+
+            
+            try:
+                s.connect(('127.0.0.1', REQUEST_PORT))
+            except socket.error:
+                request_is_good = True
+
 
         self._response_queue = self._request_context.socket(zmq.PUSH)
         self._response_queue.bind(f"tcp://*:{RECEIVE_PORT}")
