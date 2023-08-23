@@ -13,7 +13,7 @@ $ sudo apt install python3-pip
 2. Install Google Protocol Buffers (https://protobuf.dev) version 3.
 
 ```
-$ sudo apt install protobuf compiler
+$ sudo apt install protobuf-compiler
 ```
 
 3. Install the required libraries listed in `requirements.txt` file using `pip`:
