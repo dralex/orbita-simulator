@@ -41,7 +41,7 @@ class PythonControlModel(AbstractModel):
         AbstractModel.__init__(self, global_parameters)
         self.programs = []
 
-    def init_model(self, probe, initial_tick):
+    def init_model(self, probe, initial_tick, probes):
         global _ # pylint: disable=W0603
         _ = Language.get_tr()
         for s in probe.systems.values():

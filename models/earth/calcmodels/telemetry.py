@@ -40,7 +40,7 @@ class BasicTelemetryModel(AbstractModel):
         self.collector = {}
         self.last_sec = 0
 
-    def init_model(self, probe, initial_tick):
+    def init_model(self, probe, initial_tick, probes):
         global _ # pylint: disable=W0603
         _ = Language.get_tr()
 

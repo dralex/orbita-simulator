@@ -34,7 +34,7 @@ class SimpleLoadModel(AbstractModel):
     def __init__(self, global_parameters):
         AbstractModel.__init__(self, global_parameters)
 
-    def init_model(self, probe, initial_tick):
+    def init_model(self, probe, initial_tick, probes):
         global _ # pylint: disable=W0603
         _ = Language.get_tr()
         load = probe.systems[constants.SUBSYSTEM_LOAD]

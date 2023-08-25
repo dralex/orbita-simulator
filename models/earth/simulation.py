@@ -131,7 +131,7 @@ def run(probename, probefile, missionfile, debugfile, shortfile, #pylint: disabl
 
                 models_lst[probe] = copy.deepcopy(models)
                 for m in models_lst[probe]:
-                    m.init_model(probe, tick_length)
+                    m.init_model(probe, tick_length, probes)
 
             mission.init(probes.get()[0], tick_length, Language.get_tr())
 

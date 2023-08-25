@@ -31,7 +31,7 @@ class SimpleThermodynamicsModel(AbstractModel):
         AbstractModel.__init__(self, global_parameters)
         self.atmosphere = 0.0
 
-    def init_model(self, probe, initial_tick):
+    def init_model(self, probe, initial_tick, probes):
         planet_params = self.params.Planets[probe.planet]
         self.atmosphere = planet_params.Atmosphere
 
