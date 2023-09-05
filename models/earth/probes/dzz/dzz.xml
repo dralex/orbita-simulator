@@ -47,7 +47,7 @@ target_angle = 120.0
 mode = 1
 sputnik.telemetry.set_period(60)
 sputnik.orientation.set_motor_moment(AXIS_Z, M0);
-sputnik.orientation.start_motor(AXIS_Z);
+sputnik.orientation.start_motor(AXIS_Z); # устанавливаем КА в надир
 moment = True
 
 while sputnik.cpu.run():
@@ -58,21 +58,18 @@ while sputnik.cpu.run():
         moment = False
     elif mode == 2:
         a = sputnik.navigation.get_z_axis_angle()
-        if abs(a - target_angle) <= 1:
+        if abs(a - target_angle) <= 1: # проверка "входит ли в обзор камеры цель"
             sputnik.camera.set_state(STATE_ON)
-            sputnik.camera.start_shooting()
+            sputnik.camera.start_shooting() # начинаем съемку
             mode = 3
     elif mode == 3:
-        a = sputnik.navigation.get_z_axis_angle()
+        a = sputnik.navigation.get_z_axis_angle() # проверка "не входит ли в обзор камеры цель"
         if abs(a - target_angle) >= 1:
             slot = sputnik.camera.stop_shooting()
             sputnik.camera.set_state(STATE_OFF)
             sputnik.transmitter.set_state(STATE_ON)
             sputnik.transmitter.send_photo(slot)
             mode = 4
-    elif mode == 4:
-        if sputnik.cpu.mission_completed():
-            break
 
     if mode >= 2:
         av = sputnik.orientation.get_angular_velocity(AXIS_Z)
