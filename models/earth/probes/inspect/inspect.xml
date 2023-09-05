@@ -224,6 +224,7 @@ while sputnik.cpu.run():
         initial_angular_velocity = sputnik.orientation.get_angular_velocity(AXIS_Z)
         flight_time = sputnik.cpu.get_flight_time()
         stabilization_begin_time = flight_time
+        debug(f"{stabilization_begin_time}")
         damping_mode.enabled = True
         state = 1
         continue
@@ -231,6 +232,7 @@ while sputnik.cpu.run():
     if (state == 1) and not damping_mode.active:
         damping_mode.enabled = False
         orientation_mode.max_angular_acceleration = abs(initial_angular_velocity) / (sputnik.cpu.get_flight_time() - stabilization_begin_time)
+        debug(f"{orientation_mode.max_angular_acceleration}")
         orientation_mode.inertia_moment = max_orientation_torsion / orientation_mode.max_angular_acceleration
         state = 10
         continue
@@ -251,13 +253,6 @@ while sputnik.cpu.run():
         sputnik.engine.set_state(STATE_ON)
         transfer_start_fuel = sputnik.engine.get_fuel()
         sputnik.engine.set_state(STATE_OFF)
-        transfer_end_fuel = ((dry_mass + transfer_start_fuel) / math.exp(transfer_delta_v / engine_specific_impulse)) - dry_mass
-        if transfer_end_fuel < 0.0:
-            transfer_end_fuel = 0.0
-        transfer_burn_time = (transfer_start_fuel - transfer_end_fuel) / (max_engine_traction / 2)
-        transfer_burn_angle = transfer_burn_time * phasing_mode.initial_nav_angular_velocity
-        #transfer_delta_v = transfer_delta_v * math.radians(transfer_burn_angle) / (2 * math.sin(math.radians(transfer_burn_angle / 2))) + first_burn_tune
-        transfer_delta_v = transfer_delta_v + first_burn_tune
         transfer_end_fuel = ((dry_mass + transfer_start_fuel) / math.exp(transfer_delta_v / engine_specific_impulse)) - dry_mass
         if transfer_end_fuel < 0.0:
             transfer_end_fuel = 0.0
