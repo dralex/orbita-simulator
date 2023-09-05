@@ -148,7 +148,7 @@ class DampingMode(object):
                 self.active = False
 
 damping_mode = DampingMode()
-
+telemetry.set_period(5)
 class OrientationMode(object):
     def __init__(self):
         self.enabled = False
@@ -158,6 +158,7 @@ class OrientationMode(object):
         self.desired_angular_velocity = 0.0
         self.max_angular_acceleration = 0.0
         self.inertia_moment = 0.0
+        self.time_period = 0.0
 
     def run(self):
         if self.enabled:
@@ -166,20 +167,23 @@ class OrientationMode(object):
             desired_angle_change = normalize_angle_difference(self.desired_angle - angle)
             if ((abs(angular_velocity - self.desired_angular_velocity) > angular_velocity_precision) or
                 (abs(desired_angle_change) > orient_angle_precision)):
-                proportional_coefficient = 8 * self.max_angular_acceleration / 180
-                differential_coefficient = 8 * math.sqrt(self.max_angular_acceleration / 360)
-                angular_acceleration = desired_angle_change * proportional_coefficient
-                if self.differential:
-                    angular_acceleration -= (angular_velocity - self.desired_angular_velocity) * differential_coefficient
-                torsion = self.inertia_moment * angular_acceleration
-                if torsion > max_orientation_torsion:
-                    torsion = max_orientation_torsion
-                if torsion < -max_orientation_torsion:
-                    torsion = -max_orientation_torsion
-                sputnik.orientation.set_motor_moment(AXIS_Z, torsion)
-                if not self.active:
-                    self.active = True
-                    sputnik.orientation.start_motor(AXIS_Z)
+                if self.time_period < cpu.get_flight_time():
+                        proportional_coefficient = 8 * self.max_angular_acceleration / 180
+                        differential_coefficient = 8 * math.sqrt(self.max_angular_acceleration / 360)
+                        angular_acceleration = desired_angle_change * proportional_coefficient
+                        if self.differential:
+                            angular_acceleration -= (angular_velocity - self.desired_angular_velocity) * differential_coefficient
+                        torsion = self.inertia_moment * angular_acceleration
+                        if torsion > max_orientation_torsion:
+                            torsion = max_orientation_torsion
+                        if torsion < -max_orientation_torsion:
+                            torsion = -max_orientation_torsion
+                        sputnik.orientation.set_motor_moment(AXIS_Z, torsion)
+                        self.time_period = cpu.get_flight_time() + 1
+                        if not self.active:
+                            self.active = True
+                            sputnik.orientation.start_motor(AXIS_Z)
+
             elif self.active:
                 sputnik.orientation.stop_motor(AXIS_Z)
                 self.active = False
