@@ -1,9 +1,15 @@
+# globals
+transfer_burn_angle = 0
+transfer_end_fuel = 0
+# globals
+
+
 max_engine_traction = 0.165
 engine_specific_impulse = 3041.0
 
 
 def calc_fuel():
-    global transfer_burn_angle, transfer_end_fuel, transfer_burn_time, velocity_fuel
+    global transfer_burn_angle, transfer_end_fuel
     engine.set_state(STATE_ON)
     transfer_start_fuel = engine.get_fuel()
     engine.set_state(STATE_OFF)
