@@ -5,8 +5,11 @@ tangented = False
 initial_angular_velocity = 0
 max_angular_acceleration = 0
 inertia_moment = 0
-stabilization_begin_time = None
-prev_flight_time = None
+stabilization_begin_time = 0
+prev_flight_time = 0
+prev_nav_angle = 0
+desired_a = 0
+desired_a_v = 0
 # globals
 
 max_orientation_torsion = 0.0165
