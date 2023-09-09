@@ -13,14 +13,10 @@
 </control_stations>
 <duration>6.000000</duration>
 <oneway_message text="b4OYKYLjBpzwmyan7BGATOd"/>
-<orbits>
-    <orbit>600.000000</orbit>
-</orbits>
+<orbit>600.000000</orbit>
 <start_angular_velocity>1.000000</start_angular_velocity>
 </mission>
 </flight>
-<apparatuses>
-<apparatus>
 <construction>
   <fuel>0.000000</fuel>
   <voltage>27.000000</voltage>
@@ -78,6 +74,4 @@ while sputnik.cpu.run():
 ]]></program>
 </system>
 </systems>
-</apparatus>
-</apparatuses>
 </v:probe>

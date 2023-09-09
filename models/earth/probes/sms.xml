@@ -70,14 +70,10 @@
 <message order="5" msgfrom="9" msgto="17" data="21.000000" duration="6123.000000"/>
 <message order="4" msgfrom="1" msgto="5" data="22.000000" duration="6366.000000"/>
 </messages>
-<orbits>
-        <orbit>645.000000</orbit>
-</orbits>
+<orbit>645.000000</orbit>
 <start_angular_velocity>1.000000</start_angular_velocity>
 </mission>
 </flight>
-<apparatuses>
-<apparatus>
 <construction><fuel>0.000000</fuel>
 <voltage>15.000000</voltage>
 <xz_yz_solar_panel_fraction>100.000000</xz_yz_solar_panel_fraction>
@@ -287,6 +283,4 @@ while sputnik.cpu.run():
 <system name="Power-1" start_mode="ON"/>
 <system name="Telemetry-1" start_mode="ON"/>
 </systems>
-</apparatus>
-</apparatuses>
 </v:probe>

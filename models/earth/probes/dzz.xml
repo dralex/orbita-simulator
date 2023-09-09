@@ -12,16 +12,12 @@
 	</control_station>
       </control_stations>
       <duration>6</duration>
-      <orbits>
-        <orbit>600</orbit>
-      </orbits>
+      <orbit>600</orbit>
       <resolution>100</resolution>
       <start_angular_velocity>1.0</start_angular_velocity>
       <target_angle>120</target_angle>
     </mission>
 </flight>
-<apparatuses>
-<apparatus>
 <construction>
   <fuel>0.000000</fuel>
   <voltage>27.000000</voltage>
@@ -97,6 +93,4 @@ while sputnik.cpu.run():
 ]]></program>
 </system>
 </systems>
-</apparatus>
-</apparatuses>
 </v:probe>

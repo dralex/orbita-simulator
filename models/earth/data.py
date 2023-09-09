@@ -1157,18 +1157,28 @@ class Probes:
 
     def __init__(self, name, probefile, parameters, devices_map):
         probe = ProbeLoader.load_probe(Language, probefile)
-        if len(probe.apparatuses.apparatus) != len(probe.flight.mission.orbits.orbit):
-            raise QuantityApparatusException("The number of specified launch orbital altitudes does not match the number of specified spacecrafts")
 
-        for i in range(len(probe.apparatuses.apparatus)):
-            wrapper_probe = WrapperProbe(
-                i + 1,
+        wrapper_probe = WrapperProbe(
+                1,
                 probe.flight,
-                probe.apparatuses.apparatus[i].construction,
-                probe.apparatuses.apparatus[i].systems,
-                probe.flight.mission.orbits.orbit[i]
+                probe.construction,
+                probe.systems,
+                probe.flight.mission.orbit[0]
             )
-            self.probes.append(Probe(name, probefile, wrapper_probe, parameters, devices_map))
+        self.probes.append(Probe(name, probefile, wrapper_probe, parameters, devices_map))
+
+        try:
+            for i in range(len(probe.satellites.satellite)):
+                wrapper_probe = WrapperProbe(
+                    i + 2,
+                    probe.flight,
+                    probe.satellites.satellite[i].construction,
+                    probe.satellites.satellite[i].systems,
+                    probe.satellites.satellite[i].orbit[0]
+                )
+                self.probes.append(Probe(name, probefile, wrapper_probe, parameters, devices_map))
+        except:
+            pass
 
     def get(self):
         return self.probes

@@ -12,15 +12,11 @@
         </control_station>
 </control_stations>
 <duration>72.000000</duration>
-<orbits>
-    <orbit>550.000000</orbit>
-</orbits>
+<orbit>550.000000</orbit>
 <resolution>0.000000</resolution>
 <start_angular_velocity>1.000000</start_angular_velocity>
 </mission>
 </flight>
-<apparatuses>
-<apparatus>
 <construction>
   <fuel>170.000000</fuel>
   <voltage>27.000000</voltage>
@@ -283,6 +279,4 @@ while sputnik.cpu.run():
 <system name="Radio-4" start_mode="OFF"/>
 <system name="Telemetry-1" start_mode="ON"/>
 </systems>
-</apparatus>
-</apparatuses>
 </v:probe>

@@ -80,13 +80,7 @@
                         <xsd:attribute name="text" type="xsd:string"/>
                       </xsd:complexType>
                     </xsd:element>
-                    <xsd:element name="orbits">
-                      <xsd:complexType>
-                        <xsd:sequence>
-                          <xsd:element name="orbit" minOccurs="1" maxOccurs="unbounded" type="xsd:decimal"/>
-                        </xsd:sequence>
-                      </xsd:complexType>
-                    </xsd:element>
+                    <xsd:element name="orbit" minOccurs="1" maxOccurs="unbounded" type="xsd:decimal"/>
                     <xsd:element name="precision" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
                     <xsd:element name="resolution" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
                     <xsd:element name="start_angular_velocity" minOccurs="1" maxOccurs="1" type="xsd:decimal"/>
@@ -100,12 +94,72 @@
             </xsd:sequence>
           </xsd:complexType>
         </xsd:element>
-        <xsd:element name="apparatuses">
+        <xsd:element name="construction">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="fuel" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+                          <xsd:element name="voltage" minOccurs="1" maxOccurs="1" type="xsd:decimal"/>
+                          <xsd:element name="xz_yz_solar_panel_fraction" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+                          <xsd:element name="xz_yz_radiator_fraction" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+                          <xsd:element name="xy_radiator_fraction" minOccurs="0" maxOccurs="1" type="xsd:decimal"/>
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+                    <xsd:element name="systems">
+                      <xsd:complexType>
+                        <xsd:sequence>
+                          <xsd:element name="system" minOccurs="0" maxOccurs="unbounded">
+                            <xsd:complexType>
+                              <xsd:sequence>
+                                <xsd:element name="program" type="xsd:string" minOccurs="0"
+                                             maxOccurs="1"/>
+                                <xsd:element name="hsm_diagram" minOccurs="0" maxOccurs="1">
+                                  <xsd:complexType>
+                                    <xsd:attribute name="type" type="xsd:string"/>
+                                    <xsd:attribute name="path" type="xsd:string"/>
+                                  </xsd:complexType>
+                                </xsd:element>
+                                <xsd:element name="placement" type="v:vector" minOccurs="0" maxOccurs="1"/>
+                              </xsd:sequence>
+                              <xsd:attribute name="name" type="xsd:string"/>
+                              <xsd:attribute name="type" minOccurs="0">
+                                <xsd:simpleType>
+                                  <xsd:restriction base="xsd:string">
+                                    <xsd:enumeration value="camera"/>
+                                    <xsd:enumeration value="construction"/>
+                                    <xsd:enumeration value="container"/>
+                                    <xsd:enumeration value="cpu"/>
+                                    <xsd:enumeration value="engine"/>
+                                    <xsd:enumeration value="heat_control"/>
+                                    <xsd:enumeration value="navigation"/>
+                                    <xsd:enumeration value="orientation"/>
+                                    <xsd:enumeration value="power"/>
+                                    <xsd:enumeration value="telemetry"/>
+                                    <xsd:enumeration value="transmitter"/>
+                                  </xsd:restriction>
+                                </xsd:simpleType>
+                              </xsd:attribute>
+                              <xsd:attribute name="start_mode" minOccurs="0">
+                                <xsd:simpleType>
+                                  <xsd:restriction base="xsd:string">
+                                    <xsd:enumeration value="ON"/>
+                                    <xsd:enumeration value="OFF"/>
+                                  </xsd:restriction>
+                                </xsd:simpleType>
+                              </xsd:attribute>
+                            </xsd:complexType>
+                          </xsd:element>
+                        </xsd:sequence>
+                      </xsd:complexType>
+                    </xsd:element>
+        <xsd:element name="satellites" minOccurs="0">
           <xsd:complexType>
             <xsd:sequence>
-              <xsd:element name="apparatus" minOccurs="0" maxOccurs="unbounded">
+              <xsd:element name="satellite" minOccurs="1" maxOccurs="unbounded">
                 <xsd:complexType>
                   <xsd:sequence>
+                    <xsd:element name="orbit" minOccurs="1" maxOccurs="unbounded" type="xsd:decimal"/>
+                    <xsd:element name="start_angular_velocity" minOccurs="1" maxOccurs="1" type="xsd:decimal"/>
                     <xsd:element name="construction">
                       <xsd:complexType>
                         <xsd:sequence>
