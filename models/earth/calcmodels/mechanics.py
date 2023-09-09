@@ -141,9 +141,6 @@ class SimpleMechanicalModel(AbstractModel):
             other_orient = other_probe.systems[constants.SUBSYSTEM_ORIENTATION]
             other_radio = other_probe.systems[constants.SUBSYSTEM_RADIO]
 
-            # Проверка 1
-            # Экранирования Землей
-
             first_visible_coords = self.angle_to_coord(probe, first_visible_angle)
             last_visible_coords = self.angle_to_coord(probe, last_visible_angle)
 
@@ -175,11 +172,6 @@ class SimpleMechanicalModel(AbstractModel):
                                                                              first_visible_angle,
                                                                              last_visible_angle) or
                                                              is_outside_first or is_outside_last)
-
-            # print(orient.other_probes_visible[other_probe.name], (navig.x, navig.y), (other_navig.x, other_navig.y))
-
-            # Проверка 2
-            # Взаимная видимость антеннами
 
             other_probe_position = (other_navig.x, other_navig.y, other_navig.z)
 
