@@ -25,6 +25,11 @@
 # -----------------------------------------------------------------------------
 
 import sys
+if sys.version_info.minor >= 10:
+    import collections
+    import collections.abc
+    collections.MutableSequence = collections.abc.MutableSequence
+
 import os
 import os.path
 import math

@@ -4,12 +4,8 @@ This directory contains the documentation and figures for the simulator. You wil
 documents in LaTeX format in the subdirectories named by the appropriate calculation
 models.
 
-Authors:
-
-* [Alexey Fedoseev](mailto:aleksey@fedoseev.net)
-* [Nikolay Safronov](mailto:bfishh@gmail.com)
-* [Alexander Shaenko](mailto:ark4110@gmail.com)
-* [Ilya Tagunov](mailto:tagunil@gmail.com)
+Initial authors: [Alexey Fedoseev](mailto:aleksey@fedoseev.net), [Nikolay Safronov](mailto:bfishh@gmail.com),
+[Alexander Shaenko](mailto:ark4110@gmail.com), and [Ilya Tagunov](mailto:tagunil@gmail.com).
 
 ## License
 

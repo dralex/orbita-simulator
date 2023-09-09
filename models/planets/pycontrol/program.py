@@ -30,8 +30,10 @@ import subprocess
 import threading
 import atexit
 from collections import deque
-import posix_ipc
+import zmq
 import gettext
+import random
+import socket
 _ = gettext.gettext
 
 THIS_MODULE_PATH = os.path.dirname(os.path.abspath(__file__))
@@ -50,6 +52,8 @@ DEFAULT_PARAMS_MAX_STEP_TIME = 0.1
 STDOUT_BUFFER_LINES = 4096
 STDERR_BUFFER_LINES = 64
 MAX_LINE_LENGTH = 256
+
+
 
 def buffer_to_message(buf):
     msg = ''
@@ -154,27 +158,51 @@ class Program:
     def reset(self):
         self._destroy_worker()
 
-        self._request_queue = posix_ipc.MessageQueue(None,
-                                                     flags=posix_ipc.O_CREX,
-                                                     max_messages=1)
-        self._response_queue = posix_ipc.MessageQueue(None,
-                                                      flags=posix_ipc.O_CREX,
-                                                      max_messages=1)
+        self._request_context = zmq.Context()
+        self._response_context = zmq.Context()
+
+        receive_is_good = False
+        request_is_good = False
+
+        
+
+        while not receive_is_good and not request_is_good:
+            s = socket.socket()
+            s.settimeout(0.1)
+            RECEIVE_PORT = random.randint(5000, 49151)
+            REQUEST_PORT = random.randint(5000, 49151)
+            try:
+                s.connect(('127.0.0.1', RECEIVE_PORT))
+            except socket.error:
+                receive_is_good = True
+
+            
+            try:
+                s.connect(('127.0.0.1', REQUEST_PORT))
+            except socket.error:
+                request_is_good = True
+
+
+        self._response_queue = self._request_context.socket(zmq.PUSH)
+        self._response_queue.bind(f"tcp://*:{RECEIVE_PORT}")
+
+        self._request_queue = self._request_context.socket(zmq.PULL)
+        self._request_queue.connect(f"tcp://localhost:{REQUEST_PORT}")
 
         self._first_step = True
         self._deferred_response = None
 
         command = (WORKER_LAUNCH_COMMAND +
-                   [self._request_queue.name,
-                    self._response_queue.name])
+                   [str(REQUEST_PORT),
+                    str(RECEIVE_PORT)])
+        
         if self._api_module_name is not None:
             command += [self._api_module_name]
 
         self._worker = subprocess.Popen(command,
                                         stdin=subprocess.PIPE,
                                         stdout=subprocess.PIPE,
-                                        stderr=subprocess.PIPE,
-                                        close_fds=True)
+                                        stderr=subprocess.PIPE)
 
         def reader_task(pipe, queue_):
             while True:
@@ -200,24 +228,26 @@ class Program:
         self._worker.stdin.write(self._code.encode('utf-8'))
         self._worker.stdin.close()
 
+        time.sleep(3)
+
         if self._receive_from_worker(WORKER_LAUNCH_TIMEOUT) != b'READY':
             self._destroy_worker()
             raise WorkerError('Child worker does not respond')
 
     def _send_to_worker(self, data, timeout):
         try:
-            self._response_queue.send(data, timeout=timeout)
-        except posix_ipc.BusyError:
+            self._response_queue.send_pyobj(data)
+        except zmq.ZMQError:
             return False
 
         return True
 
     def _receive_from_worker(self, timeout):
         try:
-            data = self._request_queue.receive(timeout)
-        except posix_ipc.BusyError:
+            data = self._request_queue.recv_pyobj()
+        except zmq.ZMQError:
             return None
-        return data[0]
+        return data
 
     def run(self):
         if self._worker is not None:

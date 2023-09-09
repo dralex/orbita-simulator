@@ -24,6 +24,11 @@
 # -----------------------------------------------------------------------------
 
 import sys
+if sys.version_info.minor >= 10:
+    import collections
+    import collections.abc
+    collections.MutableSequence = collections.abc.MutableSequence
+
 import os
 import os.path
 import gettext
@@ -98,15 +103,18 @@ def run(probename, probefile, missionfile, debugfile, shortfile, #pylint: disabl
 
         models = []
         telemetry = None
+
         for kind, modelclass in planet_params.Models:
             try:
                 pkg = 'calcmodels.{}'.format(kind)
                 module = importlib.import_module(pkg, pkg)
+                
                 if not hasattr(module, modelclass):
                     raise CriticalError(_('Module load error: cannot find class %s in module %s') %
                                         (modelclass, kind))
                 cls = getattr(module, modelclass)
                 model = cls(parameters)
+                
                 models.append(model)
                 if kind == 'telemetry':
                     telemetry = model
@@ -118,17 +126,23 @@ def run(probename, probefile, missionfile, debugfile, shortfile, #pylint: disabl
         mission = cls(parameters)
 
         try:
+
             probe.systems[constants.SUBSYSTEM_CPU].flight_time = 0.0
-
+           
             for m in models:
-                m.init_model(probe, tick_length)
 
+                try:
+                    m.init_model(probe, tick_length)
+                except RuntimeError:
+                    print('time')
+            
             mission.init(probe, tick_length, Language.get_tr())
 
             simulation_time = 0.0
             iteration = 0
 
             while True:
+                
                 for m in models:
                     m.step(probe, tick_length)
 
