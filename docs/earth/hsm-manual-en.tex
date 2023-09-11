@@ -429,6 +429,239 @@ In this mission, we switched to a more universal approach to writing flight prog
 
 Now you know all the possibilities of hierarchical state machines and you can take up the flight program diagrams for the main missions of the simulator.
 
+\section{Remote sensing of the Earth - DZZ}
+
+\paragraph{Mission conditions} In this mission, the spacecraft will launch in an orbit of a given altitude and will be fully constructed. It is necessary to take a picture of an object located on Earth from space. The image data must be transmitted to the ground measuring point via a high-performance communication channel.
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=10cm]{images/camera-orbit.eps}
+    \caption{The position of the spacecraft in the Earth Remote Sensing mission}
+    \label{Pic:Camera-DZZ-en}
+  \end{center}
+\end{figure}
+
+\paragraph{General logic of the solution} 
+
+\begin{enumerate}
+\item Damping of the initial angular velocity of the device and reaching the angular velocity necessary to constantly maintain the orientation normal to the Earth's surface;
+\item when the spacecraft is oriented to the nadir, check whether the object we need is included in the visibility of the camera;
+\item if the target is visible, start shooting;
+\item when the target leaves the field of view of the camera, finish shooting and transfer the photo of the object to the ground measuring point via a high-performance communication channel.
+\end{enumerate}
+
+The program for installing the spacecraft in the nadir is no different from the program from the first training mission. We just have to figure out how to photograph the target.
+
+\paragraph{Camera} The following diagram (Figure \ref{Pd:DZ-camera-en}) contains a check for the visibility of the target in the camera view and starts shooting if the object is still visible. When the object leaves the camera view, we interrupt the shooting and save the number of the memory cell. Next, we transmit a snapshot of the target via a high-performance communication channel.
+
+\begin{figure}[tbh]
+  \begin{flushright}
+    \includegraphics[width=15cm]{images/dzz-camera.eps}
+    \caption{Diagram of a state machine for photographing an object}
+    \label{Pic:DZZ-camera-en}
+  \end{flushright}
+\end{figure}
+
+The following is the code of the function \verb'is_camera_focused_on_target', which checks whether the object we need is on the Ground in the field of view of the camera.
+
+\begin{verbatim}
+def is_camera_focused_on_target():
+    a = navigation.get_z_axis_angle()
+    return abs(a - target_angle) <= 1
+\end{verbatim}
+
+\section{SMS everywhere}
+
+\paragraph{Mission conditions} In this mission, the spacecraft launches in an orbit of a given altitude. It will be necessary to receive a message from one ground station and transmit the received message to another ground station. The spacecraft will have to provide reception and transmission of messages between \emph{18 stations 5 times}
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=10cm]{images/sms-en.eps}
+    \caption{Spacecraft in the SMS everywhere mission}
+    \label{Pic:SMS-en}
+  \end{center}
+\end{figure}
+
+
+\paragraph{General logic of the solution} 
+
+\begin{enumerate}
+\item Damping of the initial angular velocity of the device and reaching the angular velocity necessary to constantly maintain the orientation normal to the Earth's surface;
+\item when the spacecraft is oriented to the nadir, we receive a message from the next ground station on the list;
+\item when the message is received in its entirety, we read it and send it to the receiving station;
+\item repeat items 2 and 3 4 more times.
+\end{enumerate}
+
+The program for installing the spacecraft in nadir is no different from the program from the first training mission. We just have to figure out how to receive and send messages to the necessary ground stations.
+
+\paragraph{High-performance communication channel} The following diagram (Figure \ref{Pic:SMS-transmitter-en}) when receiving the event \verb'DELIVERY' starts transmitting messages from stations to each other. After receiving the \verb' DELIVERY' event, each tick of the simulator operation is checked for the completeness of the information received from some station, and if the message is received in full, the state of the \verb'transmitter' subsystem switches to \verb'get_message'. In this state, the subsystem reads the received message and puts itself in the \verb' send_message' state, in which it sends a message to the desired station, provided that the spacecraft is near this station. This cycle occurs until it reaches the last element in the list \verb' routing'.
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=15cm]{images/sms-transmitter.eps}
+    \caption{State machine diagram for data transmission}
+    \label{Pic:SMS-transmitter-en}
+  \end{center}
+\end{figure}
+
+
+\section{Satellite inspection}
+
+\paragraph{Mission conditions} In this mission, the spacecraft launches in an orbit of a given altitude. It will be necessary to obtain a photograph of the space object in the best quality and transmit the resulting image to a ground measuring station.
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=12cm]{images/inspect.eps}
+    \caption{Spacecraft in the Satellite inspection mission}
+    \label{Pic:Inspection-en}
+  \end{center}
+\end{figure}
+
+
+\paragraph{General logic of the solution} 
+
+Since the spacecraft starts the mission in an orbit different from the target, the image quality will be low due to the distance. Therefore, in order to increase the quality of the image, it is necessary to shorten this distance, i.e. move to the target orbit.
+
+\begin{enumerate}
+\item Damping of the initial angular velocity of the device and reaching the angular velocity necessary to constantly maintain the orientation tangent to the earth's surface;
+\item the spacecraft enters the orbit of a space object when the space object is at the distance necessary for the spacecraft to perform an orbital maneuver, i.e. at such a distance at which the distance between our spacecraft and the target was minimal in the new orbit;
+\item when the distance between the spacecraft and the target has decreased, orient the spacecraft to the target and take a picture of it;
+\item transmit the received photo of the object to the ground measuring point via a high-performance communication channel.
+\end{enumerate}
+
+\paragraph{Orientation system} The following diagram (Figure \ref{Pic:INSPECT-orient-en}) stabilizes, orients with respect to the Earth's surface, orients to the target and orients to any desired angle.
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=15cm]{images/inspect-orient.eps}
+    \caption{State machine diagram for spacecraft orientation}
+    \label{Pic:INSPECT-orient-en}
+  \end{center}
+\end{figure}
+
+\begin{enumerate}
+\item Stabilization occurs in the \verb'eduction' state (the angular velocity modulus decreases to zero).
+
+\item In the \verb'orienting' state, the orientation subsystem takes the current angular velocity and angle and turns them into the desired angular velocity and into the desired angle, respectively.
+
+\item Orientation relative to the Earth's surface occurs in the state \verb'tangent'. The desired angular velocity and the desired angle are considered as follows:
+\begin{verbatim}
+desired_a_v = -initial_nav_angular_velocity
+desired_a = normalize_angle(360 - navigation.get_z_axis_angle())
+\end{verbatim}
+\item Target orientation occurs in the \verb'observing' state thanks to the \verb'calc_observing_data' function.
+\end{enumerate}
+
+\clearpage
+
+\paragraph{Conditions. Checking If/Else} Conditions can split the execution of the program into two threads using the service state of the condition, which is depicted using the \textbf{BPMN Gateway} primitive.(figure \ref{Pic:IfElse})
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=7.1cm]{images/diagrams-ifelse.eps}
+    \caption{Checking conditions}
+    \label{Pic:IfElse}
+  \end{center}
+\end{figure}
+
+\paragraph{Navigation system} The following diagram (Figure \ref{Pic:INSPECT-navi-en}) controls the engine and calculates when it should make a two-pulse transition between orbits.
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=15cm]{images/inspect-navi.eps}
+    \caption{State machine diagram for spaceship navigation}
+    \label{Pic:INSPECT-navi-en}
+  \end{center}
+\end{figure}
+
+The main link in this diagram is the state of the \verb'impulse' subsystem. In this state, the engine is switched on and off. Thanks to checking \verb'is_angle_ok()' the subsystem understands when to make a pulse.
+
+\section{Protein crystal in zero gravity}
+
+\paragraph{Mission Conditions} In this mission, the spacecraft launches in an orbit of a given altitude. It is necessary to grow a protein crystal with the help of special equipment in limited conditions, and then send the device to a given point on the Earth's surface.
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=12cm]{images/crystal.eps}
+    \caption{Spacecraft in the Protein Crystal in zero Gravity mission}
+    \label{Pic:Crystal-en}
+  \end{center}
+\end{figure}
+
+The success of the mission depends on several parameters. First, it is necessary to transfer the spacecraft to the desired orbit with an accuracy of 1 km for the experiment. Secondly, for the proper operation of scientific equipment, it will be necessary to disable all subsystems except the payload and critical ones (CPU, power supply system and thermal management system). Thirdly, it will be necessary to maintain a narrow range of critical temperature during one revolution around the Earth, which is especially important for the payload. Having completed one revolution in a given orbit, the device can turn back on all systems and go to Earth, where it should land as close as possible to the desired point.
+
+\clearpage
+\paragraph{General logic of the solution} 
+
+\begin{enumerate}
+\item Damping of the initial angular velocity of the device and reaching the angular velocity necessary to constantly maintain the orientation tangent to the earth's surface;
+\item the spacecraft enters the orbit of a space object when the space object is at the distance necessary for the spacecraft to perform an orbital maneuver, i.e. at such a distance at which the distance between our spacecraft and the target was minimal in the new orbit;
+\item when the distance between the spacecraft and the target has decreased, orient the spacecraft to the target and take a picture of it;
+\item transmit the received photo of the object to the ground measuring point via a high-performance communication channel.
+\end{enumerate}
+
+\paragraph{The fall of the research container} The following diagram (figure \ref{Pic:Сrystal-navi-conteiner-fall-en}) drops the research container to the desired location on Earth.
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=10cm]{images/crystal-navi-conteiner-fall.eps}
+    \caption{Diagram of the state machine for the fall of the container from orbit}
+    \label{Pic:Сrystal-navi-conteiner-fall-en}
+  \end{center}
+\end{figure}
+
+The spacecraft reduces speed and drops the container
+
+\section{Communication satellite <<Molniya>>}
+
+\paragraph{Mission Conditions} In this mission, the spacecraft launches in an orbit of a given altitude. It is necessary, having a limited resource for fuel and satellite parameters, to organize several sessions of long-term radio communication with a ground measuring station.
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=10cm]{images/molniya-en.eps}
+    \caption{The ratio of the circular orbit and the orbit of the «Molniya»}
+    \label{Pic:Molniya-en}
+  \end{center}
+\end{figure}
+
+The spacecraft is in a circular low orbit. In order to conduct a communication session lasting at least 8 hours, during the mission it will be necessary to transfer the satellite to a suitable elliptical
+orbit.
+
+\clearpage
+\paragraph{General logic of the solution} 
+
+\begin{enumerate}
+\item Damping of the initial angular velocity of the device and reaching the angular velocity necessary to constantly maintain the orientation tangent to the earth's surface;
+\item transition to an elliptical orbit;
+\item support for the communication session of the spacecraft with the ground measuring point
+\end{enumerate}
+
+\paragraph{Navigation system} The following diagram (Figure \ref{Pic:Molniya-navi-en}) translates our spacecraft from a low orbit to an elliptical one.
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=8.5cm]{images/molniya-navi.eps}
+    \caption{State machine diagram for spaceship navigation}
+    \label{Pic:Molniya-navi-en}
+  \end{center}
+\end{figure}
+
+Here, after receiving the \verb'TANGENTED' event from the orientation subsystem, the transition to an elliptical orbit begins. As soon as the spacecraft engine has spent the required amount of fuel calculated in the \verb'calc_fuel()' function, the engine will turn off, and the navigation subsystem will send the \verb'SET_STAGE' event to the orientation subsystem to support orientation to Earth
+
+\clearpage
+\paragraph{Ground Orientation Support} The following diagram (Figure \ref{Pic:Molniya-orient-en}) supports Ground orientation
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=14cm]{images/molniya-orient.eps}
+    \caption{Diagram of the state machine for the orientation of the spacecraft to the Ground}
+    \label{Pic:Molniya-orient-en}
+  \end{center}
+\end{figure}
+
+Here, the desired angle and angular velocity are calculated and the orientation is adjusted according to the obtained values.
+Orientation to the Ground begins only at the time when the \verb'SET_STAGE' event with the value 3 was received or when the value of the global variable \verb'stage' is 3.
+
 \begin{thebibliography}{2}
 \addcontentsline{toc}{section}{List of references}
 \bibitem{CRASHCOURSE} Samek M., A Crash Course in UML State Machines~---
