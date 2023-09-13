@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:probe name="Test3" xmlns:v="venus">
+<flight>
+<tournament>tournament</tournament>
+<planet name="Earth"/>
+<time start="2015-01-01 00:00:00"/>
+<T_start>290.000000</T_start>
+    <mission type="crystal">
+      <control_stations>
+	<control_station name="GS">
+	  <location_angle>30</location_angle>
+	</control_station>
+      </control_stations>
+      <duration>6</duration>
+      <orbit>600</orbit>
+      <precision>0.1</precision>
+      <start_angular_velocity>1.0</start_angular_velocity>
+      <target_angle>120</target_angle>
+      <target_orbit>700</target_orbit>
+    </mission>
+</flight>
+<construction><fuel>0.75</fuel>
+<voltage>27.000000</voltage>
+<xz_yz_solar_panel_fraction>100.000000</xz_yz_solar_panel_fraction>
+<xz_yz_radiator_fraction>0.000000</xz_yz_radiator_fraction>
+<xy_radiator_fraction>100.000000</xy_radiator_fraction>
+</construction>
+<systems>
+    <system name="Cubesat-Case-6U"/>
+    <system name="Orient-1" start_mode="ON">
+        <hsm_diagram type="yEd" path="orient.graphml"/>
+    </system>
+    <system name="Telemetry-1" start_mode="ON"/>
+    <system name="Navi-1" start_mode="ON">
+        <hsm_diagram type="yEd" path="navi.graphml"/>
+    </system>
+    <system name="Power-1" start_mode="ON"/>
+    <system name="Therm-2" start_mode="ON">
+        <hsm_diagram type="yEd" path="heat.graphml"/>
+    </system>
+    <system name="Engine-1-1" start_mode="ON"/>
+    <system name="Crystal-Container-Small" start_mode="OFF"/>
+    <system name="CPU-1" start_mode="ON">
+        <hsm_diagram type="yEd" path="cpu.graphml"/>
+    </system>
+</systems>
+</v:probe>

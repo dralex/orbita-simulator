@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:probe name="EW-x" xmlns:v="venus">
+<flight>
+<tournament>tournament</tournament>
+<planet name="Earth"/>
+<time start="2015-01-01 00:00:00"/>
+<T_start>290.000000</T_start>
+<mission type="early_warning">
+<control_stations>
+        <control_station name="GS-West">
+                <location_angle>320.000000</location_angle>
+        </control_station>
+        <control_station name="GS-East">
+                <location_angle>40.000000</location_angle>
+        </control_station>
+</control_stations>
+<duration>72.000000</duration>
+<missiles>
+    <missile index="1">
+        <location_angle>6.000000</location_angle>
+        <launch_time>74249.000000</launch_time>
+    </missile>
+    <missile index="2">
+        <location_angle>40.000000</location_angle>
+        <launch_time>7151.000000</launch_time>
+    </missile>
+    <missile index="3">
+        <location_angle>14.000000</location_angle>
+        <launch_time>183518.000000</launch_time>
+    </missile>
+    <missile index="4">
+        <location_angle>24.000000</location_angle>
+        <launch_time>231593.000000</launch_time>
+    </missile>
+    <missile index="5">
+        <location_angle>40.000000</location_angle>
+        <launch_time>45911.000000</launch_time>
+    </missile>
+    <missile index="6">
+        <location_angle>353.000000</location_angle>
+        <launch_time>71560.000000</launch_time>
+    </missile>
+    <missile index="7">
+        <location_angle>351.000000</location_angle>
+        <launch_time>77672.000000</launch_time>
+    </missile>
+    <missile index="8">
+        <location_angle>348.000000</location_angle>
+        <launch_time>103763.000000</launch_time>
+    </missile>
+    <missile index="9">
+        <location_angle>355.000000</location_angle>
+        <launch_time>38538.000000</launch_time>
+    </missile>
+    <missile index="10">
+        <location_angle>1.000000</location_angle>
+        <launch_time>57908.000000</launch_time>
+    </missile>
+</missiles>
+<orbit>35794.000000</orbit>
+<resolution>0.000000</resolution>
+<start_angular_velocity>1.000000</start_angular_velocity>
+</mission>
+</flight>
+<construction>
+  <fuel>0.000000</fuel>
+  <voltage>27.000000</voltage>
+  <xz_yz_solar_panel_fraction>100.000000</xz_yz_solar_panel_fraction>
+  <xz_yz_radiator_fraction>0.000000</xz_yz_radiator_fraction>
+  <xy_radiator_fraction>75.000000</xy_radiator_fraction>
+</construction>
+<systems>
+    <system name="MiniSat-Case"/>
+    <system name="Therm-4" start_mode="ON">
+        <hsm_diagram type="yEd" path="heat.graphml"/>
+    </system>
+    <system name="Navi-1" start_mode="ON"/>
+    <system name="Orient-4" start_mode="ON">
+        <hsm_diagram type="yEd" path="orient.graphml"/>
+    </system>
+    <system name="CPU-2" start_mode="ON">
+        <hsm_diagram type="yEd" path="cpu.graphml"/>
+    </system>
+    <system name="Power-4" start_mode="ON"/>
+    <system name="Radio-4" start_mode="ON"/>
+    <system name="Telemetry-1" start_mode="ON"/>
+    <system name="Infrared-Telescope" start_mode="ON">
+        <hsm_diagram type="yEd" path="camera.graphml"/>
+    </system>
+</systems>
+</v:probe>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:probe name="Insp-x" xmlns:v="venus">
+<flight>
+<tournament>tournament</tournament>
+<planet name="Earth"/>
+<time start="2015-01-01 00:00:00"/>
+<T_start>290.000000</T_start>
+<mission type="inspect">
+<control_stations>
+        <control_station name="GS">
+                <location_angle>121.000000</location_angle>
+        </control_station>
+</control_stations>
+<duration>6.000000</duration>
+<orbit>182.000000</orbit>
+<resolution>0.000000</resolution>
+<start_angular_velocity>1.000000</start_angular_velocity>
+<target_angle>61.000000</target_angle>
+<target_orbit>790.000000</target_orbit>
+</mission>
+</flight>
+<construction>
+  <fuel>29.000000</fuel>
+  <voltage>27.000000</voltage>
+  <xz_yz_solar_panel_fraction>100.000000</xz_yz_solar_panel_fraction>
+  <xz_yz_radiator_fraction>0.000000</xz_yz_radiator_fraction>
+  <xy_radiator_fraction>50.000000</xy_radiator_fraction>
+</construction>
+<systems>
+    <system name="MicroSat-Case"/>
+    <system name="Therm-2" start_mode="ON">
+        <hsm_diagram type="yEd" path="heat.graphml"/>
+    </system>
+    <system name="Navi-1" start_mode="ON">
+        <hsm_diagram type="yEd" path="navi.graphml"/>
+    </system>
+    <system name="Orient-3" start_mode="ON">
+        <hsm_diagram type="yEd" path="orient.graphml"/>
+    </system>
+    <system name="Engine-2-2" start_mode="OFF"/>
+    <system name="CPU-2" start_mode="ON">
+        <hsm_diagram type="yEd" path="cpu.graphml"/>
+    </system>
+    <system name="Power-3" start_mode="ON"/>
+    <system name="Radio-2" start_mode="OFF"/>
+    <system name="Telemetry-1" start_mode="ON"/>
+    <system name="Camera-1" start_mode="OFF">
+        <hsm_diagram type="yEd" path="camera.graphml"/>
+    </system>
+</systems>
+</v:probe>
