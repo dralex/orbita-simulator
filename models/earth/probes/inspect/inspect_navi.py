@@ -10,12 +10,9 @@ max_engine_traction = 0.037
 engine_specific_impulse = 2705.0
 
 
-def calc_fuel():
+def calc_fuel_first_impulse():
     global transfer_burn_angle, transfer_end_fuel, transfer_burn_time
-    if is_first_impulse:
-        velocity_fuel = initial_nav_angular_velocity
-    else:
-        velocity_fuel = target_angular_velocity - (transfer_delta_v / (target_height + R_z))
+    velocity_fuel = initial_nav_angular_velocity
     engine.set_state(STATE_ON)
     transfer_start_fuel = engine.get_fuel()
     engine.set_state(STATE_OFF)
@@ -27,11 +24,18 @@ def calc_fuel():
     transfer_burn_angle = transfer_burn_time * velocity_fuel
 
 
-def is_angle_ok():
-    if is_first_impulse:
-        return is_angle_ok_first_impulse()
-    else:
-        return is_angle_ok_second_impulse()
+def calc_fuel_second_impulse():
+    global transfer_burn_angle, transfer_end_fuel, transfer_burn_time
+    velocity_fuel = target_angular_velocity - (transfer_delta_v / (target_height + R_z))
+    engine.set_state(STATE_ON)
+    transfer_start_fuel = engine.get_fuel()
+    engine.set_state(STATE_OFF)
+    transfer_end_fuel = ((dry_mass + transfer_start_fuel) / math.exp(
+        transfer_delta_v / engine_specific_impulse)) - dry_mass
+    if transfer_end_fuel < 0.0:
+        transfer_end_fuel = 0.0
+    transfer_burn_time = (transfer_start_fuel - transfer_end_fuel) / (max_engine_traction / 2)
+    transfer_burn_angle = transfer_burn_time * velocity_fuel
 
 
 def is_angle_ok_first_impulse():
@@ -54,8 +58,3 @@ def starting_engine():
     engine.set_state(STATE_ON)
     engine.set_traction(max_engine_traction / 2)
     engine.start_engine()
-
-
-def set_is_first_impulse(impulse: bool):
-    global is_first_impulse
-    is_first_impulse = (impulse == 'True')
