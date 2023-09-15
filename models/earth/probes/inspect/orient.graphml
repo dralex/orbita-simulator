@@ -368,7 +368,7 @@ if is_orientation_needed():
     <node id="n1">
       <data key="d6">
         <y:GenericNode configuration="com.yworks.bpmn.Event">
-          <y:Geometry height="17.0" width="8.83984375" x="751.344568908778" y="15.555633041907015"/>
+          <y:Geometry height="17.0" width="8.83984375" x="852.4866671823504" y="15.555633041907015"/>
           <y:Fill color="#333333" color2="#000000" transparent="false"/>
           <y:BorderStyle color="#000000" type="line" width="1.0"/>
           <y:NodeLabel alignment="center" autoSizePolicy="content" fontFamily="Dialog" fontSize="12" fontStyle="plain" hasBackgroundColor="false" hasLineColor="false" hasText="false" height="4.0" horizontalTextPosition="center" iconTextGap="4" modelName="custom" textColor="#000000" verticalTextPosition="bottom" visible="true" width="4.0" x="12.83984375" y="4.333333333333336">
@@ -496,7 +496,7 @@ desired_a_v = 0.0<y:LabelModel><y:SmartEdgeLabelModel autoRotationEnabled="false
     <edge id="e0" source="n1" target="n0::n0">
       <data key="d10">
         <y:PolyLineEdge>
-          <y:Path sx="0.0" sy="0.0" tx="-8.41650964373946" ty="0.7398695547861109"/>
+          <y:Path sx="0.0" sy="0.0" tx="92.72558862983271" ty="2.2489688166535586"/>
           <y:LineStyle color="#000000" type="line" width="1.0"/>
           <y:Arrows source="none" target="standard"/>
           <y:BendStyle smoothed="false"/>
