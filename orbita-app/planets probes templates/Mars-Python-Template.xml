@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:probe name="Mars-Template" xmlns:v="venus">
+  <flight>
+    <mission name="Mars"/>
+    <start_height>80000.0</start_height>
+  </flight>
+  <parameters>
+	<radius_external>0.811</radius_external>
+    <radius_internal>0.81</radius_internal>
+	<absorber>OFF</absorber>
+    <isolator>OFF</isolator>
+  </parameters>
+  <devices>
+	<device number="1" name="damper" start_state="ON"/>	
+	<device number="1" name="diagn" start_state="ON" in_safe_mode="ON"/>
+	<device number="1" name="parachute_supersonic" start_state="OFF" in_safe_mode="ON"/>
+	<device number="1" name="heatshield_light" start_state="ON" in_safe_mode="ON"/>
+	</devices>
+  <python_code><![CDATA[
+]]></python_code>
+</v:probe>

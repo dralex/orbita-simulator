@@ -1,0 +1,17 @@
+<RCC>
+    <qresource prefix="/">
+        <file>main.qml</file>
+        <file>RunWindow.qml</file>
+        <file>CommandDialog.qml</file>
+        <file>DeviceDialog.qml</file>
+        <file>MissionDialog.qml</file>
+        <file>ErrorMessage.qml</file>
+        <file>SuccessMessage.qml</file>
+        <file>DeviceForEarthDialog.qml</file>
+        <file>VersionDialog.qml</file>
+        <file>PathToSaveDialog.qml</file>
+        <file>PathToLoadDialog.qml</file>
+        <file>SettingsDialog.qml</file>
+        <file>SimulationPathDialog.qml</file>
+    </qresource>
+</RCC>
