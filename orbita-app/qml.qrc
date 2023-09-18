@@ -8,10 +8,11 @@
         <file>ErrorMessage.qml</file>
         <file>SuccessMessage.qml</file>
         <file>DeviceForEarthDialog.qml</file>
-        <file>VersionDialog.qml</file>
         <file>PathToSaveDialog.qml</file>
         <file>PathToLoadDialog.qml</file>
         <file>SettingsDialog.qml</file>
         <file>SimulationPathDialog.qml</file>
+        <file>FirstOrbitaWindow.qml</file>
+        <file>SecondOrbitaWindow.qml</file>
     </qresource>
 </RCC>

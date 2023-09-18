@@ -150,7 +150,7 @@ Window  {
               onClicked: {
                 simulationController.clearInfo()
                 simulationController.clearImages()
-                mainWindow.visible = true
+                firstOrbitaWindow.visible = true
                 runWindow.visible = false
               }
 

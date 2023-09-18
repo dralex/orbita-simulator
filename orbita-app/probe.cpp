@@ -194,7 +194,7 @@ void Probe::saveToXml(int probeIndex, Planets *planetsData, int planetIndex, con
     file.close();
 }
 
-void Probe::loadFromXml(QString filename, PlanetDevices *planetDevicesData) {
+void Probe::loadFromXml(QString filename, PlanetDevices *planetDevicesData, SettingsManager *settingsManager) {
     QFile file(filename);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         return;
@@ -369,7 +369,7 @@ void Probe::loadFromXml(QString filename, PlanetDevices *planetDevicesData) {
 
     file.close();
 
-    if (filename.startsWith("planets probes templates")) {
+    if (filename.startsWith(settingsManager->getSimulationPath() + "/planets probes templates")) {
         filename = "";
     }
     mItems[probeIndex].filePath = filename;

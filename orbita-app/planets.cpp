@@ -46,11 +46,14 @@ void Planets::loadPlanets(const QString &filePath)
                         planet.height = xmlReader.readElementText().toDouble();
                     }
                 }
-                emit prePlanetsItemAppended();
+                if (planet.planetName != "Earth") {
+                    emit prePlanetsItemAppended();
 
-                mItems.append(planet);
+                    mItems.append(planet);
 
-                emit postPlanetsItemAppended();
+                    emit postPlanetsItemAppended();
+                }
+
             }
         }
     }

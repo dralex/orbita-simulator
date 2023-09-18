@@ -6,12 +6,12 @@ SettingsManager::SettingsManager(QObject *parent) : QObject(parent)
 
 QString SettingsManager::getProbesPath() const
 {
-    return probesPath;
+    return planetsProbesPath;
 }
 
 QString SettingsManager::getSimulationPath() const
 {
-    return simulationPath;
+    return planetsSimulationPath;
 }
 
 QString SettingsManager::getDevicesPath() const
@@ -26,12 +26,12 @@ QString SettingsManager::getPlanetsPath() const
 
 void SettingsManager::setProbesPath(const QString &path)
 {
-    probesPath = path;
+    planetsProbesPath = path;
 }
 
 void SettingsManager::setSimulationPath(const QString &path)
 {
-    simulationPath = path;
+    planetsSimulationPath = path;
 }
 
 void SettingsManager::setDevicesPath(const QString &path)
@@ -55,9 +55,9 @@ bool SettingsManager::loadSettingsFromFile(const QString &filePath)
     while (!in.atEnd()) {
         QString line = in.readLine();
         if (line.startsWith("simulation_path=")) {
-            simulationPath = line.mid(16);
+            planetsSimulationPath = line.mid(16);
         } else if (line.startsWith("probes_path=")) {
-            probesPath = line.mid(12);
+            planetsProbesPath = line.mid(12);
         } else if (line.startsWith("devices_path=")) {
             devicesPath = line.mid(13);
         } else if (line.startsWith("planets_path=")) {
@@ -77,8 +77,8 @@ bool SettingsManager::saveSettingsToFile(const QString &filePath)
     }
 
     QTextStream out(&file);
-    out << "simulation_path=" << simulationPath << "\n";
-    out << "probes_path=" << probesPath << "\n";
+    out << "simulation_path=" << planetsSimulationPath << "\n";
+    out << "probes_path=" << planetsProbesPath << "\n";
     out << "devices_path=" << devicesPath << "\n";
     out << "planets_path=" << planetsPath << "\n";
 

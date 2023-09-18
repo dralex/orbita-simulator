@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:probe name="Moon-Template" xmlns:v="venus">
+  <flight>
+    <mission name="Moon"/>
+    <start_height>50000.0</start_height>
+  </flight>
+  <parameters>
+    <radius_external>1.171</radius_external>
+    <radius_internal>1.17</radius_internal>
+    <absorber>OFF</absorber>
+    <isolator>OFF</isolator>
+  </parameters>
+  <devices>
+    <device number="1" name="moon_damper" start_state="ON"/>	
+    <device number="1" name="diagn" start_state="ON" in_safe_mode="ON"/>
+  </devices>
+  <program>
+    <stage id="Landing">
+      <command time="0" device="D1" action="PERIOD" argument="10"/>
+    </stage>
+    <stage id="Surface activity">
+      <command time="0" device="D1" action="PERIOD" argument="10"/>
+    </stage>
+  </program>
+</v:probe>

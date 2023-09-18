@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:probe name="Moon-Python-Template" xmlns:v="venus">
+  <flight>
+    <mission name="Moon"/>
+    <start_height>50000.0</start_height>
+  </flight>
+  <parameters>
+    <radius_external>1.171</radius_external>
+    <radius_internal>1.17</radius_internal>
+    <absorber>OFF</absorber>
+    <isolator>OFF</isolator>
+  </parameters>
+  <devices>
+    <device number="1" name="moon_damper" start_state="ON"/>	
+    <device number="1" name="diagn" start_state="ON" in_safe_mode="ON"/>
+  </devices>
+  <python_code><![CDATA[
+t1 = # ВПИШИТЕ ВЫЧИСЛЕННОЕ ЗНАЧЕНИЕ t1
+engine = false
+probe.set_device_period('D1', 60)
+while probe.run():
+    t = probe.cpu_get_flight_time()
+    if not engine and t >= t1:
+        probe.set_device_state('EG1', STATE_ON)
+        engine = True
+        continue
+    if probe.navigation_has_landed():
+        break
+]]></python_code>
+</v:probe>

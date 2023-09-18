@@ -9,6 +9,7 @@ FileDialog {
     height: 146
     visible: false
     folder: "file://" + pathToLoad
+
     onAccepted: {
         var filePath = fileToLoadDialog.fileUrl.toString()
         var folderPath = fileToLoadDialog.folder.toString()
@@ -18,7 +19,7 @@ FileDialog {
             var fileToLoad= filePath.substring(7)
         }
 
-        probes.loadFromXml(fileToLoad, planetDevicesItems)
+        probes.loadFromXml(fileToLoad, planetDevicesItems, settingsManager)
         listViewProbes.currentIndex = probes.size() - 1
         currentProbe = listViewProbes.currentItem.probesModelData
 

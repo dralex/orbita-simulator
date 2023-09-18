@@ -28,10 +28,10 @@ public slots:
     bool checkSimulationFile(const QString &filePath);
 
 private:
-    QString probesPath = "/home/";
-    QString simulationPath = "/home/";
-    QString devicesPath = "/home/";
-    QString planetsPath = "/home/";
+    QString planetsProbesPath = "None";
+    QString planetsSimulationPath = "None";
+    QString devicesPath = "None";
+    QString planetsPath = "None";
 };
 
 #endif // SETTINGSMANAGER_H

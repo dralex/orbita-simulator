@@ -9,8 +9,8 @@ Dialog  {
     height: 146
     visible: false
     modal: true
-    x: mainWindow.width / 2 - width / 2
-    y: mainWindow.height / 2 - height / 2
+    x: firstOrbitaWindow.width / 2 - width / 2
+    y: firstOrbitaWindow.height / 2 - height / 2
 
     GridLayout {
         anchors.fill: parent

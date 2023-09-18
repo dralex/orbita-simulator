@@ -16,8 +16,8 @@ Dialog  {
     property ListModel clear: ListModel {}
 
     title: qsTr("Выберите миссию")
-    x: mainWindow.width / 2 - width / 2
-    y: mainWindow.height / 2 - height / 2
+    x: firstOrbitaWindow.width / 2 - width / 2
+    y: firstOrbitaWindow.height / 2 - height / 2
     ColumnLayout {
         anchors.fill: parent
         RowLayout {
@@ -89,7 +89,7 @@ Dialog  {
                                 showDiagrammButton = false
                                 showPythonArea.text = ""
 
-                                probes.loadFromXml(`planets probes templates/${missonSelect.currentText}-Template.xml`, planetDevicesItems)
+                                probes.loadFromXml(`${settingsManager.getSimulationPath()}/planets probes templates/${missonSelect.currentText}-Template.xml`, planetDevicesItems, settingsManager)
                                 listViewProbes.currentIndex = probes.size() - 1
                                 currentProbe = listViewProbes.currentItem.probesModelData
 
@@ -104,7 +104,7 @@ Dialog  {
                                 showPythonArea = true
                                 showDiagrammButton = false
 
-                                probes.loadFromXml(`planets probes templates/${missonSelect.currentText}-Python-Template.xml`, planetDevicesItems)
+                                probes.loadFromXml(`${settingsManager.getSimulationPath()}/planets probes templates/${missonSelect.currentText}-Python-Template.xml`, planetDevicesItems, settingsManager)
                                 listViewProbes.currentIndex = probes.size() - 1
                                 currentProbe = listViewProbes.currentItem.probesModelData
 

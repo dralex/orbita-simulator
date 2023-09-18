@@ -22,7 +22,7 @@ FileDialog {
         } else {
             errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора."
             errorDialog.open()
-            folderSimulation = "/home/"
+            folderSimulation = ""
         }
     }
 }

@@ -40,6 +40,7 @@ QString SimulationController::getStandardError() const
 
 void SimulationController::startSimulation(QString probePath, SettingsManager *settingsManager)
 {
+    QString process;
     if (simulationProcess->state() != QProcess::NotRunning) {
         qDebug() << "Симуляция уже запущена или завершается.";
         return;
@@ -62,8 +63,12 @@ void SimulationController::startSimulation(QString probePath, SettingsManager *s
     arguments << simulationPath << currentProbePath
               << "--mission-log=" + infoFolderPath + "/telemetry.log"
               << "--image=" + infoFolderPath + "/.";
-
-    simulationProcess->start("python3", arguments);
+    qDebug()<<QSysInfo::productType();
+    if (QSysInfo::productType() == "windows")
+        process = "python";
+    else
+        process = "python3";
+    simulationProcess->start(process, arguments);
 }
 
 void SimulationController::stopSimulation()
