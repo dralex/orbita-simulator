@@ -1,4 +1,0 @@
-simulation_path=/home/akoru/orbita-simulator/models/planets
-probes_path=/home/akoru/orbita-simulator/models/planets/probes
-devices_path=/home/akoru/orbita-simulator/models/planets/devices-ru.xml
-planets_path=/home/akoru/orbita-simulator/models/planets/planets.xml
