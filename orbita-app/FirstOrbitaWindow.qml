@@ -189,8 +189,8 @@ Window  {
                 anchors.bottomMargin: 38
                 onClicked: {
                     settingsManager.loadSettingsFromFile("planets_settings.txt");
-                    firstOrbitaWindow.pathToSave = settingsManager.getProbesPath()
-                    firstOrbitaWindow.pathToLoad = settingsManager.getProbesPath()
+                    firstOrbitaWindow.pathToSave = settingsManager.getPlanetsProbesPath()
+                    firstOrbitaWindow.pathToLoad = settingsManager.getPlanetsProbesPath()
                     if (!planetsItems.size())
                         planetsItems.loadPlanets(settingsManager.getPlanetsPath());
                     if (!planetDevicesItems.size())
@@ -215,8 +215,8 @@ Window  {
                 onClicked: {
                     if (settingsManager.checkSimulationFile(settingsManager.getSimulationPath() + "/simulation.py")) {
                         settingsManager.saveSettingsToFile("planets_settings.txt");
-                        pathToSave = settingsManager.getProbesPath()
-                        pathToLoad = settingsManager.getProbesPath()
+                        pathToSave = settingsManager.getPlanetsProbesPath()
+                        pathToLoad = settingsManager.getPlanetsProbesPath()
                         runWindow.visible = true
                         firstOrbitaWindow.visible = false
                     } else {
@@ -694,7 +694,7 @@ Window  {
                     Layout.alignment: Qt.AlignBottom | Qt.AlignRight
                     text: "Настройки"
                     onClicked: {
-                        folderProbesPath = settingsManager.getProbesPath()
+                        folderProbesPath = settingsManager.getPlanetsProbesPath()
                         folderSimulation = settingsManager.getSimulationPath()
                         settingsDialog.open()
                     }

@@ -54,8 +54,8 @@ ApplicationWindow  {
                     if (versionSelect.currentIndex === 0 ) {
                         modelSolutions.append({text: "Таблица"})
                         settingsManager.loadSettingsFromFile("planets_settings.txt");
-                        firstOrbitaWindow.pathToSave = settingsManager.getProbesPath()
-                        firstOrbitaWindow.pathToLoad = settingsManager.getProbesPath()
+                        firstOrbitaWindow.pathToSave = settingsManager.getPlanetsProbesPath()
+                        firstOrbitaWindow.pathToLoad = settingsManager.getPlanetsProbesPath()
                         if (!planetsItems.size())
                             planetsItems.loadPlanets(settingsManager.getPlanetsPath());
                         if (!planetDevicesItems.size())

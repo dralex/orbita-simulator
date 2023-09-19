@@ -1,4 +1,5 @@
-QT += quick
+QT += quick \
+    widgets
 
 # You can make your code fail to compile if it uses deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -8,7 +9,10 @@ SOURCES += \
         comboboxdevices.cpp \
         devices.cpp \
         devicesmodel.cpp \
+        earthdevices.cpp \
+        earthmissions.cpp \
         earthprobe.cpp \
+        earthprobedevices.cpp \
         imagesmodel.cpp \
         main.cpp \
         planetdevices.cpp \
@@ -46,7 +50,10 @@ HEADERS += \
     comboboxdevices.h \
     devices.h \
     devicesmodel.h \
+    earthdevices.h \
+    earthmissions.h \
     earthprobe.h \
+    earthprobedevices.h \
     imagesmodel.h \
     planetdevices.h \
     planets.h \

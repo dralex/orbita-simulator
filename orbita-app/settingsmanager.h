@@ -12,7 +12,7 @@ public:
     explicit SettingsManager(QObject *parent = nullptr);
 
 public slots:
-    QString getProbesPath() const;
+    QString getPlanetsProbesPath() const;
     QString getSimulationPath() const;
     QString getDevicesPath() const;
     QString getPlanetsPath() const;

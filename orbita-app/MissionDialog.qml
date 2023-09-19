@@ -122,7 +122,7 @@ Dialog  {
                                 showDiagrammButton = false
                                 showPythonArea.text = ""
 
-                                probes.appendProbe("probe", missonSelect.currentText, 0, 0, "", settingsManager.getProbesPath() + "/probe.xml")
+                                probes.appendProbe("probe", missonSelect.currentText, 0, 0, "", settingsManager.getPlanetsProbesPath() + "/probe.xml")
 
                                 listViewProbes.currentIndex = probes.size() - 1
                                 currentProbe = listViewProbes.currentItem.probesModelData
@@ -138,7 +138,7 @@ Dialog  {
                                 showPythonArea = true
                                 showDiagrammButton = false
 
-                                probes.appendProbe("probe", missonSelect.currentText, 0, 0, "print('Hello World!')", settingsManager.getProbesPath() + "/probe.xml")
+                                probes.appendProbe("probe", missonSelect.currentText, 0, 0, "print('Hello World!')", settingsManager.getPlanetsProbesPath() + "/probe.xml")
 
                                 listViewProbes.currentIndex = probes.size() - 1
                                 currentProbe = listViewProbes.currentItem.probesModelData

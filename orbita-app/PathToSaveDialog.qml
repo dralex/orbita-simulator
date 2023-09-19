@@ -23,8 +23,8 @@ FileDialog {
 
         settingsManager.setProbesPath(folderProbesPath)
         settingsManager.saveSettingsToFile("planets_settings.txt");
-        pathToSave = settingsManager.getProbesPath()
-        pathToLoad = settingsManager.getProbesPath()
+        pathToSave = settingsManager.getPlanetsProbesPath()
+        pathToLoad = settingsManager.getPlanetsProbesPath()
         if (fileToSave) {
             probes.saveProbe(listViewProbes.currentIndex, probeNameText.text, firstNumber.text, secondNumber.text, pythonCodeProperty, fileToSave)
             probes.saveToXml(listViewProbes.currentIndex, planetsItems, missionIndex, fileToSave)

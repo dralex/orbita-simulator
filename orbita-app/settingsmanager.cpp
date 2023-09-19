@@ -4,7 +4,7 @@ SettingsManager::SettingsManager(QObject *parent) : QObject(parent)
 {
 }
 
-QString SettingsManager::getProbesPath() const
+QString SettingsManager::getPlanetsProbesPath() const
 {
     return planetsProbesPath;
 }

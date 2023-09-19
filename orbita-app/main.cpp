@@ -22,6 +22,8 @@
 #include "simulationcontroller.h"
 #include "settingsmanager.h"
 #include "imagesmodel.h"
+#include "earthdevices.h"
+#include "earthmissions.h"
 
 int main(int argc, char *argv[])
 {
@@ -74,6 +76,10 @@ int main(int argc, char *argv[])
     PlanetDevices planetDevices;
     SimulationController simulationController;
     SettingsManager settingsManager;
+    EarthDevices earthDevices;
+    EarthMissions earthMissions;
+    earthMissions.loadMissions("/home/akoru/orbita-simulator/models/earth/missions-ru.xml");
+    earthMissions.showMissions();
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty(QStringLiteral("probes"), &probes);
