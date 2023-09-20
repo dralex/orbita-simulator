@@ -3,15 +3,16 @@ import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 
-ApplicationWindow  {
+Window  {
     id: versionWindow
-    width: 800
-    height: 600
+    width: 400
+    height: 200
     visible: true
     flags: Qt.Window | Qt.WindowFixedSize
     title: qsTr("Выберите версию Орбиты")
     FirstOrbitaWindow {id: firstOrbitaWindow}
     SecondOrbitaWindow {id: secondOrbitaWindow}
+
     property ListModel modelSolutions: ListModel {}
 
     ColumnLayout {
@@ -61,12 +62,17 @@ ApplicationWindow  {
                         if (!planetDevicesItems.size())
                             planetDevicesItems.loadDevices(settingsManager.getDevicesPath());
 
-                        firstOrbitaWindow.visible = true
-                        versionWindow.visible = false
+                        var newMainWindow = Qt.createComponent("FirstOrbitaWindow.qml");
+                        if (newMainWindow !== null) {
+                            var newWindowObject = newMainWindow.createObject(firstOrbitaWindow, {});
+                            if (newWindowObject !== null) {
+                                newWindowObject.show();
+                            }
+                        }
                     } else {
                         modelSolutions.append({text: "Диаграмма"})
-                        secondOrbitaWindow.visible = true
-                        versionWindow.visible = false
+                        secondOrbitaWindow.visibility = 1
+                        versionWindow.visibility = 0
                     }
                     modelSolutions.append({text: "Python"})
                     versionSelect.currentIndex = 0

@@ -12,6 +12,10 @@ Window  {
     visible: false
     flags: Qt.Window | Qt.WindowFixedSize
 
+    onClosing: {
+        firstOrbitaWindow.visibility = 1
+        runWindow.visibility = 0
+    }
 
     ColumnLayout {
         anchors.fill: parent
@@ -150,8 +154,8 @@ Window  {
               onClicked: {
                 simulationController.clearInfo()
                 simulationController.clearImages()
-                firstOrbitaWindow.visible = true
-                runWindow.visible = false
+                firstOrbitaWindow.visibility = 1
+                runWindow.visibility = 0
               }
 
           }

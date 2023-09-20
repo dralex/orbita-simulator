@@ -27,7 +27,7 @@ Window  {
     PathToLoadDialog {id: pathToLoadDialog}
     SettingsDialog  {id: settingsDialog}
     SimulationPathDialog {id: simulationPathDialog}
-    PlanetCalculator {id: planetCalculator}
+    PlanetCalculator {id: planetCalculatorWindow}
     property bool itemsEnabled: false
     property bool showPlanetsDevices: false
     property bool showPlanetsElems: false
@@ -143,8 +143,8 @@ Window  {
                 anchors.bottom: parent.bottom
                 anchors.bottomMargin: 154
                 onClicked: {
-                    versionWindow.visible = true
-                    firstOrbitaWindow.visible = false
+                    versionWindow.visibility = 1
+                    firstOrbitaWindow.visibility = 0
                 }
             }
 
@@ -213,14 +213,14 @@ Window  {
                 text: "Запустить"
                 anchors.bottom: parent.bottom
                 enabled: itemsEnabled
-                anchors.bottomMargin: 38
+                anchors.bottomMargin: 30
                 onClicked: {
                     if (settingsManager.checkSimulationFile(settingsManager.getSimulationPath() + "/simulation.py")) {
                         settingsManager.saveSettingsToFile("planets_settings.txt");
                         pathToSave = settingsManager.getPlanetsProbesPath()
                         pathToLoad = settingsManager.getPlanetsProbesPath()
-                        runWindow.visible = true
-                        firstOrbitaWindow.visible = false
+                        runWindow.visibility = 1
+                        firstOrbitaWindow.visibility = 0
                     } else {
                         errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора."
                         errorDialog.open()
@@ -237,8 +237,9 @@ Window  {
                 enabled: itemsEnabled
                 onClicked: {
                     if (settingsManager.checkSimulationFile(settingsManager.getSimulationPath() + "/simulation.py")) {
-                        planetCalculator.visible = true
-                        firstOrbitaWindow.visible = false
+                        firstOrbitaWindow.visibility = 0
+                        planetCalculatorWindow.visibility = 1
+
                     } else {
                         errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора."
                         errorDialog.open()

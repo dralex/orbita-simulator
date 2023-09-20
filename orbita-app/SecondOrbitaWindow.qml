@@ -141,8 +141,8 @@ Window  {
                 anchors.bottom: parent.bottom
                 anchors.bottomMargin: 125
                 onClicked: {
-                    versionWindow.visible = true
-                    secondOrbitaWindow.visible = false
+                    versionWindow.visibilty = 1
+                    secondOrbitaWindow.visibilty = 0
                 }
             }
 
