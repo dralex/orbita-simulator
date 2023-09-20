@@ -78,8 +78,6 @@ int main(int argc, char *argv[])
     SettingsManager settingsManager;
     EarthDevices earthDevices;
     EarthMissions earthMissions;
-    earthMissions.loadMissions("/home/akoru/orbita-simulator/models/earth/missions-ru.xml");
-    earthMissions.showMissions();
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty(QStringLiteral("probes"), &probes);

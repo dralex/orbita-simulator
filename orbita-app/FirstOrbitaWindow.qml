@@ -27,6 +27,7 @@ Window  {
     PathToLoadDialog {id: pathToLoadDialog}
     SettingsDialog  {id: settingsDialog}
     SimulationPathDialog {id: simulationPathDialog}
+    PlanetCalculator {id: planetCalculator}
     property bool itemsEnabled: false
     property bool showPlanetsDevices: false
     property bool showPlanetsElems: false
@@ -57,7 +58,7 @@ Window  {
                 anchors.fill: parent
                 width: parent.width
                 height: parent.height - newProbeButton.height
-                anchors.bottomMargin: 158
+                anchors.bottomMargin: 182
                 clip: true
                 enabled: itemsEnabled
                 model: ProbeModel {
@@ -140,7 +141,7 @@ Window  {
                 width: parent.width; height: 23
                 text: "Сменить версию"
                 anchors.bottom: parent.bottom
-                anchors.bottomMargin: 125
+                anchors.bottomMargin: 154
                 onClicked: {
                     versionWindow.visible = true
                     firstOrbitaWindow.visible = false
@@ -152,7 +153,7 @@ Window  {
                 width: parent.width; height: 23
                 text: "Cоздать новый"
                 anchors.bottom: parent.bottom
-                anchors.bottomMargin: 96
+                anchors.bottomMargin: 125
 
                 onClicked: {
                     if (planetsItems.size() > 0) {
@@ -169,7 +170,7 @@ Window  {
                 width: parent.width; height: 23
                 text: "Сохранить"
                 anchors.bottom: parent.bottom
-                anchors.bottomMargin: 67
+                anchors.bottomMargin: 96
                 enabled: itemsEnabled
                 onClicked: {
                     if (!currentProbe.probeFilePath) {
@@ -186,7 +187,7 @@ Window  {
                 width: parent.width; height: 23
                 text: "Загрузить"
                 anchors.bottom: parent.bottom
-                anchors.bottomMargin: 38
+                anchors.bottomMargin: 67
                 onClicked: {
                     settingsManager.loadSettingsFromFile("planets_settings.txt");
                     firstOrbitaWindow.pathToSave = settingsManager.getPlanetsProbesPath()
@@ -212,12 +213,31 @@ Window  {
                 text: "Запустить"
                 anchors.bottom: parent.bottom
                 enabled: itemsEnabled
+                anchors.bottomMargin: 38
                 onClicked: {
                     if (settingsManager.checkSimulationFile(settingsManager.getSimulationPath() + "/simulation.py")) {
                         settingsManager.saveSettingsToFile("planets_settings.txt");
                         pathToSave = settingsManager.getPlanetsProbesPath()
                         pathToLoad = settingsManager.getPlanetsProbesPath()
                         runWindow.visible = true
+                        firstOrbitaWindow.visible = false
+                    } else {
+                        errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора."
+                        errorDialog.open()
+                        folderSimulation = "None"
+                    }
+                }
+            }
+
+            Button {
+                id: runCalculatorButton
+                width: parent.width; height: 23
+                text: "Запустить калькулятор"
+                anchors.bottom: parent.bottom
+                enabled: itemsEnabled
+                onClicked: {
+                    if (settingsManager.checkSimulationFile(settingsManager.getSimulationPath() + "/simulation.py")) {
+                        planetCalculator.visible = true
                         firstOrbitaWindow.visible = false
                     } else {
                         errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора."

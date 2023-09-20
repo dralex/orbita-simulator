@@ -5,8 +5,8 @@ import QtQuick.Layouts 1.15
 
 ApplicationWindow  {
     id: versionWindow
-    width: 380
-    height: 220
+    width: 800
+    height: 600
     visible: true
     flags: Qt.Window | Qt.WindowFixedSize
     title: qsTr("Выберите версию Орбиты")

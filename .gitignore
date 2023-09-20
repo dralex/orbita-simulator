@@ -1,5 +1,7 @@
 orbita-app/Orbita-app.pro.user
 build-Orbita-app-Desktop-Debug/
+models/planets_gravity/venus/
+models/earth_gravity/venus/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

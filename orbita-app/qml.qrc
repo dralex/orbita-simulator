@@ -14,5 +14,6 @@
         <file>SimulationPathDialog.qml</file>
         <file>FirstOrbitaWindow.qml</file>
         <file>SecondOrbitaWindow.qml</file>
+        <file>PlanetCalculator.qml</file>
     </qresource>
 </RCC>
