@@ -12,8 +12,8 @@
         <file>PathToLoadDialog.qml</file>
         <file>SettingsDialog.qml</file>
         <file>SimulationPathDialog.qml</file>
-        <file>FirstOrbitaWindow.qml</file>
-        <file>SecondOrbitaWindow.qml</file>
         <file>PlanetCalculator.qml</file>
+        <file>VersionWindow.qml</file>
+        <file>FileNameDialog.qml</file>
     </qresource>
 </RCC>

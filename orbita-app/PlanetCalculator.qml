@@ -14,8 +14,8 @@ Window  {
     title: qsTr("Гравитационный кальулятор")
 
     onClosing: {
-        firstOrbitaWindow.visibility = 1
-        planetCalculatorWindow.visibility = 0
+        mainWindow.visible = true
+        planetCalculatorWindow.visible = false
     }
 
     ColumnLayout {
@@ -337,7 +337,7 @@ Window  {
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                 text: "Закрыть"
                 onClicked: {
-                    firstOrbitaWindow.visibility = 1
+                    mainWindow.visibility = 1
                     planetCalculatorWindow.visibility = 0
                 }
             }

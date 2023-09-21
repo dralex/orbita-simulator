@@ -16,8 +16,8 @@ Dialog  {
     property ListModel clear: ListModel {}
 
     title: qsTr("Выберите миссию")
-    x: firstOrbitaWindow.width / 2 - width / 2
-    y: firstOrbitaWindow.height / 2 - height / 2
+    x: mainWindow.width / 2 - width / 2
+    y: mainWindow.height / 2 - height / 2
     ColumnLayout {
         anchors.fill: parent
         RowLayout {
