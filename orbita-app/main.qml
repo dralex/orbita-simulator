@@ -30,6 +30,7 @@ ApplicationWindow  {
     PlanetCalculator {id: planetCalculatorWindow}
     VersionWindow {id: versionWindow}
     FileNameDialog {id: fileNameDialog }
+    CalculatorFileDialog {id: calculatorFileDialog}
     property string fileNameFromDialog;
     property ListModel modelSolutions: ListModel {}
     property bool itemsEnabled: false
@@ -44,8 +45,10 @@ ApplicationWindow  {
     property string pathToLoad: ""
     property int missionIndex: 0
     property string pythonCodeProperty: ""
+    property string earthPythonCodeProperty: ""
     property string folderProbesPath: ""
     property string folderSimulation: ""
+    property string folderCalculatorPath: ""
     property bool planetsElementsVisible: false
     property bool earthElementsVisible: false
     property bool checkAction: false
@@ -260,6 +263,7 @@ ApplicationWindow  {
                     settingsManager.loadSettingsFromFile("planets_settings.txt");
                     mainWindow.pathToSave = settingsManager.getPlanetsProbesPath()
                     mainWindow.pathToLoad = settingsManager.getPlanetsProbesPath()
+                    mainWindow.folderCalculatorPath = settingsManager.getPlanetsCalculatorPath()
                     if (!planetsItems.size())
                         planetsItems.loadPlanets(settingsManager.getPlanetsPath());
                     if (!planetDevicesItems.size())
@@ -863,7 +867,7 @@ ApplicationWindow  {
                     Layout.preferredWidth: parent.width
                     Layout.preferredHeight: 400
                     visible: showPythonArea
-                     title: qsTr("Вставьте Python код:")
+                    title: qsTr("Вставьте Python код:")
                     TextArea {
                         id: pythonCodeTextArea
                         anchors.fill: parent
@@ -872,6 +876,35 @@ ApplicationWindow  {
 
                         onTextChanged: {
                             pythonCodeProperty = text;
+                        }
+
+                        Keys.onPressed: {
+                            if (event.key === Qt.Key_Tab) {
+                                event.accepted = true;
+                                var cursorPos = cursorPosition;
+                                text = text.slice(0, cursorPos) + "    " + text.slice(cursorPos);
+                                cursorPosition = cursorPos + 4;
+                            }
+                        }
+
+                    }
+                }
+
+                GroupBox {
+                    width: parent.width
+                    height: 400
+                    Layout.preferredWidth: parent.width
+                    Layout.preferredHeight: 400
+                    visible: false
+                    title: qsTr("Вставьте Python код:")
+                    TextArea {
+                        id: earthPythonCodeTextArea
+                        anchors.fill: parent
+                        enabled: itemsEnabled
+                        text: earthPythonCodeProperty
+
+                        onTextChanged: {
+                            earthPythonCodeProperty = text;
                         }
 
                         Keys.onPressed: {

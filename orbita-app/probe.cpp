@@ -33,14 +33,6 @@ void Probe::appendProbe(QString probeName, QString missionName, double outerRadi
     emit postProbeAppended();
 }
 
-void Probe::removeProbe(int index)
-{
-    emit preProbeRemoved(index);
-
-    mItems.removeAt(index);
-
-    emit postProbeRemoved();
-}
 
 void Probe::appendDevicesItem(int probeIndex, int deviceNumber, QString deviceName, QString deviceCode, QString deviceEngName, QString startState, bool inSafeMode)
 {

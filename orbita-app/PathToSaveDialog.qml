@@ -17,7 +17,7 @@ FileDialog {
         if (filePath.startsWith("file://") || folderProbesPath.startsWith("file://")) {
             var fileToSave = filePath.substring(7)
             if (fileNameFromDialog)
-                if (!fileNameFromDialog.endsWith(".xm;"))
+                if (!fileNameFromDialog.endsWith(".xml"))
                 fileToSave = filePath.substring(7) + `/${fileNameFromDialog}.xml`
             folderProbesPath = folderProbesPath.substring(7)
 

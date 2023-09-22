@@ -24,6 +24,11 @@ QString SettingsManager::getPlanetsPath() const
     return planetsPath;
 }
 
+QString SettingsManager::getPlanetsCalculatorPath() const
+{
+    return planetCalculatorPath;
+}
+
 void SettingsManager::setProbesPath(const QString &path)
 {
     planetsProbesPath = path;
@@ -44,6 +49,11 @@ void SettingsManager::setPlanetsPath(const QString &path)
     planetsPath = path;
 }
 
+void SettingsManager::setPlanetsCalculatorPath(const QString &path)
+{
+    planetCalculatorPath = path;
+}
+
 bool SettingsManager::loadSettingsFromFile(const QString &filePath)
 {
     QFile file(filePath);
@@ -62,7 +72,8 @@ bool SettingsManager::loadSettingsFromFile(const QString &filePath)
             devicesPath = line.mid(13);
         } else if (line.startsWith("planets_path=")) {
             planetsPath = line.mid(13);
-        }
+        } else if (line.startsWith("planets_calculator_path="))
+            planetCalculatorPath = line.mid(24);
     }
 
     file.close();
@@ -81,6 +92,7 @@ bool SettingsManager::saveSettingsToFile(const QString &filePath)
     out << "probes_path=" << planetsProbesPath << "\n";
     out << "devices_path=" << devicesPath << "\n";
     out << "planets_path=" << planetsPath << "\n";
+    out << "planets_calculator_path=" << planetCalculatorPath << "\n";
 
     file.close();
     return true;

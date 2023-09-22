@@ -61,6 +61,7 @@ Dialog  {
                             planetDevicesItems.loadDevices(settingsManager.getDevicesPath());
 
                         versionWindow.visible = false
+                        earthElementsVisible = false
                         planetsElementsVisible = true
                         typeMission = true
                     } else {

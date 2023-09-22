@@ -39,8 +39,6 @@ signals:
     void preDevicesItemRemoved(int index);
     void postDevicesItemRemoved();
 
-    void preDevicesItemCleared();
-    void postDevicesItemCleared();
 
 public slots:
     void appendDevicesItem(Probe* probe, int probeIndex, QString deviceName, QString deviceCode, QString deviceEngName, QString startState, bool inSafeMode);

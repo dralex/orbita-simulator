@@ -16,11 +16,13 @@ public slots:
     QString getSimulationPath() const;
     QString getDevicesPath() const;
     QString getPlanetsPath() const;
+    QString getPlanetsCalculatorPath() const;
 
     void setProbesPath(const QString &path);
     void setSimulationPath(const QString &path);
     void setDevicesPath(const QString &path);
     void setPlanetsPath(const QString &path);
+    void setPlanetsCalculatorPath(const QString &path);
 
     bool loadSettingsFromFile(const QString &filePath);
     bool saveSettingsToFile(const QString &filePath);
@@ -32,6 +34,7 @@ private:
     QString planetsSimulationPath = "None";
     QString devicesPath = "None";
     QString planetsPath = "None";
+    QString planetCalculatorPath = "None";
 };
 
 #endif // SETTINGSMANAGER_H

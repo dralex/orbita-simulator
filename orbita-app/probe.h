@@ -63,7 +63,6 @@ signals:
 
 public slots:
     void appendProbe(QString probeName, QString missionName, double outerRadius, double innerRadius, QString pythonCode);
-    void removeProbe(int index);
     void saveProbe(int probeIndex, QString probeName, double innerRadius, double outerRadius, QString pythonCode, const QString &filePath);
 
     void appendDevicesItem(int probeIndex, int deviceNumber, QString deviceName, QString deviceCode,  QString deviceEngName, QString startState, bool inSafeMode);

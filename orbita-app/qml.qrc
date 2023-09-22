@@ -15,5 +15,6 @@
         <file>PlanetCalculator.qml</file>
         <file>VersionWindow.qml</file>
         <file>FileNameDialog.qml</file>
+        <file>CalculatorFileDialog.qml</file>
     </qresource>
 </RCC>

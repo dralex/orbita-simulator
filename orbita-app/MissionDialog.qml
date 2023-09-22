@@ -32,10 +32,26 @@ Dialog  {
                 Layout.preferredWidth: width
                 Layout.preferredHeight: height
                 editable: false
+                visible: planetsElementsVisible
                 model: PlanetsModel {
                     id: modelMissions
                     list: planetsItems
                 }
+                currentIndex: 0
+                onAccepted: {
+                    if (find(editText) === -1)
+                        model.append({text: editText})
+                }
+            }
+
+            ComboBox {
+                id: earthMissonSelect
+                width: parent.width * 0.45
+                height: parent.height
+                Layout.preferredWidth: width
+                Layout.preferredHeight: height
+                editable: false
+                visible: earthElementsVisible
                 currentIndex: 0
                 onAccepted: {
                     if (find(editText) === -1)

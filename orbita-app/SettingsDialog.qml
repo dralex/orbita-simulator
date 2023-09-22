@@ -7,7 +7,7 @@ import QtQuick.Layouts 1.15
 Dialog  {
     id: settingsDialog
     width: 450
-    height: 146
+    height: 200
     visible: false
     modal: true
     x: mainWindow.width / 2 - width / 2
@@ -20,7 +20,7 @@ Dialog  {
         Layout.preferredHeight: parent.height * 0.8
         rowSpacing: 20
         columns: 2
-        rows: 3
+        rows: 4
 
         Text {
             Layout.preferredWidth: parent.width * 0.5
@@ -65,6 +65,28 @@ Dialog  {
             }
         }
 
+        Text {
+            Layout.preferredWidth: parent.width * 0.5
+            Layout.preferredHeight: 23
+            text: "Калькулятор: " + folderCalculatorPath
+            Layout.row: 3
+            Layout.column: 0
+            wrapMode: Text.WordWrap
+        }
+
+        Button {
+            height: 23
+            width: parent.width
+            Layout.preferredHeight: 23
+            Layout.preferredWidth: parent.width * 0.5
+            Layout.column: 1
+            Layout.row: 3
+            text: "Добавить путь к калькулятору"
+            onClicked: {
+                calculatorFileDialog.open()
+            }
+
+        }
 
 
         Button {
@@ -73,9 +95,18 @@ Dialog  {
             Layout.preferredHeight: 23
             Layout.preferredWidth: parent.width * 0.5
             Layout.column: 0
-            Layout.row: 3
+            Layout.row: 4
             text: "ОК"
             onClicked: {
+                folderSimulation = settingsManager.getSimulationPath()
+                folderCalculatorPath = settingsManager.getPlanetsCalculatorPath()
+                settingsManager.setSimulationPath(folderSimulation);
+                settingsManager.setDevicesPath(folderSimulation + "/devices-ru.xml");
+                settingsManager.setPlanetsPath(folderSimulation + "/planets.xml");
+                settingsManager.setPlanetsCalculatorPath(folderCalculatorPath)
+                settingsManager.saveSettingsToFile("planets_settings.txt");
+                planetsItems.loadPlanets(settingsManager.getPlanetsPath());
+                planetDevicesItems.loadDevices(settingsManager.getDevicesPath());
                 settingsDialog.accepted()
                 settingsDialog.close()
             }
@@ -88,7 +119,7 @@ Dialog  {
             Layout.preferredHeight: 23
             Layout.preferredWidth: parent.width * 0.5
             Layout.column: 1
-            Layout.row: 3
+            Layout.row: 4
             text: "Отмена"
             onClicked: {
                 folderSimulation = "None"
