@@ -13,12 +13,14 @@ SOURCES += \
         earthmissions.cpp \
         earthprobe.cpp \
         earthprobedevices.cpp \
+        earthprobesmodel.cpp \
         imagesmodel.cpp \
         main.cpp \
         planetdevices.cpp \
         planets.cpp \
         planetsdevicesmodel.cpp \
         planetsmodel.cpp \
+        planetsprobesdevicesmodel.cpp \
         probe.cpp \
         probemodel.cpp \
         settingsmanager.cpp \
@@ -54,11 +56,13 @@ HEADERS += \
     earthmissions.h \
     earthprobe.h \
     earthprobedevices.h \
+    earthprobesmodel.h \
     imagesmodel.h \
     planetdevices.h \
     planets.h \
     planetsdevicesmodel.h \
     planetsmodel.h \
+    planetsprobesdevicesmodel.h \
     probe.h \
     probemodel.h \
     settingsmanager.h \

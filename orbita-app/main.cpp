@@ -25,6 +25,8 @@
 #include "earthdevices.h"
 #include "earthmissions.h"
 
+#include "planetsprobesdevicesmodel.h"
+
 int main(int argc, char *argv[])
 {
 #if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
@@ -53,6 +55,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<PlanetsDevicesModel>("PlanetsDevicesModel", 1, 0, "PlanetsDevicesModel");
     qmlRegisterType<QProcess>("SimulationProcess", 1, 0, "SimulationProcess");
     qmlRegisterType<ImagesModel>("ImagesModel", 1, 0, "ImagesModel");
+    qmlRegisterType<PlanetsProbesDevicesModel>("PlanetsProbesDevicesModel", 1, 0, "PlanetsProbesDevicesModel");
     qmlRegisterUncreatableType<Probe>("Probe", 1, 0, "Probe",
                                         QStringLiteral("Probe should not be created in QML."));
     qmlRegisterUncreatableType<Devices>("Devices", 1, 0, "Devices",

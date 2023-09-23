@@ -8,6 +8,7 @@ import ProbeModel 1.0
 import DevicesModel 1.0
 import StepsActivityModel 1.0
 import StepsLandingModel 1.0
+import PlanetsProbesDevicesModel 1.0
 
 ApplicationWindow  {
     id: mainWindow
