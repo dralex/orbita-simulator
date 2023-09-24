@@ -25,7 +25,7 @@ Dialog  {
         Text {
             Layout.preferredWidth: parent.width * 0.5
             Layout.preferredHeight: 23
-            text: "Симулятор: " + folderSimulation
+            text: "Симулятор: " + settingsFolderSimulation
             Layout.row: 1
             Layout.column: 0
             wrapMode: Text.WordWrap
@@ -46,7 +46,7 @@ Dialog  {
         Text {
             Layout.preferredWidth: parent.width * 0.5
             Layout.preferredHeight: 23
-            text: "Аппараты: " + folderProbesPath
+            text: "Аппараты: " + settingsFolderProbesPath
             Layout.row: 2
             Layout.column: 0
             wrapMode: Text.WordWrap
@@ -68,7 +68,7 @@ Dialog  {
         Text {
             Layout.preferredWidth: parent.width * 0.5
             Layout.preferredHeight: 23
-            text: "Калькулятор: " + folderCalculatorPath
+            text: "Калькулятор: " + settingsFolderCalculatorPath
             Layout.row: 3
             Layout.column: 0
             wrapMode: Text.WordWrap
@@ -98,15 +98,26 @@ Dialog  {
             Layout.row: 4
             text: "ОК"
             onClicked: {
-                folderSimulation = settingsManager.getSimulationPath()
-                folderCalculatorPath = settingsManager.getPlanetsCalculatorPath()
-                settingsManager.setSimulationPath(folderSimulation);
-                settingsManager.setDevicesPath(folderSimulation + "/devices-ru.xml");
-                settingsManager.setPlanetsPath(folderSimulation + "/planets.xml");
-                settingsManager.setPlanetsCalculatorPath(folderCalculatorPath)
-                settingsManager.saveSettingsToFile("planets_settings.txt");
-                planetsItems.loadPlanets(settingsManager.getPlanetsPath());
-                planetDevicesItems.loadDevices(settingsManager.getDevicesPath());
+                if (typeMission) {
+                    folderSimulation = settingsManager.getSimulationPath()
+                    folderCalculatorPath = settingsManager.getPlanetsCalculatorPath()
+                    settingsManager.setSimulationPath(folderSimulation);
+                    settingsManager.setDevicesPath(folderSimulation + "/devices-ru.xml")
+                    settingsManager.setPlanetsPath(folderSimulation + "/planets.xml")
+                    settingsManager.setPlanetsCalculatorPath(folderCalculatorPath)
+                    settingsManager.saveSettingsToFile("planets_settings.txt", typeMission)
+                    planetsItems.loadPlanets(settingsManager.getPlanetsPath())
+                    planetDevicesItems.loadDevices(settingsManager.getDevicesPath())
+                } else {
+                    earthFolderSimulation = settingsManager.getEarthSimulationPath()
+                    earthFolderCalculatorPath = settingsManager.getEarthCalculatorPath()
+                    settingsManager.setEarthSimulationPath(earthFolderSimulation);
+                    settingsManager.setEarthDevicesPath(earthFolderSimulation + "/devices-ru.xml")
+                    settingsManager.setMissionsPath(earthFolderSimulation + "/missions-ru.xml")
+                    settingsManager.setEarthCalculatorPath(earthFolderCalculatorPath)
+                    settingsManager.saveSettingsToFile("earth_settings.txt", typeMission)
+                }
+
                 settingsDialog.accepted()
                 settingsDialog.close()
             }

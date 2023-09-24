@@ -1,26 +1,22 @@
-#ifndef EARTHPROBESMODEL_H
-#define EARTHPROBESMODEL_H
+#ifndef EARTHMISSIONSMODEL_H
+#define EARTHMISSIONSMODEL_H
 
 #include <QAbstractListModel>
 
-#include "earthprobe.h"
+#include "earthmissions.h"
 
-class EarthProbe;
+class EarthMissions;
 
-class EarthProbesModel : public QAbstractListModel
+class EarthMissionsModel : public QAbstractListModel
 {
     Q_OBJECT
-    Q_PROPERTY(EarthProbe *list READ list WRITE setList)
+    Q_PROPERTY(EarthMissions *list READ list WRITE setList)
+
 public:
-    explicit EarthProbesModel(QObject *parent = nullptr);
+    explicit EarthMissionsModel(QObject *parent = nullptr);
 
     enum {
-        probeNumberRole = Qt::UserRole,
-        probeNameRole,
-        missionRole,
-        pythonCodeRole,
-        diagrammPathRole,
-        filePathRole
+        textRole
     };
 
     // Basic functionality:
@@ -33,14 +29,13 @@ public:
                  int role = Qt::EditRole) override;
 
     Qt::ItemFlags flags(const QModelIndex& index) const override;
-
     virtual QHash<int, QByteArray> roleNames() const override;
 
-    EarthProbe *list() const;
-    void setList(EarthProbe *list);
+    EarthMissions *list() const;
+    void setList(EarthMissions *list);
 
 private:
-    EarthProbe *mList;
+    EarthMissions *mList;
 };
 
-#endif // EARTHPROBESMODEL_H
+#endif // EARTHMISSIONSMODEL_H

@@ -11,6 +11,19 @@ QVector<EarthProbeItem> EarthProbe::items() const
     return mItems;
 }
 
+bool EarthProbe::setEarthProbe(int index, const EarthProbeItem &item)
+{
+    if (index < 0 || index >= mItems.size())
+        return false;
+
+    const EarthProbeItem &olditem = mItems.at(index);
+    if (item.probeNumber == olditem.probeNumber)
+        return false;
+
+    mItems[index] = item;
+    return true;
+}
+
 void EarthProbe::appendEarthProbe(QString probeName, QString missionName, QString filePath)
 {
     emit preEarthProbeAppended();
@@ -36,4 +49,9 @@ void EarthProbe::removeEarthDevice(int probeIndex, int index)
     mItems[probeIndex].devices.removeAt(index);
 
     emit postEarthDeviceRemoved();
+}
+
+int EarthProbe::size()
+{
+    return mItems.size();
 }

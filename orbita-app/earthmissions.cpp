@@ -6,6 +6,24 @@ EarthMissions::EarthMissions(QObject *parent)
 
 }
 
+QVector<EarthMissionsItem> EarthMissions::items() const
+{
+    return mItems;
+}
+
+bool EarthMissions::setMissions(int index, const EarthMissionsItem &item)
+{
+    if (index < 0 || index >= mItems.size())
+        return false;
+
+    const EarthMissionsItem &olditem = mItems.at(index);
+    if (item.id == olditem.id)
+        return false;
+
+    mItems[index] = item;
+    return true;
+}
+
 void EarthMissions::loadMissions(const QString &filePath) {
     QFile file(filePath);
 
@@ -58,4 +76,9 @@ void EarthMissions::showMissions()
         qDebug()<<"Описание:"<<mItems[i].missionDescription;
 
     }
+}
+
+int EarthMissions::size()
+{
+    return mItems.size();
 }

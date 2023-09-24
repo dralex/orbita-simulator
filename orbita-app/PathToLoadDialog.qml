@@ -19,30 +19,35 @@ FileDialog {
             var fileToLoad= filePath.substring(7)
         }
 
-        probes.loadFromXml(fileToLoad, planetDevicesItems, settingsManager)
-        listViewProbes.currentIndex = probes.size() - 1
-        currentProbe = listViewProbes.currentItem.probesModelData
+        if (typeMission) {
+            probes.loadFromXml(fileToLoad, planetDevicesItems, settingsManager)
+            listViewProbes.currentIndex = probes.size() - 1
+            currentProbe = listViewProbes.currentItem.probesModelData
 
-        devicesItems.changeDevices(probes, listViewProbes.currentIndex)
-        stepsActivityItems.changeSteps(probes, listViewProbes.currentIndex)
-        stepsLandingItems.changeSteps(probes, listViewProbes.currentIndex)
+            devicesItems.changeDevices(probes, listViewProbes.currentIndex)
+            stepsActivityItems.changeSteps(probes, listViewProbes.currentIndex)
+            stepsLandingItems.changeSteps(probes, listViewProbes.currentIndex)
 
-        probeNameText.text = `${currentProbe.probeName}`
+            probeNameText.text = `${currentProbe.probeName}`
 
-        firstNumber.text = `${currentProbe.innerRadius}`
-        secondNumber.text = `${currentProbe.outerRadius}`
-        if (currentProbe.pythonCode) {
-            showPlanetsElems = false
-            showPlanetsDevices = true
-            showPythonArea = true
-            showDiagrammButton = false
-            pythonCodeTextArea.text = currentProbe.pythonCode
+            firstNumber.text = `${currentProbe.innerRadius}`
+            secondNumber.text = `${currentProbe.outerRadius}`
+            if (currentProbe.pythonCode) {
+                showPlanetsElems = false
+                showPlanetsDevices = true
+                showPythonArea = true
+                showDiagrammButton = false
+                pythonCodeTextArea.text = currentProbe.pythonCode
+            } else {
+                showPlanetsElems = true
+                showPlanetsDevices = true
+                showPythonArea = false
+                showDiagrammButton = false
+            }
         } else {
-            showPlanetsElems = true
-            showPlanetsDevices = true
-            showPythonArea = false
-            showDiagrammButton = false
+
         }
+
 
         itemsEnabled = true
     }

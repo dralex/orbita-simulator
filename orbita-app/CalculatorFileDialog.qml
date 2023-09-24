@@ -23,5 +23,7 @@ FileDialog {
             errorDialog.open()
             folderSimulation = ""
         }
+
+        settingsFolderCalculatorPath = folderCalculator
     }
 }

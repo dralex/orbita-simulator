@@ -20,9 +20,16 @@ class EarthMissions : public QObject
 public:
     explicit EarthMissions(QObject *parent = nullptr);
 
+    QVector<EarthMissionsItem> items() const;
+
+    bool setMissions(int index, const EarthMissionsItem &item);
+
 public slots:
     void loadMissions(const QString &filePath);
     void showMissions();
+
+    int size();
+
 
 signals:
     void preEarthMissionsItemAppended();
@@ -30,6 +37,7 @@ signals:
 
     void preEarthMissionsItemRemoved(int index);
     void postEarthMissionsItemRemoved();
+
 
 private:
     QVector<EarthMissionsItem> mItems;

@@ -17,7 +17,7 @@ bool Probe::setProbe(int index, const ProbeItem &item)
         return false;
 
     const ProbeItem &olditem = mItems.at(index);
-    if (item.probeNumber == olditem.probeName)
+    if (item.probeNumber == olditem.probeNumber)
         return false;
 
     mItems[index] = item;

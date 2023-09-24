@@ -4,11 +4,12 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 
 import PlanetsModel 1.0
+import EarthMissionsModel 1.0
 
 
 Dialog  {
     id: missionDialog
-    width: 264
+    width: 354
     height: 146
     visible: false
     modal: true
@@ -27,7 +28,7 @@ Dialog  {
             Layout.preferredHeight: height
             ComboBox {
                 id: missonSelect
-                width: parent.width * 0.45
+                width: parent.width * 0.6
                 height: parent.height
                 Layout.preferredWidth: width
                 Layout.preferredHeight: height
@@ -46,13 +47,16 @@ Dialog  {
 
             ComboBox {
                 id: earthMissonSelect
-                width: parent.width * 0.45
+                width: parent.width * 0.6
                 height: parent.height
                 Layout.preferredWidth: width
                 Layout.preferredHeight: height
                 editable: false
                 visible: earthElementsVisible
                 currentIndex: 0
+                model: EarthMissionsModel {
+                    list: earthMissions
+                }
                 onAccepted: {
                     if (find(editText) === -1)
                         model.append({text: editText})
@@ -61,7 +65,7 @@ Dialog  {
 
             ComboBox {
                 id: solutionSelect
-                width: parent.width * 0.55
+                width: parent.width * 0.4
                 height: parent.height
                 Layout.preferredWidth: width
                 Layout.preferredHeight: height
@@ -88,7 +92,7 @@ Dialog  {
                     probeNameText.text = ""
                     firstNumber.text = ""
                     secondNumber.text = ""
-                    if (!missonSelect.currentText) {
+                    if ((!missonSelect.currentText && typeMission) || (!earthMissonSelect.currentText && !typeMission)) {
                         errorDialog.textOfError = "Вы не выбрали миссию"
                         errorDialog.open()
                         return
@@ -96,8 +100,8 @@ Dialog  {
                         errorDialog.textOfError = "Вы не выбрали способ решения"
                         errorDialog.open()
                         return
-                    } else if (solutionSelect.currentText && missonSelect.currentText) {
-                        if (missonSelect.currentText === "Moon" || missonSelect.currentText === "Mars") {
+                    } else if ((solutionSelect.currentText && missonSelect.currentText) || (earthMissonSelect.currentText && solutionSelect.currentText)) {
+                        if ((missonSelect.currentText === "Moon" || missonSelect.currentText === "Mars") && typeMission) {
                             if (solutionSelect.currentText === "Таблица") {
                                 showPlanetsElems = true
                                 showPlanetsDevices = true
@@ -115,20 +119,20 @@ Dialog  {
                                 stepsLandingItems.changeSteps(probes, listViewProbes.currentIndex)
 
                             } else if (solutionSelect.currentText === "Python") {
-                                showPlanetsElems = false
-                                showPlanetsDevices = true
-                                showPythonArea = true
-                                showDiagrammButton = false
+                                    showPlanetsElems = false
+                                    showPlanetsDevices = true
+                                    showPythonArea = true
+                                    showDiagrammButton = false
 
-                                probes.loadFromXml(`${settingsManager.getSimulationPath()}/planets probes templates/${missonSelect.currentText}-Python-Template.xml`, planetDevicesItems, settingsManager)
-                                listViewProbes.currentIndex = probes.size() - 1
-                                currentProbe = listViewProbes.currentItem.probesModelData
+                                    probes.loadFromXml(`${settingsManager.getSimulationPath()}/planets probes templates/${missonSelect.currentText}-Python-Template.xml`, planetDevicesItems, settingsManager)
+                                    listViewProbes.currentIndex = probes.size() - 1
+                                    currentProbe = listViewProbes.currentItem.probesModelData
 
-                                probeNameText.text = `${currentProbe.probeName}`
-                                devicesItems.changeDevices(probes, listViewProbes.currentIndex)
-                                stepsActivityItems.changeSteps(probes, listViewProbes.currentIndex)
-                                stepsLandingItems.changeSteps(probes, listViewProbes.currentIndex)
-                                pythonCodeTextArea.text = currentProbe.pythonCode
+                                    probeNameText.text = `${currentProbe.probeName}`
+                                    devicesItems.changeDevices(probes, listViewProbes.currentIndex)
+                                    stepsActivityItems.changeSteps(probes, listViewProbes.currentIndex)
+                                    stepsLandingItems.changeSteps(probes, listViewProbes.currentIndex)
+                                    pythonCodeTextArea.text = currentProbe.pythonCode
                             }
                         } else {
                             if (solutionSelect.currentText === "Таблица") {
@@ -148,27 +152,37 @@ Dialog  {
                             }
 
                             if (solutionSelect.currentText === "Python") {
-                                showPlanetsElems = false
-                                showPlanetsDevices = true
+                                if (typeMission) {
+                                    showPlanetsElems = false
+                                    showPlanetsDevices = true
 
-                                showPythonArea = true
-                                showDiagrammButton = false
+                                    showPythonArea = true
+                                    showDiagrammButton = false
 
-                                probes.appendProbe("probe", missonSelect.currentText, 0, 0, "print('Hello World!')", settingsManager.getPlanetsProbesPath() + "/probe.xml")
+                                    probes.appendProbe("probe", missonSelect.currentText, 0, 0, "print('Hello World!')", settingsManager.getPlanetsProbesPath() + "/probe.xml")
 
-                                listViewProbes.currentIndex = probes.size() - 1
-                                currentProbe = listViewProbes.currentItem.probesModelData
-                                devicesItems.changeDevices(probes, listViewProbes.currentIndex)
-                                pythonCodeProperty = currentProbe.pythonCode
+                                    listViewProbes.currentIndex = probes.size() - 1
+                                    currentProbe = listViewProbes.currentItem.probesModelData
+                                    devicesItems.changeDevices(probes, listViewProbes.currentIndex)
+                                    pythonCodeProperty = currentProbe.pythonCode
+                                } else {
+
+                                    earthProbes.appendEarthProbe("earth probe", earthMissonSelect.currentText, "");
+                                    listViewEarthProbes.currentIndex = earthProbes.size() - 1
+                                    currentProbe = listViewEarthProbes.currentItem.earthProbesModelData
+                                    gBEPythonCode.visible = true
+                                }
+
 
                             }
 
                             if (solutionSelect.currentText === "Диаграмма") {
-                                showPlanetsElems = false
-                                showPlanetsDevices = true
-                                showPythonArea = false
+                                earthProbes.appendEarthProbe("earth probe", earthMissonSelect.currentText, "");
+                                listViewEarthProbes.currentIndex = earthProbes.size() - 1
+                                currentProbe = listViewEarthProbes.currentItem.earthProbesModelData
                                 showDiagrammButton = true
-                                showPythonArea.text = ""
+                                earthPythonCodeProperty = ""
+                                earthPythonCodeTextArea.visible = false;
                             }
                         }
 
@@ -176,8 +190,11 @@ Dialog  {
 
                         probeNameText.text = `${currentProbe.probeName}`
 
-                        firstNumber.text = `${currentProbe.innerRadius}`
-                        secondNumber.text = `${currentProbe.outerRadius}`
+                        if (typeMission) {
+                            firstNumber.text = `${currentProbe.innerRadius}`
+                            secondNumber.text = `${currentProbe.outerRadius}`
+                        }
+
 
                         itemsEnabled = true
 

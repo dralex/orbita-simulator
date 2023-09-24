@@ -26,6 +26,8 @@ public:
 
     QVector<EarthProbeItem> items() const;
 
+    bool setEarthProbe(int index, const EarthProbeItem &item);
+
 signals:
     void preEarthProbeAppended();
     void postEarthProbeAppended();
@@ -44,6 +46,8 @@ public slots:
     void appendEarthProbe(QString probeName, QString missionName, QString filePath);
     void appendEarthDevice(int probeIndex, QString deviceEngName, QString deviceName, double mass);
     void removeEarthDevice(int probeIndex,int index);
+
+    int size();
 //    void saveEarthProbeToXml();
 //    void loadEarthProbeFromXml(const QString &path);
 

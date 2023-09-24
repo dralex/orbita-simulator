@@ -23,18 +23,31 @@ FileDialog {
 
         }
 
-        settingsManager.setProbesPath(folderProbesPath)
-        settingsManager.saveSettingsToFile("planets_settings.txt");
-        pathToSave = settingsManager.getPlanetsProbesPath()
-        pathToLoad = settingsManager.getPlanetsProbesPath()
-        if (checkAction) {
-            if (fileToSave) {
-                probes.saveProbe(listViewProbes.currentIndex, probeNameText.text, firstNumber.text, secondNumber.text, pythonCodeProperty, fileToSave)
-                probes.saveToXml(listViewProbes.currentIndex, planetsItems, missionIndex, fileToSave)
-            } else {
-                probes.saveProbe(listViewProbes.currentIndex, probeNameText.text, firstNumber.text, secondNumber.text, pythonCodeProperty, folderProbesPath + `/${currentProbe.probeName}.xml`)
-                probes.saveToXml(listViewProbes.currentIndex, planetsItems, missionIndex, folderProbesPath + `/${currentProbe.probeName}.xml`)
+        if (typeMission) {
+            settingsManager.setProbesPath(folderProbesPath)
+            settingsManager.saveSettingsToFile("planets_settings.txt", typeMission);
+            pathToSave = settingsManager.getPlanetsProbesPath()
+            pathToLoad = settingsManager.getPlanetsProbesPath()
+            settingsFolderProbesPath = pathToSave
+            if (checkAction) {
+                if (fileToSave) {
+                    probes.saveProbe(listViewProbes.currentIndex, probeNameText.text, firstNumber.text, secondNumber.text, pythonCodeProperty, fileToSave)
+                    probes.saveToXml(listViewProbes.currentIndex, planetsItems, missionIndex, fileToSave)
+                } else {
+                    probes.saveProbe(listViewProbes.currentIndex, probeNameText.text, firstNumber.text, secondNumber.text, pythonCodeProperty, folderProbesPath + `/${currentProbe.probeName}.xml`)
+                    probes.saveToXml(listViewProbes.currentIndex, planetsItems, missionIndex, folderProbesPath + `/${currentProbe.probeName}.xml`)
+                }
             }
         }
+        else {
+            settingsManager.setEarthProbesPath(folderProbesPath)
+            settingsManager.saveSettingsToFile("earth_settings.txt", typeMission);
+            earthPathToSave = settingsManager.getEarthProbesPath()
+            earthPathToLoad = settingsManager.getEarthProbesPath()
+            settingsFolderProbesPath = earthPathToLoad
+        }
+
+
+
     }
 }

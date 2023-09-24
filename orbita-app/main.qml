@@ -10,6 +10,8 @@ import StepsActivityModel 1.0
 import StepsLandingModel 1.0
 import PlanetsProbesDevicesModel 1.0
 
+import EarthProbesModel 1.0
+
 ApplicationWindow  {
     id: mainWindow
     width: 773
@@ -42,14 +44,26 @@ ApplicationWindow  {
     property bool whatIsWindow: false
     property bool typePathDialog: true
     property var currentProbe: undefined
-    property string pathToSave: ""
-    property string pathToLoad: ""
     property int missionIndex: 0
     property string pythonCodeProperty: ""
     property string earthPythonCodeProperty: ""
+
     property string folderProbesPath: ""
     property string folderSimulation: ""
     property string folderCalculatorPath: ""
+    property string pathToSave: ""
+    property string pathToLoad: ""
+
+    property string earthPathToSave: ""
+    property string earthPathToLoad: ""
+    property string earthFolderProbesPath: ""
+    property string earthFolderSimulation: ""
+    property string earthFolderCalculatorPath: ""
+
+    property string settingsFolderSimulation: ""
+    property string settingsFolderProbesPath: ""
+    property string settingsFolderCalculatorPath: ""
+
     property bool planetsElementsVisible: false
     property bool earthElementsVisible: false
     property bool checkAction: false
@@ -156,7 +170,9 @@ ApplicationWindow  {
                 clip: true
                 enabled: itemsEnabled
                 visible: earthElementsVisible
-
+                model: EarthProbesModel {
+                    list: earthProbes
+                }
                 ScrollBar.vertical: ScrollBar {
                     id: probesEarthScrollBar
                     anchors {
@@ -168,7 +184,7 @@ ApplicationWindow  {
                 }
 
                 delegate: Item {
-                    property variant probesModelData: model
+                    property variant earthProbesModelData: model
 
                     width: listViewEarthProbes.width
                     height: 50
@@ -220,13 +236,12 @@ ApplicationWindow  {
             Button {
                 id: newProbeButton
                 width: parent.width; height: 23
-                text: "Cоздать новый"
+                text: "Создать новый"
                 anchors.bottom: parent.bottom
                 anchors.bottomMargin: 125
                 enabled: false
-
                 onClicked: {
-                    if (planetsItems.size() > 0) {
+                    if (planetsItems.size() > 0 || earthMissions.size()) {
                         missionDialog.open()
                     } else {
                         errorDialog.textOfError = "Выберите папку с симулятором в настройках."
@@ -261,22 +276,25 @@ ApplicationWindow  {
                 anchors.bottomMargin: 67
                 enabled: false
                 onClicked: {
-                    settingsManager.loadSettingsFromFile("planets_settings.txt");
-                    mainWindow.pathToSave = settingsManager.getPlanetsProbesPath()
-                    mainWindow.pathToLoad = settingsManager.getPlanetsProbesPath()
-                    mainWindow.folderCalculatorPath = settingsManager.getPlanetsCalculatorPath()
-                    if (!planetsItems.size())
-                        planetsItems.loadPlanets(settingsManager.getPlanetsPath());
-                    if (!planetDevicesItems.size())
-                        planetDevicesItems.loadDevices(settingsManager.getDevicesPath());
+                    if (typeMission) {
+                        settingsManager.loadSettingsFromFile("planets_settings.txt", typeMission);
+                        pathToSave = settingsManager.getPlanetsProbesPath()
+                        pathToLoad = settingsManager.getPlanetsProbesPath()
+                        folderCalculatorPath = settingsManager.getPlanetsCalculatorPath()
+                        if (!planetsItems.size())
+                            planetsItems.loadPlanets(settingsManager.getPlanetsPath());
+                        if (!planetDevicesItems.size())
+                            planetDevicesItems.loadDevices(settingsManager.getDevicesPath());
 
-                    if (planetsItems.size() > 0) {
-                        pathToLoadDialog.open()
+                        if (planetsItems.size() > 0) {
+                            pathToLoadDialog.open()
+                        } else {
+                            errorDialog.textOfError = "Выберите папку с симулятором в настройках."
+                            errorDialog.open()
+                        }
                     } else {
-                        errorDialog.textOfError = "Выберите папку с симулятором в настройках."
-                        errorDialog.open()
+                        settingsManager.loadSettingsFromFile("earth_settings.txt", typeMission);
                     }
-
                 }
             }
 
@@ -892,6 +910,7 @@ ApplicationWindow  {
                 }
 
                 GroupBox {
+                    id: gBEPythonCode
                     width: parent.width
                     height: 400
                     Layout.preferredWidth: parent.width

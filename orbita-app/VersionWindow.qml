@@ -52,9 +52,15 @@ Dialog  {
                     modelSolutions.clear()
                     if (versionSelect.currentIndex === 0 ) {
                         modelSolutions.append({text: "Таблица"})
-                        settingsManager.loadSettingsFromFile("planets_settings.txt");
-                        mainWindow.pathToSave = settingsManager.getPlanetsProbesPath()
-                        mainWindow.pathToLoad = settingsManager.getPlanetsProbesPath()
+                        typeMission = true
+                        settingsManager.loadSettingsFromFile("planets_settings.txt", typeMission);
+                        pathToSave = settingsManager.getPlanetsProbesPath()
+                        pathToLoad = settingsManager.getPlanetsProbesPath()
+
+                        settingsFolderSimulation = settingsManager.getSimulationPath()
+                        settingsFolderProbesPath = pathToSave
+                        settingsFolderCalculatorPath = settingsManager.getPlanetsCalculatorPath()
+
                         if (!planetsItems.size())
                             planetsItems.loadPlanets(settingsManager.getPlanetsPath());
                         if (!planetDevicesItems.size())
@@ -63,13 +69,29 @@ Dialog  {
                         versionWindow.visible = false
                         earthElementsVisible = false
                         planetsElementsVisible = true
-                        typeMission = true
+
                     } else {
+                        typeMission = false
                         modelSolutions.append({text: "Диаграмма"})
+                        settingsManager.loadSettingsFromFile("earth_settings.txt", typeMission)
+
+                        earthPathToLoad = settingsManager.getEarthProbesPath();
+                        earthPathToSave = settingsManager.getEarthProbesPath();
+                        if (!earthMissions.size())
+                            earthMissions.loadMissions(settingsManager.getMissionsPath());
+
+                        settingsFolderSimulation = settingsManager.getEarthSimulationPath()
+                        settingsFolderProbesPath = earthPathToLoad
+                        settingsFolderCalculatorPath = settingsManager.getEarthCalculatorPath()
+
+                        showPlanetsElems = false
+                        showPlanetsDevices = false
+                        showPythonArea = false
+
                         versionWindow.visible = false
                         planetsElementsVisible = false
                         earthElementsVisible = true
-                        typeMission = false
+
 
                     }
                     modelSolutions.append({text: "Python"})

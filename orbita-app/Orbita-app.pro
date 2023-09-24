@@ -11,6 +11,7 @@ SOURCES += \
         devicesmodel.cpp \
         earthdevices.cpp \
         earthmissions.cpp \
+        earthmissionsmodel.cpp \
         earthprobe.cpp \
         earthprobedevices.cpp \
         earthprobesmodel.cpp \
@@ -54,6 +55,7 @@ HEADERS += \
     devicesmodel.h \
     earthdevices.h \
     earthmissions.h \
+    earthmissionsmodel.h \
     earthprobe.h \
     earthprobedevices.h \
     earthprobesmodel.h \
