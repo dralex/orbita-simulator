@@ -529,6 +529,30 @@ Since the spacecraft starts the mission in an orbit different from the target, t
 \item transmit the received photo of the object to the ground measuring point via a high-performance communication channel.
 \end{enumerate}
 
+\paragraph{Conditions. Checking If/Else} Conditions can split the execution of the program into two threads using the service state of the condition, which is depicted using the \textbf{BPMN Gateway} primitive.(figure \ref{Pic:IfElse})
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=7.1cm]{images/diagrams-ifelse.eps}
+    \caption{Checking conditions}
+    \label{Pic:IfElse}
+  \end{center}
+\end{figure}
+
+\paragraph{Internal signals} We have already seen an internal event when implementing the optimization of the receiving and transmitting process in the \verb' SMS everywhere' mission. Internal events are declared in the state itself, and are not a condition for switching to another state.
+
+\begin{figure}[tbh]
+  \begin{center}
+    \includegraphics[width=7.1cm]{images/internal_signals.eps}
+    \caption{Internal signals}
+    \label{Pic:IfElse}
+  \end{center}
+\end{figure}
+
+Here, after every one second, a unit will be added to the value of the variable $i$.
+
+\clearpage
+
 \paragraph{Orientation system} The following diagram (Figure \ref{Pic:INSPECT-orient-en}) stabilizes, orients with respect to the Earth's surface, orients to the target and orients to any desired angle.
 
 \begin{figure}[tbh]
@@ -542,7 +566,7 @@ Since the spacecraft starts the mission in an orbit different from the target, t
 \begin{enumerate}
 \item Stabilization occurs in the \verb'eduction' state (the angular velocity modulus decreases to zero).
 
-\item In the \verb'orienting' state, the orientation subsystem takes the current angular velocity and angle and turns them into the desired angular velocity and into the desired angle, respectively.
+\item In the states \verb'tangent', \verb'back', \verb'observe' and \verb'is_station', the orientation subsystem takes the current angular velocity and angle and turns them into the desired angular velocity and the desired angle, respectively.
 
 \item Orientation relative to the Earth's surface occurs in the state \verb'tangent'. The desired angular velocity and the desired angle are considered as follows:
 \begin{verbatim}
@@ -550,19 +574,10 @@ desired_a_v = -initial_nav_angular_velocity
 desired_a = normalize_angle(360 - navigation.get_z_axis_angle())
 \end{verbatim}
 \item Target orientation occurs in the \verb'observing' state thanks to the \verb'calc_observing_data' function.
+\item The \verb'back' and \verb'is_station' states are additions to the navigation subsystem and the camera subsystem, respectively.
 \end{enumerate}
 
 \clearpage
-
-\paragraph{Conditions. Checking If/Else} Conditions can split the execution of the program into two threads using the service state of the condition, which is depicted using the \textbf{BPMN Gateway} primitive.(figure \ref{Pic:IfElse})
-
-\begin{figure}[tbh]
-  \begin{center}
-    \includegraphics[width=7.1cm]{images/diagrams-ifelse.eps}
-    \caption{Checking conditions}
-    \label{Pic:IfElse}
-  \end{center}
-\end{figure}
 
 \paragraph{Navigation system} The following diagram (Figure \ref{Pic:INSPECT-navi-en}) controls the engine and calculates when it should make a two-pulse transition between orbits.
 
@@ -574,7 +589,8 @@ desired_a = normalize_angle(360 - navigation.get_z_axis_angle())
   \end{center}
 \end{figure}
 
-The main link in this diagram is the state of the \verb'impulse' subsystem. In this state, the engine is switched on and off. Thanks to checking \verb'is_angle_ok()' the subsystem understands when to make a pulse.
+The main links in this diagram will be the states starting with \verb'start_engine' and \verb'stop_engine'. They turn the engine on and off at the right time, respectively. In the states on \verb'calculate_fuel', which should be BEFORE the states \verb'start_engine', the calculation of the fuel needed for the transition to a new orbit and the fuel needed for quenching the first pulse takes place.
+
 
 \section{Protein crystal in zero gravity}
 
@@ -646,21 +662,21 @@ orbit.
   \end{center}
 \end{figure}
 
-Here, after receiving the \verb'TANGENTED' event from the orientation subsystem, the transition to an elliptical orbit begins. As soon as the spacecraft engine has spent the required amount of fuel calculated in the \verb'calc_fuel()' function, the engine will turn off, and the navigation subsystem will send the \verb'SET_STAGE' event to the orientation subsystem to support orientation to Earth
+Here, after receiving the \verb'TANGENTED' event from the orientation subsystem, the transition to an elliptical orbit begins. As soon as the spacecraft engine has spent the required amount of fuel calculated in the \verb'calc_fuel()' function, the engine will turn off, and the navigation subsystem will send the \verb'OBSERVE' event to the orientation subsystem to support orientation to Earth
 
 \clearpage
 \paragraph{Ground Orientation Support} The following diagram (Figure \ref{Pic:Molniya-orient-en}) supports Ground orientation
 
 \begin{figure}[tbh]
   \begin{center}
-    \includegraphics[width=14cm]{images/molniya-orient.eps}
+    \includegraphics[width=9cm]{images/molniya-orient.eps}
     \caption{Diagram of the state machine for the orientation of the spacecraft to the Ground}
     \label{Pic:Molniya-orient-en}
   \end{center}
 \end{figure}
 
 Here, the desired angle and angular velocity are calculated and the orientation is adjusted according to the obtained values.
-Orientation to the Ground begins only at the time when the \verb'SET_STAGE' event with the value 3 was received or when the value of the global variable \verb'stage' is 3.
+Orientation to the Ground begins only at the time when the \verb'OBSERVE' event was received.
 
 \begin{thebibliography}{2}
 \addcontentsline{toc}{section}{List of references}
