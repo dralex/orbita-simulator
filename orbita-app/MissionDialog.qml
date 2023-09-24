@@ -109,7 +109,7 @@ Dialog  {
                                 showDiagrammButton = false
                                 showPythonArea.text = ""
 
-                                probes.loadFromXml(`${settingsManager.getSimulationPath()}/planets probes templates/${missonSelect.currentText}-Template.xml`, planetDevicesItems, settingsManager)
+                                probes.loadFromXml(`../orbita-app/planets_probes_templates/${missonSelect.currentText}-Template.xml`, planetDevicesItems, settingsManager)
                                 listViewProbes.currentIndex = probes.size() - 1
                                 currentProbe = listViewProbes.currentItem.probesModelData
 
@@ -124,7 +124,7 @@ Dialog  {
                                     showPythonArea = true
                                     showDiagrammButton = false
 
-                                    probes.loadFromXml(`${settingsManager.getSimulationPath()}/planets probes templates/${missonSelect.currentText}-Python-Template.xml`, planetDevicesItems, settingsManager)
+                                    probes.loadFromXml(`../orbita-app/planets_probes_templates/${missonSelect.currentText}-Python-Template.xml`, planetDevicesItems, settingsManager)
                                     listViewProbes.currentIndex = probes.size() - 1
                                     currentProbe = listViewProbes.currentItem.probesModelData
 
