@@ -10,7 +10,10 @@ import StepsActivityModel 1.0
 import StepsLandingModel 1.0
 import PlanetsProbesDevicesModel 1.0
 
+import DevicesTableModel 1.0
+
 import EarthProbesModel 1.0
+import EarthProbesDevicesModel 1.0
 
 ApplicationWindow  {
     id: mainWindow
@@ -199,7 +202,21 @@ ApplicationWindow  {
                         MouseArea {
                             anchors.fill: parent
                             onClicked: {
+                                listViewEarthProbes.currentIndex = index
+                                currentProbe = listViewEarthProbes.currentItem.earthProbesModelData
 
+                                probeNameText.text = `${model.probeName}`
+                                earthProbeDevices.changeEarthDevices(earthProbes, index)
+
+                                if (currentProbe.pythonCode) {
+                                    gBEPythonCode.visible = true
+                                    earthPythonCodeProperty = currentProbe.pythonCode
+                                    showDiagrammButton = false
+                                } else {
+                                    gBEPythonCode.visible = false
+                                    showDiagrammButton = true
+                                    earthPythonCodeProperty = ""
+                                }
                             }
                         }
                     }
@@ -452,7 +469,6 @@ ApplicationWindow  {
 
                     RowLayout {
                         anchors.fill: parent
-
                         ListView {
                             id: listViewDevices
                             width: parent.width - devicesButtons.width
@@ -572,6 +588,9 @@ ApplicationWindow  {
                             clip: true
                             enabled: itemsEnabled
                             visible: earthElementsVisible
+                            model: EarthProbesDevicesModel {
+                                list: earthProbeDevices
+                            }
 
 
                             ScrollBar.vertical: ScrollBar {
@@ -587,8 +606,8 @@ ApplicationWindow  {
                             delegate: Item {
                                 property variant devicesModelData: model
 
-                                width: listViewEarthDevices.width
-                                height: 100
+                                width: listViewEarthDevices.width - earthDevicesScrollBar.width
+                                height: 80
                                 Rectangle {
                                     width: parent.width - devicesScrollBar.width
                                     height: parent.height - 5
@@ -606,16 +625,19 @@ ApplicationWindow  {
                                 Column {
                                     anchors.fill: parent
                                     anchors.leftMargin: 5
-                                    anchors.topMargin: 15
+                                    anchors.topMargin: 10
 
-                                    Text { text: '<b>Номер:</b> ' + model.deviceNumber  }
-
-                                    Text { text: index >= 0 && index < listViewEarthDevices.count && model.deviceName ? '<b>Название:</b> ' + model.deviceName : "<b>Название:</b> None" }
-
-                                    Text { text: index >= 0 && index < listViewEarthDevices.count && model.startState ? '<b>Начальное состояние:</b> ' + model.startState : "<b>Начальное состояние:</b> None" }
 
                                     Text {
-                                        text: index >= 0 && index < listViewEarthDevices.count ? '<b>Safe Mode:</b> ' + model.inSafeMode : ""
+                                        width: listViewEarthDevices.width - devicesEarthButtons.width
+                                        text: index >= 0 && index < listViewEarthDevices.count && model.deviceName ? '<b>Название:</b> ' + model.deviceName : "<b>Название:</b> None"
+                                        wrapMode: Text.WordWrap
+                                    }
+
+                                    Text { text: index >= 0 && index < listViewEarthDevices.count && model.mass ? '<b>Масса:</b> ' + model.mass : "<b>Масса:</b> None" }
+
+                                    Text {
+                                        text: index >= 0 && index < listViewEarthDevices.count ? '<b>Начальное состояние:</b> ' + model.startMode : ""
                                     }
 
                                 }
@@ -635,8 +657,8 @@ ApplicationWindow  {
                                 text: "Добавить"
                                 enabled: itemsEnabled
                                 onClicked: {
-                                    if (planetDevicesItems.size()) {
-                                        deviceDialog.open()
+                                    if (earthDevices.size()) {
+                                        deviceEarthDialog.open()
                                     } else {
                                         errorDialog.textOfError = "Выберите папку с симулятором в настройках."
                                         errorDialog.open()
@@ -651,9 +673,9 @@ ApplicationWindow  {
                                 text: "Удалить"
                                 enabled: itemsEnabled
                                 onClicked: {
-                                    if (devicesItems.size()) {
-                                        successDialog.message = `Успешно удалено устройство ${listViewDevices.currentItem.devicesModelData.deviceName}`
-                                        devicesItems.removeDevicesItem(probes, stepsActivityItems, stepsLandingItems, listViewProbes.currentIndex, listViewDevices.currentIndex)
+                                    if (earthDevices.size()) {
+                                        successDialog.message = `Успешно удалено устройство ${listViewEarthDevices.currentItem.devicesModelData.deviceName}`
+                                        earthProbeDevices.removeEarthDevice(earthProbes, listViewEarthProbes.currentIndex, listViewEarthDevices.currentIndex)
                                         successDialog.open()
                                     }
 
@@ -712,7 +734,7 @@ ApplicationWindow  {
                                         width: listViewStepsLanding.width
                                         height: 85
                                         Rectangle {
-                                            width: parent.width - devicesScrollBar.width
+                                            width: parent.width - stepsLandingScrollBar.width
                                             height: parent.height - 5
                                             color: listViewStepsLanding.currentIndex === index && listViewStepsLanding.enabled? "lightblue" : "white"
                                             border.color: "grey"
@@ -810,7 +832,7 @@ ApplicationWindow  {
                                             width: listViewStepsPlanetActivity.width
                                             height: 85
                                             Rectangle {
-                                                width: parent.width - devicesScrollBar.width
+                                                width: parent.width - stepsPlanetActivityScrollBar.width
                                                 height: parent.height - 5
                                                 color: listViewStepsPlanetActivity.currentIndex === index && listViewStepsPlanetActivity.enabled? "lightblue" : "white"
                                                 border.color: "grey"
@@ -920,7 +942,6 @@ ApplicationWindow  {
                     TextArea {
                         id: earthPythonCodeTextArea
                         anchors.fill: parent
-                        enabled: itemsEnabled
                         text: earthPythonCodeProperty
 
                         onTextChanged: {

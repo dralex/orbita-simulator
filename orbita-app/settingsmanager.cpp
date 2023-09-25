@@ -83,7 +83,7 @@ bool SettingsManager::loadSettingsFromFile(const QString &filePath, bool typeMis
             if (line.startsWith("earth_simulation_path=")) {
                 earthSimulationPath = line.mid(22);
             } else if (line.startsWith("earth_devices_path=")) {
-                earthDevicesPath = line.mid(18);
+                earthDevicesPath = line.mid(19);
             } else if (line.startsWith("earth_probes_path=")) {
                 earthProbesPath = line.mid(18);
             } else if (line.startsWith("earth_missions_path=")) {

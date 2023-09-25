@@ -20,16 +20,25 @@ class EarthDevices : public QObject
 public:
     explicit EarthDevices(QObject *parent = nullptr);
 
+    QVector<EarthDevicesItem> items() const;
+
+    bool setEarthDevices(int index, const EarthDevicesItem &item);
+
 public slots:
     void loadDevices(const QString &filePath);
     void showDevices();
+
+    QString getDeviceEngName(QString deviceName);
+    double getMass(QString deviceName);
+
+    int size();
 
 signals:
     void preEarthDeviceAppended();
     void postEarthDeviceAppended();
 
-    void postEarthDeviceRemoved(int index);
-    void preEarthDeviceRemoved();
+    void preEarthDeviceRemoved(int index);
+    void postEarthDeviceRemoved();
 
 private:
     QVector<EarthDevicesItem> mItems;

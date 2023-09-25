@@ -9,11 +9,14 @@ SOURCES += \
         comboboxdevices.cpp \
         devices.cpp \
         devicesmodel.cpp \
+        devicestablemodel.cpp \
         earthdevices.cpp \
+        earthdevicesmodel.cpp \
         earthmissions.cpp \
         earthmissionsmodel.cpp \
         earthprobe.cpp \
         earthprobedevices.cpp \
+        earthprobesdevicesmodel.cpp \
         earthprobesmodel.cpp \
         imagesmodel.cpp \
         main.cpp \
@@ -53,11 +56,14 @@ HEADERS += \
     comboboxdevices.h \
     devices.h \
     devicesmodel.h \
+    devicestablemodel.h \
     earthdevices.h \
+    earthdevicesmodel.h \
     earthmissions.h \
     earthmissionsmodel.h \
     earthprobe.h \
     earthprobedevices.h \
+    earthprobesdevicesmodel.h \
     earthprobesmodel.h \
     imagesmodel.h \
     planetdevices.h \

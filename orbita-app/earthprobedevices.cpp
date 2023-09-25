@@ -3,14 +3,30 @@
 EarthProbeDevices::EarthProbeDevices(QObject *parent)
     : QObject{parent}
 {
-
 }
 
-void EarthProbeDevices::appendEarthDevice(EarthProbe *earthProbe, int probeIndex, QString deviceEngName, QString deviceName, double mass)
+QVector<EarthProbeDeviceItem> EarthProbeDevices::items() const
+{
+    return mItems;
+}
+
+bool EarthProbeDevices::setEarthProbesDevices(int index, const EarthProbeDeviceItem &item)
+{
+    if (index < 0 || index >= mItems.size())
+        return false;
+
+    const EarthProbeDeviceItem &olditem = mItems.at(index);
+    if (item.id == olditem.id)
+        return false;
+    mItems[index] = item;
+    return true;
+}
+
+void EarthProbeDevices::appendEarthDevice(EarthProbe *earthProbe, int probeIndex, QString deviceEngName, QString deviceName, double mass, bool startMode)
 {
     emit preEarthProbeDeviceAppended();
 
-    mItems.append({mItems.size(), deviceEngName, deviceName, mass});
+    mItems.append({mItems.size(), deviceEngName, deviceName, mass, startMode});
     earthProbe->appendEarthDevice(probeIndex, deviceEngName, deviceName, mass);
 
     emit postEarthProbeDeviceAppended();
@@ -40,7 +56,8 @@ void EarthProbeDevices::changeEarthDevices(EarthProbe *earthProbe, int probeInde
         mItems.append({mItems.size(),
                        earthProbe->items()[probeIndex].devices[i].deviceEngName,
                        earthProbe->items()[probeIndex].devices[i].deviceName,
-                       earthProbe->items()[probeIndex].devices[i].mass
+                       earthProbe->items()[probeIndex].devices[i].mass,
+                       earthProbe->items()[probeIndex].devices[i].startMode
                       });
 
         emit postEarthProbeDeviceAppended();

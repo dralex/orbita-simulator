@@ -167,22 +167,33 @@ Dialog  {
                                     pythonCodeProperty = currentProbe.pythonCode
                                 } else {
 
-                                    earthProbes.appendEarthProbe("earth probe", earthMissonSelect.currentText, "");
+                                    earthProbes.appendEarthProbe("earth probe", earthMissonSelect.currentText, "print('Hello World!')", "");
                                     listViewEarthProbes.currentIndex = earthProbes.size() - 1
                                     currentProbe = listViewEarthProbes.currentItem.earthProbesModelData
+
+                                    probeNameText.text = `${currentProbe.probeName}`
+                                    earthProbeDevices.changeEarthDevices(earthProbes, listViewEarthProbes.currentIndex)
+
                                     gBEPythonCode.visible = true
+                                    earthPythonCodeProperty = currentProbe.pythonCode
+                                    showDiagrammButton = false
                                 }
 
 
                             }
 
                             if (solutionSelect.currentText === "Диаграмма") {
-                                earthProbes.appendEarthProbe("earth probe", earthMissonSelect.currentText, "");
+                                earthProbes.appendEarthProbe("earth probe", earthMissonSelect.currentText, "", "");
                                 listViewEarthProbes.currentIndex = earthProbes.size() - 1
                                 currentProbe = listViewEarthProbes.currentItem.earthProbesModelData
+
+                                probeNameText.text = `${currentProbe.probeName}`
+                                earthProbeDevices.changeEarthDevices(earthProbes, listViewEarthProbes.currentIndex)
+
+                                gBEPythonCode.visible = false
                                 showDiagrammButton = true
                                 earthPythonCodeProperty = ""
-                                earthPythonCodeTextArea.visible = false;
+
                             }
                         }
 

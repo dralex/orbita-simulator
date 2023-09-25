@@ -27,12 +27,19 @@
 #include "earthprobe.h"
 #include "earthdevices.h"
 #include "earthmissions.h"
+#include "earthprobedevices.h"
+
 
 #include "earthprobesmodel.h"
 #include "earthmissionsmodel.h"
+#include "earthprobesdevicesmodel.h"
+#include "earthdevicesmodel.h"
 
 #include "simulationcontroller.h"
 #include "settingsmanager.h"
+
+
+#include "devicestablemodel.h"
 
 
 int main(int argc, char *argv[])
@@ -61,10 +68,13 @@ int main(int argc, char *argv[])
     qmlRegisterType<PlanetsModel>("PlanetsModel", 1, 0, "PlanetsModel");
     qmlRegisterType<PlanetsDevicesModel>("PlanetsDevicesModel", 1, 0, "PlanetsDevicesModel");
     qmlRegisterType<PlanetsProbesDevicesModel>("PlanetsProbesDevicesModel", 1, 0, "PlanetsProbesDevicesModel");
+    qmlRegisterType<DevicesTableModel>("DevicesTableModel", 1, 0, "DevicesTableModel");
 
 
     qmlRegisterType<EarthProbesModel>("EarthProbesModel", 1, 0, "EarthProbesModel");
     qmlRegisterType<EarthMissionsModel>("EarthMissionsModel", 1, 0, "EarthMissionsModel");
+    qmlRegisterType<EarthProbesDevicesModel>("EarthProbesDevicesModel", 1, 0, "EarthProbesDevicesModel");\
+    qmlRegisterType<EarthDevicesModel>("EarthDevicesModel", 1, 0, "EarthDevicesModel");
 
 
     qmlRegisterType<ComboBoxDevices>("ComboBoxDevicesModel", 1, 0, "ComboBoxDevicesModel");
@@ -107,6 +117,7 @@ int main(int argc, char *argv[])
     EarthDevices earthDevices;
     EarthMissions earthMissions;
     EarthProbe earthProbes;
+    EarthProbeDevices earthProbeDevices;
 
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty(QStringLiteral("probes"), &probes);
@@ -118,6 +129,9 @@ int main(int argc, char *argv[])
 
     engine.rootContext()->setContextProperty(QStringLiteral("earthProbes"), &earthProbes);
     engine.rootContext()->setContextProperty(QStringLiteral("earthMissions"), &earthMissions);
+    engine.rootContext()->setContextProperty(QStringLiteral("earthProbeDevices"), &earthProbeDevices);
+    engine.rootContext()->setContextProperty(QStringLiteral("earthDevices"), &earthDevices);
+
 
     engine.rootContext()->setContextProperty(QStringLiteral("simulationController"), &simulationController);
     engine.rootContext()->setContextProperty(QStringLiteral("settingsManager"), &settingsManager);

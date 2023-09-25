@@ -24,11 +24,11 @@ bool EarthProbe::setEarthProbe(int index, const EarthProbeItem &item)
     return true;
 }
 
-void EarthProbe::appendEarthProbe(QString probeName, QString missionName, QString filePath)
+void EarthProbe::appendEarthProbe(QString probeName, QString missionName, QString pythonCode, QString filePath)
 {
     emit preEarthProbeAppended();
 
-    mItems.append({mItems.size(), probeName, missionName, {}, "", "", filePath});
+    mItems.append({mItems.size(), probeName, missionName, {}, pythonCode, "", filePath});
 
     emit postEarthProbeAppended();
 }

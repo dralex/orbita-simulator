@@ -6,6 +6,24 @@ EarthDevices::EarthDevices(QObject *parent)
 
 }
 
+QVector<EarthDevicesItem> EarthDevices::items() const
+{
+    return mItems;
+}
+
+bool EarthDevices::setEarthDevices(int index, const EarthDevicesItem &item)
+{
+    if (index < 0 || index >= mItems.size())
+        return false;
+
+    const EarthDevicesItem &olditem = mItems.at(index);
+    if (item.id == olditem.id)
+        return false;
+
+    mItems[index] = item;
+    return true;
+}
+
 void EarthDevices::loadDevices(const QString &filePath) {
     QFile file(filePath);
 
@@ -71,4 +89,27 @@ void EarthDevices::showDevices()
         qDebug()<<"Названия:"<<mItems[i].deviceName;
         qDebug()<<"Масса:"<<mItems[i].mass;
     }
+}
+
+QString EarthDevices::getDeviceEngName(QString deviceName)
+{
+    for (int i = 0; i < mItems.size(); ++i) {
+        if (mItems[i].deviceName == deviceName)
+            return mItems[i].deviceEngName;
+    }
+    return "None";
+}
+
+double EarthDevices::getMass(QString deviceName)
+{
+    for (int i = 0; i < mItems.size(); ++i) {
+        if (mItems[i].deviceName == deviceName)
+            return mItems[i].mass;
+    }
+    return 0.0;
+}
+
+int EarthDevices::size()
+{
+    return mItems.size();
 }
