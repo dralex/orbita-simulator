@@ -28,16 +28,16 @@ void EarthProbe::appendEarthProbe(QString probeName, QString missionName, QStrin
 {
     emit preEarthProbeAppended();
 
-    mItems.append({mItems.size(), probeName, missionName, {}, pythonCode, "", filePath});
+    mItems.append({mItems.size(), probeName, missionName, {}, pythonCode, {}, filePath});
 
     emit postEarthProbeAppended();
 }
 
-void EarthProbe::appendEarthDevice(int probeIndex, QString deviceEngName, QString deviceName, double mass)
+void EarthProbe::appendEarthDevice(int probeIndex, QString deviceEngName, QString deviceName, double mass, bool startMode)
 {
     emit preEarthDeviceAppended();
 
-    mItems[probeIndex].devices.append({mItems[probeIndex].devices.size(), deviceEngName, deviceName, mass});
+    mItems[probeIndex].devices.append({mItems[probeIndex].devices.size(), deviceEngName, deviceName, mass, startMode});
 
     emit postEarthDeviceAppended();
 }
@@ -49,6 +49,19 @@ void EarthProbe::removeEarthDevice(int probeIndex, int index)
     mItems[probeIndex].devices.removeAt(index);
 
     emit postEarthDeviceRemoved();
+}
+
+void EarthProbe::appendDiagramm(int probeIndex, QString deviceEngName, QString path)
+{
+    mItems[probeIndex].diagrammPathes.append({mItems[probeIndex].diagrammPathes.size(), deviceEngName, path});
+}
+
+void EarthProbe::removeDiagramm(int probeIndex, QString deviceEngName)
+{
+    for (int i = 0; i < mItems[probeIndex].diagrammPathes.size(); ++i) {
+        if (mItems[probeIndex].diagrammPathes[i].deviceEngName == deviceEngName)
+            mItems[probeIndex].diagrammPathes.removeAt(i);
+    }
 }
 
 int EarthProbe::size()

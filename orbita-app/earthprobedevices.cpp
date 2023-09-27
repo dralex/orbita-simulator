@@ -27,7 +27,7 @@ void EarthProbeDevices::appendEarthDevice(EarthProbe *earthProbe, int probeIndex
     emit preEarthProbeDeviceAppended();
 
     mItems.append({mItems.size(), deviceEngName, deviceName, mass, startMode});
-    earthProbe->appendEarthDevice(probeIndex, deviceEngName, deviceName, mass);
+    earthProbe->appendEarthDevice(probeIndex, deviceEngName, deviceName, mass, startMode);
 
     emit postEarthProbeDeviceAppended();
 }

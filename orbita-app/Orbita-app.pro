@@ -7,6 +7,7 @@ QT += quick \
 
 SOURCES += \
         comboboxdevices.cpp \
+        comboboxearthdevices.cpp \
         devices.cpp \
         devicesmodel.cpp \
         devicestablemodel.cpp \
@@ -54,6 +55,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     comboboxdevices.h \
+    comboboxearthdevices.h \
     devices.h \
     devicesmodel.h \
     devicestablemodel.h \

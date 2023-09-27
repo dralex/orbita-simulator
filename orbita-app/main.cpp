@@ -34,6 +34,7 @@
 #include "earthmissionsmodel.h"
 #include "earthprobesdevicesmodel.h"
 #include "earthdevicesmodel.h"
+#include "comboboxearthdevices.h"
 
 #include "simulationcontroller.h"
 #include "settingsmanager.h"
@@ -76,7 +77,7 @@ int main(int argc, char *argv[])
     qmlRegisterType<EarthProbesDevicesModel>("EarthProbesDevicesModel", 1, 0, "EarthProbesDevicesModel");\
     qmlRegisterType<EarthDevicesModel>("EarthDevicesModel", 1, 0, "EarthDevicesModel");
 
-
+    qmlRegisterType<ComboBoxEarthDevices>("ComboBoxEarthDevices", 1, 0, "ComboBoxEarthDevices");
     qmlRegisterType<ComboBoxDevices>("ComboBoxDevicesModel", 1, 0, "ComboBoxDevicesModel");
 
     qmlRegisterType<QProcess>("SimulationProcess", 1, 0, "SimulationProcess");

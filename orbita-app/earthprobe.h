@@ -7,6 +7,12 @@
 
 struct EarthProbeDeviceItem;
 
+struct DiagrammPathes {
+    int id;
+    QString deviceEngName;
+    QString path;
+};
+
 struct EarthProbeItem
 {
     int probeNumber;
@@ -14,7 +20,7 @@ struct EarthProbeItem
     QString missionName;
     QVector<EarthProbeDeviceItem> devices;
     QString pythonCode;
-    QString diagrammPath;
+    QVector<DiagrammPathes> diagrammPathes;
     QString filePath;
 };
 
@@ -44,8 +50,11 @@ signals:
 
 public slots:
     void appendEarthProbe(QString probeName, QString missionName, QString pythonCode, QString filePath);
-    void appendEarthDevice(int probeIndex, QString deviceEngName, QString deviceName, double mass);
+    void appendEarthDevice(int probeIndex, QString deviceEngName, QString deviceName, double mass, bool startMode);
     void removeEarthDevice(int probeIndex,int index);
+
+    void appendDiagramm(int probeIndex, QString deviceEngName, QString path);
+    void removeDiagramm(int probeIndex, QString deviceEngName);
 
     int size();
 //    void saveEarthProbeToXml();

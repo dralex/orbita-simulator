@@ -37,6 +37,7 @@ ApplicationWindow  {
     VersionWindow {id: versionWindow}
     FileNameDialog {id: fileNameDialog }
     CalculatorFileDialog {id: calculatorFileDialog}
+    EarthDiagrammDialog {id: earthDiagrammDialog}
     property string fileNameFromDialog;
     property ListModel modelSolutions: ListModel {}
     property bool itemsEnabled: false
@@ -988,13 +989,7 @@ ApplicationWindow  {
                         Layout.preferredWidth: width
                         enabled: itemsEnabled
                         visible: showDiagrammButton
-
-                    }
-
-                    Text {
-                        Layout.alignment: Qt.AlignTop
-                        text: "Вы не выбрали диаграмму"
-                        visible: showDiagrammButton
+                        onClicked: earthDiagrammDialog.open()
 
                     }
                 }

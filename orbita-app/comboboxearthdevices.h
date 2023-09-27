@@ -1,26 +1,23 @@
-#ifndef EARTHPROBESMODEL_H
-#define EARTHPROBESMODEL_H
+#ifndef COMBOBOXEARTHDEVICES_H
+#define COMBOBOXEARTHDEVICES_H
 
 #include <QAbstractListModel>
 
-#include "earthprobe.h"
+#include "earthprobedevices.h"
 
-class EarthProbe;
+class EarthProbeDevices;
 
-class EarthProbesModel : public QAbstractListModel
+class ComboBoxEarthDevices : public QAbstractListModel
 {
     Q_OBJECT
-    Q_PROPERTY(EarthProbe *list READ list WRITE setList)
+    Q_PROPERTY(EarthProbeDevices *list READ list WRITE setList)
 public:
-    explicit EarthProbesModel(QObject *parent = nullptr);
+    explicit ComboBoxEarthDevices(QObject *parent = nullptr);
 
     enum {
-        probeNumberRole = Qt::UserRole,
-        probeNameRole,
-        missionRole,
-        pythonCodeRole,
-        filePathRole
+        textRole
     };
+
 
     // Basic functionality:
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
@@ -32,14 +29,11 @@ public:
                  int role = Qt::EditRole) override;
 
     Qt::ItemFlags flags(const QModelIndex& index) const override;
-
     virtual QHash<int, QByteArray> roleNames() const override;
-
-    EarthProbe *list() const;
-    void setList(EarthProbe *list);
-
+    EarthProbeDevices *list() const;
+    void setList(EarthProbeDevices *list);
 private:
-    EarthProbe *mList;
+    EarthProbeDevices *mList;
 };
 
-#endif // EARTHPROBESMODEL_H
+#endif // COMBOBOXEARTHDEVICES_H

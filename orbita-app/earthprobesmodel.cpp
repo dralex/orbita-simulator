@@ -27,8 +27,6 @@ QVariant EarthProbesModel::data(const QModelIndex &index, int role) const
         return QVariant(item.missionName);
     case pythonCodeRole:
         return QVariant(item.pythonCode);
-    case diagrammPathRole:
-        return QVariant(item.diagrammPath);
     case filePathRole:
         return QVariant(item.filePath);
     }
@@ -57,9 +55,6 @@ bool EarthProbesModel::setData(const QModelIndex &index, const QVariant &value, 
     case pythonCodeRole:
         item.pythonCode = value.toString();
         break;
-    case diagrammPathRole:
-        item.diagrammPath = value.toString();
-        break;
     case filePathRole:
         item.filePath = value.toString();
         break;
@@ -86,7 +81,6 @@ QHash<int, QByteArray> EarthProbesModel::roleNames() const
     names[probeNameRole] = "probeName";
     names[missionRole] = "missionName";
     names[pythonCodeRole] = "pythonCode";
-    names[diagrammPathRole] = "diagrammPath";
     names[filePathRole] = "probeFilePath";
     return names;
 }
