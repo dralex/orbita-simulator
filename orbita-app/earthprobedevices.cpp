@@ -22,12 +22,12 @@ bool EarthProbeDevices::setEarthProbesDevices(int index, const EarthProbeDeviceI
     return true;
 }
 
-void EarthProbeDevices::appendEarthDevice(EarthProbe *earthProbe, int probeIndex, QString deviceEngName, QString deviceName, double mass, bool startMode)
+void EarthProbeDevices::appendEarthDevice(EarthProbe *earthProbe, int probeIndex, QString deviceEngName, QString deviceName,  QString type, double mass, bool startMode)
 {
     emit preEarthProbeDeviceAppended();
 
-    mItems.append({mItems.size(), deviceEngName, deviceName, mass, startMode});
-    earthProbe->appendEarthDevice(probeIndex, deviceEngName, deviceName, mass, startMode);
+    mItems.append({mItems.size(), deviceEngName, deviceName, type, mass, startMode});
+    earthProbe->appendEarthDevice(probeIndex, deviceEngName, deviceName, type, mass, startMode);
 
     emit postEarthProbeDeviceAppended();
 }
@@ -40,6 +40,14 @@ void EarthProbeDevices::removeEarthDevice(EarthProbe *earthProbe, int probeIndex
     earthProbe->removeEarthDevice(probeIndex, index);
 
     emit postEarthProbeDeviceRemoved();
+}
+
+bool EarthProbeDevices::checkUniqueType(QString type)
+{
+    for (int i = 0; i < mItems.size(); ++i)
+        if (mItems[i].type == type)
+            return true;
+    return false;
 }
 
 void EarthProbeDevices::changeEarthDevices(EarthProbe *earthProbe, int probeIndex)
@@ -56,6 +64,7 @@ void EarthProbeDevices::changeEarthDevices(EarthProbe *earthProbe, int probeInde
         mItems.append({mItems.size(),
                        earthProbe->items()[probeIndex].devices[i].deviceEngName,
                        earthProbe->items()[probeIndex].devices[i].deviceName,
+                       earthProbe->items()[probeIndex].devices[i].type,
                        earthProbe->items()[probeIndex].devices[i].mass,
                        earthProbe->items()[probeIndex].devices[i].startMode
                       });

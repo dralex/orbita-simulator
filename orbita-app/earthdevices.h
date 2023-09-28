@@ -11,6 +11,7 @@ struct EarthDevicesItem {
     int id;
     QString deviceEngName;
     QString deviceName;
+    QString type;
     double mass;
 };
 
@@ -29,6 +30,7 @@ public slots:
     void showDevices();
 
     QString getDeviceEngName(QString deviceName);
+    QString getType(QString deviceName);
     double getMass(QString deviceName);
 
     int size();

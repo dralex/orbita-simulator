@@ -11,6 +11,7 @@ struct EarthProbeDeviceItem {
     int id;
     QString deviceEngName;
     QString deviceName;
+    QString type;
     double mass;
     bool startMode;
 };
@@ -33,8 +34,10 @@ signals:
     void postEarthProbeDeviceRemoved();
 
 public slots:
-    void appendEarthDevice(EarthProbe* earthProbe, int probeIndex, QString deviceEngName, QString deviceName, double mass, bool startMode);
+    void appendEarthDevice(EarthProbe* earthProbe, int probeIndex, QString deviceEngName, QString deviceName, QString type, double mass, bool startMode);
     void removeEarthDevice(EarthProbe* earthProbe, int probeIndex, int index);
+
+    bool checkUniqueType(QString type);
 
     void changeEarthDevices(EarthProbe* earthProbe, int probeIndex);
 

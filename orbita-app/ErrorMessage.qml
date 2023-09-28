@@ -34,7 +34,7 @@ Dialog  {
             text: "ОК"
             onClicked: {
 
-
+                textOfError = ""
                 errorDialog.accepted()
                 errorDialog.close()
             }

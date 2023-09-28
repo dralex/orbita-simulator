@@ -578,7 +578,7 @@ ApplicationWindow  {
                     Layout.preferredWidth: parent.width
                     Layout.preferredHeight: 140
                     visible: earthElementsVisible
-                    title: qsTr("Устройства")
+                    title: qsTr("Подсистемы")
 
                     RowLayout {
                         anchors.fill: parent
@@ -675,7 +675,7 @@ ApplicationWindow  {
                                 enabled: itemsEnabled
                                 onClicked: {
                                     if (earthDevices.size()) {
-                                        successDialog.message = `Успешно удалено устройство ${listViewEarthDevices.currentItem.devicesModelData.deviceName}`
+                                        successDialog.message = `Успешно удалена подсистема ${listViewEarthDevices.currentItem.devicesModelData.deviceName}`
                                         earthProbeDevices.removeEarthDevice(earthProbes, listViewEarthProbes.currentIndex, listViewEarthDevices.currentIndex)
                                         successDialog.open()
                                     }
@@ -980,7 +980,6 @@ ApplicationWindow  {
                     Layout.preferredHeight: 500
                     width: parent.width
                     Button {
-
                         text: "Загрузить диаграмму"
                         height: 23
                         width: parent.width
@@ -989,7 +988,15 @@ ApplicationWindow  {
                         Layout.preferredWidth: width
                         enabled: itemsEnabled
                         visible: showDiagrammButton
-                        onClicked: earthDiagrammDialog.open()
+                        onClicked: {
+                            if (erathProbeDevices.size()) {
+                                earthDiagrammDialog.open()
+                            } else {
+                                errorDialog.textOfError = "Добавьте подсистемы!"
+                                errorDialog.open()
+                            }
+
+                        }
 
                     }
                 }

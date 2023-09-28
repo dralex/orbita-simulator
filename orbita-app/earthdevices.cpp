@@ -28,7 +28,7 @@ void EarthDevices::loadDevices(const QString &filePath) {
     QFile file(filePath);
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qDebug() << "Не удалость открыть XML файл.";
+        qDebug() << "Не удалось открыть XML файл.";
         return;
     }
 
@@ -54,6 +54,8 @@ void EarthDevices::loadDevices(const QString &filePath) {
                         if (xmlReader.isStartElement()) {
                             if (xmlReader.name() == "mass") {
                                 devicesItemXml.mass = xmlReader.readElementText().toDouble();
+                            } else if (xmlReader.name() == "type") {
+                                devicesItemXml.type = xmlReader.readElementText();
                             }
                         }
                     }
@@ -64,7 +66,6 @@ void EarthDevices::loadDevices(const QString &filePath) {
 
                     emit postEarthDeviceAppended();
 
-
                     while (!(xmlReader.isEndElement() && xmlReader.name() == "device")) {
                         xmlReader.readNext();
                     }
@@ -72,7 +73,6 @@ void EarthDevices::loadDevices(const QString &filePath) {
                     break;
                 }
             }
-
         }
     }
 
@@ -82,6 +82,7 @@ void EarthDevices::loadDevices(const QString &filePath) {
 
     file.close();
 }
+
 
 void EarthDevices::showDevices()
 {
@@ -96,6 +97,15 @@ QString EarthDevices::getDeviceEngName(QString deviceName)
     for (int i = 0; i < mItems.size(); ++i) {
         if (mItems[i].deviceName == deviceName)
             return mItems[i].deviceEngName;
+    }
+    return "None";
+}
+
+QString EarthDevices::getType(QString deviceName)
+{
+    for (int i = 0; i < mItems.size(); ++i) {
+        if (mItems[i].deviceName == deviceName)
+            return mItems[i].type;
     }
     return "None";
 }

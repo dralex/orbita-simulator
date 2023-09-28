@@ -50,7 +50,7 @@ signals:
 
 public slots:
     void appendEarthProbe(QString probeName, QString missionName, QString pythonCode, QString filePath);
-    void appendEarthDevice(int probeIndex, QString deviceEngName, QString deviceName, double mass, bool startMode);
+    void appendEarthDevice(int probeIndex, QString deviceEngName, QString deviceName,  QString type, double mass, bool startMode);
     void removeEarthDevice(int probeIndex,int index);
 
     void appendDiagramm(int probeIndex, QString deviceEngName, QString path);

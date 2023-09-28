@@ -33,11 +33,11 @@ void EarthProbe::appendEarthProbe(QString probeName, QString missionName, QStrin
     emit postEarthProbeAppended();
 }
 
-void EarthProbe::appendEarthDevice(int probeIndex, QString deviceEngName, QString deviceName, double mass, bool startMode)
+void EarthProbe::appendEarthDevice(int probeIndex, QString deviceEngName, QString deviceName,  QString type, double mass, bool startMode)
 {
     emit preEarthDeviceAppended();
 
-    mItems[probeIndex].devices.append({mItems[probeIndex].devices.size(), deviceEngName, deviceName, mass, startMode});
+    mItems[probeIndex].devices.append({mItems[probeIndex].devices.size(), deviceEngName, deviceName, type, mass, startMode});
 
     emit postEarthDeviceAppended();
 }

@@ -8,7 +8,7 @@ import ComboBoxEarthDevices 1.0
 Dialog  {
     id: earthDiagrammDialog
     width: 400
-    height: 179
+    height: 120
     visible: false
     modal: true
     ErrorMessage {id: errorDialog}
@@ -18,6 +18,7 @@ Dialog  {
 
     ColumnLayout {
         anchors.fill: parent
+
         RowLayout {
             width: parent.width
             height: parent.height * 0.5
@@ -52,53 +53,10 @@ Dialog  {
                 Layout.preferredWidth: parent.width * 0.5
                 text: "Добавить"
                 onClicked: {
-                    if (devicesBox.currentValue) {
-                        if (!timeInput.text) {
-                            errorDialog.textOfError = "Укажите время!"
-                            errorDialog.open()
-                            return
-                        }
-
-                        if (whatIsWindow) {
-                            stepsLandingItems.appendItem(probes,
-                                                         whatIsWindow,
-                                                         listViewProbes.currentIndex,
-                                                         listViewDevices.currentItem.devicesModelData.deviceNumber,
-                                                         timeInput.text,
-                                                         devicesBox.currentValue,
-                                                         commandsBox.currentValue,
-                                                         argumentInput.text);
-                            listViewStepsLanding.currentIndex = stepsLandingItems.size() - 1
-                        } else {
-                            stepsActivityItems.appendItem(probes,
-                                                          whatIsWindow,
-                                                          listViewProbes.currentIndex,
-                                                          listViewDevices.currentItem.devicesModelData.deviceNumber,
-                                                          timeInput.text,
-                                                          devicesBox.currentValue,
-                                                          commandsBox.currentValue,
-                                                          argumentInput.text);
-                            listViewStepsPlanetActivity.currentIndex = stepsActivityItems.size() - 1
-                        }
-
-
-
-
-                        timeInput.text = ""
-                        argumentInput.text = ""
-                        commandsBox.currentIndex = 0
-                        devicesBox.currentIndex = 0
-                        earthDiagrammDialog.accepted()
-                        earthDiagrammDialog.close()
-                    } else {
-                        errorDialog.textOfError = "Выберите устройство!"
-                        errorDialog.open()
-                        return
-                    }
 
                 }
-
             }
+
 
             Button {
                 height: 23
@@ -111,10 +69,9 @@ Dialog  {
                     earthDiagrammDialog.rejected()
                     earthDiagrammDialog.close()
                 }
-
             }
         }
     }
-
 }
+
 

@@ -100,19 +100,27 @@ Dialog  {
                         startMode = true
                     else
                         startMode = false
-                    earthProbeDevices.appendEarthDevice(earthProbes,
-                                                        listViewEarthProbes.currentIndex,
-                                                        earthDevices.getDeviceEngName(deviceEarthBox.currentValue),
-                                                        deviceEarthBox.currentValue,
-                                                        earthDevices.getMass(deviceEarthBox.currentValue),
-                                                        startMode)
+                    if (earthProbeDevices.checkUniqueType(earthDevices.getType(deviceEarthBox.currentValue))) {
+                        errorDialog.textOfError = `Вы уже добавили подсистему типа: ${earthDevices.getType(deviceEarthBox.currentValue)}.`
+                        errorDialog.open()
+                        return
+                    } else {
+                        earthProbeDevices.appendEarthDevice(earthProbes,
+                                                            listViewEarthProbes.currentIndex,
+                                                            earthDevices.getDeviceEngName(deviceEarthBox.currentValue),
+                                                            deviceEarthBox.currentValue,
+                                                            earthDevices.getType(deviceEarthBox.currentValue),
+                                                            earthDevices.getMass(deviceEarthBox.currentValue),
+                                                            startMode)
 
-                    listViewEarthDevices.currentIndex = earthProbeDevices.size() - 1
+                        listViewEarthDevices.currentIndex = earthProbeDevices.size() - 1
 
-                    deviceEarthBox.currentIndex = 0
-                    startStateEarthBox.currentIndex = 0
-                    deviceEarthDialog.accepted()
-                    deviceEarthDialog.close()
+                        deviceEarthBox.currentIndex = 0
+                        startStateEarthBox.currentIndex = 0
+                        deviceEarthDialog.accepted()
+                        deviceEarthDialog.close()
+                    }
+
                 }
 
             }
