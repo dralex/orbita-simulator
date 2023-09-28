@@ -38,6 +38,7 @@ ApplicationWindow  {
     FileNameDialog {id: fileNameDialog }
     CalculatorFileDialog {id: calculatorFileDialog}
     EarthDiagrammDialog {id: earthDiagrammDialog}
+    DiagrammFileDialog {id: diagrammFileDialog}
     property string fileNameFromDialog;
     property ListModel modelSolutions: ListModel {}
     property bool itemsEnabled: false
@@ -63,6 +64,8 @@ ApplicationWindow  {
     property string earthFolderProbesPath: ""
     property string earthFolderSimulation: ""
     property string earthFolderCalculatorPath: ""
+
+    property string diagrammDeviceName: ""
 
     property string settingsFolderSimulation: ""
     property string settingsFolderProbesPath: ""
@@ -989,7 +992,7 @@ ApplicationWindow  {
                         enabled: itemsEnabled
                         visible: showDiagrammButton
                         onClicked: {
-                            if (erathProbeDevices.size()) {
+                            if (earthProbeDevices.size()) {
                                 earthDiagrammDialog.open()
                             } else {
                                 errorDialog.textOfError = "Добавьте подсистемы!"

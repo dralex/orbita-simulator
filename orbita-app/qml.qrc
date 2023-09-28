@@ -17,5 +17,6 @@
         <file>FileNameDialog.qml</file>
         <file>CalculatorFileDialog.qml</file>
         <file>EarthDiagrammDialog.qml</file>
+        <file>DiagrammFileDialog.qml</file>
     </qresource>
 </RCC>

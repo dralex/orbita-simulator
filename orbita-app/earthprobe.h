@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QVector>
+#include <QDebug>
 #include "earthprobedevices.h"
 
 struct EarthProbeDeviceItem;

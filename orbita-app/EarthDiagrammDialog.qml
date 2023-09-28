@@ -53,7 +53,11 @@ Dialog  {
                 Layout.preferredWidth: parent.width * 0.5
                 text: "Добавить"
                 onClicked: {
+                    diagrammDeviceName = earthDevicesBox.currentValue;
+                    diagrammFileDialog.open()
 
+                    earthDiagrammDialog.accepted()
+                    earthDiagrammDialog.close()
                 }
             }
 

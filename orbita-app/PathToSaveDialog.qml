@@ -42,8 +42,13 @@ FileDialog {
         else {
             settingsManager.setEarthProbesPath(folderProbesPath)
             settingsManager.saveSettingsToFile("earth_settings.txt", typeMission);
+
             earthPathToSave = settingsManager.getEarthProbesPath()
             earthPathToLoad = settingsManager.getEarthProbesPath()
+            if (!earthMissions.size())
+                earthMissions.loadMissions(settingsManager.getMissionsPath());
+            if (!earthDevices.size())
+                earthDevices.loadDevices((settingsManager.getEarthDevicesPath()));
             settingsFolderProbesPath = earthPathToLoad
         }
 
