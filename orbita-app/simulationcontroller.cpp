@@ -38,25 +38,28 @@ QString SimulationController::getStandardError() const
 
 
 
-void SimulationController::startSimulation(QString probePath, SettingsManager *settingsManager)
+void SimulationController::startSimulation(QString probePath, SettingsManager *settingsManager, bool typeMission)
 {
     QString process;
+    QString infoFolderPath;
+    QString simulationPath;
     if (simulationProcess->state() != QProcess::NotRunning) {
         qDebug() << "Симуляция уже запущена или завершается.";
         return;
     }
-
-    QString simulationPath = settingsManager->getSimulationPath() + "/simulation.py";
-    currentProbePath = probePath;
-
-    // Создаем папку info в probesPath, если она не существует
-    QString infoFolderPath = currentProbePath.left(currentProbePath.length() - 4) + " info";
-    QDir infoFolder(infoFolderPath);
-    if (!infoFolder.exists()) {
-        if (!infoFolder.mkpath(infoFolderPath)) {
-            qDebug() << "Ошибка при создании папки info";
-            return;
+    if (typeMission) {
+        simulationPath = settingsManager->getSimulationPath() + "/simulation.py";
+        currentProbePath = probePath;
+        infoFolderPath = currentProbePath.left(currentProbePath.length() - 4) + " info";
+        QDir infoFolder(infoFolderPath);
+        if (!infoFolder.exists()) {
+            if (!infoFolder.mkpath(infoFolderPath)) {
+                qDebug() << "Ошибка при создании папки info";
+                return;
+            }
         }
+    } else {
+
     }
 
     QStringList arguments;

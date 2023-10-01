@@ -283,8 +283,13 @@ ApplicationWindow  {
                     if (!currentProbe.probeFilePath) {
                         fileNameDialog.open()
                     } else {
-                        probes.saveProbe(listViewProbes.currentIndex, probeNameText.text, firstNumber.text, secondNumber.text, pythonCodeProperty, currentProbe.probeFilePath)
-                        probes.saveToXml(listViewProbes.currentIndex, planetsItems, missionIndex, currentProbe.probeFilePath)
+                        if (typeMission) {
+                            probes.saveProbe(listViewProbes.currentIndex, probeNameText.text, firstNumber.text, secondNumber.text, pythonCodeProperty, currentProbe.probeFilePath)
+                            probes.saveToXml(listViewProbes.currentIndex, planetsItems, missionIndex, currentProbe.probeFilePath)
+                        } else {
+                            earthProbes.saveEarthProbe(listViewEarthProbes.currentIndex, probeNameText.text, fuelTextInput.text, voltageTextInput.text,
+                                                       xz_yz_solar_id.text, xz_yz_radiator_id.text, xy_radiator_id.text);
+                        }
                     }
                 }
             }
@@ -465,6 +470,7 @@ ApplicationWindow  {
                         }
                     }
                 }
+
                 GroupBox {
                     Layout.preferredWidth: parent.width
                     Layout.preferredHeight: 140
@@ -576,6 +582,179 @@ ApplicationWindow  {
 
 
                 }
+
+                GroupBox {
+                    Layout.preferredWidth: parent.width
+                    Layout.preferredHeight: 90
+                    title: qsTr("Общие параметры")
+                    visible: earthElementsVisible
+                    GridLayout {
+                        height: parent.height
+                        columns: 2
+                        rows: 2
+
+                        Text {
+                            text: "Кол-во топлива:"
+                            Layout.row: 0
+                            Layout.column: 0
+                        }
+
+                        TextInput {
+                            id: fuelTextInput
+                            Layout.row: 0
+                            Layout.column: 1
+                            width: 200
+                            height: 10
+                            enabled: itemsEnabled
+
+                            onTextChanged: {
+                                if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(fuelTextInput.text)) {
+                                    fuelTextInput.text = fuelTextInput.text.replace(new RegExp("[^\\d.\\-]", "g"), "");
+                                }
+                            }
+
+                            property string placeholderText: "Введите число..."
+
+                            Text {
+                                text: fuelTextInput.placeholderText
+                                color: "#aaa"
+                                visible: !fuelTextInput.text
+                            }
+                        }
+
+                        Text {
+                            text: "Вольтаж:"
+                            Layout.row: 1
+                            Layout.column: 0
+                        }
+
+                        TextInput {
+                            id: voltageTextInput
+                            Layout.row: 1
+                            Layout.column: 1
+                            width: 200
+                            height: 10
+                            enabled: itemsEnabled
+
+                            onTextChanged: {
+                                if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(voltageTextInput.text)) {
+                                    voltageTextInput.text = voltageTextInput.text.replace(new RegExp("[^\\d.\\-]", "g"), "");
+                                }
+                            }
+
+                            property string placeholderText: "Введите число..."
+
+                            Text {
+                                text: voltageTextInput.placeholderText
+                                color: "#aaa"
+                                visible: !voltageTextInput.text
+                            }
+                        }
+
+                    }
+
+                }
+
+                GroupBox {
+                    Layout.preferredWidth: parent.width
+                    Layout.preferredHeight: 120
+                    title: qsTr("Общие параметры долей")
+                    visible: earthElementsVisible
+
+                    GridLayout {
+                        height: parent.height
+                        columns: 2
+                        rows: 3
+
+                        Text {
+                            text: "Солнечная панель (Ось: XZ YZ):"
+                            Layout.row: 0
+                            Layout.column: 0
+                        }
+
+                        TextInput {
+                            id: xz_yz_solar_id
+                            Layout.row: 0
+                            Layout.column: 1
+                            width: 200
+                            height: 10
+                            enabled: itemsEnabled
+
+                            onTextChanged: {
+                                if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(xz_yz_solar_id.text)) {
+                                    xz_yz_solar_id.text = xz_yz_solar_id.text.replace(new RegExp("[^\\d.\\-]", "g"), "");
+                                }
+                            }
+
+                            property string placeholderText: "Введите число..."
+
+                            Text {
+                                text: xz_yz_solar_id.placeholderText
+                                color: "#aaa"
+                                visible: !xz_yz_solar_id.text
+                            }
+                        }
+
+                        Text {
+                            text: "Радиатор (Ось: XZ YZ):"
+                            Layout.row: 1
+                            Layout.column: 0
+                        }
+
+                        TextInput {
+                            id: xz_yz_radiator_id
+                            Layout.row: 1
+                            Layout.column: 1
+                            width: 200
+                            height: 10
+                            enabled: itemsEnabled
+
+                            onTextChanged: {
+                                if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(xz_yz_radiator_id.text)) {
+                                    xz_yz_radiator_id.text = xz_yz_radiator_id.text.replace(new RegExp("[^\\d.\\-]", "g"), "");
+                                }
+                            }
+
+                            property string placeholderText: "Введите число..."
+
+                            Text {
+                                text: xz_yz_radiator_id.placeholderText
+                                color: "#aaa"
+                                visible: !xz_yz_radiator_id.text
+                            }
+                        }
+
+                        Text {
+                            text: "Радиатор (Ось: XY):"
+                            Layout.row: 2
+                            Layout.column: 0
+                        }
+
+                        TextInput {
+                            id: xy_radiator_id
+                            Layout.row: 2
+                            Layout.column: 1
+                            width: 200
+                            height: 10
+                            enabled: itemsEnabled
+
+                            onTextChanged: {
+                                if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(xy_radiator_id.text)) {
+                                    xy_radiator_id.text = xy_radiator_id.text.replace(new RegExp("[^\\d.\\-]", "g"), "");
+                                }
+                            }
+
+                            property string placeholderText: "Введите число..."
+
+                            Text {
+                                text: xy_radiator_id.placeholderText
+                                color: "#aaa"
+                                visible: !xy_radiator_id.text
+                            }
+                        }
+                    }
+                }
+
 
                 GroupBox {
                     Layout.preferredWidth: parent.width

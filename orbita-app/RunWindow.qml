@@ -84,7 +84,7 @@ Window  {
                        id: startButton
                        text: "Cтарт!"
                        onClicked: {
-                            simulationController.startSimulation(currentProbe.probeFilePath, settingsManager);
+                            simulationController.startSimulation(currentProbe.probeFilePath, settingsManager, typeMission);
                        }
 
                    }

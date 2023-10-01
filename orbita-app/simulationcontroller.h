@@ -36,7 +36,7 @@ public:
     QString getStandardError() const;
 
 public slots:
-    void startSimulation(QString probePath, SettingsManager *settingsManager);
+    void startSimulation(QString probePath, SettingsManager *settingsManager, bool typeMission);
     void stopSimulation();
     void processFinished(int exitCode, QProcess::ExitStatus exitStatus);
 

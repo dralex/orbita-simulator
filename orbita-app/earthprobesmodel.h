@@ -18,6 +18,11 @@ public:
         probeNumberRole = Qt::UserRole,
         probeNameRole,
         missionRole,
+        fuelRole,
+        voltageRole,
+        xz_yz_solarRole,
+        xz_yz_radiatorRole,
+        xy_radiatorRole,
         pythonCodeRole,
         filePathRole
     };

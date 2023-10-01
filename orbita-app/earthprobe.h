@@ -5,6 +5,7 @@
 #include <QVector>
 #include <QDebug>
 #include "earthprobedevices.h"
+#include "earthmissions.h"
 
 struct EarthProbeDeviceItem;
 
@@ -19,11 +20,18 @@ struct EarthProbeItem
     int probeNumber;
     QString probeName;
     QString missionName;
+    double fuel;
+    double voltage;
+    double xz_yz_solar_panel_fraction;
+    double xz_yz_radiator_fraction;
+    double xy_radiator_fraction;
     QVector<EarthProbeDeviceItem> devices;
     QString pythonCode;
     QVector<DiagrammPathes> diagrammPathes;
     QString filePath;
 };
+
+class EarthMissions;
 
 class EarthProbe : public QObject
 {
@@ -54,11 +62,14 @@ public slots:
     void appendEarthDevice(int probeIndex, QString deviceEngName, QString deviceName,  QString type, double mass, bool startMode);
     void removeEarthDevice(int probeIndex,int index);
 
+    void saveEarthProbe(int probeIndex, QString probeName, double fuel, double voltage,
+                        double xz_yz_solar_panel_fraction, double xz_yz_radiator_fraction, double xy_radiator_fraction);
+
     void appendDiagramm(int probeIndex, QString deviceEngName, QString path);
     void removeDiagramm(int probeIndex, QString deviceEngName);
 
     int size();
-//    void saveEarthProbeToXml();
+    void saveEarthProbeToXml(int probeIndex, EarthMissions *missions,  int missionIndex, const QString &filename);
 //    void loadEarthProbeFromXml(const QString &path);
 
 private:

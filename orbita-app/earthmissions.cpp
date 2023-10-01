@@ -53,7 +53,6 @@ void EarthMissions::loadMissions(const QString &filePath) {
 
             // TODO: Read other mission properties as needed, e.g., duration, image, achievements, generator, etc.
 
-            // Emit signals or append to mItems as required
             emit preEarthMissionsItemAppended();
 
             mItems.append(missionItem);
@@ -76,6 +75,15 @@ void EarthMissions::showMissions()
         qDebug()<<"Описание:"<<mItems[i].missionDescription;
 
     }
+}
+
+QString EarthMissions::getMissionEngName(QString missionName)
+{
+    for (int i = 0; i < mItems.size(); ++i)
+        if (mItems[i].missionName == missionName)
+            return mItems[i].missionEngName;
+
+    return "None";
 }
 
 int EarthMissions::size()

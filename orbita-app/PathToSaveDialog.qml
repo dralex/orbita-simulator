@@ -50,6 +50,13 @@ FileDialog {
             if (!earthDevices.size())
                 earthDevices.loadDevices((settingsManager.getEarthDevicesPath()));
             settingsFolderProbesPath = earthPathToLoad
+
+            if (checkAction) {
+                if (fileToSave) {
+                    earthProbes.saveEarthProbe(listViewEarthProbes.currentIndex, probeNameText.text, fuelTextInput.text, voltageTextInput.text,
+                                               xz_yz_solar_id.text, xz_yz_radiator_id.text, xy_radiator_id.text);
+                }
+            }
         }
 
 
