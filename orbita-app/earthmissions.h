@@ -15,6 +15,7 @@ struct ControlStations {
 
 struct Messages {
    int id;
+   int number;
    QVector<double> data;
    QVector<double> timeout;
    int msgto;
@@ -23,9 +24,16 @@ struct Messages {
 
 struct Missiles {
     int id;
+    int number;
     QVector<double> locatonAngle;
     QVector<double> launchTime;
+    int cooldown;
 
+};
+
+struct OnewayMessage {
+    int id;
+    QVector<double> length;
 };
 
 struct EarthMissionsItem {
@@ -37,11 +45,13 @@ struct EarthMissionsItem {
     QVector<ControlStations> controlStations;
     QVector<double> orbitData;
     QVector<double> precision;
-    QVector<double> lengthOfOnewayMessage;
+    QVector<OnewayMessage> onewayMessages;
+    QVector<Missiles> missiles;
+    QVector<Messages> messages;
     QVector<double> resolution;
-    QVector<double> start_angular_velocity;
-    QVector<double> target_angle;
-    QVector<double> target_orbit;
+    QVector<double> startAngularVelocity;
+    QVector<double> targetAngle;
+    QVector<double> targetOrbit;
     QVector<double> channel;
 };
 
