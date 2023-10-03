@@ -64,6 +64,7 @@ ApplicationWindow  {
     property string earthFolderProbesPath: ""
     property string earthFolderSimulation: ""
     property string earthFolderCalculatorPath: ""
+    property int earthMissionIndex: 0
 
     property string diagrammDeviceName: ""
 
@@ -709,7 +710,6 @@ ApplicationWindow  {
                             width: 200
                             height: 10
                             enabled: itemsEnabled
-
                             onTextChanged: {
                                 if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(xz_yz_radiator_id.text)) {
                                     xz_yz_radiator_id.text = xz_yz_radiator_id.text.replace(new RegExp("[^\\d.\\-]", "g"), "");

@@ -63,7 +63,7 @@ public:
 
     QVector<EarthMissionsItem> items() const;
 
-    bool setMissions(int index, const EarthMissionsItem &item);
+    bool setMissions(int index, const EarthMissionsItem &item);  
 
 public slots:
     void loadMissions(const QString &filePath);

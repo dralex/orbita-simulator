@@ -424,7 +424,6 @@ QString EarthMissions::getMissionEngName(QString missionName)
 
     return "None";
 }
-
 int EarthMissions::size()
 {
     return mItems.size();

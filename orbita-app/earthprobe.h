@@ -4,6 +4,7 @@
 #include <QObject>
 #include <QVector>
 #include <QDebug>
+#include <QRandomGenerator>
 #include "earthprobedevices.h"
 #include "earthmissions.h"
 

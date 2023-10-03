@@ -116,16 +116,38 @@ void EarthProbe::saveEarthProbeToXml(int probeIndex, EarthMissions *missions, in
     xmlWriter.writeAttribute("type", missions->items()[missionIndex].missionEngName);
 
     xmlWriter.writeStartElement("control_stations");
+    for (int i = 0; i < missions->items()[missionIndex].controlStations.size(); ++i) {
+        xmlWriter.writeStartElement("control_station");
+        xmlWriter.writeAttribute("name", missions->items()[missionIndex].controlStations[i].name);
 
-    // here needs a for cycle for set data of control stations
-    xmlWriter.writeStartElement("control_station");
-    xmlWriter.writeTextElement("location_angle", "data");
+        double fromValue = missions->items()[missionIndex].controlStations[i].fromToNumbers[0];
+        double toValue = missions->items()[missionIndex].controlStations[i].fromToNumbers[1];
+
+        qint64 randomValue = QRandomGenerator::global()->generate() % (static_cast<qint64>(toValue) - static_cast<qint64>(fromValue) + 1) + static_cast<qint64>(fromValue);
+
+        xmlWriter.writeTextElement("location_angle", QString::number(randomValue));
+
+        xmlWriter.writeEndElement();
+    }
     xmlWriter.writeEndElement();
 
     xmlWriter.writeEndElement();
-    xmlWriter.writeTextElement("duration", "data");
-    xmlWriter.writeTextElement("orbit", "data");
-    xmlWriter.writeTextElement("precision", "data");
+    xmlWriter.writeTextElement("duration",  QString::number(missions->items()[missionIndex].duration));
+
+    if (missions->items()[missionIndex].orbitData.size()) {
+        double fromValue = missions->items()[missionIndex].orbitData[0];
+        double toValue = missions->items()[missionIndex].orbitData[1];
+
+        qint64 randomValue = QRandomGenerator::global()->generate() % (static_cast<qint64>(toValue) - static_cast<qint64>(fromValue) + 1) + static_cast<qint64>(fromValue);
+        xmlWriter.writeTextElement("orbit", QString::number(randomValue));
+    }
+    if (missions->items()[missionIndex].precision.size()) {
+        double fromValue = missions->items()[missionIndex].precision[0];
+        double toValue = missions->items()[missionIndex].precision[1];
+
+        qint64 randomValue = QRandomGenerator::global()->generate() % (static_cast<qint64>(toValue) - static_cast<qint64>(fromValue) + 1) + static_cast<qint64>(fromValue);
+        xmlWriter.writeTextElement("precision", QString::number(randomValue));
+    }
     xmlWriter.writeTextElement("start_angular_velocity", "1.0");
     xmlWriter.writeTextElement("target_angle", "data");
     xmlWriter.writeTextElement("target_angle", "data");
