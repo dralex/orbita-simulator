@@ -40,12 +40,14 @@ class TestSmsMission(Mission):
         Mission.__init__(self, global_parameters)
         self.text = ''
 
-    def init(self, probe, initial_tick, lang):
+    def init(self, probes, initial_tick, lang):
         global _ # pylint: disable=W0603
         _ = lang
+        probe = probes.get()[0]
         self.text = _(probe.xml.flight.mission.oneway_message.text)
 
-    def step(self, probe, tick):
+    def step(self, probes, tick):
+        probe = probes.get()[0]
         radio = probe.systems[constants.SUBSYSTEM_RADIO]
 
         for gs in radio.sent_packets.keys():

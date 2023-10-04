@@ -31,7 +31,6 @@ from constants import * # pylint: disable=W0401,W0614
 import calcmodels.planet
 
 from logger import debug_log, error_log, mission_log, time_to_str
-from errors import CriticalError, Terminated, QuantityApparatusException
 from xmlconverters import ProbeLoader, ShortLogLoader
 from language import Language
 import sm.python_hsm
@@ -1158,8 +1157,10 @@ class Probes:
     def __init__(self, name, probefile, parameters, devices_map):
         probe = ProbeLoader.load_probe(Language, probefile)
 
+        names = ['a', 'b', 'c']
+
         wrapper_probe = WrapperProbe(
-                1,
+                names[0],
                 probe.flight,
                 probe.construction,
                 probe.systems,
@@ -1170,7 +1171,7 @@ class Probes:
         try:
             for i in range(len(probe.satellites.satellite)):
                 wrapper_probe = WrapperProbe(
-                    i + 2,
+                    names[i + 1],
                     probe.flight,
                     probe.satellites.satellite[i].construction,
                     probe.satellites.satellite[i].systems,

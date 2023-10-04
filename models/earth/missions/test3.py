@@ -43,9 +43,10 @@ class TestOrbitMission(Mission):
         self.orbit_start_angle = None
         self.orbit_start_time = None
 
-    def init(self, probe, initial_tick, lang):
+    def init(self, probes, initial_tick, lang):
         global _ # pylint: disable=W0603
         _ = lang
+        probe = probes.get()[0]
 
         navig = probe.systems[constants.SUBSYSTEM_NAVIGATION]
 
@@ -58,7 +59,8 @@ class TestOrbitMission(Mission):
         self.orbit_start_angle = None
         self.orbit_start_time = None
 
-    def step(self, probe, tick):
+    def step(self, probes, tick):
+        probe = probes.get()[0]
         navig = probe.systems[constants.SUBSYSTEM_NAVIGATION]
         engine = probe.systems[constants.SUBSYSTEM_ENGINE]
 

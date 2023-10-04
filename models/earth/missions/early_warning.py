@@ -56,9 +56,10 @@ class EarlyWarningMission(Mission):
         self.missiles_intercepted = 0
         self.max_detection_delay = 0.0
 
-    def init(self, probe, initial_tick, lang):
+    def init(self, probes, initial_tick, lang):
         global _ # pylint: disable=W0603
         _ = lang
+        probe = probes.get()[0]
 
         orient = probe.systems[constants.SUBSYSTEM_ORIENTATION]
         orient.planet_rotation = True
@@ -83,7 +84,8 @@ class EarlyWarningMission(Mission):
 
         self.max_detection_delay = 0.0
 
-    def step(self, probe, tick):
+    def step(self, probes, tick):
+        probe = probes.get()[0]
         navig = probe.systems[constants.SUBSYSTEM_NAVIGATION]
         orient = probe.systems[constants.SUBSYSTEM_ORIENTATION]
         radio = probe.systems[constants.SUBSYSTEM_RADIO]

@@ -133,7 +133,7 @@ def run(probename, probefile, missionfile, debugfile, shortfile, #pylint: disabl
                 for m in models_lst[probe]:
                     m.init_model(probe, tick_length, probes)
 
-            mission.init(probes.get()[0], tick_length, Language.get_tr())
+            mission.init(probes, tick_length, Language.get_tr())
 
             simulation_time = 0.0
             iteration = 0
@@ -145,7 +145,7 @@ def run(probename, probefile, missionfile, debugfile, shortfile, #pylint: disabl
                     for m in models_lst[probe]:
                         m.step(probe, tick_length, probes)
 
-                    mission.step(probe, tick_length)
+                    mission.step(probes, tick_length)
 
                     probe.update_mass()
 

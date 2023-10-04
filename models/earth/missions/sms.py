@@ -41,9 +41,10 @@ class SmsMission(Mission):
         Mission.__init__(self, global_parameters)
         self.sms_messages = None
 
-    def init(self, probe, initial_tick, lang):
+    def init(self, probes, initial_tick, lang):
         global _ # pylint: disable=W0603
         _ = lang
+        probe = probes.get()[0]
 
         radio = probe.systems[constants.SUBSYSTEM_RADIO]
 
@@ -68,7 +69,8 @@ class SmsMission(Mission):
         msgfrom, msgto, text, duration = self.sms_messages[0][0:4]
         radio.receive_data(msgfrom, len(text), (probe.mission, msgto, text, duration))
 
-    def step(self, probe, tick):
+    def step(self, probes, tick):
+        probe = probes.get()[0]
         radio = probe.systems[constants.SUBSYSTEM_RADIO]
 
         for gs in radio.received_packets.keys():

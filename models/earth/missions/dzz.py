@@ -49,9 +49,10 @@ class DzzMission(Mission):
         self.target_y = None
         self.target_z = None
 
-    def init(self, probe, initial_tick, lang):
+    def init(self, probes, initial_tick, lang):
         global _ # pylint: disable=W0603
         _ = lang
+        probe = probes.get()[0]
 
         planet_params = self.params.Planets[probe.planet]
 
@@ -62,7 +63,8 @@ class DzzMission(Mission):
         self.target_y = self.target_height * math.cos(angle_rad)
         self.target_z = 0
 
-    def step(self, probe, tick):
+    def step(self, probes, tick):
+        probe = probes.get()[0]
         navig = probe.systems[constants.SUBSYSTEM_NAVIGATION]
         orient = probe.systems[constants.SUBSYSTEM_ORIENTATION]
         radio = probe.systems[constants.SUBSYSTEM_RADIO]
