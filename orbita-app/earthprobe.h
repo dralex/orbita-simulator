@@ -44,6 +44,8 @@ public:
 
     bool setEarthProbe(int index, const EarthProbeItem &item);
 
+    qint64 generateData(QVector<double>);
+
 signals:
     void preEarthProbeAppended();
     void postEarthProbeAppended();
