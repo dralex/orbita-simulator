@@ -132,11 +132,35 @@ void EarthProbe::saveEarthProbeToXml(int probeIndex, EarthMissions *missions, in
     xmlWriter.writeEndElement();
     xmlWriter.writeTextElement("duration",  QString::number(missionItem.duration));
 
+    if (missionItem.onewayMessages.size()) {
+        for (int i = 0; i < missionItem.onewayMessages.size(); ++i) {
+            xmlWriter.writeTextElement("oneway_message", "some_text");
+        }
+    }
+
     if (missionItem.messages.size()) {
         xmlWriter.writeStartElement("messages");
 
         for (int i = 0; i < missionItem.messages.size(); ++i) {
             xmlWriter.writeStartElement("message");
+
+            xmlWriter.writeAttribute("order", "some_order");
+            xmlWriter.writeAttribute("msgfrom", QString::number(missionItem.messages[i].msgfrom));
+            xmlWriter.writeAttribute("msgto", QString::number(missionItem.messages[i].msgto));
+            xmlWriter.writeAttribute("data", QString::number(generateData(missionItem.messages[i].data)));
+            xmlWriter.writeAttribute("duration", QString::number(generateData(missionItem.messages[i].timeout)));
+
+            xmlWriter.writeEndElement();
+        }
+
+        xmlWriter.writeEndElement();
+    }
+
+    if (missionItem.missiles.size()) {
+        xmlWriter.writeStartElement("missiles");
+
+        for (int i = 0; i < missionItem.missiles.size(); ++i) {
+            xmlWriter.writeStartElement("missile");
 
             xmlWriter.writeEndElement();
         }
