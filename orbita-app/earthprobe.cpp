@@ -161,7 +161,12 @@ void EarthProbe::saveEarthProbeToXml(int probeIndex, EarthMissions *missions, in
 
         for (int i = 0; i < missionItem.missiles.size(); ++i) {
             xmlWriter.writeStartElement("missile");
+            xmlWriter.writeAttribute("index", QString::number(missionItem.missiles[i].id + 1));
 
+            xmlWriter.writeTextElement("location_angle",
+                                       QString::number(generateData(missionItem.missiles[i].locatonAngle)));
+            xmlWriter.writeTextElement("launch_time",
+                                       QString::number(generateData(missionItem.missiles[i].launchTime)));
             xmlWriter.writeEndElement();
         }
 
@@ -242,6 +247,69 @@ void EarthProbe::saveEarthProbeToXml(int probeIndex, EarthMissions *missions, in
     xmlWriter.writeEndDocument();
 
     file.close();
+}
+
+void EarthProbe::loadEarthProbeFromXml(const QString &path, EarthDevices *systems) {
+    QFile file(path);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        qDebug() << "Не удалось открыть XML файл для чтения: " << file.errorString();
+        return;
+    }
+
+    QXmlStreamReader xmlReader(&file);
+
+    EarthProbeItem probeItem;
+     QVector<DiagrammPathes> diagrammPathes;
+     QString pythonCode;
+     QVector<EarthProbeDeviceItem> devices;
+
+     while (!xmlReader.atEnd() && !xmlReader.hasError()) {
+         xmlReader.readNext();
+         if (xmlReader.isStartElement()) {
+             QString elementName = xmlReader.name().toString();
+
+             if (elementName == "probe") {
+                 probeItem.probeName = xmlReader.attributes().value("name").toString();
+             } else if (elementName == "fuel") {
+                 probeItem.fuel = xmlReader.readElementText().toDouble();
+             } else if (elementName == "voltage") {
+                 probeItem.voltage = xmlReader.readElementText().toDouble();
+             } else if (elementName == "xz_yz_solar_panel_fraction") {
+                 probeItem.xz_yz_solar_panel_fraction = xmlReader.readElementText().toDouble();
+             } else if (elementName == "xz_yz_radiator_fraction") {
+                 probeItem.xz_yz_radiator_fraction = xmlReader.readElementText().toDouble();
+             } else if (elementName == "xy_radiator_fraction") {
+                 probeItem.xy_radiator_fraction = xmlReader.readElementText().toDouble();
+             } else if (elementName == "system") {
+                 EarthProbeDeviceItem deviceItem;
+
+                 deviceItem.deviceEngName = xmlReader.attributes().value("name").toString();
+                 deviceItem.deviceName = deviceItem.deviceEngName;
+                 deviceItem.type = xmlReader.attributes().value("type").toString();
+                 deviceItem.mass = systems->getMass(deviceItem.deviceName);
+                 if (xmlReader.attributes().value("start_mode").toString() == "ON")
+                    deviceItem.startMode = true;
+                 else
+                     deviceItem.startMode = false;
+
+                 devices.append(deviceItem);
+             } else if (elementName == "program" && xmlReader.isCDATA()) {
+                 pythonCode = xmlReader.text().toString();
+             }
+         }
+     }
+
+     if (xmlReader.hasError()) {
+         qDebug() << "Ошибка при разборе XML файла: " << xmlReader.errorString();
+     }
+
+     file.close();
+     probeItem.diagrammPathes = diagrammPathes;
+     probeItem.pythonCode = pythonCode;
+     mItems.append(probeItem);
+
+     // Добавьте полученные данные в структуру устройств
+     mItems[index].devices = devices;
 }
 
 qint64 EarthProbe::generateData(QVector<double> data) {

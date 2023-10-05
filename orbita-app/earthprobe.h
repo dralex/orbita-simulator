@@ -7,6 +7,7 @@
 #include <QRandomGenerator>
 #include "earthprobedevices.h"
 #include "earthmissions.h"
+#include "earthdevices.h"
 
 struct EarthProbeDeviceItem;
 
@@ -33,6 +34,7 @@ struct EarthProbeItem
 };
 
 class EarthMissions;
+class EarthDevices;
 
 class EarthProbe : public QObject
 {
@@ -43,8 +45,6 @@ public:
     QVector<EarthProbeItem> items() const;
 
     bool setEarthProbe(int index, const EarthProbeItem &item);
-
-    qint64 generateData(QVector<double>);
 
 signals:
     void preEarthProbeAppended();
@@ -73,9 +73,10 @@ public slots:
 
     int size();
     void saveEarthProbeToXml(int probeIndex, EarthMissions *missions,  int missionIndex, const QString &filename);
-//    void loadEarthProbeFromXml(const QString &path);
+    void loadEarthProbeFromXml(const QString &path, EarthDevices *systems);
 
 private:
+    qint64 generateData(QVector<double>);
     QVector<EarthProbeItem> mItems;
 };
 
