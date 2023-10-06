@@ -3,7 +3,7 @@ import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 
-import EarthDevicesModel 1.0
+import EarthSystemsModel 1.0
 
 Dialog  {
     id: deviceEarthDialog
@@ -42,9 +42,9 @@ Dialog  {
                 Layout.column: 1
                 editable: false
                 currentIndex: 0
-                model: EarthDevicesModel {
+                model: EarthSystemsModel {
                     id: modelDevice
-                    list: earthDevices
+                    list: systems
                 }
                 onAccepted: {
                     if (find(editText) === -1)
@@ -100,20 +100,20 @@ Dialog  {
                         startMode = true
                     else
                         startMode = false
-                    if (earthProbeDevices.checkUniqueType(earthDevices.getType(deviceEarthBox.currentValue))) {
-                        errorDialog.textOfError = `Вы уже добавили подсистему типа: ${earthDevices.getType(deviceEarthBox.currentValue)}.`
+                    if (earthProbeSystems.checkUniqueType(systems.getType(deviceEarthBox.currentValue))) {
+                        errorDialog.textOfError = `Вы уже добавили подсистему типа: ${systems.getType(deviceEarthBox.currentValue)}.`
                         errorDialog.open()
                         return
                     } else {
-                        earthProbeDevices.appendEarthDevice(earthProbes,
+                        earthProbeSystems.appendEarthSystem(earthProbes,
                                                             listViewEarthProbes.currentIndex,
-                                                            earthDevices.getDeviceEngName(deviceEarthBox.currentValue),
+                                                            systems.getSystemsEngName(deviceEarthBox.currentValue),
                                                             deviceEarthBox.currentValue,
-                                                            earthDevices.getType(deviceEarthBox.currentValue),
-                                                            earthDevices.getMass(deviceEarthBox.currentValue),
+                                                            systems.getType(deviceEarthBox.currentValue),
+                                                            systems.getMass(deviceEarthBox.currentValue),
                                                             startMode)
 
-                        listViewEarthDevices.currentIndex = earthProbeDevices.size() - 1
+                        systems.currentIndex = earthProbeSystems.size() - 1
 
                         deviceEarthBox.currentIndex = 0
                         startStateEarthBox.currentIndex = 0

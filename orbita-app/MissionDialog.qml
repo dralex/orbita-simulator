@@ -177,7 +177,7 @@ Dialog  {
                                     xz_yz_solar_id.text = `${currentProbe.xz_yz_solar}`
                                     xz_yz_radiator_id.text `${currentProbe.xz_yz_radiator}`
                                     xy_radiator_id.text = `${currentProbe.xy_radiator}`
-                                    earthProbeDevices.changeEarthDevices(earthProbes, listViewEarthProbes.currentIndex)
+                                    earthProbeSystems.changeEarthSystems(earthProbes, listViewEarthProbes.currentIndex)
 
                                     gBEPythonCode.visible = true
                                     earthPythonCodeProperty = currentProbe.pythonCode
@@ -198,7 +198,7 @@ Dialog  {
 //                                xz_yz_solar_id.text = `${currentProbe.xz_yz_solar}`
 //                                xz_yz_radiator_id.text `${currentProbe.xz_yz_radiator}`
 //                                xy_radiator_id.text = `${currentProbe.xy_radiator}`
-                                earthProbeDevices.changeEarthDevices(earthProbes, listViewEarthProbes.currentIndex)
+                                earthProbeSystems.changeEarthSystems(earthProbes, listViewEarthProbes.currentIndex)
 
                                 gBEPythonCode.visible = false
                                 showDiagrammButton = true

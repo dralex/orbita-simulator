@@ -45,7 +45,17 @@ FileDialog {
                 showDiagrammButton = false
             }
         } else {
+            earthProbes.loadEarthProbeFromXml(fileToLoad, systems);
+            listViewEarthProbes.currentIndex = earthProbes.size() - 1
+            currentProbe = listViewEarthProbes.currentItem.earthProbesModelData
 
+            earthProbeSystems.changeEarthSystems(earthProbes, listViewEarthProbes.currentIndex)
+            probeNameText.text = `${currentProbe.probeName}`
+            fuelTextInput.text = `${currentProbe.fuel}`
+            voltageTextInput.text = `${currentProbe.voltage}`
+            xz_yz_solar_id.text = `${currentProbe.xz_yz_solar}`
+//            xz_yz_radiator_id.text `${currentProbe.xz_yz_radiator}`
+            xy_radiator_id.text = `${currentProbe.xy_radiator}`
         }
 
 

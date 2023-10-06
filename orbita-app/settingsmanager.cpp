@@ -165,12 +165,12 @@ void SettingsManager::setEarthProbesPath(const QString &path)
     earthProbesPath = path;
 }
 
-const QString SettingsManager::getEarthDevicesPath() const
+const QString SettingsManager::getEarthSystemsPath() const
 {
     return earthDevicesPath;
 }
 
-void SettingsManager::setEarthDevicesPath(const QString &path)
+void SettingsManager::setEarthSystemsPath(const QString &path)
 {
     earthDevicesPath = path;
 }

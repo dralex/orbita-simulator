@@ -1,12 +1,12 @@
-#include "earthprobesdevicesmodel.h"
+#include "systemsprobemodel.h"
 
-EarthProbesDevicesModel::EarthProbesDevicesModel(QObject *parent)
+SystemsProbeModel::SystemsProbeModel(QObject *parent)
     : QAbstractListModel(parent)
     , mList (nullptr)
 {
 }
 
-int EarthProbesDevicesModel::rowCount(const QModelIndex &parent) const
+int SystemsProbeModel::rowCount(const QModelIndex &parent) const
 {
     if (parent.isValid() || !mList)
         return 0;
@@ -14,16 +14,16 @@ int EarthProbesDevicesModel::rowCount(const QModelIndex &parent) const
     return mList->items().size();
 }
 
-QVariant EarthProbesDevicesModel::data(const QModelIndex &index, int role) const
+QVariant SystemsProbeModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid() || !mList)
         return QVariant();
 
-    const EarthProbeDeviceItem item = mList->items().at(index.row());
+    const SystemItem item = mList->items().at(index.row());
 
     switch (role) {
-    case deviceNameRole:
-        return QVariant(item.deviceName);
+    case systemNameRole:
+        return QVariant(item.systemName);
     case massRole:
         return QVariant(item.mass);
     case startModeRole:
@@ -35,15 +35,15 @@ QVariant EarthProbesDevicesModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-bool EarthProbesDevicesModel::setData(const QModelIndex &index, const QVariant &value, int role)
+bool SystemsProbeModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     if (!mList)
         return false;
 
-    EarthProbeDeviceItem item = mList->items().at(index.row());
+    SystemItem item = mList->items().at(index.row());
     switch (role) {
-    case deviceNameRole:
-        item.deviceName = value.toString();
+    case systemNameRole:
+        item.systemName = value.toString();
         break;
     case massRole:
         item.mass = value.toDouble();
@@ -53,14 +53,14 @@ bool EarthProbesDevicesModel::setData(const QModelIndex &index, const QVariant &
         break;
     }
 
-    if (mList->setEarthProbesDevices(index.row(), item)) {
+    if (mList->setEarthProbesSystems(index.row(), item)) {
         emit dataChanged(index, index, QVector<int>() << role);
         return true;
     }
     return false;
 }
 
-Qt::ItemFlags EarthProbesDevicesModel::flags(const QModelIndex &index) const
+Qt::ItemFlags SystemsProbeModel::flags(const QModelIndex &index) const
 {
     if (!index.isValid())
         return Qt::NoItemFlags;
@@ -68,21 +68,21 @@ Qt::ItemFlags EarthProbesDevicesModel::flags(const QModelIndex &index) const
     return Qt::ItemIsEditable;
 }
 
-QHash<int, QByteArray> EarthProbesDevicesModel::roleNames() const
+QHash<int, QByteArray> SystemsProbeModel::roleNames() const
 {
     QHash<int, QByteArray> names;
-    names[deviceNameRole] = "deviceName";
+    names[systemNameRole] = "systemName";
     names[massRole] = "mass";
     names[startModeRole] = "startMode";
     return names;
 }
 
-EarthProbeDevices *EarthProbesDevicesModel::list() const
+SystemProbe *SystemsProbeModel::list() const
 {
     return mList;
 }
 
-void EarthProbesDevicesModel::setList(EarthProbeDevices *list)
+void SystemsProbeModel::setList(SystemProbe *list)
 {
     beginResetModel();
 
@@ -92,18 +92,18 @@ void EarthProbesDevicesModel::setList(EarthProbeDevices *list)
     mList = list;
 
     if (mList) {
-        connect(mList, &EarthProbeDevices::preEarthProbeDeviceAppended, this, [=] () {
+        connect(mList, &SystemProbe::preEarthProbeSystemsAppended, this, [=] () {
             const int index = mList->items().size();
             beginInsertRows(QModelIndex(), index, index);
         });
-        connect(mList, &EarthProbeDevices::postEarthProbeDeviceAppended, this, [=] () {
+        connect(mList, &SystemProbe::postEarthProbeSystemsAppended, this, [=] () {
             endInsertRows();
         });
 
-        connect(mList, &EarthProbeDevices::preEarthProbeDeviceRemoved, this, [=] (int index) {
+        connect(mList, &SystemProbe::preEarthProbeSystemsRemoved, this, [=] (int index) {
             beginRemoveRows(QModelIndex(), index, index);
         });
-        connect(mList, &EarthProbeDevices::postEarthProbeDeviceRemoved, this, [=] () {
+        connect(mList, &SystemProbe::postEarthProbeSystemsRemoved, this, [=] () {
             endRemoveRows();
         });
     }

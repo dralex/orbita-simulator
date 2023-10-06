@@ -4,7 +4,6 @@ SimulationController::SimulationController(QObject *parent) : QObject(parent)
 {
     simulationProcess = new QProcess(this);
 
-    // Связываем сигнал finished() с обработчиком processFinished
     connect(simulationProcess, SIGNAL(finished(int, QProcess::ExitStatus)), this, SLOT(processFinished(int, QProcess::ExitStatus)));
 }
 
@@ -66,11 +65,11 @@ void SimulationController::startSimulation(QString probePath, SettingsManager *s
     arguments << simulationPath << currentProbePath
               << "--mission-log=" + infoFolderPath + "/telemetry.log"
               << "--image=" + infoFolderPath + "/.";
-    qDebug()<<QSysInfo::productType();
     if (QSysInfo::productType() == "windows")
         process = "python";
     else
         process = "python3";
+
     simulationProcess->start(process, arguments);
 }
 

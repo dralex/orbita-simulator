@@ -1,22 +1,22 @@
-#include "earthdevices.h"
+#include "systems.h"
 
-EarthDevices::EarthDevices(QObject *parent)
+Systems::Systems(QObject *parent)
     : QObject{parent}
 {
 
 }
 
-QVector<EarthDevicesItem> EarthDevices::items() const
+QVector<EarthSystemItem> Systems::items() const
 {
     return mItems;
 }
 
-bool EarthDevices::setEarthDevices(int index, const EarthDevicesItem &item)
+bool Systems::setEarthSystems(int index, const EarthSystemItem &item)
 {
     if (index < 0 || index >= mItems.size())
         return false;
 
-    const EarthDevicesItem &olditem = mItems.at(index);
+    const EarthSystemItem &olditem = mItems.at(index);
     if (item.id == olditem.id)
         return false;
 
@@ -24,7 +24,7 @@ bool EarthDevices::setEarthDevices(int index, const EarthDevicesItem &item)
     return true;
 }
 
-void EarthDevices::loadDevices(const QString &filePath) {
+void Systems::loadSystems(const QString &filePath) {
     QFile file(filePath);
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -41,12 +41,12 @@ void EarthDevices::loadDevices(const QString &filePath) {
                 xmlReader.readNext();
 
                 if (xmlReader.isStartElement() && xmlReader.name() == "device") {
-                    EarthDevicesItem devicesItemXml;
+                    EarthSystemItem devicesItemXml;
 
                     QXmlStreamAttributes attributes = xmlReader.attributes();
                     devicesItemXml.id = mItems.size();
-                    devicesItemXml.deviceEngName = attributes.value("name").toString();
-                    devicesItemXml.deviceName = attributes.value("full_name").toString();
+                    devicesItemXml.systemEngName = attributes.value("name").toString();
+                    devicesItemXml.systemName = attributes.value("full_name").toString();
 
                     while (!(xmlReader.isEndElement() && xmlReader.name() == "device")) {
                         xmlReader.readNext();
@@ -60,11 +60,11 @@ void EarthDevices::loadDevices(const QString &filePath) {
                         }
                     }
 
-                    emit preEarthDeviceAppended();
+                    emit preEarthSystemAppended();
 
                     mItems.append(devicesItemXml);
 
-                    emit postEarthDeviceAppended();
+                    emit postEarthSystemAppended();
 
                     while (!(xmlReader.isEndElement() && xmlReader.name() == "device")) {
                         xmlReader.readNext();
@@ -84,42 +84,51 @@ void EarthDevices::loadDevices(const QString &filePath) {
 }
 
 
-void EarthDevices::showDevices()
+void Systems::showSystems()
 {
     for (int i = 0; i < mItems.size(); ++i) {
-        qDebug()<<"Названия:"<<mItems[i].deviceName;
+        qDebug()<<"Названия:"<<mItems[i].systemName;
         qDebug()<<"Масса:"<<mItems[i].mass;
     }
 }
 
-QString EarthDevices::getDeviceEngName(QString deviceName)
+QString Systems::getSystemsEngName(QString systemName)
 {
     for (int i = 0; i < mItems.size(); ++i) {
-        if (mItems[i].deviceName == deviceName)
-            return mItems[i].deviceEngName;
+        if (mItems[i].systemName == systemName)
+            return mItems[i].systemEngName;
     }
     return "None";
 }
 
-QString EarthDevices::getType(QString deviceName)
+QString Systems::getSystemNameByEng(QString systemEngName)
 {
     for (int i = 0; i < mItems.size(); ++i) {
-        if (mItems[i].deviceName == deviceName)
+        if (mItems[i].systemEngName == systemEngName)
+            return mItems[i].systemName;
+    }
+    return "None";
+}
+
+QString Systems::getType(QString systemName)
+{
+    for (int i = 0; i < mItems.size(); ++i) {
+        if (mItems[i].systemName == systemName)
             return mItems[i].type;
     }
     return "None";
 }
 
-double EarthDevices::getMass(QString deviceName)
+double Systems::getMass(QString systemName)
 {
     for (int i = 0; i < mItems.size(); ++i) {
-        if (mItems[i].deviceName == deviceName)
+        if (mItems[i].systemName == systemName)
             return mItems[i].mass;
     }
     return 0.0;
 }
 
-int EarthDevices::size()
+int Systems::size()
 {
     return mItems.size();
 }

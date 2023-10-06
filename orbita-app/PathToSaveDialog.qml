@@ -47,8 +47,8 @@ FileDialog {
             earthPathToLoad = settingsManager.getEarthProbesPath()
             if (!earthMissions.size())
                 earthMissions.loadMissions(settingsManager.getMissionsPath());
-            if (!earthDevices.size())
-                earthDevices.loadDevices((settingsManager.getEarthDevicesPath()));
+            if (!systems.size())
+                systems.loadSystems((settingsManager.getEarthSystemsPath()));
             settingsFolderProbesPath = earthPathToLoad
 
             if (checkAction) {

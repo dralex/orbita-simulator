@@ -3,14 +3,14 @@
 
 #include <QAbstractListModel>
 
-#include "earthprobedevices.h"
+#include "systemprobe.h"
 
-class EarthProbeDevices;
+class SystemProbe;
 
 class ComboBoxEarthDevices : public QAbstractListModel
 {
     Q_OBJECT
-    Q_PROPERTY(EarthProbeDevices *list READ list WRITE setList)
+    Q_PROPERTY(SystemProbe *list READ list WRITE setList)
 public:
     explicit ComboBoxEarthDevices(QObject *parent = nullptr);
 
@@ -30,10 +30,10 @@ public:
 
     Qt::ItemFlags flags(const QModelIndex& index) const override;
     virtual QHash<int, QByteArray> roleNames() const override;
-    EarthProbeDevices *list() const;
-    void setList(EarthProbeDevices *list);
+    SystemProbe *list() const;
+    void setList(SystemProbe *list);
 private:
-    EarthProbeDevices *mList;
+    SystemProbe *mList;
 };
 
 #endif // COMBOBOXEARTHDEVICES_H

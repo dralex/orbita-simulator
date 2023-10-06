@@ -112,7 +112,7 @@ Dialog  {
                     earthFolderSimulation = settingsManager.getEarthSimulationPath()
                     earthFolderCalculatorPath = settingsManager.getEarthCalculatorPath()
                     settingsManager.setEarthSimulationPath(earthFolderSimulation);
-                    settingsManager.setEarthDevicesPath(earthFolderSimulation + "/devices-ru.xml")
+                    settingsManager.setEarthSystemsPath(earthFolderSimulation + "/devices-ru.xml")
                     settingsManager.setMissionsPath(earthFolderSimulation + "/missions-ru.xml")
                     settingsManager.setEarthCalculatorPath(earthFolderCalculatorPath)
                     settingsManager.saveSettingsToFile("earth_settings.txt", typeMission)

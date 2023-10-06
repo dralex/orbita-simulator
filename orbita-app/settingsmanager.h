@@ -17,8 +17,8 @@ public slots:
     const QString getEarthSimulationPath() const;
     void setEarthSimulationPath(const QString &path);
 
-    const QString getEarthDevicesPath() const;
-    void setEarthDevicesPath(const QString &path);
+    const QString getEarthSystemsPath() const;
+    void setEarthSystemsPath(const QString &path);
 
     const QString getEarthProbesPath() const;
     void setEarthProbesPath(const QString &path);

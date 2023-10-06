@@ -13,7 +13,7 @@ import PlanetsProbesDevicesModel 1.0
 import DevicesTableModel 1.0
 
 import EarthProbesModel 1.0
-import EarthProbesDevicesModel 1.0
+import SystemsProbeModel 1.0
 
 ApplicationWindow  {
     id: mainWindow
@@ -66,7 +66,7 @@ ApplicationWindow  {
     property string earthFolderCalculatorPath: ""
     property int earthMissionIndex: 0
 
-    property string diagrammDeviceName: ""
+    property string diagrammSystemName: ""
 
     property string settingsFolderSimulation: ""
     property string settingsFolderProbesPath: ""
@@ -211,7 +211,7 @@ ApplicationWindow  {
                                 currentProbe = listViewEarthProbes.currentItem.earthProbesModelData
 
                                 probeNameText.text = `${model.probeName}`
-                                earthProbeDevices.changeEarthDevices(earthProbes, index)
+                                earthProbeSystems.changeEarthSystems(earthProbes, index)
 
                                 if (currentProbe.pythonCode) {
                                     gBEPythonCode.visible = true
@@ -322,6 +322,21 @@ ApplicationWindow  {
                         }
                     } else {
                         settingsManager.loadSettingsFromFile("earth_settings.txt", typeMission);
+                        earthPathToLoad = settingsManager.getEarthProbesPath()
+                        earthPathToSave = settingsManager.getEarthProbesPath()
+                        folderCalculatorPath = settingsManager.getEarthCalculatorPath()
+
+                        if (!earthMissions.size())
+                            earthMissions.loadMissions(settingsManager.getMissionsPath());
+                        if (!systems.size())
+                            systems.loadSystems((settingsManager.getEarthSystemsPath()));
+
+                        if (systems.size() > 0) {
+                            pathToLoadDialog.open()
+                        } else {
+                            errorDialog.textOfError = "Выберите папку с симулятором в настройках."
+                            errorDialog.open()
+                        }
                     }
                 }
             }
@@ -335,7 +350,7 @@ ApplicationWindow  {
                 anchors.bottomMargin: 30
                 onClicked: {
                     if (settingsManager.checkSimulationFile(settingsManager.getSimulationPath() + "/simulation.py")) {
-                        settingsManager.saveSettingsToFile("planets_settings.txt");
+                        settingsManager.saveSettingsToFile("planets_settings.txt", typeMission);
                         pathToSave = settingsManager.getPlanetsProbesPath()
                         pathToLoad = settingsManager.getPlanetsProbesPath()
                         runWindow.visibility = 1
@@ -710,6 +725,7 @@ ApplicationWindow  {
                             width: 200
                             height: 10
                             enabled: itemsEnabled
+
                             onTextChanged: {
                                 if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(xz_yz_radiator_id.text)) {
                                     xz_yz_radiator_id.text = xz_yz_radiator_id.text.replace(new RegExp("[^\\d.\\-]", "g"), "");
@@ -766,14 +782,14 @@ ApplicationWindow  {
                     RowLayout {
                         anchors.fill: parent
                         ListView {
-                            id: listViewEarthDevices
+                            id: listViewEarthSystems
                             width: parent.width - devicesButtons.width
                             height: parent.height
                             clip: true
                             enabled: itemsEnabled
                             visible: earthElementsVisible
-                            model: EarthProbesDevicesModel {
-                                list: earthProbeDevices
+                            model: SystemsProbeModel {
+                                list: earthProbeSystems
                             }
 
 
@@ -790,18 +806,18 @@ ApplicationWindow  {
                             delegate: Item {
                                 property variant devicesModelData: model
 
-                                width: listViewEarthDevices.width - earthDevicesScrollBar.width
+                                width: listViewEarthSystems.width - earthDevicesScrollBar.width
                                 height: 80
                                 Rectangle {
                                     width: parent.width - devicesScrollBar.width
                                     height: parent.height - 5
-                                    color: listViewEarthDevices.currentIndex === index ** listViewEarthDevices.enabled? "lightblue" : "white"
+                                    color: listViewEarthSystems.currentIndex === index ** listViewEarthSystems.enabled? "lightblue" : "white"
                                     border.color: "grey"
 
                                     MouseArea {
                                         anchors.fill: parent
                                         onClicked: {
-                                            listViewEarthDevices.currentIndex = index
+                                            listViewEarthSystems.currentIndex = index
                                         }
                                     }
                                 }
@@ -813,15 +829,15 @@ ApplicationWindow  {
 
 
                                     Text {
-                                        width: listViewEarthDevices.width - devicesEarthButtons.width
-                                        text: index >= 0 && index < listViewEarthDevices.count && model.deviceName ? '<b>Название:</b> ' + model.deviceName : "<b>Название:</b> None"
+                                        width: listViewEarthSystems.width - systemsEarthButtons.width
+                                        text: index >= 0 && index < listViewEarthSystems.count && model.systemName ? '<b>Название:</b> ' + model.systemName : "<b>Название:</b> None"
                                         wrapMode: Text.WordWrap
                                     }
 
-                                    Text { text: index >= 0 && index < listViewEarthDevices.count && model.mass ? '<b>Масса:</b> ' + model.mass : "<b>Масса:</b> None" }
+                                    Text { text: index >= 0 && index < listViewEarthSystems.count && model.mass ? '<b>Масса:</b> ' + model.mass : "<b>Масса:</b> None" }
 
                                     Text {
-                                        text: index >= 0 && index < listViewEarthDevices.count ? '<b>Начальное состояние:</b> ' + model.startMode : ""
+                                        text: index >= 0 && index < listViewEarthSystems.count ? '<b>Начальное состояние:</b> ' + model.startMode : ""
                                     }
 
                                 }
@@ -829,19 +845,19 @@ ApplicationWindow  {
                         }
 
                         ColumnLayout {
-                            id: devicesEarthButtons
+                            id: systemsEarthButtons
                             visible: earthElementsVisible
                             Layout.preferredHeight: 23
                             Layout.preferredWidth: 80
                             Layout.alignment: Qt.AlignRight | Qt.AlignTop
                             Button {
-                                id: buttonAddEarthDevice
+                                id: buttonAddEarthSystem
                                 Layout.preferredHeight: 23
                                 Layout.preferredWidth: 80
                                 text: "Добавить"
                                 enabled: itemsEnabled
                                 onClicked: {
-                                    if (earthDevices.size()) {
+                                    if (systems.size()) {
                                         deviceEarthDialog.open()
                                     } else {
                                         errorDialog.textOfError = "Выберите папку с симулятором в настройках."
@@ -851,15 +867,15 @@ ApplicationWindow  {
                             }
 
                             Button {
-                                id: buttonDeleteEarthDevice
+                                id: buttonDeleteEarthSystem
                                 Layout.preferredHeight: 23
                                 Layout.preferredWidth: 80
                                 text: "Удалить"
                                 enabled: itemsEnabled
                                 onClicked: {
-                                    if (earthDevices.size()) {
-                                        successDialog.message = `Успешно удалена подсистема ${listViewEarthDevices.currentItem.devicesModelData.deviceName}`
-                                        earthProbeDevices.removeEarthDevice(earthProbes, listViewEarthProbes.currentIndex, listViewEarthDevices.currentIndex)
+                                    if (systems.size()) {
+                                        successDialog.message = `Успешно удалена подсистема: ${listViewEarthSystems.currentItem.devicesModelData.systemName}`
+                                        earthProbeSystems.removeEarthSystem(earthProbes, listViewEarthProbes.currentIndex, listViewEarthSystems.currentIndex)
                                         successDialog.open()
                                     }
 
@@ -1172,7 +1188,7 @@ ApplicationWindow  {
                         enabled: itemsEnabled
                         visible: showDiagrammButton
                         onClicked: {
-                            if (earthProbeDevices.size()) {
+                            if (earthProbeSystems.size()) {
                                 earthDiagrammDialog.open()
                             } else {
                                 errorDialog.textOfError = "Добавьте подсистемы!"

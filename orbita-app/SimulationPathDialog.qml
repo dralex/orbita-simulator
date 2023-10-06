@@ -22,7 +22,7 @@ FileDialog {
                 planetDevicesItems.loadDevices(settingsManager.getDevicesPath());
             } else {
                 settingsManager.setEarthSimulationPath(folderSimulation);
-                settingsManager.setEarthDevicesPath(folderSimulation + "/devices-ru.xml");
+                settingsManager.setEarthSystemsPath(folderSimulation + "/devices-ru.xml");
                 settingsManager.setMissionsPath(folderSimulation + "/missions-ru.xml");
                 earthMissions.loadMissions(settingsManager.getMissionsPath());
             }

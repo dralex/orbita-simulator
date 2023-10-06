@@ -1,23 +1,21 @@
-#ifndef EARTHPROBESDEVICESMODEL_H
-#define EARTHPROBESDEVICESMODEL_H
+#ifndef EARTHSYSTEMSMODEL_H
+#define EARTHSYSTEMSMODEL_H
 
 #include <QAbstractListModel>
-#include "earthprobedevices.h"
+#include "systems.h"
 
-class EarthProbeDevices;
+class Systems;
 
-class EarthProbesDevicesModel : public QAbstractListModel
+class EarthSystemsModel : public QAbstractListModel
 {
     Q_OBJECT
-    Q_PROPERTY(EarthProbeDevices *list READ list WRITE setList)
+    Q_PROPERTY(Systems *list READ list WRITE setList)
 
 public:
-    explicit EarthProbesDevicesModel(QObject *parent = nullptr);
+    explicit EarthSystemsModel(QObject *parent = nullptr);
 
     enum {
-        deviceNameRole,
-        massRole,
-        startModeRole,
+        textRole
     };
 
     // Basic functionality:
@@ -30,15 +28,12 @@ public:
                  int role = Qt::EditRole) override;
 
     Qt::ItemFlags flags(const QModelIndex& index) const override;
-
-
     virtual QHash<int, QByteArray> roleNames() const override;
-
-    EarthProbeDevices *list() const;
-    void setList(EarthProbeDevices *list);
+    Systems *list() const;
+    void setList(Systems *list);
 
 private:
-    EarthProbeDevices *mList;
+    Systems *mList;
 };
 
-#endif // EARTHPROBESDEVICESMODEL_H
+#endif // EARTHSYSTEMSMODEL_H

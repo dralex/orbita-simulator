@@ -32,7 +32,7 @@ Dialog  {
                 currentIndex: 0
                 model: ComboBoxEarthDevices {
                     id: earthModelDevices
-                    list: earthProbeDevices
+                    list: earthProbeSystems
                 }
                 onAccepted: {
                     if (find(editText) === -1)
@@ -52,8 +52,8 @@ Dialog  {
                 Layout.preferredHeight: 23
                 Layout.preferredWidth: parent.width * 0.5
                 text: "Добавить"
-                onClicked: {
-                    diagrammDeviceName = earthDevicesBox.currentValue;
+                onClicked: {appendEarthSystem
+                    diagrammSystemName = earthDevicesBox.currentValue;
                     diagrammFileDialog.open()
 
                     earthDiagrammDialog.accepted()

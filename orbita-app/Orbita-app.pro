@@ -11,14 +11,11 @@ SOURCES += \
         devices.cpp \
         devicesmodel.cpp \
         devicestablemodel.cpp \
-        earthdevices.cpp \
-        earthdevicesmodel.cpp \
         earthmissions.cpp \
         earthmissionsmodel.cpp \
         earthprobe.cpp \
-        earthprobedevices.cpp \
-        earthprobesdevicesmodel.cpp \
         earthprobesmodel.cpp \
+        earthsystemsmodel.cpp \
         imagesmodel.cpp \
         main.cpp \
         planetdevices.cpp \
@@ -33,7 +30,10 @@ SOURCES += \
         stepsactivity.cpp \
         stepsactivitymodel.cpp \
         stepslanding.cpp \
-        stepslandingmodel.cpp
+        stepslandingmodel.cpp \
+        systemprobe.cpp \
+        systems.cpp \
+        systemsprobemodel.cpp
 
 RESOURCES += qml.qrc
 
@@ -59,14 +59,11 @@ HEADERS += \
     devices.h \
     devicesmodel.h \
     devicestablemodel.h \
-    earthdevices.h \
-    earthdevicesmodel.h \
     earthmissions.h \
     earthmissionsmodel.h \
     earthprobe.h \
-    earthprobedevices.h \
-    earthprobesdevicesmodel.h \
     earthprobesmodel.h \
+    earthsystemsmodel.h \
     imagesmodel.h \
     planetdevices.h \
     planets.h \
@@ -80,6 +77,9 @@ HEADERS += \
     stepsactivity.h \
     stepsactivitymodel.h \
     stepslanding.h \
-    stepslandingmodel.h
+    stepslandingmodel.h \
+    systemprobe.h \
+    systems.h \
+    systemsprobemodel.h
 
 DISTFILES +=

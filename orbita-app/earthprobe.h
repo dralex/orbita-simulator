@@ -5,15 +5,16 @@
 #include <QVector>
 #include <QDebug>
 #include <QRandomGenerator>
-#include "earthprobedevices.h"
+#include "systemprobe.h"
 #include "earthmissions.h"
-#include "earthdevices.h"
+#include "systems.h"
+#include "systemprobe.h"
 
-struct EarthProbeDeviceItem;
+struct SystemItem;
 
 struct DiagrammPathes {
     int id;
-    QString deviceEngName;
+    QString systemEngName;
     QString path;
 };
 
@@ -27,14 +28,15 @@ struct EarthProbeItem
     double xz_yz_solar_panel_fraction;
     double xz_yz_radiator_fraction;
     double xy_radiator_fraction;
-    QVector<EarthProbeDeviceItem> devices;
+    QVector<SystemItem> systems;
     QString pythonCode;
     QVector<DiagrammPathes> diagrammPathes;
     QString filePath;
 };
 
 class EarthMissions;
-class EarthDevices;
+class Systems;
+class SystemProbe;
 
 class EarthProbe : public QObject
 {
@@ -53,27 +55,27 @@ signals:
     void preEarthProbeRemoved(int index);
     void postEarthProbeRemoved();
 
-    void preEarthDeviceAppended();
-    void postEarthDeviceAppended();
+    void preEarthSystemAppended();
+    void postEarthSystemAppended();
 
-    void preEarthDeviceRemoved(int index);
-    void postEarthDeviceRemoved();
+    void preEarthSystemRemoved(int index);
+    void postEarthSystemRemoved();
 
 
 public slots:
     void appendEarthProbe(QString probeName, QString missionName, QString pythonCode, QString filePath);
-    void appendEarthDevice(int probeIndex, QString deviceEngName, QString deviceName,  QString type, double mass, bool startMode);
+    void appendEarthDevice(int probeIndex, QString systemEngName, QString systemName,  QString type, double mass, bool startMode);
     void removeEarthDevice(int probeIndex,int index);
 
     void saveEarthProbe(int probeIndex, QString probeName, double fuel, double voltage,
                         double xz_yz_solar_panel_fraction, double xz_yz_radiator_fraction, double xy_radiator_fraction);
 
-    void appendDiagramm(int probeIndex, QString deviceEngName, QString path);
-    void removeDiagramm(int probeIndex, QString deviceEngName);
+    void appendDiagramm(int probeIndex, QString systemEngName, QString path);
+    void removeDiagramm(int probeIndex, QString systemEngName);
 
     int size();
     void saveEarthProbeToXml(int probeIndex, EarthMissions *missions,  int missionIndex, const QString &filename);
-    void loadEarthProbeFromXml(const QString &path, EarthDevices *systems);
+    void loadEarthProbeFromXml(const QString &path, Systems *systems);
 
 private:
     qint64 generateData(QVector<double>);

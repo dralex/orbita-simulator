@@ -18,7 +18,7 @@ FileDialog {
             var fileToLoad= filePath.substring(7)
         }
 
-        earthProbes.appendDiagramm(listViewEarthProbes.currentIndex, diagrammDeviceName, fileToLoad);
-        diagrammDeviceName = ""
+        earthProbes.appendDiagramm(listViewEarthProbes.currentIndex, diagrammSystemName, fileToLoad);
+        diagrammSystemName = ""
     }
 }

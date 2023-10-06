@@ -33,22 +33,22 @@ void EarthProbe::appendEarthProbe(QString probeName, QString missionName, QStrin
     emit postEarthProbeAppended();
 }
 
-void EarthProbe::appendEarthDevice(int probeIndex, QString deviceEngName, QString deviceName,  QString type, double mass, bool startMode)
+void EarthProbe::appendEarthDevice(int probeIndex, QString systemEngName, QString systemName,  QString type, double mass, bool startMode)
 {
-    emit preEarthDeviceAppended();
+    emit preEarthSystemAppended();
 
-    mItems[probeIndex].devices.append({mItems[probeIndex].devices.size(), deviceEngName, deviceName, type, mass, startMode});
+    mItems[probeIndex].systems.append({mItems[probeIndex].systems.size(), systemEngName, systemName, type, mass, startMode});
 
-    emit postEarthDeviceAppended();
+    emit postEarthSystemAppended();
 }
 
 void EarthProbe::removeEarthDevice(int probeIndex, int index)
 {
-    emit preEarthDeviceRemoved(index);
+    emit preEarthSystemRemoved(index);
 
-    mItems[probeIndex].devices.removeAt(index);
+    mItems[probeIndex].systems.removeAt(index);
 
-    emit postEarthDeviceRemoved();
+    emit postEarthSystemRemoved();
 }
 
 void EarthProbe::saveEarthProbe(int probeIndex, QString probeName,  double fuel, double voltage,
@@ -62,15 +62,15 @@ void EarthProbe::saveEarthProbe(int probeIndex, QString probeName,  double fuel,
     mItems[probeIndex].xy_radiator_fraction = xy_radiator_fraction;
 }
 
-void EarthProbe::appendDiagramm(int probeIndex, QString deviceEngName, QString path)
+void EarthProbe::appendDiagramm(int probeIndex, QString systemEngName, QString path)
 {
-    mItems[probeIndex].diagrammPathes.append({mItems[probeIndex].diagrammPathes.size(), deviceEngName, path});
+    mItems[probeIndex].diagrammPathes.append({mItems[probeIndex].diagrammPathes.size(), systemEngName, path});
 }
 
-void EarthProbe::removeDiagramm(int probeIndex, QString deviceEngName)
+void EarthProbe::removeDiagramm(int probeIndex, QString systemEngName)
 {
     for (int i = 0; i < mItems[probeIndex].diagrammPathes.size(); ++i) {
-        if (mItems[probeIndex].diagrammPathes[i].deviceEngName == deviceEngName)
+        if (mItems[probeIndex].diagrammPathes[i].systemEngName == systemEngName)
             mItems[probeIndex].diagrammPathes.removeAt(i);
     }
 }
@@ -213,16 +213,16 @@ void EarthProbe::saveEarthProbeToXml(int probeIndex, EarthMissions *missions, in
 
     xmlWriter.writeStartElement("systems");
 
-    if (mItems[probeIndex].devices.size()) {
-        for (const EarthProbeDeviceItem &systems : mItems[probeIndex].devices)
+    if (mItems[probeIndex].systems.size()) {
+        for (const SystemItem &systems : mItems[probeIndex].systems)
         {
             xmlWriter.writeStartElement("system");
-            xmlWriter.writeAttribute("name", QString(systems.deviceEngName));
+            xmlWriter.writeAttribute("name", QString(systems.systemEngName));
             if (systems.startMode)
                 xmlWriter.writeAttribute("start_mode", "ON");
             if (mItems[probeIndex].diagrammPathes.size()) {
                 for (int i = 0; i < mItems[probeIndex].diagrammPathes.size(); ++i) {
-                    if (mItems[probeIndex].diagrammPathes[i].deviceEngName == systems.deviceEngName) {
+                    if (mItems[probeIndex].diagrammPathes[i].systemEngName == systems.systemEngName) {
                         xmlWriter.writeStartElement("hsm_diagram");
                         xmlWriter.writeAttribute("type", "yEd");
                         xmlWriter.writeAttribute("path", mItems[probeIndex].diagrammPathes[i].path);
@@ -249,7 +249,7 @@ void EarthProbe::saveEarthProbeToXml(int probeIndex, EarthMissions *missions, in
     file.close();
 }
 
-void EarthProbe::loadEarthProbeFromXml(const QString &path, EarthDevices *systems) {
+void EarthProbe::loadEarthProbeFromXml(const QString &path, Systems *systems) {
     QFile file(path);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << "Не удалось открыть XML файл для чтения: " << file.errorString();
@@ -259,57 +259,85 @@ void EarthProbe::loadEarthProbeFromXml(const QString &path, EarthDevices *system
     QXmlStreamReader xmlReader(&file);
 
     EarthProbeItem probeItem;
-     QVector<DiagrammPathes> diagrammPathes;
-     QString pythonCode;
-     QVector<EarthProbeDeviceItem> devices;
+    QVector<DiagrammPathes> diagrammPathes;
+    QString pythonCode;
+    QVector<SystemItem> systemsItems;
 
-     while (!xmlReader.atEnd() && !xmlReader.hasError()) {
-         xmlReader.readNext();
-         if (xmlReader.isStartElement()) {
-             QString elementName = xmlReader.name().toString();
+    while (!xmlReader.atEnd() && !xmlReader.hasError()) {
+        xmlReader.readNext();
 
-             if (elementName == "probe") {
-                 probeItem.probeName = xmlReader.attributes().value("name").toString();
-             } else if (elementName == "fuel") {
-                 probeItem.fuel = xmlReader.readElementText().toDouble();
-             } else if (elementName == "voltage") {
-                 probeItem.voltage = xmlReader.readElementText().toDouble();
-             } else if (elementName == "xz_yz_solar_panel_fraction") {
-                 probeItem.xz_yz_solar_panel_fraction = xmlReader.readElementText().toDouble();
-             } else if (elementName == "xz_yz_radiator_fraction") {
-                 probeItem.xz_yz_radiator_fraction = xmlReader.readElementText().toDouble();
-             } else if (elementName == "xy_radiator_fraction") {
-                 probeItem.xy_radiator_fraction = xmlReader.readElementText().toDouble();
-             } else if (elementName == "system") {
-                 EarthProbeDeviceItem deviceItem;
+        if (xmlReader.isStartElement()) {
+            QString elementName = xmlReader.name().toString();
 
-                 deviceItem.deviceEngName = xmlReader.attributes().value("name").toString();
-                 deviceItem.deviceName = deviceItem.deviceEngName;
-                 deviceItem.type = xmlReader.attributes().value("type").toString();
-                 deviceItem.mass = systems->getMass(deviceItem.deviceName);
-                 if (xmlReader.attributes().value("start_mode").toString() == "ON")
-                    deviceItem.startMode = true;
-                 else
-                     deviceItem.startMode = false;
+            if (elementName == "probe") {
+                probeItem.probeName = xmlReader.attributes().value("name").toString();
+            } else if (elementName == "construction") {
+                while (!(xmlReader.isEndElement() && xmlReader.name() == "construction")) {
+                    xmlReader.readNext();
 
-                 devices.append(deviceItem);
-             } else if (elementName == "program" && xmlReader.isCDATA()) {
-                 pythonCode = xmlReader.text().toString();
-             }
-         }
-     }
+                    if (xmlReader.isStartElement()) {
+                        if (xmlReader.name() == "fuel") {
+                            probeItem.fuel = xmlReader.readElementText().toDouble();
+                        } else if (xmlReader.name() == "voltage") {
+                            probeItem.voltage = xmlReader.readElementText().toDouble();
+                        } else if (xmlReader.name() == "xz_yz_solar_panel_fraction") {
+                            probeItem.xz_yz_solar_panel_fraction = xmlReader.readElementText().toDouble();
+                        } else if (xmlReader.name() == "xz_yz_radiator_fraction") {
+                            probeItem.xz_yz_radiator_fraction = xmlReader.readElementText().toDouble();
+                        } else if (xmlReader.name() == "xy_radiator_fraction") {
+                            probeItem.xy_radiator_fraction = xmlReader.readElementText().toDouble();
+                        }
+                    }
+                }
+            } else if (elementName == "systems") {
+                while (!(xmlReader.isEndElement() && xmlReader.name() == "systems")) {
+                    xmlReader.readNext();
 
-     if (xmlReader.hasError()) {
-         qDebug() << "Ошибка при разборе XML файла: " << xmlReader.errorString();
-     }
+                    if (xmlReader.isStartElement() && xmlReader.name() == "system") {
+                        SystemItem systemItem;
 
-     file.close();
-     probeItem.diagrammPathes = diagrammPathes;
-     probeItem.pythonCode = pythonCode;
-     mItems.append(probeItem);
+                        QXmlStreamAttributes attributes = xmlReader.attributes();
+                        systemItem.systemEngName = attributes.value("name").toString();
+                        systemItem.systemName = systems->getSystemNameByEng(systemItem.systemEngName);
+                        systemItem.type = systems->getType(systemItem.systemName);
+                        systemItem.mass = systems->getMass(systemItem.systemName);
 
-     // Добавьте полученные данные в структуру устройств
-     mItems[index].devices = devices;
+                        if (attributes.value("start_mode").toString() == "ON")
+                            systemItem.startMode = true;
+                        else
+                            systemItem.startMode = false;
+
+                        systemsItems.append(systemItem);
+
+                        while (!(xmlReader.isEndElement() && xmlReader.name() == "system")) {
+                            xmlReader.readNext();
+                            if (xmlReader.isCDATA()) {
+                                pythonCode = xmlReader.text().toString();
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    if (xmlReader.hasError()) {
+        qDebug() << "Ошибка при разборе XML файла: " << xmlReader.errorString();
+    }
+
+    file.close();
+
+    probeItem.diagrammPathes = diagrammPathes;
+    probeItem.pythonCode = pythonCode;
+    probeItem.filePath = path;
+    probeItem.probeNumber = mItems.size();
+
+    emit preEarthProbeAppended();
+
+    mItems.append(probeItem);
+    mItems[probeItem.probeNumber].systems = systemsItems;
+
+    emit postEarthProbeAppended();
 }
 
 qint64 EarthProbe::generateData(QVector<double> data) {
