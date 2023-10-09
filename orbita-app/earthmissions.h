@@ -13,20 +13,17 @@ struct ControlStations {
     QVector<double> fromToNumbers;
 };
 
-struct Messages {
-   int id;
+struct Message {
    int number;
-   QVector<double> data;
-   QVector<double> timeout;
-   int msgto;
-   int msgfrom;
+   QVector<int> data;
+   QVector<int> timeout;
 };
 
 struct Missiles {
     int id;
     int number;
     QVector<double> locatonAngle;
-    QVector<double> launchTime;
+    QVector<int> launchTime;
     int cooldown;
 
 };
@@ -41,18 +38,16 @@ struct EarthMissionsItem {
     QString missionEngName;
     QString missionName;
     QString missionDescription;
-    double duration;
+    int duration;
     QVector<ControlStations> controlStations;
-    QVector<double> orbitData;
+    QVector<int> orbitData;
     QVector<double> precision;
     QVector<OnewayMessage> onewayMessages;
     QVector<Missiles> missiles;
-    QVector<Messages> messages;
+    Message message;
     QVector<double> resolution;
-    QVector<double> startAngularVelocity;
     QVector<double> targetAngle;
-    QVector<double> targetOrbit;
-    QVector<double> channel;
+    QVector<int> targetOrbit;
 };
 
 class EarthMissions : public QObject
@@ -67,7 +62,6 @@ public:
 
 public slots:
     void loadMissions(const QString &filePath);
-    void showMissions();
 
     QString getMissionEngName(QString missionName);
 

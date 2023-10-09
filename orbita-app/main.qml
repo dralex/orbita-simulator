@@ -263,7 +263,6 @@ ApplicationWindow  {
                 anchors.bottomMargin: 125
                 enabled: false
                 onClicked: {
-                    earthMissions.showMissions();
                     if (planetsItems.size() > 0 || earthMissions.size()) {
                         missionDialog.open()
                     } else {

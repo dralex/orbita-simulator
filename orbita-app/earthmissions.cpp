@@ -95,7 +95,7 @@ void EarthMissions::loadMissions(const QString &filePath) {
                         controlStationsData.clear();
 
                     } else if (xmlReader.name() == "orbit") {
-                        QVector<double> orbitData;
+                        QVector<int> orbitData;
                         while (!(xmlReader.isEndElement() && xmlReader.name() == "orbit")) {
                             xmlReader.readNext();
                             if (xmlReader.isStartElement() && xmlReader.name() == "frm") {
@@ -137,7 +137,7 @@ void EarthMissions::loadMissions(const QString &filePath) {
                         missionItem.resolution = resolutionData;
                         resolutionData.clear();
                     } else if (xmlReader.name() == "target") {
-                        QVector<double> targetOrbit;
+                        QVector<int> targetOrbit;
                         QVector<double> targetAngle;
 
                         while (!(xmlReader.isEndElement() && xmlReader.name() == "target")) {
@@ -206,56 +206,43 @@ void EarthMissions::loadMissions(const QString &filePath) {
                         missionItem.onewayMessages = onewayMessages;
                         onewayMessages.clear();
                     } else if (xmlReader.name() == "messages") {
-                        QVector<Messages> messages;
+                        Message message;
                         int number = xmlReader.attributes().value("number").toInt();
+
                         while (!(xmlReader.isEndElement() && xmlReader.name() == "messages")) {
                             xmlReader.readNext();
 
-                            if (xmlReader.isStartElement() && xmlReader.name() == "data") {
-                                double fromData = 0.0, toData = 0.0, fromTimeout = 0.0, toTimeout = 0.0;
-                                int msgto = 0, msgfrom = 0;
+                            if (xmlReader.isStartElement()) {
+                                QString elementName = xmlReader.name().toString();
 
-                                while (!(xmlReader.isEndElement() && xmlReader.name() == "data")) {
-                                    xmlReader.readNext();
-                                    if (xmlReader.isStartElement() && xmlReader.name() == "frm") {
+                                if (elementName == "data") {
+                                    while (!(xmlReader.isEndElement() && xmlReader.name() == "data")) {
                                         xmlReader.readNext();
-                                        fromData = xmlReader.text().toDouble();
-                                    } else if (xmlReader.isStartElement() && xmlReader.name() == "to") {
-                                        xmlReader.readNext();
-                                        toData = xmlReader.text().toDouble();
+                                        if (xmlReader.isStartElement()) {
+                                            if (xmlReader.name() == "frm") {
+                                                message.data.append(xmlReader.readElementText().toDouble());
+                                            } else if (xmlReader.name() == "to") {
+                                                message.data.append(xmlReader.readElementText().toDouble());
+                                            }
+                                        }
                                     }
-                                }
-
-                                xmlReader.readNext();
-                                if (xmlReader.name() == "timeout") {
+                                } else if (elementName == "timeout") {
                                     while (!(xmlReader.isEndElement() && xmlReader.name() == "timeout")) {
                                         xmlReader.readNext();
-                                        if (xmlReader.isStartElement() && xmlReader.name() == "frm") {
-                                            xmlReader.readNext();
-                                            fromTimeout = xmlReader.text().toDouble();
-                                        } else if (xmlReader.isStartElement() && xmlReader.name() == "to") {
-                                            xmlReader.readNext();
-                                            toTimeout = xmlReader.text().toDouble();
+                                        if (xmlReader.isStartElement()) {
+                                            if (xmlReader.name() == "frm") {
+                                                message.timeout.append(xmlReader.readElementText().toDouble());
+                                            } else if (xmlReader.name() == "to") {
+                                                message.timeout.append(xmlReader.readElementText().toDouble());
+                                            }
                                         }
                                     }
                                 }
-
-                                xmlReader.readNext();
-                                if (xmlReader.name() == "msgto") {
-                                    msgto = xmlReader.readElementText().toInt();
-                                }
-
-                                xmlReader.readNext();
-                                if (xmlReader.name() == "msgfrom") {
-                                    msgfrom = xmlReader.readElementText().toInt();
-                                }
-
-                                messages.append({messages.size(), number, {fromData, toData}, {fromTimeout, toTimeout}, msgto, msgfrom});
                             }
                         }
 
-                        missionItem.messages = messages;
-                        messages.clear();
+                        message.number = number;
+                        missionItem.message = message;
                     } else if (xmlReader.name() == "missiles") {
                         QVector<Missiles> missiles;
                         int number = xmlReader.attributes().value("number").toInt();
@@ -266,8 +253,8 @@ void EarthMissions::loadMissions(const QString &filePath) {
                             if (xmlReader.isStartElement()) {
                                 if (xmlReader.name() == "location_angle") {
                                     double fromLA = 0.0, toLA = 0.0;
-                                    double fromLT = 0.0, toLT = 0.0;
-                                    int cooldown = 0;
+                                    int fromLT = 0, toLT = 0, cooldown = 0
+;
 
                                     while (!(xmlReader.isEndElement() && xmlReader.name() == "location_angle")) {
                                         xmlReader.readNext();
@@ -313,32 +300,6 @@ void EarthMissions::loadMissions(const QString &filePath) {
 
                         missionItem.missiles = missiles;
                         missiles.clear();
-                    } else if (xmlReader.name() == "start_angular_velocity") {
-                        QVector<double> startAngularVelocity;
-                        while (!(xmlReader.isEndElement() && xmlReader.name() == "start_angular_velocity")) {
-                            xmlReader.readNext();
-                            if (xmlReader.isStartElement() && xmlReader.name() == "frm") {
-                                xmlReader.readNext();
-                                startAngularVelocity.append(xmlReader.text().toDouble());
-                            } else if (xmlReader.isStartElement() && xmlReader.name() == "to") {
-                                xmlReader.readNext();
-                                startAngularVelocity.append(xmlReader.text().toDouble());
-                            }
-                        }
-                        missionItem.startAngularVelocity = startAngularVelocity;
-                    } else if (xmlReader.name() == "channel") {
-                        QVector<double> channel;
-                        while (!(xmlReader.isEndElement() && xmlReader.name() == "channel")) {
-                            xmlReader.readNext();
-                            if (xmlReader.isStartElement() && xmlReader.name() == "frm") {
-                                xmlReader.readNext();
-                                channel.append(xmlReader.text().toDouble());
-                            } else if (xmlReader.isStartElement() && xmlReader.name() == "to") {
-                                xmlReader.readNext();
-                                channel.append(xmlReader.text().toDouble());
-                            }
-                        }
-                        missionItem.channel = channel;
                     }
                 }
             }
@@ -361,60 +322,6 @@ void EarthMissions::loadMissions(const QString &filePath) {
     file.close();
 }
 
-void EarthMissions::showMissions()
-{
-    for (const EarthMissionsItem &missionItem : mItems) {
-        qDebug() << "Mission Name: " << missionItem.missionName;
-        qDebug() << "Mission Eng Name: " << missionItem.missionEngName;
-        qDebug() << "Duration: " << missionItem.duration;
-        qDebug() << "Mission Description: " << missionItem.missionDescription;
-
-        qDebug() << "Control Stations:";
-        for (const ControlStations &station : missionItem.controlStations) {
-            qDebug() << "  ID: " << station.id;
-            qDebug() << "  Name: " << station.name;
-            qDebug() << "  From-To Numbers: " << station.fromToNumbers;
-        }
-
-        qDebug() << "Orbit Data: " << missionItem.orbitData;
-        qDebug() << "Precision: " << missionItem.precision;
-
-        qDebug() << "Oneway Messages:";
-        for (const OnewayMessage &message : missionItem.onewayMessages) {
-            qDebug() << "  ID: " << message.id;
-            qDebug() << "  Length: " << message.length;
-        }
-
-        qDebug() << "Missiles:";
-        for (const Missiles &missile : missionItem.missiles) {
-            qDebug() << "  ID: " << missile.id;
-            qDebug() << "  Number: " << missile.number;
-            qDebug() << "  Location Angle: " << missile.locatonAngle;
-            qDebug() << "  Launch Time: " << missile.launchTime;
-            qDebug() << "  Cooldown: " << missile.cooldown;
-        }
-
-        qDebug() << "Messages:";
-        for (const Messages &message : missionItem.messages) {
-            qDebug() << "  ID: " << message.id;
-            qDebug() << "  Number: " << message.number;
-            qDebug() << "  Data: " << message.data;
-            qDebug() << "  Timeout: " << message.timeout;
-            qDebug() << "  Msg To: " << message.msgto;
-            qDebug() << "  Msg From: " << message.msgfrom;
-        }
-
-        qDebug() << "Resolution: " << missionItem.resolution;
-        qDebug() << "Start Angular Velocity: " << missionItem.startAngularVelocity;
-        qDebug() << "Target Angle: " << missionItem.targetAngle;
-        qDebug() << "Target Orbit: " << missionItem.targetOrbit;
-        qDebug() << "Channel: " << missionItem.channel;
-
-        qDebug() << "\n";
-        qDebug() << "-----------------------------------------------------------------";
-        qDebug() << "\n";
-    }
-}
 
 QString EarthMissions::getMissionEngName(QString missionName)
 {

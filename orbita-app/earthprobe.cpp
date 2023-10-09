@@ -122,8 +122,7 @@ void EarthProbe::saveEarthProbeToXml(int probeIndex, EarthMissions *missions, in
         xmlWriter.writeStartElement("control_station");
         xmlWriter.writeAttribute("name", missionItem.controlStations[i].name);
 
-        xmlWriter.writeTextElement("location_angle", QString::number(
-                                       generateData(missionItem.controlStations[i].fromToNumbers)));
+        xmlWriter.writeTextElement("location_angle", generateDoubleData(missionItem.controlStations[i].fromToNumbers));
 
         xmlWriter.writeEndElement();
     }
@@ -134,21 +133,25 @@ void EarthProbe::saveEarthProbeToXml(int probeIndex, EarthMissions *missions, in
 
     if (missionItem.onewayMessages.size()) {
         for (int i = 0; i < missionItem.onewayMessages.size(); ++i) {
-            xmlWriter.writeTextElement("oneway_message", "some_text");
+            xmlWriter.writeStartElement("oneway_message");
+
+            xmlWriter.writeAttribute("text", generateRandomString());
+
+            xmlWriter.writeEndElement();
         }
     }
 
-    if (missionItem.messages.size()) {
+    if (missionItem.message.number) {
         xmlWriter.writeStartElement("messages");
-
-        for (int i = 0; i < missionItem.messages.size(); ++i) {
+        QList<EarthMessage> elemMessages = generateRandomMessages(missionItem.controlStations.size());
+        for (int i = 0; i < missionItem.message.number; ++i) {
             xmlWriter.writeStartElement("message");
 
-            xmlWriter.writeAttribute("order", "some_order");
-            xmlWriter.writeAttribute("msgfrom", QString::number(missionItem.messages[i].msgfrom));
-            xmlWriter.writeAttribute("msgto", QString::number(missionItem.messages[i].msgto));
-            xmlWriter.writeAttribute("data", QString::number(generateData(missionItem.messages[i].data)));
-            xmlWriter.writeAttribute("duration", QString::number(generateData(missionItem.messages[i].timeout)));
+            xmlWriter.writeAttribute("order", QString::number(i + 1));
+            xmlWriter.writeAttribute("msgfrom", QString::number(elemMessages[i].msgfrom));
+            xmlWriter.writeAttribute("msgto", QString::number(elemMessages[i].msgto));
+            xmlWriter.writeAttribute("data", generateIntData(missionItem.message.data));
+            xmlWriter.writeAttribute("duration", generateIntData(missionItem.message.timeout));
 
             xmlWriter.writeEndElement();
         }
@@ -164,9 +167,9 @@ void EarthProbe::saveEarthProbeToXml(int probeIndex, EarthMissions *missions, in
             xmlWriter.writeAttribute("index", QString::number(missionItem.missiles[i].id + 1));
 
             xmlWriter.writeTextElement("location_angle",
-                                       QString::number(generateData(missionItem.missiles[i].locatonAngle)));
+                                       generateDoubleData(missionItem.missiles[i].locatonAngle));
             xmlWriter.writeTextElement("launch_time",
-                                       QString::number(generateData(missionItem.missiles[i].launchTime)));
+                                       generateIntData(missionItem.missiles[i].launchTime));
             xmlWriter.writeEndElement();
         }
 
@@ -174,29 +177,21 @@ void EarthProbe::saveEarthProbeToXml(int probeIndex, EarthMissions *missions, in
     }
 
     if (missionItem.orbitData.size())
-        xmlWriter.writeTextElement("orbit", QString::number(generateData(missionItem.orbitData)));
+        xmlWriter.writeTextElement("orbit", generateIntData(missionItem.orbitData));
 
     if (missionItem.precision.size())
-        xmlWriter.writeTextElement("precision", QString::number(generateData(missionItem.precision)));
+        xmlWriter.writeTextElement("precision", generateDoubleData(missionItem.precision));
 
     if (missionItem.resolution.size())
-        xmlWriter.writeTextElement("resolution", QString::number(generateData(missionItem.resolution)));
+        xmlWriter.writeTextElement("resolution", generateDoubleData(missionItem.resolution));
 
-    if (missionItem.startAngularVelocity.size())
-        xmlWriter.writeTextElement("start_angular_velocity",
-                                   QString::number(generateData(missionItem.startAngularVelocity)));
-    else
-        xmlWriter.writeTextElement("start_angular_velocity", "1.0");
-
+    xmlWriter.writeTextElement("start_angular_velocity", "1.0");
 
     if (missionItem.targetOrbit.size())
-      xmlWriter.writeTextElement("target_orbit", QString::number(generateData(missionItem.targetOrbit)));
+      xmlWriter.writeTextElement("target_orbit", generateIntData(missionItem.targetOrbit));
 
     if (missionItem.targetAngle.size())
-        xmlWriter.writeTextElement("target_angle", QString::number(generateData(missionItem.targetAngle)));
-
-    if (missionItem.channel.size())
-        xmlWriter.writeTextElement("channel", QString::number(generateData(missionItem.channel)));
+        xmlWriter.writeTextElement("target_angle", generateDoubleData(missionItem.targetAngle));
 
 
     xmlWriter.writeEndElement();
@@ -340,10 +335,78 @@ void EarthProbe::loadEarthProbeFromXml(const QString &path, Systems *systems) {
     emit postEarthProbeAppended();
 }
 
-qint64 EarthProbe::generateData(QVector<double> data) {
+QString EarthProbe::generateIntData(QVector<int> data) {
+    int fromValue = data[0];
+    int toValue = data[1];
+
+    return QString::number(QRandomGenerator::global()->generate() % (static_cast<qint64>(toValue) - static_cast<qint64>(fromValue) + 1) + static_cast<qint64>(fromValue)) + ".000000";
+}
+
+QString EarthProbe::generateDoubleData(QVector<double> data) {
     double fromValue = data[0];
     double toValue = data[1];
 
-    return QRandomGenerator::global()->generate() % (static_cast<qint64>(toValue) - static_cast<qint64>(fromValue) + 1) + static_cast<qint64>(fromValue);
+    double randomValue = QRandomGenerator::global()->generateDouble();
+    double scaledValue = randomValue * (toValue - fromValue) + fromValue;
 
+    scaledValue = qRound(scaledValue * 1e6) / 1e6;
+
+    return QString::number(scaledValue);
 }
+
+
+
+QString EarthProbe::generateRandomString()
+{
+    QRandomGenerator::securelySeeded();
+    int length = QRandomGenerator::global()->bounded(23, 28);
+
+    QString randomString;
+    for (int i = 0; i < length; ++i) {
+        int choice = QRandomGenerator::global()->bounded(3);
+
+        if (choice == 0) {
+            QChar randomChar = QChar('a' + QRandomGenerator::global()->bounded(26));
+            randomString.append(randomChar);
+        } else if (choice == 1) {
+            QChar randomChar = QChar('A' + QRandomGenerator::global()->bounded(26));
+            randomString.append(randomChar);
+        } else {
+            QChar randomChar = QChar('0' + QRandomGenerator::global()->bounded(10));
+            randomString.append(randomChar);
+        }
+    }
+
+    return randomString;
+}
+
+
+QList<EarthMessage> EarthProbe::generateRandomMessages(int stationCount)
+{
+    QList<EarthMessage> messages;
+    QRandomGenerator::securelySeeded();
+
+    QList<int> stations;
+    for (int i = 0; i <= stationCount; ++i) {
+        stations.append(i);
+    }
+
+    for (int i = 0; i < 5; ++i) {
+        int msgfromIndex = QRandomGenerator::global()->bounded(stations.size());
+        int msgfrom = stations[msgfromIndex];
+        stations.removeAt(msgfromIndex);
+
+        int msgtoIndex = QRandomGenerator::global()->bounded(stations.size());
+        int msgto = stations[msgtoIndex];
+        stations.removeAt(msgtoIndex);
+
+        EarthMessage message;
+        message.msgfrom = msgfrom;
+        message.msgto = msgto;
+
+        messages.append(message);
+    }
+
+    return messages;
+}
+

@@ -12,6 +12,11 @@
 
 struct SystemItem;
 
+struct EarthMessage {
+    int msgfrom;
+    int msgto;
+};
+
 struct DiagrammPathes {
     int id;
     QString systemEngName;
@@ -78,7 +83,10 @@ public slots:
     void loadEarthProbeFromXml(const QString &path, Systems *systems);
 
 private:
-    qint64 generateData(QVector<double>);
+    QString generateIntData(QVector<int>);
+    QString generateDoubleData(QVector<double>);
+    QString generateRandomString();
+    QList<EarthMessage> generateRandomMessages(int stationCount);
     QVector<EarthProbeItem> mItems;
 };
 
