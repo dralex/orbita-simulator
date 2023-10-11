@@ -80,7 +80,7 @@ public slots:
 
     int size();
     void saveEarthProbeToXml(int probeIndex, EarthMissions *missions,  int missionIndex, const QString &filename);
-    void loadEarthProbeFromXml(const QString &path, Systems *systems);
+    void loadEarthProbeFromXml(const QString &path, Systems *systems, EarthMissions *missions);
 
 private:
     QString generateIntData(QVector<int>);

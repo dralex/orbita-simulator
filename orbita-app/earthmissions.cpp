@@ -331,6 +331,16 @@ QString EarthMissions::getMissionEngName(QString missionName)
 
     return "None";
 }
+
+QString EarthMissions::getMissionName(QString missionEngName)
+{
+    for (int i = 0; i < mItems.size(); ++i)
+        if (mItems[i].missionEngName == missionEngName)
+            return mItems[i].missionName;
+
+    return "None";
+}
+
 int EarthMissions::size()
 {
     return mItems.size();

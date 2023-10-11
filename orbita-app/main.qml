@@ -195,7 +195,7 @@ ApplicationWindow  {
                     property variant earthProbesModelData: model
 
                     width: listViewEarthProbes.width
-                    height: 50
+                    height: 65
 
                     Rectangle {
                         width: parent.width - probesScrollBar.width
@@ -236,7 +236,9 @@ ApplicationWindow  {
                         }
 
                         Text {
+                            width: listViewEarthProbes.width - probesScrollBar.width
                             text: index >= 0 && index < listViewEarthProbes.count ? '<b>Миссия:</b> ' + model.missionName : ""
+                            wrapMode: Text.WordWrap
                         }
                     }
                 }
@@ -263,11 +265,20 @@ ApplicationWindow  {
                 anchors.bottomMargin: 125
                 enabled: false
                 onClicked: {
-                    if (planetsItems.size() > 0 || earthMissions.size()) {
-                        missionDialog.open()
+                    if (typeMission) {
+                        if (planetsItems.size()) {
+                            missionDialog.open()
+                        } else {
+                            errorDialog.textOfError = "Выберите папку с симулятором в настройках."
+                            errorDialog.open()
+                        }
                     } else {
-                        errorDialog.textOfError = "Выберите папку с симулятором в настройках."
-                        errorDialog.open()
+                        if(earthMissions.size()) {
+                            missionDialog.open()
+                        } else {
+                            errorDialog.textOfError = "Выберите папку с симулятором в настройках."
+                            errorDialog.open()
+                        }
                     }
                 }
             }
@@ -348,17 +359,29 @@ ApplicationWindow  {
                 enabled: itemsEnabled
                 anchors.bottomMargin: 30
                 onClicked: {
-                    if (settingsManager.checkSimulationFile(settingsManager.getSimulationPath() + "/simulation.py")) {
-                        settingsManager.saveSettingsToFile("planets_settings.txt", typeMission);
-                        pathToSave = settingsManager.getPlanetsProbesPath()
-                        pathToLoad = settingsManager.getPlanetsProbesPath()
-                        runWindow.visibility = 1
-                        mainWindow.visibility = 0
+                    if (typeMission) {
+                        if (settingsManager.checkSimulationFile(settingsManager.getSimulationPath() + "/simulation.py")) {
+                            settingsManager.saveSettingsToFile("planets_settings.txt", typeMission);
+                            pathToSave = settingsManager.getPlanetsProbesPath()
+                            pathToLoad = settingsManager.getPlanetsProbesPath()
+                        } else {
+                            errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора."
+                            errorDialog.open()
+                            folderSimulation = "None"
+                        }
                     } else {
-                        errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора."
-                        errorDialog.open()
-                        folderSimulation = "None"
+                        if (settingsManager.checkSimulationFile(settingsManager.getEarthSimulationPath() + "/simulation.py")) {
+                            settingsManager.saveSettingsToFile("earth_settings.txt", typeMission);
+                            earthPathToSave = settingsManager.getEarthProbesPath()
+                            earthPathToLoad = settingsManager.getEarthProbesPath()
+                        } else {
+                            errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора."
+                            errorDialog.open()
+                            folderSimulation = "None"
+                        }
                     }
+                    runWindow.visibility = 1
+                    mainWindow.visibility = 0
                 }
             }
 
@@ -1166,6 +1189,7 @@ ApplicationWindow  {
                     Layout.preferredHeight: height
                     Layout.preferredWidth: width
                     Layout.alignment: Qt.AlignBottom | Qt.AlignRight
+                    enabled: itemsEnabled
                     text: "Настройки"
                     onClicked: {
                         folderProbesPath = settingsManager.getPlanetsProbesPath()

@@ -58,7 +58,16 @@ void SimulationController::startSimulation(QString probePath, SettingsManager *s
             }
         }
     } else {
-
+        simulationPath = settingsManager->getEarthSimulationPath() + "/simulation.py";
+        currentProbePath = probePath;
+        infoFolderPath = currentProbePath.left(currentProbePath.length() - 4) + " info";
+        QDir infoFolder(infoFolderPath);
+        if (!infoFolder.exists()) {
+            if (!infoFolder.mkpath(infoFolderPath)) {
+                qDebug() << "Ошибка при создании папки info";
+                return;
+            }
+        }
     }
 
     QStringList arguments;

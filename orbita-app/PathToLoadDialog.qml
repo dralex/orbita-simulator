@@ -8,7 +8,7 @@ FileDialog {
     width: 264
     height: 146
     visible: false
-    folder: "file://" + pathToLoad
+    folder: typeMission ? "file://" + pathToLoad : "file://" + earthPathToLoad
 
     onAccepted: {
         var filePath = fileToLoadDialog.fileUrl.toString()
@@ -45,7 +45,7 @@ FileDialog {
                 showDiagrammButton = false
             }
         } else {
-            earthProbes.loadEarthProbeFromXml(fileToLoad, systems);
+            earthProbes.loadEarthProbeFromXml(fileToLoad, systems, earthMissions);
             listViewEarthProbes.currentIndex = earthProbes.size() - 1
             currentProbe = listViewEarthProbes.currentItem.earthProbesModelData
 

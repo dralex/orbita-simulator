@@ -51,6 +51,9 @@ Dialog  {
                 onClicked: {
                     modelSolutions.clear()
                     if (versionSelect.currentIndex === 0 ) {
+                        if (!probes.size())
+                            itemsEnabled = false
+                        probeNameText.text = ""
                         modelSolutions.append({text: "Таблица"})
                         typeMission = true
                         settingsManager.loadSettingsFromFile("planets_settings.txt", typeMission);
@@ -71,6 +74,7 @@ Dialog  {
                         planetsElementsVisible = true
 
                     } else {
+                        probeNameText.text = ""
                         typeMission = false
                         modelSolutions.append({text: "Диаграмма"})
                         settingsManager.loadSettingsFromFile("earth_settings.txt", typeMission)
@@ -85,6 +89,9 @@ Dialog  {
                         settingsFolderSimulation = settingsManager.getEarthSimulationPath()
                         settingsFolderProbesPath = earthPathToLoad
                         settingsFolderCalculatorPath = settingsManager.getEarthCalculatorPath()
+
+                        earthPathToLoad = settingsManager.getEarthProbesPath()
+                        earthPathToSave = settingsManager.getEarthProbesPath()
 
                         showPlanetsElems = false
                         showPlanetsDevices = false

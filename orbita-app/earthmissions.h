@@ -64,6 +64,7 @@ public slots:
     void loadMissions(const QString &filePath);
 
     QString getMissionEngName(QString missionName);
+    QString getMissionName(QString missionEngName);
 
     int size();
 

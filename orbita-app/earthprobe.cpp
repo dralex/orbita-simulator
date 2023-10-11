@@ -244,7 +244,7 @@ void EarthProbe::saveEarthProbeToXml(int probeIndex, EarthMissions *missions, in
     file.close();
 }
 
-void EarthProbe::loadEarthProbeFromXml(const QString &path, Systems *systems) {
+void EarthProbe::loadEarthProbeFromXml(const QString &path, Systems *systems, EarthMissions *missions) {
     QFile file(path);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << "Не удалось открыть XML файл для чтения: " << file.errorString();
@@ -266,6 +266,8 @@ void EarthProbe::loadEarthProbeFromXml(const QString &path, Systems *systems) {
 
             if (elementName == "probe") {
                 probeItem.probeName = xmlReader.attributes().value("name").toString();
+            } else if (elementName == "mission") {
+                probeItem.missionName = missions->getMissionName(xmlReader.attributes().value("type").toString());
             } else if (elementName == "construction") {
                 while (!(xmlReader.isEndElement() && xmlReader.name() == "construction")) {
                     xmlReader.readNext();

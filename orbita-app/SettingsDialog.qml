@@ -85,7 +85,6 @@ Dialog  {
             onClicked: {
                 calculatorFileDialog.open()
             }
-
         }
 
 
