@@ -73,13 +73,15 @@ public slots:
     void removeEarthDevice(int probeIndex,int index);
 
     void saveEarthProbe(int probeIndex, QString probeName, double fuel, double voltage,
-                        double xz_yz_solar_panel_fraction, double xz_yz_radiator_fraction, double xy_radiator_fraction);
+                        double xz_yz_solar_panel_fraction, double xz_yz_radiator_fraction, double xy_radiator_fraction,
+                        QString filePath);
 
     void appendDiagramm(int probeIndex, QString systemEngName, QString path);
     void removeDiagramm(int probeIndex, QString systemEngName);
 
     int size();
-    void saveEarthProbeToXml(int probeIndex, EarthMissions *missions,  int missionIndex, const QString &filename);
+    void saveEarthProbeToXml(int probeIndex, EarthMissions *missions,  int missionIndex,
+                             const QString &filename, const QString &oldFilename);
     void loadEarthProbeFromXml(const QString &path, Systems *systems, EarthMissions *missions);
 
 private:

@@ -52,7 +52,8 @@ void EarthProbe::removeEarthDevice(int probeIndex, int index)
 }
 
 void EarthProbe::saveEarthProbe(int probeIndex, QString probeName,  double fuel, double voltage,
-                                double xz_yz_solar_panel_fraction, double xz_yz_radiator_fraction, double xy_radiator_fraction)
+                                double xz_yz_solar_panel_fraction, double xz_yz_radiator_fraction, double xy_radiator_fraction,
+                                QString filePath)
 {
     mItems[probeIndex].probeName = probeName;
     mItems[probeIndex].fuel = fuel;
@@ -60,6 +61,7 @@ void EarthProbe::saveEarthProbe(int probeIndex, QString probeName,  double fuel,
     mItems[probeIndex].xz_yz_solar_panel_fraction = xz_yz_solar_panel_fraction;
     mItems[probeIndex].xz_yz_radiator_fraction = xz_yz_radiator_fraction;
     mItems[probeIndex].xy_radiator_fraction = xy_radiator_fraction;
+    mItems[probeIndex].filePath = filePath;
 }
 
 void EarthProbe::appendDiagramm(int probeIndex, QString systemEngName, QString path)
@@ -80,15 +82,37 @@ int EarthProbe::size()
     return mItems.size();
 }
 
-void EarthProbe::saveEarthProbeToXml(int probeIndex, EarthMissions *missions, int missionIndex, const QString &filename)
+void EarthProbe::saveEarthProbeToXml(int probeIndex, EarthMissions *missions, int missionIndex, const QString &filename
+                                     , const QString &oldFilename)
 {
+    EarthMissionsItem missionItem = missions->items()[missionIndex];
+
     QFile file(filename);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
         return;
     }
 
-    EarthMissionsItem missionItem = missions->items()[missionIndex];
+    QFile oldFile(oldFilename);
+    if (oldFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QXmlStreamReader xmlReader(&oldFile);
+
+        while (!xmlReader.atEnd() && !xmlReader.hasError()) {
+            xmlReader.readNext();
+
+            if (xmlReader.isStartElement()) {
+                QString elementName = xmlReader.name().toString();
+                if (elementName == "mission") {
+
+                }
+            }
+        }
+
+        oldFile.close();
+    } else {
+
+    }
+
 
     QXmlStreamWriter xmlWriter(&file);
     xmlWriter.setAutoFormatting(true);
