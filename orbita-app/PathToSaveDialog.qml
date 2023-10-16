@@ -52,10 +52,12 @@ FileDialog {
             if (checkAction) {
                 earthPathToSave = settingsManager.getEarthProbesPath()
                 earthPathToLoad = settingsManager.getEarthProbesPath()
+
                 if (fileToSave) {
                     earthProbes.saveEarthProbe(listViewEarthProbes.currentIndex, probeNameText.text, fuelTextInput.text, voltageTextInput.text,
-                                               xz_yz_solar_id.text, xz_yz_radiator_id.text, xy_radiator_id.text);
+                                               xz_yz_solar_id.text, xz_yz_radiator_id.text, xy_radiator_id.text, fileToSave);
                     earthProbes.saveEarthProbeToXml(listViewEarthProbes.currentIndex, earthMissions, earthMissionIndex, fileToSave)
+                                        console.log(fileToSave)
                 } else {
                     earthProbes.saveEarthProbe(listViewEarthProbes.currentIndex, probeNameText.text, fuelTextInput.text, voltageTextInput.text,
                                                xz_yz_solar_id.text, xz_yz_radiator_id.text, xy_radiator_id.text, folderProbesPath + `/${currentProbe.probeName}.xml`);

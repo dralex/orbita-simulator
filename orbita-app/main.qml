@@ -300,7 +300,9 @@ ApplicationWindow  {
                             probes.saveToXml(listViewProbes.currentIndex, planetsItems, missionIndex, currentProbe.probeFilePath)
                         } else {
                             earthProbes.saveEarthProbe(listViewEarthProbes.currentIndex, probeNameText.text, fuelTextInput.text, voltageTextInput.text,
-                                                       xz_yz_solar_id.text, xz_yz_radiator_id.text, xy_radiator_id.text);
+                                                       xz_yz_solar_id.text, xz_yz_radiator_id.text, xy_radiator_id.text, currentProbe.probeFilePath);
+
+                            earthProbes.saveEarthProbeToXml(listViewEarthProbes.currentIndex, earthMissions, earthMissionIndex, currentProbe.probeFilePath)
                         }
                     }
                 }

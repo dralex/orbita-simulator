@@ -10,6 +10,24 @@
 #include "systems.h"
 #include "systemprobe.h"
 
+struct StationData {
+    QString name;
+    double locationAngle;
+};
+struct MissileData {
+    int index;
+    double locationAngle;
+    double launchTime;
+};
+
+struct MessageData {
+    int order;
+    int msgFrom;
+    int msgTo;
+    double data;
+    double duration;
+};
+
 struct SystemItem;
 
 struct EarthMessage {
@@ -81,8 +99,10 @@ public slots:
 
     int size();
     void saveEarthProbeToXml(int probeIndex, EarthMissions *missions,  int missionIndex,
-                             const QString &filename, const QString &oldFilename);
+                             const QString &filename);
     void loadEarthProbeFromXml(const QString &path, Systems *systems, EarthMissions *missions);
+
+    bool checkFileChanges(const QString &path, Systems *systems, int probeIndex);
 
 private:
     QString generateIntData(QVector<int>);
