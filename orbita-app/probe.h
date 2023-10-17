@@ -73,6 +73,7 @@ public slots:
 
     void saveToXml(int probeIndex, Planets *planetsData, int planetIndex, const QString &filename);
     void loadFromXml(QString filename, PlanetDevices *planetDevicesData, SettingsManager *settingsManager);
+    bool checkFileChanges(int probeIndex, PlanetDevices *planetDevicesData);
 
     int size();
 

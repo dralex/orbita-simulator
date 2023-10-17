@@ -102,7 +102,7 @@ public slots:
                              const QString &filename);
     void loadEarthProbeFromXml(const QString &path, Systems *systems, EarthMissions *missions);
 
-    bool checkFileChanges(const QString &path, Systems *systems, int probeIndex);
+    bool checkFileChanges(Systems *systems, int probeIndex);
 
 private:
     QString generateIntData(QVector<int>);

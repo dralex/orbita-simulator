@@ -14,6 +14,7 @@ struct SystemItem {
     QString type;
     double mass;
     bool startMode;
+    QString diagramPath;
 };
 
 class SystemProbe : public QObject

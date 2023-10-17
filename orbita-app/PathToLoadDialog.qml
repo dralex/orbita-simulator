@@ -54,8 +54,18 @@ FileDialog {
             fuelTextInput.text = `${currentProbe.fuel}`
             voltageTextInput.text = `${currentProbe.voltage}`
             xz_yz_solar_id.text = `${currentProbe.xz_yz_solar}`
-//            xz_yz_radiator_id.text `${currentProbe.xz_yz_radiator}`
+            xz_yz_radiator_id.text = `${currentProbe.xz_yz_radiator}`
             xy_radiator_id.text = `${currentProbe.xy_radiator}`
+
+            if (currentProbe.pythonCode) {
+                gBEPythonCode.visible = true
+                earthPythonCodeProperty = currentProbe.pythonCode
+                showDiagrammButton = false
+            } else {
+                gBEPythonCode.visible = false
+                showDiagrammButton = true
+                earthPythonCodeProperty = ""
+            }
         }
 
 

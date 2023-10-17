@@ -26,7 +26,7 @@ void SystemProbe::appendEarthSystem(EarthProbe *earthProbe, int probeIndex, QStr
 {
     emit preEarthProbeSystemsAppended();
 
-    mItems.append({mItems.size(), systemEngName, systemName, type, mass, startMode});
+    mItems.append({mItems.size(), systemEngName, systemName, type, mass, startMode, ""});
     earthProbe->appendEarthDevice(probeIndex, systemEngName, systemName, type, mass, startMode);
 
     emit postEarthProbeSystemsAppended();
@@ -66,7 +66,8 @@ void SystemProbe::changeEarthSystems(EarthProbe *earthProbe, int probeIndex)
                        earthProbe->items()[probeIndex].systems[i].systemName,
                        earthProbe->items()[probeIndex].systems[i].type,
                        earthProbe->items()[probeIndex].systems[i].mass,
-                       earthProbe->items()[probeIndex].systems[i].startMode
+                       earthProbe->items()[probeIndex].systems[i].startMode,
+                       earthProbe->items()[probeIndex].systems[i].diagramPath,
                       });
 
         emit postEarthProbeSystemsAppended();

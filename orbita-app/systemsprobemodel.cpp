@@ -28,7 +28,8 @@ QVariant SystemsProbeModel::data(const QModelIndex &index, int role) const
         return QVariant(item.mass);
     case startModeRole:
         return QVariant(item.startMode);
-
+    case diagramPathRole:
+        return QVariant(item.diagramPath);
     }
 
 
@@ -50,6 +51,9 @@ bool SystemsProbeModel::setData(const QModelIndex &index, const QVariant &value,
         break;
     case startModeRole:
         item.startMode = value.toBool();
+        break;
+    case diagramPathRole:
+        item.diagramPath = value.toString();
         break;
     }
 
@@ -74,6 +78,7 @@ QHash<int, QByteArray> SystemsProbeModel::roleNames() const
     names[systemNameRole] = "systemName";
     names[massRole] = "mass";
     names[startModeRole] = "startMode";
+    names[diagramPathRole] = "diagramPath";
     return names;
 }
 

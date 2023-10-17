@@ -37,7 +37,7 @@ void EarthProbe::appendEarthDevice(int probeIndex, QString systemEngName, QStrin
 {
     emit preEarthSystemAppended();
 
-    mItems[probeIndex].systems.append({mItems[probeIndex].systems.size(), systemEngName, systemName, type, mass, startMode});
+    mItems[probeIndex].systems.append({mItems[probeIndex].systems.size(), systemEngName, systemName, type, mass, startMode, ""});
 
     emit postEarthSystemAppended();
 }
@@ -465,9 +465,10 @@ void EarthProbe::loadEarthProbeFromXml(const QString &path, Systems *systems, Ea
 
                         while (!(xmlReader.isEndElement() && xmlReader.name() == "system")) {
                             xmlReader.readNext();
-                            if (xmlReader.isCDATA()) {
+                            if (xmlReader.isStartElement() && xmlReader.name() == "hsm_diagram")
+                                diagrammPathes.append({diagrammPathes.size(), systemItem.systemEngName, xmlReader.attributes().value("path").toString()});
+                            else if (xmlReader.isCDATA())
                                 pythonCode = xmlReader.text().toString();
-                            }
                         }
                     }
                 }
@@ -485,18 +486,26 @@ void EarthProbe::loadEarthProbeFromXml(const QString &path, Systems *systems, Ea
     probeItem.pythonCode = pythonCode;
     probeItem.filePath = path;
     probeItem.probeNumber = mItems.size();
+    probeItem.systems = systemsItems;
 
+    for (int i = 0; i < probeItem.systems.size(); ++i) {
+        for (int j = 0; j < probeItem.diagrammPathes.size(); ++j) {
+            if (probeItem.diagrammPathes[j].systemEngName == probeItem.systems[i].systemEngName) {
+                probeItem.systems[i].diagramPath = probeItem.diagrammPathes[j].path;
+                break;
+            }
+        }
+    }
     emit preEarthProbeAppended();
 
     mItems.append(probeItem);
-    mItems[probeItem.probeNumber].systems = systemsItems;
 
     emit postEarthProbeAppended();
 }
 
-bool EarthProbe::checkFileChanges(const QString &path, Systems *systems, int probeIndex)
+bool EarthProbe::checkFileChanges(Systems *systems, int probeIndex)
 {
-    QFile file(path);
+    QFile file(mItems[probeIndex].filePath);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << "Не удалось открыть XML файл для чтения: " << file.errorString();
         return false;
@@ -515,6 +524,7 @@ bool EarthProbe::checkFileChanges(const QString &path, Systems *systems, int pro
             QString elementName = xmlReader.name().toString();
 
             if (elementName == "probe") {
+
                 if (xmlReader.attributes().value("name").toString() != mItems[probeIndex].probeName) {
                     file.close();
                     return false;
@@ -525,7 +535,8 @@ bool EarthProbe::checkFileChanges(const QString &path, Systems *systems, int pro
 
                     if (xmlReader.isStartElement()) {
                         if (xmlReader.name() == "fuel") {
-                            if (xmlReader.readElementText().toDouble() == mItems[probeIndex].fuel) {
+
+                            if (xmlReader.readElementText().toDouble() != mItems[probeIndex].fuel) {
                                 file.close();
                                 return false;
                             }
@@ -534,18 +545,19 @@ bool EarthProbe::checkFileChanges(const QString &path, Systems *systems, int pro
                                 file.close();
                                 return false;
                             }
-                        } else if (xmlReader.name() == "xz_yz_solar_panel_fraction" == mItems[probeIndex].xz_yz_solar_panel_fraction) {
-                            if (xmlReader.readElementText().toDouble()) {
+                        } else if (xmlReader.name() == "xz_yz_solar_panel_fraction") {
+
+                            if (xmlReader.readElementText().toDouble() != mItems[probeIndex].xz_yz_solar_panel_fraction) {
                                 file.close();
                                 return false;
                             }
-                        } else if (xmlReader.name() == "xz_yz_radiator_fraction" == mItems[probeIndex].xz_yz_radiator_fraction) {
-                            if (xmlReader.readElementText().toDouble()) {
+                        } else if (xmlReader.name() == "xz_yz_radiator_fraction") {
+                            if (xmlReader.readElementText().toDouble() != mItems[probeIndex].xz_yz_radiator_fraction) {
                                 file.close();
                                 return false;
                             }
-                        } else if (xmlReader.name() == "xy_radiator_fraction" == mItems[probeIndex].xy_radiator_fraction) {
-                            if (xmlReader.readElementText().toDouble()) {
+                        } else if (xmlReader.name() == "xy_radiator_fraction") {
+                            if (xmlReader.readElementText().toDouble() != mItems[probeIndex].xy_radiator_fraction) {
                                 file.close();
                                 return false;
                             }
@@ -574,9 +586,13 @@ bool EarthProbe::checkFileChanges(const QString &path, Systems *systems, int pro
 
                         while (!(xmlReader.isEndElement() && xmlReader.name() == "system")) {
                             xmlReader.readNext();
-                            if (xmlReader.isCDATA()) {
-                                pythonCode = xmlReader.text().toString();
-                            }
+                            if (xmlReader.isStartElement() && xmlReader.name() == "hsm_diagram")
+                                diagrammPathes.append({diagrammPathes.size(), systemItem.systemEngName, xmlReader.attributes().value("path").toString()});
+                            else if (xmlReader.isCDATA())
+                                if (mItems[probeIndex].pythonCode != xmlReader.text().toString()) {
+                                    file.close();
+                                    return false;
+                                }
                         }
                     }
                 }
@@ -584,10 +600,41 @@ bool EarthProbe::checkFileChanges(const QString &path, Systems *systems, int pro
         }
     }
 
+
     if (xmlReader.hasError()) {
         qDebug() << "Ошибка при разборе XML файла: " << xmlReader.errorString();
     }
     file.close();
+
+    if (mItems[probeIndex].systems.size() != systemsItems.size()) {
+        return false;
+    } else {
+        for (int i = 0; i < mItems[probeIndex].systems.size(); ++i) {
+            if (mItems[probeIndex].systems.size()) {
+                if (mItems[probeIndex].systems[i].systemEngName != systemsItems[i].systemEngName ||
+                    mItems[probeIndex].systems[i].systemName != systemsItems[i].systemName ||
+                    mItems[probeIndex].systems[i].type != systemsItems[i].type ||
+                    mItems[probeIndex].systems[i].mass != systemsItems[i].mass ||
+                    mItems[probeIndex].systems[i].startMode != systemsItems[i].startMode) {
+                    return false;
+                }
+            }
+        }
+    }
+
+    if (mItems[probeIndex].diagrammPathes.size() != diagrammPathes.size()) {
+        return false;
+    } else {
+        if (mItems[probeIndex].diagrammPathes.size()) {
+            for (int i = 0; i < mItems[probeIndex].diagrammPathes.size(); ++i) {
+                if (mItems[probeIndex].diagrammPathes[i].systemEngName != diagrammPathes[i].systemEngName ||
+                    mItems[probeIndex].diagrammPathes[i].path != diagrammPathes[i].path) {
+                    return false;
+                }
+            }
+        }
+    }
+
 
     return true;
 }

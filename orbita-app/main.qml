@@ -363,9 +363,16 @@ ApplicationWindow  {
                 onClicked: {
                     if (typeMission) {
                         if (settingsManager.checkSimulationFile(settingsManager.getSimulationPath() + "/simulation.py")) {
-                            settingsManager.saveSettingsToFile("planets_settings.txt", typeMission);
-                            pathToSave = settingsManager.getPlanetsProbesPath()
-                            pathToLoad = settingsManager.getPlanetsProbesPath()
+                            probes.saveProbe(listViewProbes.currentIndex, probeNameText.text, firstNumber.text, secondNumber.text, pythonCodeProperty, currentProbe.probeFilePath)
+                            if (probes.checkFileChanges(listViewProbes.currentIndex, planetDevicesItems)) {
+                                settingsManager.saveSettingsToFile("planets_settings.txt", typeMission);
+                                pathToSave = settingsManager.getPlanetsProbesPath()
+                                pathToLoad = settingsManager.getPlanetsProbesPath()
+                            } else {
+                                errorDialog.textOfError = "Вы не сохранили изменения в аппарате!"
+                                errorDialog.open()
+                                return
+                            }
                         } else {
                             errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора."
                             errorDialog.open()
@@ -373,9 +380,17 @@ ApplicationWindow  {
                         }
                     } else {
                         if (settingsManager.checkSimulationFile(settingsManager.getEarthSimulationPath() + "/simulation.py")) {
-                            settingsManager.saveSettingsToFile("earth_settings.txt", typeMission);
-                            earthPathToSave = settingsManager.getEarthProbesPath()
-                            earthPathToLoad = settingsManager.getEarthProbesPath()
+                            earthProbes.saveEarthProbe(listViewEarthProbes.currentIndex, probeNameText.text, fuelTextInput.text, voltageTextInput.text,
+                                                       xz_yz_solar_id.text, xz_yz_radiator_id.text, xy_radiator_id.text, currentProbe.probeFilePath);
+                            if (earthProbes.checkFileChanges(systems, listViewEarthProbes.currentIndex)) {
+                                settingsManager.saveSettingsToFile("earth_settings.txt", typeMission);
+                                earthPathToSave = settingsManager.getEarthProbesPath()
+                                earthPathToLoad = settingsManager.getEarthProbesPath()
+                            } else {
+                                errorDialog.textOfError = "Вы не сохранили изменения в аппарате!"
+                                errorDialog.open()
+                                return
+                            }
                         } else {
                             errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора."
                             errorDialog.open()
@@ -831,7 +846,7 @@ ApplicationWindow  {
                                 property variant devicesModelData: model
 
                                 width: listViewEarthSystems.width - earthDevicesScrollBar.width
-                                height: 80
+                                height: model.diagramPath ? 95 : 80
                                 Rectangle {
                                     width: parent.width - devicesScrollBar.width
                                     height: parent.height - 5
@@ -862,6 +877,12 @@ ApplicationWindow  {
 
                                     Text {
                                         text: index >= 0 && index < listViewEarthSystems.count ? '<b>Начальное состояние:</b> ' + model.startMode : ""
+                                    }
+
+                                    Text {
+                                        width: listViewEarthSystems.width - systemsEarthButtons.width
+                                        text: index >= 0 && index < listViewEarthSystems.count && model.diagramPath ? '<b>Путь к файлу:</b> ' + model.diagramPath : ""
+                                        wrapMode: Text.WordWrap
                                     }
 
                                 }
@@ -956,7 +977,7 @@ ApplicationWindow  {
 
                                     delegate: Item {
                                         width: listViewStepsLanding.width
-                                        height: 85
+                                        height: model.argument ? 85 : 80
                                         Rectangle {
                                             width: parent.width - stepsLandingScrollBar.width
                                             height: parent.height - 5
@@ -1054,7 +1075,7 @@ ApplicationWindow  {
 
                                         delegate: Item {
                                             width: listViewStepsPlanetActivity.width
-                                            height: 85
+                                            height: model.argument ? 85 : 80
                                             Rectangle {
                                                 width: parent.width - stepsPlanetActivityScrollBar.width
                                                 height: parent.height - 5
@@ -1072,7 +1093,7 @@ ApplicationWindow  {
                                             Column {
                                                 anchors.fill: parent
                                                 anchors.leftMargin: 5
-                                                anchors.topMargin: 2
+                                                anchors.topMargin: 3
 
                                                 Text { text: index >= 0 && index < listViewStepsLanding.count && model.deviceNumber ? '<b>Номер устройства:</b> ' + model.deviceNumber : "<b>Номер устройства:</b> None" }
 
@@ -1133,56 +1154,67 @@ ApplicationWindow  {
                     Layout.preferredHeight: 400
                     visible: showPythonArea
                     title: qsTr("Вставьте Python код:")
-                    TextArea {
-                        id: pythonCodeTextArea
+
+                    ScrollView {
                         anchors.fill: parent
-                        enabled: itemsEnabled
-                        text: pythonCodeProperty
+                        TextArea {
+                            id: pythonCodeTextArea
+                            width: parent.width
+                            height: parent.height
+                            enabled: itemsEnabled
+                            text: pythonCodeProperty
 
-                        onTextChanged: {
-                            pythonCodeProperty = text;
-                        }
+                            onTextChanged: {
+                                pythonCodeProperty = text;
+                            }
 
-                        Keys.onPressed: {
-                            if (event.key === Qt.Key_Tab) {
-                                event.accepted = true;
-                                var cursorPos = cursorPosition;
-                                text = text.slice(0, cursorPos) + "    " + text.slice(cursorPos);
-                                cursorPosition = cursorPos + 4;
+                            Keys.onPressed: {
+                                if (event.key === Qt.Key_Tab) {
+                                    event.accepted = true;
+                                    var cursorPos = cursorPosition;
+                                    text = text.slice(0, cursorPos) + "    " + text.slice(cursorPos);
+                                    cursorPosition = cursorPos + 4;
+                                }
                             }
                         }
-
                     }
                 }
+
 
                 GroupBox {
                     id: gBEPythonCode
                     width: parent.width
-                    height: 400
+                    height: 300
                     Layout.preferredWidth: parent.width
-                    Layout.preferredHeight: 400
+                    Layout.preferredHeight: 300
                     visible: false
                     title: qsTr("Вставьте Python код:")
-                    TextArea {
-                        id: earthPythonCodeTextArea
+
+                    ScrollView {
                         anchors.fill: parent
-                        text: earthPythonCodeProperty
+                        TextArea {
+                            id: earthPythonCodeTextArea
+                            width: parent.width
+                            height: parent.height
 
-                        onTextChanged: {
-                            earthPythonCodeProperty = text;
-                        }
+                            text: earthPythonCodeProperty
 
-                        Keys.onPressed: {
-                            if (event.key === Qt.Key_Tab) {
-                                event.accepted = true;
-                                var cursorPos = cursorPosition;
-                                text = text.slice(0, cursorPos) + "    " + text.slice(cursorPos);
-                                cursorPosition = cursorPos + 4;
+                            onTextChanged: {
+                                earthPythonCodeProperty = text;
+                            }
+
+                            Keys.onPressed: {
+                                if (event.key === Qt.Key_Tab) {
+                                    event.accepted = true;
+                                    var cursorPos = cursorPosition;
+                                    text = text.slice(0, cursorPos) + "    " + text.slice(cursorPos);
+                                    cursorPosition = cursorPos + 4;
+                                }
                             }
                         }
-
                     }
                 }
+
 
                 Button {
                     id: settingsButton
@@ -1191,7 +1223,7 @@ ApplicationWindow  {
                     Layout.preferredHeight: height
                     Layout.preferredWidth: width
                     Layout.alignment: Qt.AlignBottom | Qt.AlignRight
-                    enabled: itemsEnabled
+                    enabled: false
                     text: "Настройки"
                     onClicked: {
                         folderProbesPath = settingsManager.getPlanetsProbesPath()

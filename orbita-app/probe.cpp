@@ -149,7 +149,7 @@ void Probe::saveToXml(int probeIndex, Planets *planetsData, int planetIndex, con
             {
                 xmlWriter.writeStartElement("command");
                 xmlWriter.writeAttribute("time", QString::number(stepsLanding.time));
-                xmlWriter.writeAttribute("device", QString(stepsLanding.device));
+                xmlWriter.writeAttribute("device", QString(stepsLanding.device + stepsLanding.deviceNumber));
                 xmlWriter.writeAttribute("action", QString(stepsLanding.command));
                 xmlWriter.writeAttribute("argument", QString::number(stepsLanding.argument));
                 xmlWriter.writeEndElement();
@@ -226,7 +226,7 @@ void Probe::loadFromXml(QString filename, PlanetDevices *planetDevicesData, Sett
                         deviceItem.deviceNumber = attributes.value("number").toInt();
                         deviceItem.deviceEngName = attributes.value("name").toString();
                         deviceItem.deviceName = planetDevicesData->getDeviceName(deviceItem.deviceEngName);
-                        deviceItem.deviceCode = planetDevicesData->getDeviceCode(deviceItem.deviceEngName);
+                        deviceItem.deviceCode = planetDevicesData->getDeviceCode(deviceItem.deviceName);
 
                         deviceItem.startState = attributes.value("start_state").toString();
                         deviceItem.inSafeMode = (attributes.value("in_safe_mode").toString() == "ON");
@@ -263,8 +263,8 @@ void Probe::loadFromXml(QString filename, PlanetDevices *planetDevicesData, Sett
                                 int argument = xmlReader.attributes().value("argument").toInt();
 
                                 if (stageId == "Landing") {
+                                    landingItem.device = device;
                                     if (rx.indexIn(device) != -1) {
-                                        landingItem.device = rx.cap(1);
                                         landingItem.deviceNumber = rx.cap(2).toInt();
                                     }
 
@@ -274,8 +274,8 @@ void Probe::loadFromXml(QString filename, PlanetDevices *planetDevicesData, Sett
                                     landingItem.argument = argument;
                                     stepsLandingItems.append(landingItem);
                                 } else if (stageId == "Surface activity") {
+                                    activityItem.device = device;
                                     if (rx.indexIn(device) != -1) {
-                                        activityItem.device = rx.cap(1);
                                         activityItem.deviceNumber = rx.cap(2).toInt();
                                     }
                                     activityItem.id = stepsActivityItems.size();
@@ -365,6 +365,196 @@ void Probe::loadFromXml(QString filename, PlanetDevices *planetDevicesData, Sett
         filename = "";
     }
     mItems[probeIndex].filePath = filename;
+}
+
+bool Probe::checkFileChanges(int probeIndex, PlanetDevices *planetDevicesData)
+{
+    QFile file(mItems[probeIndex].filePath);
+    if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        return false;
+    }
+
+    QXmlStreamReader xmlReader(&file);
+
+    QVector<DevicesItem> devicesItems;
+    QVector<StepsLandingItem> stepsLandingItems;
+    QVector<StepsActivityItem> stepsActivityItems;
+
+    while (!xmlReader.atEnd() && !xmlReader.hasError()) {
+        xmlReader.readNext();
+
+        if (xmlReader.isStartElement()) {
+            QString elementName = xmlReader.name().toString();
+            if (elementName == "probe") {
+                if (xmlReader.attributes().value("name").toString() != mItems[probeIndex].probeName) {
+                    file.close();
+                    return false;
+                }
+            } else if (elementName == "radius_external") {
+                xmlReader.readNext();
+                if (xmlReader.text().toDouble() != mItems[probeIndex].outerRadius) {
+                    file.close();
+                    return false;
+                }
+            } else if (xmlReader.name() == "radius_internal") {
+                xmlReader.readNext();
+                if (xmlReader.text().toDouble() != mItems[probeIndex].innerRadius) {
+                    file.close();
+                    return false;
+                }
+            } else if (xmlReader.name() == "devices") {
+                while (!xmlReader.atEnd() && !xmlReader.hasError()) {
+                    xmlReader.readNext();
+
+                    if (xmlReader.isStartElement() && xmlReader.name() == "device") {
+                        DevicesItem deviceItem;
+
+                        QXmlStreamAttributes attributes = xmlReader.attributes();
+                        deviceItem.deviceNumber = attributes.value("number").toInt();
+                        deviceItem.deviceEngName = attributes.value("name").toString();
+                        deviceItem.deviceName = planetDevicesData->getDeviceName(deviceItem.deviceEngName);
+                        deviceItem.deviceCode = planetDevicesData->getDeviceCode(deviceItem.deviceName);
+
+                        deviceItem.startState = attributes.value("start_state").toString();
+                        deviceItem.inSafeMode = (attributes.value("in_safe_mode").toString() == "ON");
+
+                        devicesItems.append(deviceItem);
+
+
+                        while (!(xmlReader.isEndElement() && xmlReader.name() == "device")) {
+                            xmlReader.readNext();
+                        }
+                    } else if (xmlReader.isEndElement() && xmlReader.name() == "devices") {
+                        break;
+                    }
+                }
+
+            } else if (xmlReader.name() == "program") {
+                while (!xmlReader.atEnd() && !xmlReader.hasError()) {
+                    xmlReader.readNext();
+
+                    if (xmlReader.isStartElement() && (xmlReader.name() == "stage")) {
+                        QString stageId = xmlReader.attributes().value("id").toString();
+
+                        while (!xmlReader.atEnd() && !xmlReader.hasError()) {
+                            xmlReader.readNext();
+
+                            if (xmlReader.isStartElement() && (xmlReader.name() == "command")) {
+                                QRegExp rx("([A-Za-z]+)(\\d+)");
+                                StepsLandingItem landingItem;
+                                StepsActivityItem activityItem;
+
+                                int time = xmlReader.attributes().value("time").toInt();
+                                QString device = xmlReader.attributes().value("device").toString();
+                                QString action = xmlReader.attributes().value("action").toString();
+                                int argument = xmlReader.attributes().value("argument").toInt();
+
+                                if (stageId == "Landing") {
+                                    landingItem.device = device;
+                                    if (rx.indexIn(device) != -1) {
+                                        landingItem.deviceNumber = rx.cap(2).toInt();
+                                    }
+
+                                    landingItem.id = stepsLandingItems.size();
+                                    landingItem.time = time;
+                                    landingItem.command = action;
+                                    landingItem.argument = argument;
+                                    stepsLandingItems.append(landingItem);
+                                } else if (stageId == "Surface activity") {
+                                    activityItem.device = device;
+                                    if (rx.indexIn(device) != -1) {
+                                        activityItem.deviceNumber = rx.cap(2).toInt();
+                                    }
+                                    activityItem.id = stepsActivityItems.size();
+                                    activityItem.time = time;
+                                    activityItem.command = action;
+                                    activityItem.argument = argument;
+                                    stepsActivityItems.append(activityItem);
+                                }
+
+                                while (!(xmlReader.isEndElement() && xmlReader.name() == "command")) {
+                                    xmlReader.readNext();
+                                }
+                            } else if (xmlReader.isEndElement() && xmlReader.name() == "stage") {
+                                break;
+                            }
+                        }
+                    } else if (xmlReader.isEndElement() && xmlReader.name() == "program") {
+                        break;
+                    }
+                }
+            } else if (elementName == "python_code") {
+                xmlReader.readNext();
+                if (xmlReader.isCDATA()) {
+                    if (xmlReader.text().toString() != mItems[probeIndex].pythonCode) {
+                        file.close();
+                        return false;
+                    }
+                }
+            }
+        }
+    }
+
+    if (xmlReader.hasError()) {
+        return false;
+    }
+
+    file.close();
+    if (mItems[probeIndex].devices.size() != devicesItems.size()) {
+        return false;
+    } else {
+        for (int i = 0; i < mItems[probeIndex].devices.size(); ++i) {
+            if (mItems[probeIndex].devices.size()) {
+                if (mItems[probeIndex].devices[i].deviceNumber != devicesItems[i].deviceNumber ||
+                    mItems[probeIndex].devices[i].deviceName != devicesItems[i].deviceName ||
+                    mItems[probeIndex].devices[i].deviceCode != devicesItems[i].deviceCode ||
+                    mItems[probeIndex].devices[i].deviceEngName != devicesItems[i].deviceEngName ||
+                    mItems[probeIndex].devices[i].startState != devicesItems[i].startState ||
+                    mItems[probeIndex].devices[i].inSafeMode != devicesItems[i].inSafeMode) {
+                    return false;
+                }
+            }
+        }
+    }
+
+    qDebug() << 5;
+
+    if (mItems[probeIndex].stepsLanding.size() != stepsLandingItems.size()) {
+        return false;
+    } else {
+        for (int i = 0; i < mItems[probeIndex].stepsLanding.size(); ++i) {
+            if (mItems[probeIndex].stepsLanding.size()) {
+                if (mItems[probeIndex].stepsLanding[i].deviceNumber != stepsLandingItems[i].deviceNumber ||
+                    mItems[probeIndex].stepsLanding[i].time != stepsLandingItems[i].time ||
+                    mItems[probeIndex].stepsLanding[i].device != stepsLandingItems[i].device ||
+                    mItems[probeIndex].stepsLanding[i].command != stepsLandingItems[i].command ||
+                    mItems[probeIndex].stepsLanding[i].argument != stepsLandingItems[i].argument) {
+                    return false;
+                }
+            }
+        }
+    }
+
+    qDebug() << 6;
+
+    if (mItems[probeIndex].stepsActivity.size() != stepsActivityItems.size()) {
+        return false;
+    } else {
+        for (int i = 0; i < mItems[probeIndex].stepsActivity.size(); ++i) {
+            if (mItems[probeIndex].stepsActivity.size()) {
+                if (mItems[probeIndex].stepsActivity[i].deviceNumber != stepsActivityItems[i].deviceNumber ||
+                    mItems[probeIndex].stepsActivity[i].time != stepsActivityItems[i].time ||
+                    mItems[probeIndex].stepsActivity[i].device != stepsActivityItems[i].device ||
+                    mItems[probeIndex].stepsActivity[i].command != stepsActivityItems[i].command ||
+                    mItems[probeIndex].stepsActivity[i].argument != stepsActivityItems[i].argument) {
+                    return false;
+                }
+            }
+        }
+    }
+
+
+    return true;
 }
 
 

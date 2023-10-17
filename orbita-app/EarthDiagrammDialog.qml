@@ -52,7 +52,7 @@ Dialog  {
                 Layout.preferredHeight: 23
                 Layout.preferredWidth: parent.width * 0.5
                 text: "Добавить"
-                onClicked: {appendEarthSystem
+                onClicked: {
                     diagrammSystemName = earthDevicesBox.currentValue;
                     diagrammFileDialog.open()
 
