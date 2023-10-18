@@ -402,6 +402,7 @@ void EarthProbe::saveEarthProbeToXml(int probeIndex, EarthMissions *missions, in
 }
 
 void EarthProbe::loadEarthProbeFromXml(const QString &path, Systems *systems, EarthMissions *missions) {
+    QString probeFilename = path;
     QFile file(path);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << "Не удалось открыть XML файл для чтения: " << file.errorString();
@@ -484,7 +485,10 @@ void EarthProbe::loadEarthProbeFromXml(const QString &path, Systems *systems, Ea
 
     probeItem.diagrammPathes = diagrammPathes;
     probeItem.pythonCode = pythonCode;
-    probeItem.filePath = path;
+    if (path.contains("earth_probes_templates")) {
+        probeFilename = "";
+    }
+    probeItem.filePath = probeFilename;
     probeItem.probeNumber = mItems.size();
     probeItem.systems = systemsItems;
 

@@ -9,6 +9,7 @@
 #include "earthmissions.h"
 #include "systems.h"
 #include "systemprobe.h"
+#include "settingsmanager.h"
 
 struct StationData {
     QString name;

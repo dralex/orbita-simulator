@@ -167,7 +167,7 @@ void Probe::saveToXml(int probeIndex, Planets *planetsData, int planetIndex, con
                 xmlWriter.writeAttribute("time", QString::number(stepsActivity.time));
                 xmlWriter.writeAttribute("device", QString(stepsActivity.device + stepsActivity.deviceNumber));
                 xmlWriter.writeAttribute("action", QString(stepsActivity.command));
-                xmlWriter.writeAttribute("argument", QString(stepsActivity.argument));
+                xmlWriter.writeAttribute("argument", QString::number(stepsActivity.argument));
                 xmlWriter.writeEndElement();
             }
             xmlWriter.writeEndElement();
@@ -186,7 +186,8 @@ void Probe::saveToXml(int probeIndex, Planets *planetsData, int planetIndex, con
     file.close();
 }
 
-void Probe::loadFromXml(QString filename, PlanetDevices *planetDevicesData, SettingsManager *settingsManager) {
+void Probe::loadFromXml(QString filename, PlanetDevices *planetDevicesData) {
+    QString probeFilename = filename;
     QFile file(filename);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         return;
@@ -313,6 +314,10 @@ void Probe::loadFromXml(QString filename, PlanetDevices *planetDevicesData, Sett
 
     int probeIndex = mItems.size();
 
+    if (filename.contains("planets_probes_templates")) {
+        probeFilename = "";
+    }
+
     mItems.append({probeIndex,
                    probeXmlItem.probeName,
                    probeXmlItem.missionName,
@@ -322,7 +327,7 @@ void Probe::loadFromXml(QString filename, PlanetDevices *planetDevicesData, Sett
                    {},
                    {},
                    probeXmlItem.pythonCode,
-                   ""
+                   probeFilename,
                   });
 
     emit postProbeAppended();
@@ -360,11 +365,6 @@ void Probe::loadFromXml(QString filename, PlanetDevices *planetDevicesData, Sett
 
 
     file.close();
-
-    if (filename.startsWith(settingsManager->getSimulationPath() + "/planets probes templates")) {
-        filename = "";
-    }
-    mItems[probeIndex].filePath = filename;
 }
 
 bool Probe::checkFileChanges(int probeIndex, PlanetDevices *planetDevicesData)
@@ -517,7 +517,6 @@ bool Probe::checkFileChanges(int probeIndex, PlanetDevices *planetDevicesData)
         }
     }
 
-    qDebug() << 5;
 
     if (mItems[probeIndex].stepsLanding.size() != stepsLandingItems.size()) {
         return false;
@@ -535,7 +534,6 @@ bool Probe::checkFileChanges(int probeIndex, PlanetDevices *planetDevicesData)
         }
     }
 
-    qDebug() << 6;
 
     if (mItems[probeIndex].stepsActivity.size() != stepsActivityItems.size()) {
         return false;

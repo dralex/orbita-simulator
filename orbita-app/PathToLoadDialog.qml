@@ -20,7 +20,7 @@ FileDialog {
         }
 
         if (typeMission) {
-            probes.loadFromXml(fileToLoad, planetDevicesItems, settingsManager)
+            probes.loadFromXml(fileToLoad, planetDevicesItems)
             listViewProbes.currentIndex = probes.size() - 1
             currentProbe = listViewProbes.currentItem.probesModelData
 

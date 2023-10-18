@@ -72,7 +72,7 @@ public slots:
     void removeActivityAndLandingItem(int probeIndex, bool typeCommand, int index);
 
     void saveToXml(int probeIndex, Planets *planetsData, int planetIndex, const QString &filename);
-    void loadFromXml(QString filename, PlanetDevices *planetDevicesData, SettingsManager *settingsManager);
+    void loadFromXml(QString filename, PlanetDevices *planetDevicesData);
     bool checkFileChanges(int probeIndex, PlanetDevices *planetDevicesData);
 
     int size();
