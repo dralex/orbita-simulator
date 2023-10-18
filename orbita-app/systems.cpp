@@ -26,6 +26,7 @@ bool Systems::setEarthSystems(int index, const EarthSystemItem &item)
 
 void Systems::loadSystems(const QString &filePath) {
     QFile file(filePath);
+    QMap<QString, QList<bool>> allows;
 
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << "Не удалось открыть XML файл.";
@@ -36,7 +37,26 @@ void Systems::loadSystems(const QString &filePath) {
 
     while (!xmlReader.atEnd() && !xmlReader.hasError()) {
         xmlReader.readNext();
-        if (xmlReader.name() == "choices") {
+        if (xmlReader.name() == "subsystems") {
+            while (!xmlReader.atEnd() && !xmlReader.hasError()) {
+                xmlReader.readNext();
+                if (xmlReader.isStartElement() && xmlReader.name() == "subsystem") {
+                    QXmlStreamAttributes attributes = xmlReader.attributes();
+                    QString type = attributes.value("type").toString();
+                    QString allowProgramStr = attributes.value("allow_program").toString().toLower();
+                    QString allowStateStr = attributes.value("allow_state").toString().toLower();
+
+                    bool allow_program = (allowProgramStr == "true");
+                    bool allow_state = (allowStateStr == "true");
+
+                    QList<bool> values = {allow_program, allow_state};
+                    allows.insert(type, values);
+                }
+                else if (xmlReader.isEndElement() && xmlReader.name() == "subsystems") {
+                    break;
+                }
+            }
+        } else if (xmlReader.name() == "choices") {
             while (!xmlReader.atEnd() && !xmlReader.hasError()) {
                 xmlReader.readNext();
 
@@ -60,6 +80,9 @@ void Systems::loadSystems(const QString &filePath) {
                         }
                     }
 
+                    devicesItemXml.allowProgram = allows[devicesItemXml.type][0];
+                    devicesItemXml.allowState = allows[devicesItemXml.type][1];
+
                     emit preEarthSystemAppended();
 
                     mItems.append(devicesItemXml);
@@ -81,6 +104,7 @@ void Systems::loadSystems(const QString &filePath) {
     }
 
     file.close();
+    allows.clear();
 }
 
 
@@ -126,6 +150,24 @@ double Systems::getMass(QString systemName)
             return mItems[i].mass;
     }
     return 0.0;
+}
+
+bool Systems::getAllowState(QString systemName)
+{
+    for (int i = 0; i < mItems.size(); ++i) {
+        if (mItems[i].systemName == systemName)
+            return mItems[i].allowState;
+    }
+    return false;
+}
+
+bool Systems::getallowProgram(QString systemName)
+{
+    for (int i = 0; i < mItems.size(); ++i) {
+        if (mItems[i].systemName == systemName)
+            return mItems[i].allowProgram;
+    }
+    return false;
 }
 
 int Systems::size()

@@ -166,8 +166,10 @@ Dialog  {
                                     devicesItems.changeDevices(probes, listViewProbes.currentIndex)
                                     pythonCodeProperty = currentProbe.pythonCode
                                 } else {
-
-                                    earthProbes.appendEarthProbe("earth probe", earthMissonSelect.currentText, "print('Hello World!')", "");
+                                    if (earthMissions.getMissionEngName(earthMissonSelect.currentText).includes("test"))
+                                        earthProbes.loadEarthProbeFromXml(`../orbita-app/earth_probes_templates/${earthMissions.getMissionEngName(earthMissonSelect.currentText)}.xml`, systems, earthMissions)
+                                    else
+                                        earthProbes.appendEarthProbe("earth probe", earthMissonSelect.currentText, "print('Hello World!')", "");
                                     listViewEarthProbes.currentIndex = earthProbes.size() - 1
                                     currentProbe = listViewEarthProbes.currentItem.earthProbesModelData
 
@@ -188,7 +190,10 @@ Dialog  {
                             }
 
                             if (solutionSelect.currentText === "Диаграмма") {
-                                earthProbes.appendEarthProbe("earth probe", earthMissonSelect.currentText, "", "");
+                                if (earthMissions.getMissionEngName(earthMissonSelect.currentText).includes("test"))
+                                    earthProbes.loadEarthProbeFromXml(`../orbita-app/earth_probes_templates/${earthMissions.getMissionEngName(earthMissonSelect.currentText)}sm.xml`, systems, earthMissions)
+                                else
+                                    earthProbes.appendEarthProbe("earth probe", earthMissonSelect.currentText, "", "");
                                 listViewEarthProbes.currentIndex = earthProbes.size() - 1
                                 currentProbe = listViewEarthProbes.currentItem.earthProbesModelData
 

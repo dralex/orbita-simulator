@@ -13,6 +13,8 @@ struct EarthSystemItem {
     QString systemName;
     QString type;
     double mass;
+    bool allowState;
+    bool allowProgram;
 };
 
 class Systems : public QObject
@@ -33,6 +35,8 @@ public slots:
     QString getSystemNameByEng(QString systemEngName);
     QString getType(QString systemName);
     double getMass(QString systemName);
+    bool getAllowState(QString systemName);
+    bool getallowProgram(QString systemName);
 
     int size();
 
