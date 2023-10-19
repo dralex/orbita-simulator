@@ -99,7 +99,7 @@ public slots:
     void removeDiagramm(int probeIndex, QString systemEngName);
 
     int size();
-    void saveEarthProbeToXml(int probeIndex, EarthMissions *missions,  int missionIndex,
+    void saveEarthProbeToXml(int probeIndex, EarthMissions *missions,  Systems *earthSystems, int missionIndex,
                              const QString &filename);
     void loadEarthProbeFromXml(const QString &path, Systems *systems, EarthMissions *missions);
 

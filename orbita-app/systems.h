@@ -36,7 +36,7 @@ public slots:
     QString getType(QString systemName);
     double getMass(QString systemName);
     bool getAllowState(QString systemName);
-    bool getallowProgram(QString systemName);
+    bool getAllowProgram(QString systemName);
 
     int size();
 

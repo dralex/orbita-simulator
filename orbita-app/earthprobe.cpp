@@ -82,7 +82,7 @@ int EarthProbe::size()
     return mItems.size();
 }
 
-void EarthProbe::saveEarthProbeToXml(int probeIndex, EarthMissions *missions, int missionIndex, const QString &filename) {
+void EarthProbe::saveEarthProbeToXml(int probeIndex, EarthMissions *missions, Systems *earthSystems, int missionIndex, const QString &filename) {
     EarthMissionsItem missionItem = missions->items()[missionIndex];
     QFile file(filename);
     bool isNewFile = true;
@@ -369,8 +369,11 @@ void EarthProbe::saveEarthProbeToXml(int probeIndex, EarthMissions *missions, in
             {
                 xmlWriter.writeStartElement("system");
                 xmlWriter.writeAttribute("name", QString(systems.systemEngName));
-                if (systems.startMode)
+                if (systems.startMode && earthSystems->getAllowState(systems.systemName))
                     xmlWriter.writeAttribute("start_mode", "ON");
+                else if (!systems.startMode && earthSystems->getAllowState(systems.systemName))
+                    xmlWriter.writeAttribute("start_mode", "OFF");
+
                 if (mItems[probeIndex].diagrammPathes.size()) {
                     for (int i = 0; i < mItems[probeIndex].diagrammPathes.size(); ++i) {
                         if (mItems[probeIndex].diagrammPathes[i].systemEngName == systems.systemEngName) {

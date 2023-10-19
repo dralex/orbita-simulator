@@ -1,4 +1,4 @@
-#include "systems.h"
+﻿#include "systems.h"
 
 Systems::Systems(QObject *parent)
     : QObject{parent}
@@ -161,7 +161,7 @@ bool Systems::getAllowState(QString systemName)
     return false;
 }
 
-bool Systems::getallowProgram(QString systemName)
+bool Systems::getAllowProgram(QString systemName)
 {
     for (int i = 0; i < mItems.size(); ++i) {
         if (mItems[i].systemName == systemName)

@@ -302,7 +302,7 @@ ApplicationWindow  {
                             earthProbes.saveEarthProbe(listViewEarthProbes.currentIndex, probeNameText.text, fuelTextInput.text, voltageTextInput.text,
                                                        xz_yz_solar_id.text, xz_yz_radiator_id.text, xy_radiator_id.text, currentProbe.probeFilePath);
 
-                            earthProbes.saveEarthProbeToXml(listViewEarthProbes.currentIndex, earthMissions, earthMissionIndex, currentProbe.probeFilePath)
+                            earthProbes.saveEarthProbeToXml(listViewEarthProbes.currentIndex, earthMissions, systems, earthMissionIndex, currentProbe.probeFilePath, earthProbeSystems)
                         }
                     }
                 }
@@ -843,7 +843,7 @@ ApplicationWindow  {
                             }
 
                             delegate: Item {
-                                property variant devicesModelData: model
+                                property variant systemsModelData: model
 
                                 width: listViewEarthSystems.width - earthDevicesScrollBar.width
                                 height: model.diagramPath ? 95 : 80
@@ -919,7 +919,7 @@ ApplicationWindow  {
                                 enabled: itemsEnabled
                                 onClicked: {
                                     if (systems.size()) {
-                                        successDialog.message = `Успешно удалена подсистема: ${listViewEarthSystems.currentItem.devicesModelData.systemName}`
+                                        successDialog.message = `Успешно удалена подсистема: ${listViewEarthSystems.currentItem.systemsModelData.systemName}`
                                         earthProbeSystems.removeEarthSystem(earthProbes, listViewEarthProbes.currentIndex, listViewEarthSystems.currentIndex)
                                         successDialog.open()
                                     }
@@ -995,7 +995,7 @@ ApplicationWindow  {
                                         Column {
                                             anchors.fill: parent
                                             anchors.leftMargin: 5
-                                            anchors.topMargin: 2
+                                            anchors.topMargin: model.argument ? 2 : 5
 
                                             Text { text: index >= 0 && index < listViewStepsLanding.count && model.deviceNumber? '<b>Номер устройства:</b> ' + model.deviceNumber : "<b>Номер устройства:</b> None" }
 
@@ -1257,7 +1257,6 @@ ApplicationWindow  {
                     }
                 }
             }
-
         }
     }
 }
