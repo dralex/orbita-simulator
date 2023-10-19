@@ -109,7 +109,9 @@ Dialog  {
                                 showDiagrammButton = false
                                 showPythonArea.text = ""
 
-                                probes.loadFromXml(`../orbita-app/planets_probes_templates/${missonSelect.currentText}-Template.xml`, planetDevicesItems)
+                                probes.loadFromXml(`../orbita-app/planets_probes_templates/${missonSelect.currentText}-Template.xml`,
+                                                   planetDevicesItems,
+                                                   settingsManager)
                                 listViewProbes.currentIndex = probes.size() - 1
                                 currentProbe = listViewProbes.currentItem.probesModelData
 
@@ -124,7 +126,9 @@ Dialog  {
                                     showPythonArea = true
                                     showDiagrammButton = false
 
-                                    probes.loadFromXml(`../orbita-app/planets_probes_templates/${missonSelect.currentText}-Python-Template.xml`, planetDevicesItems)
+                                    probes.loadFromXml(`../orbita-app/planets_probes_templates/${missonSelect.currentText}-Python-Template.xml`,
+                                                       planetDevicesItems,
+                                                       settingsManager)
                                     listViewProbes.currentIndex = probes.size() - 1
                                     currentProbe = listViewProbes.currentItem.probesModelData
 
@@ -167,7 +171,10 @@ Dialog  {
                                     pythonCodeProperty = currentProbe.pythonCode
                                 } else {
                                     if (earthMissions.getMissionEngName(earthMissonSelect.currentText).includes("test"))
-                                        earthProbes.loadEarthProbeFromXml(`../orbita-app/earth_probes_templates/${earthMissions.getMissionEngName(earthMissonSelect.currentText)}.xml`, systems, earthMissions)
+                                        earthProbes.loadEarthProbeFromXml(`../orbita-app/earth_probes_templates/${earthMissions.getMissionEngName(earthMissonSelect.currentText)}.xml`,
+                                                                          systems,
+                                                                          earthMissions,
+                                                                          settingsManager)
                                     else
                                         earthProbes.appendEarthProbe("earth probe", earthMissonSelect.currentText, "print('Hello World!')", "");
                                     listViewEarthProbes.currentIndex = earthProbes.size() - 1
@@ -191,7 +198,11 @@ Dialog  {
 
                             if (solutionSelect.currentText === "Диаграмма") {
                                 if (earthMissions.getMissionEngName(earthMissonSelect.currentText).includes("test"))
-                                    earthProbes.loadEarthProbeFromXml(`../orbita-app/earth_probes_templates/${earthMissions.getMissionEngName(earthMissonSelect.currentText)}sm.xml`, systems, earthMissions)
+                                    earthProbes.loadEarthProbeFromXml(`../orbita-app/earth_probes_templates/${earthMissions.getMissionEngName(earthMissonSelect.currentText)}sm.xml`,
+                                                                      systems,
+                                                                      earthMissions,
+                                                                      settingsManager
+                                                                      )
                                 else
                                     earthProbes.appendEarthProbe("earth probe", earthMissonSelect.currentText, "", "");
                                 listViewEarthProbes.currentIndex = earthProbes.size() - 1

@@ -82,7 +82,8 @@ int EarthProbe::size()
     return mItems.size();
 }
 
-void EarthProbe::saveEarthProbeToXml(int probeIndex, EarthMissions *missions, Systems *earthSystems, int missionIndex, const QString &filename) {
+void EarthProbe::saveEarthProbeToXml(int probeIndex, EarthMissions *missions,
+                                     Systems *earthSystems, int missionIndex, const QString &filename) {
     EarthMissionsItem missionItem = missions->items()[missionIndex];
     QFile file(filename);
     bool isNewFile = true;
@@ -404,13 +405,28 @@ void EarthProbe::saveEarthProbeToXml(int probeIndex, EarthMissions *missions, Sy
     file.close();
 }
 
-void EarthProbe::loadEarthProbeFromXml(const QString &path, Systems *systems, EarthMissions *missions) {
+void EarthProbe::loadEarthProbeFromXml(const QString &path, Systems *systems, EarthMissions *missions,
+                                       SettingsManager *settingsManager) {
     QString probeFilename = path;
     QFile file(path);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         qDebug() << "Не удалось открыть XML файл для чтения: " << file.errorString();
         return;
     }
+
+//    QXmlSchema schema;
+//    schema.load(settingsManager->getEarthSimulationPath() + "/xml-schemas/probe.xsd");
+//    if(!schema.isValid()) {
+//        qDebug()<<"Плохой файл xml-схемы аппарата";
+//        return;
+//    }
+
+//    QXmlSchemaValidator validator(schema);
+//    if(!validator.validate(settingsManager->getEarthSimulationPath() + "/xml-schemas/probe.xsd")) {
+//        qDebug() << "Файл аппарата " << path << " не соответствует схеме";
+//        return;
+//    }
+
 
     QXmlStreamReader xmlReader(&file);
 

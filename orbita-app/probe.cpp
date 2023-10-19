@@ -186,12 +186,25 @@ void Probe::saveToXml(int probeIndex, Planets *planetsData, int planetIndex, con
     file.close();
 }
 
-void Probe::loadFromXml(QString filename, PlanetDevices *planetDevicesData) {
+void Probe::loadFromXml(QString filename, PlanetDevices *planetDevicesData, SettingsManager *settingsManager) {
     QString probeFilename = filename;
     QFile file(filename);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         return;
     }
+
+//    QXmlSchema schema;
+//    schema.load(settingsManager->getSimulationPath() + "/xml-schemas/probe.xsd");
+//    if(!schema.isValid()) {
+//        qDebug()<<"Плохой файл xml-схемы аппарата";
+//        return;
+//    }
+
+//    QXmlSchemaValidator validator(schema);
+//    if(!validator.validate(settingsManager->getSimulationPath() + "/xml-schemas/probe.xsd")) {
+//        qDebug() << "Файл аппарата " << filename << " не соответствует схеме";
+//        return;
+//    }
 
     QXmlStreamReader xmlReader(&file);
 

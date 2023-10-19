@@ -5,6 +5,8 @@
 #include <QVector>
 #include <QFile>
 #include <QXmlStreamWriter>
+#include <QXmlSchema>
+#include <QXmlSchemaValidator>
 #include "devices.h"
 #include "stepsactivity.h"
 #include "stepslanding.h"
@@ -72,7 +74,7 @@ public slots:
     void removeActivityAndLandingItem(int probeIndex, bool typeCommand, int index);
 
     void saveToXml(int probeIndex, Planets *planetsData, int planetIndex, const QString &filename);
-    void loadFromXml(QString filename, PlanetDevices *planetDevicesData);
+    void loadFromXml(QString filename, PlanetDevices *planetDevicesData, SettingsManager *settingsManager);
     bool checkFileChanges(int probeIndex, PlanetDevices *planetDevicesData);
 
     int size();

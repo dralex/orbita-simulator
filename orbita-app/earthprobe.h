@@ -5,6 +5,8 @@
 #include <QVector>
 #include <QDebug>
 #include <QRandomGenerator>
+#include <QXmlSchema>
+#include <QXmlSchemaValidator>
 #include "systemprobe.h"
 #include "earthmissions.h"
 #include "systems.h"
@@ -101,7 +103,7 @@ public slots:
     int size();
     void saveEarthProbeToXml(int probeIndex, EarthMissions *missions,  Systems *earthSystems, int missionIndex,
                              const QString &filename);
-    void loadEarthProbeFromXml(const QString &path, Systems *systems, EarthMissions *missions);
+    void loadEarthProbeFromXml(const QString &path, Systems *systems, EarthMissions *missions, SettingsManager *settingsManager);
 
     bool checkFileChanges(Systems *systems, int probeIndex);
 

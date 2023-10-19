@@ -31,11 +31,30 @@ FileDialog {
             if (checkAction) {
 
                 if (fileToSave) {
-                    probes.saveProbe(listViewProbes.currentIndex, probeNameText.text, firstNumber.text, secondNumber.text, pythonCodeProperty, fileToSave)
-                    probes.saveToXml(listViewProbes.currentIndex, planetsItems, missionIndex, fileToSave)
+                    probes.saveProbe(listViewProbes.currentIndex,
+                                     probeNameText.text,
+                                     firstNumber.text,
+                                     secondNumber.text,
+                                     pythonCodeProperty,
+                                     fileToSave)
+
+                    probes.saveToXml(listViewProbes.currentIndex,
+                                     planetsItems,
+                                     missionIndex,
+                                     fileToSave,
+                                     )
                 } else {
-                    probes.saveProbe(listViewProbes.currentIndex, probeNameText.text, firstNumber.text, secondNumber.text, pythonCodeProperty, folderProbesPath + `/${currentProbe.probeName}.xml`)
-                    probes.saveToXml(listViewProbes.currentIndex, planetsItems, missionIndex, folderProbesPath + `/${currentProbe.probeName}.xml`)
+                    probes.saveProbe(listViewProbes.currentIndex,
+                                     probeNameText.text,
+                                     firstNumber.text,
+                                     secondNumber.text,
+                                     pythonCodeProperty,
+                                     folderProbesPath + `/${currentProbe.probeName}.xml`)
+
+                    probes.saveToXml(listViewProbes.currentIndex,
+                                     planetsItems,
+                                     missionIndex,
+                                     folderProbesPath + `/${currentProbe.probeName}.xml`)
                 }
             } else {
                 settingsManager.setProbesPath(folderProbesPath)
@@ -54,13 +73,36 @@ FileDialog {
                 earthPathToLoad = settingsManager.getEarthProbesPath()
 
                 if (fileToSave) {
-                    earthProbes.saveEarthProbe(listViewEarthProbes.currentIndex, probeNameText.text, fuelTextInput.text, voltageTextInput.text,
-                                               xz_yz_solar_id.text, xz_yz_radiator_id.text, xy_radiator_id.text, fileToSave);
-                    earthProbes.saveEarthProbeToXml(listViewEarthProbes.currentIndex, earthMissions, systems, earthMissionIndex, fileToSave)
+                    earthProbes.saveEarthProbe(listViewEarthProbes.currentIndex,
+                                               probeNameText.text,
+                                               fuelTextInput.text,
+                                               voltageTextInput.text,
+                                               xz_yz_solar_id.text,
+                                               xz_yz_radiator_id.text,
+                                               xy_radiator_id.text,
+                                               fileToSave);
+
+                    earthProbes.saveEarthProbeToXml(listViewEarthProbes.currentIndex,
+                                                    earthMissions, systems,
+                                                    earthMissionIndex,
+                                                    fileToSave,
+                                                    )
                 } else {
-                    earthProbes.saveEarthProbe(listViewEarthProbes.currentIndex, probeNameText.text, fuelTextInput.text, voltageTextInput.text,
-                                               xz_yz_solar_id.text, xz_yz_radiator_id.text, xy_radiator_id.text, folderProbesPath + `/${currentProbe.probeName}.xml`);
-                    earthProbes.saveEarthProbeToXml(listViewEarthProbes.currentIndex, earthMissions, systems, earthMissionIndex, folderProbesPath + `/${currentProbe.probeName}.xml`)
+                    earthProbes.saveEarthProbe(listViewEarthProbes.currentIndex,
+                                               probeNameText.text,
+                                               fuelTextInput.text,
+                                               voltageTextInput.text,
+                                               xz_yz_solar_id.text,
+                                               xz_yz_radiator_id.text,
+                                               xy_radiator_id.text,
+                                               folderProbesPath + `/${currentProbe.probeName}.xml`);
+
+                    earthProbes.saveEarthProbeToXml(listViewEarthProbes.currentIndex,
+                                                    earthMissions,
+                                                    systems,
+                                                    earthMissionIndex,
+                                                    folderProbesPath + `/${currentProbe.probeName}.xml`,
+                                                    )
 
                 }
             } else {

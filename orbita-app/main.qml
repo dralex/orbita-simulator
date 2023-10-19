@@ -296,13 +296,34 @@ ApplicationWindow  {
                         fileNameDialog.open()
                     } else {
                         if (typeMission) {
-                            probes.saveProbe(listViewProbes.currentIndex, probeNameText.text, firstNumber.text, secondNumber.text, pythonCodeProperty, currentProbe.probeFilePath)
-                            probes.saveToXml(listViewProbes.currentIndex, planetsItems, missionIndex, currentProbe.probeFilePath)
-                        } else {
-                            earthProbes.saveEarthProbe(listViewEarthProbes.currentIndex, probeNameText.text, fuelTextInput.text, voltageTextInput.text,
-                                                       xz_yz_solar_id.text, xz_yz_radiator_id.text, xy_radiator_id.text, currentProbe.probeFilePath);
+                            probes.saveProbe(listViewProbes.currentIndex,
+                                             probeNameText.text,
+                                             firstNumber.text,
+                                             secondNumber.text,
+                                             pythonCodeProperty,
+                                             currentProbe.probeFilePath)
 
-                            earthProbes.saveEarthProbeToXml(listViewEarthProbes.currentIndex, earthMissions, systems, earthMissionIndex, currentProbe.probeFilePath, earthProbeSystems)
+                            probes.saveToXml(listViewProbes.currentIndex,
+                                             planetsItems,
+                                             missionIndex,
+                                             currentProbe.probeFilePath,
+                                             )
+                        } else {
+                            earthProbes.saveEarthProbe(listViewEarthProbes.currentIndex,
+                                                       probeNameText.text,
+                                                       fuelTextInput.text,
+                                                       voltageTextInput.text,
+                                                       xz_yz_solar_id.text,
+                                                       xz_yz_radiator_id.text,
+                                                       xy_radiator_id.text,
+                                                       currentProbe.probeFilePath);
+
+                            earthProbes.saveEarthProbeToXml(listViewEarthProbes.currentIndex,
+                                                            earthMissions,
+                                                            systems,
+                                                            earthMissionIndex,
+                                                            currentProbe.probeFilePath,
+                                                            )
                         }
                     }
                 }

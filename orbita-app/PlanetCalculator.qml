@@ -20,6 +20,10 @@ Window  {
 
     ColumnLayout {
         anchors.fill: parent
+        width: parent.width
+        height: parent.height
+        Layout.preferredHeight: width
+        Layout.preferredWidth: height
 
         GroupBox {
             id: cParametrs
@@ -30,23 +34,26 @@ Window  {
             Layout.preferredWidth: height
 
             GridLayout {
-                width: parent.width
-                height: parent.height
+                anchors.fill: parent
                 columns: 6
                 rows: 3
                 Text {
+                    width: parent.width * 0.1
+                    height: 23
                     Layout.row: 0
                     Layout.column: 0
                     Layout.alignment: Qt.AlignTop
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
                     text: "Планета: "
                 }
 
                 ComboBox {
                     id: deviceBox
-                    Layout.preferredWidth: parent.width * 0.2
-                    Layout.preferredHeight: 23
+                    width: parent.width * 0.2
+                    height: 23
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
                     Layout.alignment: Qt.AlignTop
                     Layout.row: 0
                     Layout.column: 1
@@ -63,19 +70,23 @@ Window  {
                 }
 
                 Text {
+                    width: parent.width * 0.1
+                    height: 23
                     Layout.row: 1
                     Layout.column: 0
                     Layout.alignment: Qt.AlignVCenter
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
                     text: "Площадь (м^2): "
                 }
 
                 TextInput {
                     id: squareTextInput
+                    width: parent.width * 0.1
+                    height: 23
                     Layout.alignment: Qt.AlignVCenter
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
                     Layout.row: 1
                     Layout.column: 1
 
@@ -95,19 +106,23 @@ Window  {
                 }
 
                 Text {
+                    width: parent.width * 0.1
+                    height: 23
                     Layout.row: 2
                     Layout.column: 0
                     Layout.alignment: Qt.AlignBottom
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
                     text: "Масса кг: "
                 }
 
                 TextInput {
                     id: massTextInput
+                    width: parent.width * 0.1
+                    height: 23
                     Layout.alignment: Qt.AlignBottom
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
                     Layout.row: 2
                     Layout.column: 1
 
@@ -127,19 +142,23 @@ Window  {
                 }
 
                 Text {
+                    width: parent.width * 0.1
+                    height: 23
                     Layout.row: 1
                     Layout.column: 2
                     Layout.alignment: Qt.AlignVCenter
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
                     text: "Y высота (м): "
                 }
 
                 TextInput {
                     id: hTextInput
+                    width: parent.width * 0.1
+                    height: 23
                     Layout.alignment: Qt.AlignVCenter
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
                     Layout.row: 1
                     Layout.column: 3
 
@@ -159,19 +178,23 @@ Window  {
                 }
 
                 Text {
+                    width: parent.width * 0.1
+                    height: 23
                     Layout.row: 2
                     Layout.column: 2
                     Layout.alignment: Qt.AlignBottom
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
                     text: "X (м): "
                 }
 
                 TextInput {
                     id: xTextInput
+                    width: parent.width * 0.1
+                    height: 23
                     Layout.alignment: Qt.AlignBottom
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
                     Layout.row: 2
                     Layout.column: 3
 
@@ -191,18 +214,22 @@ Window  {
                 }
 
                 Text {
+                    width: parent.width * 0.1
+                    height: 23
                     Layout.row: 0
                     Layout.column: 4
                     Layout.alignment: Qt.AlignTop
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
                     text: "Шаг (сек): "
                 }
 
                 ComboBox {
                     id: tickComboBox
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
+                    width: parent.width * 0.1
+                    height: 23
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
                     Layout.alignment: Qt.AlignTop
                     Layout.row: 0
                     Layout.column: 5
@@ -228,19 +255,23 @@ Window  {
                 }
 
                 Text {
+                    width: parent.width * 0.1
+                    height: 23
                     Layout.row: 1
                     Layout.column: 4
                     Layout.alignment: Qt.AlignVCenter
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
                     text: "Cкорость Y (м/с): "
                 }
 
                 TextInput {
                     id: xVTextInput
+                    width: parent.width * 0.1
+                    height: 23
                     Layout.alignment: Qt.AlignVCenter
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
                     Layout.row: 1
                     Layout.column: 5
 
@@ -260,19 +291,23 @@ Window  {
                 }
 
                 Text {
+                    width: parent.width * 0.1
+                    height: 23
                     Layout.row: 2
                     Layout.column: 4
                     Layout.alignment: Qt.AlignBottom
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
                     text: "Cкорость X (м/с): "
                 }
 
                 TextInput {
                     id: yVTextInput
+                    width: parent.width * 0.1
+                    height: 23
                     Layout.alignment: Qt.AlignBottom
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
                     Layout.row: 2
                     Layout.column: 5
 
@@ -303,8 +338,10 @@ Window  {
             Layout.preferredWidth: width
             title: qsTr("Журнал полёта")
             ScrollView {
-                Layout.preferredWidth: parent.width
-                Layout.preferredHeight: parent.height
+                width: parent.width
+                height: parent.height
+                Layout.preferredWidth: width
+                Layout.preferredHeight: width
 
                 TextArea {
                     id: missionInfo

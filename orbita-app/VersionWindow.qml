@@ -104,7 +104,6 @@ Dialog  {
 
                     }
                     modelSolutions.append({text: "Python"})
-                    versionSelect.currentIndex = 0
                     newProbeButton.enabled = true
                     loadProbeButton.enabled = true
                     settingsButton.enabled = true

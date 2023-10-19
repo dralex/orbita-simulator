@@ -20,7 +20,7 @@ FileDialog {
         }
 
         if (typeMission) {
-            probes.loadFromXml(fileToLoad, planetDevicesItems)
+            probes.loadFromXml(fileToLoad, planetDevicesItems, settingsManager)
             listViewProbes.currentIndex = probes.size() - 1
             currentProbe = listViewProbes.currentItem.probesModelData
 
@@ -45,7 +45,7 @@ FileDialog {
                 showDiagrammButton = false
             }
         } else {
-            earthProbes.loadEarthProbeFromXml(fileToLoad, systems, earthMissions);
+            earthProbes.loadEarthProbeFromXml(fileToLoad, systems, earthMissions, settingsManager);
             listViewEarthProbes.currentIndex = earthProbes.size() - 1
             currentProbe = listViewEarthProbes.currentItem.earthProbesModelData
 
