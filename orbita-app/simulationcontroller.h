@@ -9,13 +9,24 @@
 #include <QTextStream>
 #include <QDir>
 #include <QFileInfoList>
-
 #include "settingsmanager.h"
 
 class SettingsManager;
 
 struct ImageItem {
     QString imageSource;
+};
+
+struct PlanetCalculatorData {
+    QString planetName;
+    int tick;
+    double square;
+    double mass;
+    int h;
+    int x;
+    int vx;
+    int vy;
+    double aeroCoeff;
 };
 
 class SimulationController : public QObject
@@ -37,8 +48,10 @@ public:
 
 public slots:
     void startSimulation(QString probePath, SettingsManager *settingsManager, bool typeMission);
+    void startCalculatorSimulation(SettingsManager *settingsManager, bool typeMission);
     void stopSimulation();
     void processFinished(int exitCode, QProcess::ExitStatus exitStatus);
+
 
     QString readTelemetryLog();
     QString getTelemetryLogContents() const;
@@ -46,6 +59,8 @@ public slots:
 
     void loadImagesFromFolder(const QString &folderPath);
     void clearImages();
+
+    void addPlanetCalculatorData(QString planetName, int tick, double square, double mass, int h, int x, int vx, int xy, double aeroCoeff);
 
 
 signals:
@@ -69,6 +84,8 @@ private:
 
     QString mStandardOutput;
     QString mStandardError;
+
+    PlanetCalculatorData planetCalculatorData;
 
 };
 

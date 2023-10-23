@@ -430,7 +430,7 @@ ApplicationWindow  {
                 anchors.bottom: parent.bottom
                 enabled: itemsEnabled
                 onClicked: {
-                    if (settingsManager.checkSimulationFile(settingsManager.getSimulationPath() + "/simulation.py")) {
+                    if (settingsManager.checkSimulationFile(settingsManager.getPlanetsCalculatorPath() + "/simulation.py")) {
                         mainWindow.visibility = 0
                         planetCalculatorWindow.visibility = 1
 

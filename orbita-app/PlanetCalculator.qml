@@ -22,8 +22,6 @@ Window  {
         anchors.fill: parent
         width: parent.width
         height: parent.height
-        Layout.preferredHeight: width
-        Layout.preferredWidth: height
 
         GroupBox {
             id: cParametrs
@@ -49,7 +47,7 @@ Window  {
                 }
 
                 ComboBox {
-                    id: deviceBox
+                    id: planetsBox
                     width: parent.width * 0.2
                     height: 23
                     Layout.preferredWidth: width
@@ -255,6 +253,44 @@ Window  {
                 }
 
                 Text {
+                    width: parent.width * 0.1 - 10
+                    height: 23
+                    Layout.row: 0
+                    Layout.column: 2
+                    Layout.alignment: Qt.AlignTop
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
+                    text: "Аэродинам. коэфф.: "
+                    wrapMode: Text.WordWrap
+                }
+
+                TextInput {
+                    id: coeffTextInput
+                    width: parent.width * 0.1
+                    height: 23
+                    Layout.alignment: Qt.AlignTop
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
+                    Layout.row: 0
+                    Layout.column: 3
+                    text: "0.47"
+
+                    onTextChanged: {
+                        if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(xVTcoeffTextInputextInput.text)) {
+                            coeffTextInput.text = coeffTextInput.text.replace(new RegExp("[^\\d.\\-]", "g"), "");
+                        }
+                    }
+
+                    property string placeholderText: "Введите число..."
+
+                    Text {
+                        text: coeffTextInput.placeholderText
+                        color: "#aaa"
+                        visible: !coeffTextInput.text
+                    }
+                }
+
+                Text {
                     width: parent.width * 0.1
                     height: 23
                     Layout.row: 1
@@ -330,25 +366,72 @@ Window  {
 
         }
 
-        GroupBox {
-            id: journalOfFlyGB
+        RowLayout {
             width: parent.width
             height: parent.height * 0.6
             Layout.preferredHeight: height
             Layout.preferredWidth: width
-            title: qsTr("Журнал полёта")
-            ScrollView {
-                width: parent.width
-                height: parent.height
-                Layout.preferredWidth: width
-                Layout.preferredHeight: width
 
-                TextArea {
-                    id: missionInfo
-                    anchors.fill: parent
-                    readOnly: true
+            GroupBox {
+                id: journalOfFlyGB
+                Layout.preferredHeight: parent.height
+                Layout.preferredWidth: parent.width * 0.5
+                title: qsTr("Журнал полёта")
+                ScrollView {
+                    width: parent.width
+                    height: parent.height
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: width
+
+                    TextArea {
+                        id: missionInfo
+                        anchors.fill: parent
+                        readOnly: true
+                    }
                 }
             }
+
+            GroupBox {
+                title: qsTr("Графики")
+                Layout.preferredHeight: parent.height
+                Layout.preferredWidth: parent.width * 0.5
+                ListView {
+                    id: imageListView
+                    width: parent.width
+                    height: parent.height
+                    clip: true
+
+//                    model: ImagesModel {
+//                         list: simulationController
+//                    }
+
+                    ScrollBar.vertical: ScrollBar {
+                        id: probesScrollBar
+                        anchors {
+                            right: parent.right
+                            top: parent.top
+                            bottom: parent.bottom
+                            margins: 0
+                        }
+                    }
+
+                    delegate: Item {
+                        width: imageListView.width
+                        height: imageListView.height
+
+                        Image {
+                            width: parent.width
+                            height: parent.height
+                            fillMode: Image.PreserveAspectFit
+
+                            source: model.imageSource
+                        }
+                    }
+                }
+
+
+            }
+
         }
 
         RowLayout {
@@ -364,6 +447,20 @@ Window  {
                 Layout.preferredWidth: width
                 Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                 text: "Cтарт!"
+                onClicked: {
+                    simulationController.addPlanetCalculatorData(planetsBox.currentValue,
+                                                                 tickComboBox.currentValue,
+                                                                 squareTextInput.text,
+                                                                 massTextInput.text,
+                                                                 hTextInput.text,
+                                                                 xTextInput.text,
+                                                                 xVTextInput.text,
+                                                                 yVTextInput.text,
+                                                                 coeffTextInput.text
+                                                                 )
+
+                    simulationController.startCalculatorSimulation(settingsManager, typeMission)
+                }
             }
 
             Button {

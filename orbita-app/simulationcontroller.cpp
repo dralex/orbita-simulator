@@ -49,7 +49,7 @@ void SimulationController::startSimulation(QString probePath, SettingsManager *s
     if (typeMission) {
         simulationPath = settingsManager->getSimulationPath() + "/simulation.py";
         currentProbePath = probePath;
-        infoFolderPath = currentProbePath.left(currentProbePath.length() - 4) + " info";
+        infoFolderPath = currentProbePath.left(currentProbePath.length() - 4) + "_info";
         QDir infoFolder(infoFolderPath);
         if (!infoFolder.exists()) {
             if (!infoFolder.mkpath(infoFolderPath)) {
@@ -60,7 +60,7 @@ void SimulationController::startSimulation(QString probePath, SettingsManager *s
     } else {
         simulationPath = settingsManager->getEarthSimulationPath() + "/simulation.py";
         currentProbePath = probePath;
-        infoFolderPath = currentProbePath.left(currentProbePath.length() - 4) + " info";
+        infoFolderPath = currentProbePath.left(currentProbePath.length() - 4) + "_info";
         QDir infoFolder(infoFolderPath);
         if (!infoFolder.exists()) {
             if (!infoFolder.mkpath(infoFolderPath)) {
@@ -74,6 +74,44 @@ void SimulationController::startSimulation(QString probePath, SettingsManager *s
     arguments << simulationPath << currentProbePath
               << "--mission-log=" + infoFolderPath + "/telemetry.log"
               << "--image=" + infoFolderPath + "/.";
+    qDebug()<<arguments;
+    if (QSysInfo::productType() == "windows")
+        process = "python";
+    else
+        process = "python3";
+
+    simulationProcess->start(process, arguments);
+}
+
+void SimulationController::startCalculatorSimulation(SettingsManager *settingsManager, bool typeMission)
+{
+    QString process;
+    QString infoFolderPath = QDir::currentPath() + "/" + planetCalculatorData.planetName + "_info";
+    QString simulationPath = settingsManager->getPlanetsCalculatorPath() + "/simulation.py";
+
+    QDir infoFolder(infoFolderPath);
+    if (!infoFolder.exists()) {
+        if (!infoFolder.mkpath(infoFolderPath)) {
+            qDebug() << "Ошибка при создании папки info";
+            return;
+        }
+    }
+
+    QStringList arguments;
+    if (typeMission)
+        arguments << simulationPath
+                  << planetCalculatorData.planetName
+                  << QString::number(planetCalculatorData.tick)
+                  << QString::number(planetCalculatorData.square)
+                  << QString::number(planetCalculatorData.mass)
+                  << QString::number(planetCalculatorData.h)
+                  << QString::number(planetCalculatorData.x)
+                  << QString::number(planetCalculatorData.vy)
+                  << QString::number(planetCalculatorData.vx)
+                  << QString::number(planetCalculatorData.aeroCoeff)
+                  << "--test-log=" + infoFolderPath + "/test.log"
+                  << "--img-templ=" + infoFolderPath + "/.";
+    qDebug()<<arguments;
     if (QSysInfo::productType() == "windows")
         process = "python";
     else
@@ -118,7 +156,7 @@ void SimulationController::processFinished(int exitCode, QProcess::ExitStatus ex
 
     standardOutputUpdated(mStandardOutput);
     standardErrorUpdated(mStandardError);
-    loadImagesFromFolder(currentProbePath.left(currentProbePath.length() - 4) + " info/");
+    loadImagesFromFolder(currentProbePath.left(currentProbePath.length() - 4) + "_info/");
     telemetryLogContents = readTelemetryLog();
     emit telemetryLogUpdated(telemetryLogContents);
 }
@@ -126,7 +164,7 @@ void SimulationController::processFinished(int exitCode, QProcess::ExitStatus ex
 QString SimulationController::readTelemetryLog()
 {
     QString content;
-    QFile file(currentProbePath.left(currentProbePath.length() - 4) + " info/telemetry.log");
+    QFile file(currentProbePath.left(currentProbePath.length() - 4) + "_info/telemetry.log");
 
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&file);
@@ -166,6 +204,22 @@ void SimulationController::clearImages()
         images.removeAt(i);
         emit postImageRemoved();
     }
+}
+
+void SimulationController::addPlanetCalculatorData(QString planetName, int tick, double square, double mass, int h, int x, int vx, int vy, double aeroCoeff)
+{
+    planetCalculatorData.planetName = planetName;
+    planetCalculatorData.tick = tick;
+    planetCalculatorData.square = square;
+    planetCalculatorData.mass = mass;
+    planetCalculatorData.h = h;
+    planetCalculatorData.x = x;
+    planetCalculatorData.vx = vx;
+    planetCalculatorData.vy = vy;
+    if (aeroCoeff)
+        planetCalculatorData.aeroCoeff = aeroCoeff;
+    else
+        planetCalculatorData.aeroCoeff = 0.47;
 }
 
 void SimulationController::clearInfo()
