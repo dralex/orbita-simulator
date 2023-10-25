@@ -93,6 +93,11 @@ class SimpleRadioModel(AbstractModel):
             radio.receive_queues[gs] = deque()
             radio.received_packets[gs] = {}
 
+        for other_probe in orient.other_probes:
+            radio.send_queues[other_probe.name] = deque()
+            radio.receive_queues[other_probe.name] = deque()
+            radio.received_packets[other_probe.name] = {}
+
     def step(self, probe, tick, probes):
         if probe.systems[constants.SUBSYSTEM_RADIO]:
             self.__step_device(probe, probe.systems[constants.SUBSYSTEM_RADIO], tick)

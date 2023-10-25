@@ -16,6 +16,7 @@ class SatelliteInternetMission(Mission):
         Mission.__init__(self, global_parameters)
         self.sms_messages = None
         self.is_start = False
+        self.is_med = False
         self.count_ticks = 0
         self.is_end = False
         self.gs_id = None
@@ -52,6 +53,7 @@ class SatelliteInternetMission(Mission):
     def step(self, probes, tick):
         probe = probes.get()[0]
         radio = probe.systems[constants.SUBSYSTEM_RADIO]
+        orient = probe.systems[constants.SUBSYSTEM_ORIENTATION]
 
         self.count_ticks += 1 if self.is_start else 0
 
@@ -66,13 +68,14 @@ class SatelliteInternetMission(Mission):
                         debug_log(probe, msg)
                         mission_log(probe, msg)
                         self.sms_messages[0][4] = probe.time()
-                        if self.is_start:
-                            try:
-                                int(gs)
-                                if gs != self.gs_id:
-                                    self.is_end = True
-                            except:
-                                self.probe_id = gs
+                        if self.is_start and self.probe_id != probe.name and realdata[1] != self.gs_id:
+                            self.is_end = True
+                            print("Второй получил сообщение!")
+                        else:
+                            self.gs_id = realdata[1]
+                            self.probe_id = probe.name
+                            self.is_start = True
+                            print("Первый получил сообщение!", probe.name, realdata[1], gs)
 
         for gs in radio.sent_packets.keys():
             if len(radio.sent_packets[gs]) != 0:
@@ -120,11 +123,18 @@ class SatelliteInternetMission(Mission):
                         mission_log(probe, msg + errmsg)
                         debug_log(probe, msg + errmsg)
 
-                        if error and not self.is_start:
+                        if error:
                             mission_log(probe, _('Problems while sending SMS-message. ') + errmsg)
                         else:
-                            self.is_start = True
-                            self.gs_id = gs
+                            if self.is_end:
+                                mission_log(probe,
+                                            _('MISSION ACCOMPLISHED! SMS-message was transferred correctly.'))  # pylint: disable=C0301
+                                probe.success = True
+                                if probe.message_number is None:
+                                    probe.message_number = 1
+                                else:
+                                    probe.message_number += 1
+                                probe.success_timestamp = time.time()
 
                         if len(self.sms_messages) > 0:
                             self.sms_messages.pop(0)
@@ -137,10 +147,6 @@ class SatelliteInternetMission(Mission):
                                                (constants.MISSION_SMS, msgto, text, duration))
                         else:
                             probe.completed = True
-        if self.is_end:
-            mission_log(probe,
-                        _('MISSION ACCOMPLISHED! SMS-message was transferred correctly.'))
-            probe.success = True
 
 
 data.available_missions[SatelliteInternetMission.name] = SatelliteInternetMission
