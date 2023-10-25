@@ -53,6 +53,8 @@ Dialog  {
                     if (versionSelect.currentIndex === 0 ) {
                         if (!probes.size())
                             itemsEnabled = false
+                        else
+                            itemsEnabled = true
                         probeNameText.text = ""
                         modelSolutions.append({text: "Таблица"})
                         typeMission = true
@@ -74,6 +76,11 @@ Dialog  {
                         planetsElementsVisible = true
 
                     } else {
+                        if (!earthProbes.size())
+                            itemsEnabled = false
+                        else
+                            itemsEnabled = true
+
                         probeNameText.text = ""
                         typeMission = false
                         modelSolutions.append({text: "Диаграмма"})

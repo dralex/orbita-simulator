@@ -13,6 +13,8 @@ Window  {
     flags: Qt.Window | Qt.WindowFixedSize
 
     onClosing: {
+        simulationController.clearInfo()
+        simulationController.clearImages()
         mainWindow.visible = true
         runWindow.visible = false
     }
@@ -84,7 +86,9 @@ Window  {
                        id: startButton
                        text: "Cтарт!"
                        onClicked: {
-                            simulationController.startSimulation(currentProbe.probeFilePath, settingsManager, typeMission);
+                           simulationController.clearInfo()
+                           simulationController.clearImages()
+                           simulationController.startSimulation(currentProbe.probeFilePath, settingsManager, typeMission);
                        }
 
                    }

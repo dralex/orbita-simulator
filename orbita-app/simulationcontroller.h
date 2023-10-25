@@ -53,7 +53,7 @@ public slots:
     void processFinished(int exitCode, QProcess::ExitStatus exitStatus);
 
 
-    QString readTelemetryLog();
+    QString readTelemetryLog(const QString &filePath);
     QString getTelemetryLogContents() const;
     void clearInfo();
 
@@ -86,6 +86,8 @@ private:
     QString mStandardError;
 
     PlanetCalculatorData planetCalculatorData;
+
+    bool whatIsSimulator = true;
 
 };
 

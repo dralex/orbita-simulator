@@ -46,6 +46,7 @@ void SimulationController::startSimulation(QString probePath, SettingsManager *s
         qDebug() << "Симуляция уже запущена или завершается.";
         return;
     }
+
     if (typeMission) {
         simulationPath = settingsManager->getSimulationPath() + "/simulation.py";
         currentProbePath = probePath;
@@ -74,12 +75,12 @@ void SimulationController::startSimulation(QString probePath, SettingsManager *s
     arguments << simulationPath << currentProbePath
               << "--mission-log=" + infoFolderPath + "/telemetry.log"
               << "--image=" + infoFolderPath + "/.";
-    qDebug()<<arguments;
     if (QSysInfo::productType() == "windows")
         process = "python";
     else
         process = "python3";
 
+    whatIsSimulator = true;
     simulationProcess->start(process, arguments);
 }
 
@@ -89,6 +90,11 @@ void SimulationController::startCalculatorSimulation(SettingsManager *settingsMa
     QString infoFolderPath = QDir::currentPath() + "/" + planetCalculatorData.planetName + "_info";
     QString simulationPath = settingsManager->getPlanetsCalculatorPath() + "/simulation.py";
 
+
+    if (simulationProcess->state() != QProcess::NotRunning) {
+        qDebug() << "Симуляция уже запущена или завершается.";
+        return;
+    }
     QDir infoFolder(infoFolderPath);
     if (!infoFolder.exists()) {
         if (!infoFolder.mkpath(infoFolderPath)) {
@@ -109,14 +115,14 @@ void SimulationController::startCalculatorSimulation(SettingsManager *settingsMa
                   << QString::number(planetCalculatorData.vy)
                   << QString::number(planetCalculatorData.vx)
                   << QString::number(planetCalculatorData.aeroCoeff)
-                  << "--test-log=" + infoFolderPath + "/test.log"
+                  << "--test-log=" + infoFolderPath + "/telemetry.log"
                   << "--img-templ=" + infoFolderPath + "/.";
-    qDebug()<<arguments;
     if (QSysInfo::productType() == "windows")
         process = "python";
     else
         process = "python3";
 
+    whatIsSimulator = false;
     simulationProcess->start(process, arguments);
 }
 
@@ -141,8 +147,6 @@ void SimulationController::processFinished(int exitCode, QProcess::ExitStatus ex
     mStandardError.clear();
 
     if (exitStatus == QProcess::NormalExit && exitCode == 0) {
-        qDebug()<<standardOutput;
-        qDebug()<<standardError;
         mStandardOutput = QString::fromUtf8("Симуляция завершилась успешно");
     } else {
         if (!standardOutput.isEmpty()) {
@@ -156,15 +160,20 @@ void SimulationController::processFinished(int exitCode, QProcess::ExitStatus ex
 
     standardOutputUpdated(mStandardOutput);
     standardErrorUpdated(mStandardError);
-    loadImagesFromFolder(currentProbePath.left(currentProbePath.length() - 4) + "_info/");
-    telemetryLogContents = readTelemetryLog();
+    if (whatIsSimulator) {
+        loadImagesFromFolder(currentProbePath.left(currentProbePath.length() - 4) + "_info/");
+        telemetryLogContents = readTelemetryLog(currentProbePath.left(currentProbePath.length() - 4) + "_info/telemetry.log");
+    } else {
+        loadImagesFromFolder(QDir::currentPath() + "/" + planetCalculatorData.planetName + "_info/");
+        telemetryLogContents = readTelemetryLog(QDir::currentPath() + "/" + planetCalculatorData.planetName + "_info/telemetry.log");
+    }
     emit telemetryLogUpdated(telemetryLogContents);
 }
 
-QString SimulationController::readTelemetryLog()
+QString SimulationController::readTelemetryLog(const QString &filePath)
 {
     QString content;
-    QFile file(currentProbePath.left(currentProbePath.length() - 4) + "_info/telemetry.log");
+    QFile file(filePath);
 
     if (file.open(QIODevice::ReadOnly | QIODevice::Text)) {
         QTextStream in(&file);
@@ -182,20 +191,20 @@ QString SimulationController::getTelemetryLogContents() const
 void SimulationController::loadImagesFromFolder(const QString &folderPath)
 {
     QDir folderDir(folderPath);
-    QFileInfoList fileInfoList = folderDir.entryInfoList(QDir::Files);
+    QFileInfoList fileInfoList = folderDir.entryInfoList(QDir::Files | QDir::Hidden);
 
     clearImages();
 
     for (const QFileInfo &fileInfo : fileInfoList) {
         if (fileInfo.suffix().toLower() == "png" || fileInfo.suffix().toLower() == "jpg" || fileInfo.suffix().toLower() == "jpeg") {
             QString imagePath = "file://" + fileInfo.filePath();
-
             emit preImageAppended();
             images.append({imagePath});
             emit postImageAppended();
         }
     }
 }
+
 
 void SimulationController::clearImages()
 {
@@ -224,9 +233,34 @@ void SimulationController::addPlanetCalculatorData(QString planetName, int tick,
 
 void SimulationController::clearInfo()
 {
+    if (whatIsSimulator) {
+        QString infoFolderPath = currentProbePath.left(currentProbePath.length() - 4) + "_info/";
+        QDir infoDir(infoFolderPath);
+
+        if (infoDir.exists())
+            infoDir.removeRecursively();
+    } else {
+        QString infoFolderPath = QDir::currentPath() + "/" + planetCalculatorData.planetName + "_info/";
+        QDir infoDir(infoFolderPath);
+        if (infoDir.exists())
+            infoDir.removeRecursively();
+    }
+
+
     telemetryLogContents.clear();
     mStandardOutput.clear();
     mStandardError.clear();
+
+    planetCalculatorData.planetName = "";
+    planetCalculatorData.tick = 0;
+    planetCalculatorData.square = 0;
+    planetCalculatorData.mass = 0;
+    planetCalculatorData.h = 0;
+    planetCalculatorData.x = 0;
+    planetCalculatorData.vx = 0;
+    planetCalculatorData.vy = 0;
+    planetCalculatorData.aeroCoeff = 0.47;
+
     emit telemetryLogUpdated(telemetryLogContents);
     emit standardOutputUpdated(mStandardOutput);
     emit standardErrorUpdated(mStandardError);

@@ -4,6 +4,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 
 import PlanetsModel 1.0
+import ImagesModel 1.0
 
 Window  {
     id: planetCalculatorWindow
@@ -12,8 +13,11 @@ Window  {
     visible: false
     flags: Qt.Window | Qt.WindowFixedSize
     title: qsTr("Гравитационный кальулятор")
+    ErrorMessage {id: errorDialog}
 
     onClosing: {
+        simulationController.clearInfo()
+        simulationController.clearImages()
         mainWindow.visible = true
         planetCalculatorWindow.visible = false
     }
@@ -28,15 +32,15 @@ Window  {
             title: qsTr("Параметры модели")
             width: parent.width
             height: parent.height * 0.3
-            Layout.preferredHeight: width
-            Layout.preferredWidth: height
+            Layout.preferredWidth: width
+            Layout.preferredHeight: height
 
             GridLayout {
                 anchors.fill: parent
                 columns: 6
                 rows: 3
                 Text {
-                    width: parent.width * 0.1
+                    width: 80
                     height: 23
                     Layout.row: 0
                     Layout.column: 0
@@ -48,7 +52,7 @@ Window  {
 
                 ComboBox {
                     id: planetsBox
-                    width: parent.width * 0.2
+                    width: 110
                     height: 23
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
@@ -68,7 +72,7 @@ Window  {
                 }
 
                 Text {
-                    width: parent.width * 0.1
+                    width: 80
                     height: 23
                     Layout.row: 1
                     Layout.column: 0
@@ -80,13 +84,14 @@ Window  {
 
                 TextInput {
                     id: squareTextInput
-                    width: parent.width * 0.1
+                    width: 80
                     height: 23
                     Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
                     Layout.row: 1
                     Layout.column: 1
+                    text: "0"
 
                     onTextChanged: {
                         if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(squareTextInput.text)) {
@@ -104,7 +109,7 @@ Window  {
                 }
 
                 Text {
-                    width: parent.width * 0.1
+                    width: 80
                     height: 23
                     Layout.row: 2
                     Layout.column: 0
@@ -116,13 +121,14 @@ Window  {
 
                 TextInput {
                     id: massTextInput
-                    width: parent.width * 0.1
+                    width: 80
                     height: 23
                     Layout.alignment: Qt.AlignBottom
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
                     Layout.row: 2
                     Layout.column: 1
+                    text: "0"
 
                     onTextChanged: {
                         if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(massTextInput.text)) {
@@ -140,7 +146,7 @@ Window  {
                 }
 
                 Text {
-                    width: parent.width * 0.1
+                    width: 80
                     height: 23
                     Layout.row: 1
                     Layout.column: 2
@@ -152,13 +158,14 @@ Window  {
 
                 TextInput {
                     id: hTextInput
-                    width: parent.width * 0.1
+                    width: 80
                     height: 23
                     Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
                     Layout.row: 1
                     Layout.column: 3
+                    text: "0"
 
                     onTextChanged: {
                         if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(hTextInput.text)) {
@@ -176,7 +183,7 @@ Window  {
                 }
 
                 Text {
-                    width: parent.width * 0.1
+                    width: 80
                     height: 23
                     Layout.row: 2
                     Layout.column: 2
@@ -188,13 +195,14 @@ Window  {
 
                 TextInput {
                     id: xTextInput
-                    width: parent.width * 0.1
+                    width: 80
                     height: 23
                     Layout.alignment: Qt.AlignBottom
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
                     Layout.row: 2
                     Layout.column: 3
+                    text: "0"
 
                     onTextChanged: {
                         if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(xTextInput.text)) {
@@ -212,7 +220,7 @@ Window  {
                 }
 
                 Text {
-                    width: parent.width * 0.1
+                    width: 80
                     height: 23
                     Layout.row: 0
                     Layout.column: 4
@@ -224,7 +232,7 @@ Window  {
 
                 ComboBox {
                     id: tickComboBox
-                    width: parent.width * 0.1
+                    width: 80
                     height: 23
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
@@ -253,7 +261,7 @@ Window  {
                 }
 
                 Text {
-                    width: parent.width * 0.1 - 10
+                    width: 80
                     height: 23
                     Layout.row: 0
                     Layout.column: 2
@@ -266,7 +274,7 @@ Window  {
 
                 TextInput {
                     id: coeffTextInput
-                    width: parent.width * 0.1
+                    width: 80
                     height: 23
                     Layout.alignment: Qt.AlignTop
                     Layout.preferredWidth: width
@@ -291,7 +299,7 @@ Window  {
                 }
 
                 Text {
-                    width: parent.width * 0.1
+                    width: 80
                     height: 23
                     Layout.row: 1
                     Layout.column: 4
@@ -302,50 +310,15 @@ Window  {
                 }
 
                 TextInput {
-                    id: xVTextInput
-                    width: parent.width * 0.1
+                    id: yVTextInput
+                    width: 80
                     height: 23
                     Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
                     Layout.row: 1
                     Layout.column: 5
-
-                    onTextChanged: {
-                        if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(xVTextInput.text)) {
-                            xVTextInput.text = xVTextInput.text.replace(new RegExp("[^\\d.\\-]", "g"), "");
-                        }
-                    }
-
-                    property string placeholderText: "Введите число..."
-
-                    Text {
-                        text: xVTextInput.placeholderText
-                        color: "#aaa"
-                        visible: !xVTextInput.text
-                    }
-                }
-
-                Text {
-                    width: parent.width * 0.1
-                    height: 23
-                    Layout.row: 2
-                    Layout.column: 4
-                    Layout.alignment: Qt.AlignBottom
-                    Layout.preferredWidth: width
-                    Layout.preferredHeight: height
-                    text: "Cкорость X (м/с): "
-                }
-
-                TextInput {
-                    id: yVTextInput
-                    width: parent.width * 0.1
-                    height: 23
-                    Layout.alignment: Qt.AlignBottom
-                    Layout.preferredWidth: width
-                    Layout.preferredHeight: height
-                    Layout.row: 2
-                    Layout.column: 5
+                    text: "0"
 
                     onTextChanged: {
                         if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(yVTextInput.text)) {
@@ -362,81 +335,122 @@ Window  {
                     }
                 }
 
-            }
-
-        }
-
-        RowLayout {
-            width: parent.width
-            height: parent.height * 0.6
-            Layout.preferredHeight: height
-            Layout.preferredWidth: width
-
-            GroupBox {
-                id: journalOfFlyGB
-                Layout.preferredHeight: parent.height
-                Layout.preferredWidth: parent.width * 0.5
-                title: qsTr("Журнал полёта")
-                ScrollView {
-                    width: parent.width
-                    height: parent.height
+                Text {
+                    width: 80
+                    height: 23
+                    Layout.row: 2
+                    Layout.column: 4
+                    Layout.alignment: Qt.AlignBottom
                     Layout.preferredWidth: width
-                    Layout.preferredHeight: width
-
-                    TextArea {
-                        id: missionInfo
-                        anchors.fill: parent
-                        readOnly: true
-                    }
+                    Layout.preferredHeight: height
+                    text: "Cкорость X (м/с): "
                 }
-            }
 
-            GroupBox {
-                title: qsTr("Графики")
-                Layout.preferredHeight: parent.height
-                Layout.preferredWidth: parent.width * 0.5
-                ListView {
-                    id: imageListView
-                    width: parent.width
-                    height: parent.height
-                    clip: true
+                TextInput {
+                    id: xVTextInput
+                    width: 80
+                    height: 23
+                    Layout.alignment: Qt.AlignBottom
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
+                    Layout.row: 2
+                    Layout.column: 5
+                    text: "0"
 
-//                    model: ImagesModel {
-//                         list: simulationController
-//                    }
-
-                    ScrollBar.vertical: ScrollBar {
-                        id: probesScrollBar
-                        anchors {
-                            right: parent.right
-                            top: parent.top
-                            bottom: parent.bottom
-                            margins: 0
+                    onTextChanged: {
+                        if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(xVTextInput.text)) {
+                            xVTextInput.text = xVTextInput.text.replace(new RegExp("[^\\d.\\-]", "g"), "");
                         }
                     }
 
-                    delegate: Item {
-                        width: imageListView.width
-                        height: imageListView.height
+                    property string placeholderText: "Введите число..."
 
-                        Image {
-                            width: parent.width
-                            height: parent.height
-                            fillMode: Image.PreserveAspectFit
-
-                            source: model.imageSource
-                        }
+                    Text {
+                        text: xVTextInput.placeholderText
+                        color: "#aaa"
+                        visible: !yVTextInput.text
                     }
                 }
-
 
             }
 
         }
 
         RowLayout {
+           height: parent.height * 0.6 - buttonsLayout.height
+           width: parent.width
+           Layout.preferredHeight: height
+           Layout.preferredWidth: width
+
+           GroupBox {
+               title: qsTr("Журнал полёта")
+               width: parent.width
+               height: parent.height
+               Layout.preferredHeight: parent.height
+               Layout.preferredWidth: parent.width * 0.5
+
+               ScrollView {
+                   width: parent.width
+                   height: parent.height
+                   Layout.preferredWidth: width
+                   Layout.preferredHeight: width
+
+                   TextArea {
+                       id: missionInfo
+                       anchors.fill: parent
+                       readOnly: true
+                       text: simulationController.telemetryLogContents
+                   }
+               }
+           }
+
+           GroupBox {
+               title: qsTr("Графики")
+               Layout.preferredHeight: parent.height
+               Layout.preferredWidth: parent.width * 0.5
+               ListView {
+                   id: imageListView
+                   width: parent.width
+                   height: parent.height
+                   clip: true
+
+                   model: ImagesModel {
+                        list: simulationController
+                   }
+
+                   ScrollBar.vertical: ScrollBar {
+                       id: probesScrollBar
+                       anchors {
+                           right: parent.right
+                           top: parent.top
+                           bottom: parent.bottom
+                           margins: 0
+                       }
+                   }
+
+                   delegate: Item {
+                       width: imageListView.width
+                       height: imageListView.height
+
+                       Image {
+                           width: parent.width
+                           height: parent.height
+                           fillMode: Image.PreserveAspectFit
+
+                           source: model.imageSource
+                       }
+                   }
+               }
+
+
+           }
+        }
+
+
+        RowLayout {
+            id: buttonsLayout
             width: parent.width
-            height: parent.height * 0.1
+            height: 23
             Layout.preferredHeight: height
             Layout.preferredWidth: width
 
@@ -448,6 +462,13 @@ Window  {
                 Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                 text: "Cтарт!"
                 onClicked: {
+                    if (squareTextInput.text &&
+                            massTextInput.text &&
+                            hTextInput.text &&
+                            xTextInput.text &&
+                            xVTextInput.text &&
+                            yVTextInput.text &&
+                            coeffTextInput.text) {
                     simulationController.addPlanetCalculatorData(planetsBox.currentValue,
                                                                  tickComboBox.currentValue,
                                                                  squareTextInput.text,
@@ -460,6 +481,10 @@ Window  {
                                                                  )
 
                     simulationController.startCalculatorSimulation(settingsManager, typeMission)
+                    } else {
+                        errorDialog.textOfError = "Вы заполнили не все данные!"
+                        errorDialog.open()
+                    }
                 }
             }
 
@@ -471,6 +496,8 @@ Window  {
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                 text: "Закрыть"
                 onClicked: {
+                    simulationController.clearInfo()
+                    simulationController.clearImages()
                     mainWindow.visibility = 1
                     planetCalculatorWindow.visibility = 0
                 }
