@@ -393,7 +393,7 @@ Window  {
                    width: parent.width
                    height: parent.height
                    Layout.preferredWidth: width
-                   Layout.preferredHeight: width
+                   Layout.preferredHeight: height
 
                    TextArea {
                        id: missionInfo

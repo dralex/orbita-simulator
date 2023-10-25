@@ -62,6 +62,9 @@ Dialog  {
                         pathToSave = settingsManager.getPlanetsProbesPath()
                         pathToLoad = settingsManager.getPlanetsProbesPath()
 
+                        pathToLoadDialog.folder = "file://" + pathToLoad
+                        pathToSaveDialog.folder = "file://" + pathToSave
+
                         settingsFolderSimulation = settingsManager.getSimulationPath()
                         settingsFolderProbesPath = pathToSave
                         settingsFolderCalculatorPath = settingsManager.getPlanetsCalculatorPath()
@@ -100,6 +103,9 @@ Dialog  {
                         earthPathToLoad = settingsManager.getEarthProbesPath()
                         earthPathToSave = settingsManager.getEarthProbesPath()
 
+                        pathToLoadDialog.folder = "file://" + earthPathToLoad
+                        pathToSaveDialog.folder = "file://" + earthPathToSave
+
                         showPlanetsElems = false
                         showPlanetsDevices = false
                         showPythonArea = false
@@ -123,7 +129,7 @@ Dialog  {
                 Layout.preferredWidth: parent.width * 0.5
                 text: "Отмена"
                 onClicked: {
-                    versionSelect.currentIndex = 0
+                    versionWindow.visible = false
                 }
             }
         }

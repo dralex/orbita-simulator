@@ -4,7 +4,7 @@ import QtQuick.Controls 2.5
 FileDialog {
     id: fileToSaveDialog
     title: 'Выберите файл для сохранения'
-    folder: typeMission ? "file://" + pathToSave : "file://" + earthPathToSave
+    folder: ""
     selectFolder: true
     selectMultiple: false
     width: 264

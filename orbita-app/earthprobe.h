@@ -87,6 +87,7 @@ signals:
     void preEarthSystemRemoved(int index);
     void postEarthSystemRemoved();
 
+    void errorOccurred(const QString &errorMessage);
 
 public slots:
     void appendEarthProbe(QString probeName, QString missionName, QString pythonCode, QString filePath);

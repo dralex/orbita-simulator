@@ -63,6 +63,8 @@ signals:
    void preActivityAndLandingItemRemoved(int index);
    void postActivityAndLandingItemRemoved();
 
+   void errorOccurred(const QString &errorMessage);
+
 public slots:
     void appendProbe(QString probeName, QString missionName, double outerRadius, double innerRadius, QString pythonCode);
     void saveProbe(int probeIndex, QString probeName, double innerRadius, double outerRadius, QString pythonCode, const QString &filePath);
@@ -82,7 +84,6 @@ public slots:
 private:
     QVector<ProbeItem> mItems;
 };
-
 
 
 #endif // PROBE_H

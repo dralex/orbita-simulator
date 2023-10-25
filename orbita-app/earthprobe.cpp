@@ -410,7 +410,8 @@ void EarthProbe::loadEarthProbeFromXml(const QString &path, Systems *systems, Ea
     QString probeFilename = path;
     QFile file(path);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qDebug() << "Не удалось открыть XML файл для чтения: " << file.errorString();
+        QString errorMessage =  "Не удалось открыть XML файл для чтения: " + file.errorString();
+        emit errorOccurred(errorMessage);
         return;
     }
 
@@ -497,7 +498,9 @@ void EarthProbe::loadEarthProbeFromXml(const QString &path, Systems *systems, Ea
     }
 
     if (xmlReader.hasError()) {
-        qDebug() << "Ошибка при разборе XML файла: " << xmlReader.errorString();
+        QString errorMessage = "Ошибка при разборе XML файла: " + xmlReader.errorString();
+        emit errorOccurred(errorMessage);
+        return;
     }
 
     file.close();
@@ -530,8 +533,9 @@ bool EarthProbe::checkFileChanges(Systems *systems, int probeIndex)
 {
     QFile file(mItems[probeIndex].filePath);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        qDebug() << "Не удалось открыть XML файл для чтения: " << file.errorString();
-        return false;
+        QString errorMessage =  "Не удалось открыть XML файл для чтения: " + file.errorString();
+        emit errorOccurred(errorMessage);
+        return 0;
     }
 
     QXmlStreamReader xmlReader(&file);

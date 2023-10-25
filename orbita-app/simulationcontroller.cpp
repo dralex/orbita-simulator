@@ -35,6 +35,11 @@ QString SimulationController::getStandardError() const
     return mStandardError;
 }
 
+QString SimulationController::missionStatus() const
+{
+    return mMissionStatus;
+}
+
 
 
 void SimulationController::startSimulation(QString probePath, SettingsManager *settingsManager, bool typeMission)
@@ -81,6 +86,8 @@ void SimulationController::startSimulation(QString probePath, SettingsManager *s
         process = "python3";
 
     whatIsSimulator = true;
+    mMissionStatus = "Cимуляция в процессе.";
+    emit updateMissionStatus(mMissionStatus);
     simulationProcess->start(process, arguments);
 }
 
@@ -123,6 +130,8 @@ void SimulationController::startCalculatorSimulation(SettingsManager *settingsMa
         process = "python3";
 
     whatIsSimulator = false;
+    mMissionStatus = "Cимуляция в процессе.";
+    emit updateMissionStatus(mMissionStatus);
     simulationProcess->start(process, arguments);
 }
 
@@ -150,11 +159,18 @@ void SimulationController::processFinished(int exitCode, QProcess::ExitStatus ex
         mStandardOutput = QString::fromUtf8("Симуляция завершилась успешно");
     } else {
         if (!standardOutput.isEmpty()) {
-            mStandardOutput = QString::fromUtf8(standardOutput) + ". Код завершения: " + QString::number(exitCode);
+            mStandardOutput = QString::fromUtf8(standardOutput) + "\nКод завершения: " + QString::number(exitCode);
+
+            mMissionStatus = "Симуляиця завершилась не успешно. Миссия провалена";
+            emit updateMissionStatus(mMissionStatus);
+            emit showErrorDialog(mStandardOutput);
         }
 
         if (!standardError.isEmpty()) {
-            mStandardError = QString::fromUtf8(standardError) + ". Код завершения: " + QString::number(exitCode);
+            mStandardError = QString::fromUtf8(standardError) + "\nКод завершения: " + QString::number(exitCode);
+            mMissionStatus = "Симуляция завершилась с ошибкой";
+            emit updateMissionStatus(mMissionStatus);
+            emit showErrorDialog(mStandardError);
         }
     }
 
@@ -167,6 +183,9 @@ void SimulationController::processFinished(int exitCode, QProcess::ExitStatus ex
         loadImagesFromFolder(QDir::currentPath() + "/" + planetCalculatorData.planetName + "_info/");
         telemetryLogContents = readTelemetryLog(QDir::currentPath() + "/" + planetCalculatorData.planetName + "_info/telemetry.log");
     }
+    if (!exitCode)
+        mMissionStatus = "Cимуляция завершилась успешно";
+    emit updateMissionStatus(mMissionStatus);
     emit telemetryLogUpdated(telemetryLogContents);
 }
 
@@ -230,6 +249,12 @@ void SimulationController::addPlanetCalculatorData(QString planetName, int tick,
     else
         planetCalculatorData.aeroCoeff = 0.47;
 }
+
+void SimulationController::updateMissionStatus(const QString &status)
+{
+    emit missionStatusChanged(status);
+}
+
 
 void SimulationController::clearInfo()
 {

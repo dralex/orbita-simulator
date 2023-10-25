@@ -35,6 +35,8 @@ class SimulationController : public QObject
     Q_PROPERTY(QString telemetryLogContents READ getTelemetryLogContents NOTIFY telemetryLogUpdated)
     Q_PROPERTY(QString standardOutput READ getStandardOutput NOTIFY standardOutputUpdated)
     Q_PROPERTY(QString standardError READ getStandardError NOTIFY standardErrorUpdated)
+    Q_PROPERTY(QString missionStatus READ missionStatus NOTIFY missionStatusChanged)
+
 
 
 public:
@@ -45,6 +47,7 @@ public:
 
     QString getStandardOutput() const;
     QString getStandardError() const;
+    QString missionStatus() const;
 
 public slots:
     void startSimulation(QString probePath, SettingsManager *settingsManager, bool typeMission);
@@ -62,6 +65,7 @@ public slots:
 
     void addPlanetCalculatorData(QString planetName, int tick, double square, double mass, int h, int x, int vx, int xy, double aeroCoeff);
 
+    void updateMissionStatus(const QString &status);
 
 signals:
     void telemetryLogUpdated(const QString &contents);
@@ -77,6 +81,10 @@ signals:
     void preImageRemoved(int index);
     void postImageRemoved();
 
+    void missionStatusChanged(QString status);
+
+    void showErrorDialog(const QString &errorText);
+
 private:
     QProcess *simulationProcess;
     QString telemetryLogContents;
@@ -84,6 +92,7 @@ private:
 
     QString mStandardOutput;
     QString mStandardError;
+    QString mMissionStatus;
 
     PlanetCalculatorData planetCalculatorData;
 

@@ -8,7 +8,7 @@ FileDialog {
     width: 264
     height: 146
     visible: false
-    folder: typeMission ? "file://" + pathToLoad : "file://" + earthPathToLoad
+    folder: ""
 
     onAccepted: {
         var filePath = fileToLoadDialog.fileUrl.toString()

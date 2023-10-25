@@ -82,6 +82,8 @@ void Probe::saveToXml(int probeIndex, Planets *planetsData, int planetIndex, con
     QFile file(filename);
     if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
     {
+        QString errorMessage =  "Не удалось открыть XML файл для чтения: " + file.errorString();
+        emit errorOccurred(errorMessage);
         return;
     }
 
@@ -190,6 +192,8 @@ void Probe::loadFromXml(QString filename, PlanetDevices *planetDevicesData, Sett
     QString probeFilename = filename;
     QFile file(filename);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QString errorMessage =  "Не удалось открыть XML файл для чтения: " + file.errorString();
+        emit errorOccurred(errorMessage);
         return;
     }
 
@@ -384,6 +388,8 @@ bool Probe::checkFileChanges(int probeIndex, PlanetDevices *planetDevicesData)
 {
     QFile file(mItems[probeIndex].filePath);
     if (!file.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QString errorMessage =  "Не удалось открыть XML файл для чтения: " + file.errorString();
+        emit errorOccurred(errorMessage);
         return false;
     }
 

@@ -11,12 +11,21 @@ Window  {
     height: 630
     visible: false
     flags: Qt.Window | Qt.WindowFixedSize
+    SimulationErrorDialog {id: errorDialog}
 
     onClosing: {
         simulationController.clearInfo()
         simulationController.clearImages()
         mainWindow.visible = true
         runWindow.visible = false
+    }
+
+    Connections {
+        target: simulationController
+        function onShowErrorDialog(errorText) {
+            errorDialog.textOfError = errorText
+            errorDialog.open()
+        }
     }
 
     ColumnLayout {
@@ -41,7 +50,7 @@ Window  {
             Layout.preferredWidth: parent.width
             Layout.topMargin: 5
             wrapMode: Text.WordWrap
-            text: simulationController.standardOutput ? `<b>Итог миссии:</b> ${simulationController.standardOutput}` : `<b>Итог миссии:</b> ${simulationController.standardOutput}`
+            text: `<b>Итог миссии:</b> ${simulationController.missionStatus}`
         }
 
 
@@ -92,6 +101,7 @@ Window  {
                        }
 
                    }
+
                    Button {
                        Layout.preferredHeight: 23
                        Layout.preferredWidth: parent.width

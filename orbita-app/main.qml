@@ -77,6 +77,24 @@ ApplicationWindow  {
     property bool checkAction: false
     property bool typeMission: true
 
+    Connections {
+        target: earthProbes
+        function onErrorOccurred(errorMessage) {
+            errorDialog.textOfError = errorMessage;
+            errorDialog.open();
+        }
+    }
+
+    Connections {
+        target: probes
+        function onErrorOccurred(errorMessage) {
+            errorDialog.textOfError = errorMessage;
+            errorDialog.open();
+        }
+    }
+
+
+
     RowLayout {
         anchors.fill: parent
         x: 9
