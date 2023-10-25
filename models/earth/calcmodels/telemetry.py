@@ -40,7 +40,7 @@ class BasicTelemetryModel(AbstractModel):
         self.collector = {}
         self.last_sec = 0
 
-    def init_model(self, probe, initial_tick):
+    def init_model(self, probe, initial_tick, probes):
         global _ # pylint: disable=W0603
         _ = Language.get_tr()
 
@@ -66,7 +66,7 @@ class BasicTelemetryModel(AbstractModel):
 
         self.last_sec = 0
 
-    def step(self, probe, tick):
+    def step(self, probe, tick, probes):
         tel = probe.systems[data.SUBSYSTEM_TELEMETRY]
         nowtime = probe.systems[data.SUBSYSTEM_CPU].flight_time
         if tel.mode == STATE_ON and (tel.last_telemetry + tel.period) < (nowtime + 0.001):
@@ -240,7 +240,7 @@ class BasicTelemetryModel(AbstractModel):
                 assert kind == data.SUBSYSTEM_LOAD
             parts.append('[' + ':'.join(values) + ']')
         result = ''.join(parts)
-        debug_log(_('Telemetry: ') + result)
+        debug_log(probe, _('Telemetry: ') + result)
         #debug_log(_('Radio: ') + self.print_gs_status(probe))
 
         return result, collector
@@ -323,7 +323,7 @@ class BasicTelemetryModel(AbstractModel):
             stations.append(s)
 
         label = 'Ballistics'
-        imagefile = '%s%s-%s.png' % (imgtmpl, probe.filename, label)
+        imagefile = f'%s%s-%s_{probe.name}.png' % (imgtmpl, probe.filename, label)
         plot_parametric((probe.collector['X'], probe.collector['Y']),
                         _("Probe position (km)"), imagefile,
                         float(p.radius) / 1000.0,
@@ -343,61 +343,61 @@ class BasicTelemetryModel(AbstractModel):
         labels = (_("Navigation"), _("Orientation"))
 
         label = 'Ballistics-Mechanics'
-        imagefile = '%s%s-%s.png' % (imgtmpl, probe.filename, label)
-        plot_graph(probe.collector['Time'], probe.time(),
+        imagefile = f'%s%s-%s_{probe.name}.png' % (imgtmpl, probe.filename, label)
+        plot_graph(probe, probe.collector['Time'], probe.time(),
                    graphs, labels,
                    _("Angle (degree)"), imagefile, [0, 360], _, True)
 
         label = 'Angular-Velocity'
-        imagefile = '%s%s-%s.png' % (imgtmpl, probe.filename, label)
-        plot_graph(probe.collector['Time'], probe.time(),
+        imagefile = f'%s%s-%s_{probe.name}.png' % (imgtmpl, probe.filename, label)
+        plot_graph(probe, probe.collector['Time'], probe.time(),
                    probe.collector['Ang.Velocity'], None,
                    _("Angular Velocity (degree/s)"), imagefile, ['calc', 'calc'], _)
 
         if probe.systems[data.SUBSYSTEM_ENGINE]:
             label = 'Fuel'
-            imagefile = '%s%s-%s.png' % (imgtmpl, probe.filename, label)
-            plot_graph(probe.collector['Time'], probe.time(),
+            imagefile = f'%s%s-%s_{probe.name}.png' % (imgtmpl, probe.filename, label)
+            plot_graph(probe, probe.collector['Time'], probe.time(),
                        probe.collector['Fuel'], None,
                        _("Fuel Left (kg)"), imagefile, ['calc', 'calc'], _)
 
         label = 'Power'
-        imagefile = '%s%s-%s.png' % (imgtmpl, probe.filename, label)
-        plot_graph(probe.collector['Time'], probe.time(),
+        imagefile = f'%s%s-%s_{probe.name}.png' % (imgtmpl, probe.filename, label)
+        plot_graph(probe, probe.collector['Time'], probe.time(),
                    (probe.collector['Generation'], probe.collector['Consumption']),
                    (_("Generation"), _("Consumption")),
                    _("Power (W)"), imagefile, ['calc', 'calc'], _, True)
 
         label = 'Power-Accumulator'
-        imagefile = '%s%s-%s.png' % (imgtmpl, probe.filename, label)
-        plot_graph(probe.collector['Time'], probe.time(),
+        imagefile = f'%s%s-%s_{probe.name}.png' % (imgtmpl, probe.filename, label)
+        plot_graph(probe, probe.collector['Time'], probe.time(),
                    probe.collector['Accumulator'], None,
                    _("Accumulator Capacity (J)"), imagefile, [0, 'calc'], _)
 
         label = 'Temperature'
-        imagefile = '%s%s-%s.png' % (imgtmpl, probe.filename, label)
-        plot_graph(probe.collector['Time'], probe.time(),
+        imagefile = f'%s%s-%s_{probe.name}.png' % (imgtmpl, probe.filename, label)
+        plot_graph(probe, probe.collector['Time'], probe.time(),
                    probe.collector['Temperature'], None,
                    _("Temperature (K)"), imagefile, ['calc', 'calc'], _)
 
         if probe.systems[data.SUBSYSTEM_RADIO]:
             label = 'Radio-Queue'
-            imagefile = '%s%s-%s.png' % (imgtmpl, probe.filename, label)
-            plot_graph(probe.collector['Time'], probe.time(),
+            imagefile = f'%s%s-%s_{probe.name}.png' % (imgtmpl, probe.filename, label)
+            plot_graph(probe, probe.collector['Time'], probe.time(),
                        probe.collector['Radio Queues Len'], None,
                        _("Radio Queues Len (MB)"), imagefile, [0, 'calc'], _)
 
             label = 'Radio-Transmitting-Bandwidth'
-            imagefile = '%s%s-%s.png' % (imgtmpl, probe.filename, label)
-            plot_graph(probe.collector['Time'], probe.time(),
+            imagefile = f'%s%s-%s_{probe.name}.png' % (imgtmpl, probe.filename, label)
+            plot_graph(probe, probe.collector['Time'], probe.time(),
                        (probe.collector['Telemetry'],
                         probe.collector['Radio Max.Bandwidth']),
                        (_("Telemetry"), _("Radio")),
                        _("Bandwidth (MB/s)"), imagefile, [0, 'calc'], _, True)
         else:
             label = 'Telemetry'
-            imagefile = '%s%s-%s.png' % (imgtmpl, probe.filename, label)
-            plot_graph(probe.collector['Time'], probe.time(),
+            imagefile = f'%s%s-%s_{probe.name}.png' % (imgtmpl, probe.filename, label)
+            plot_graph(probe, probe.collector['Time'], probe.time(),
                        probe.collector['Telemetry'],
                        _("Telemetry"),
                        _("Bandwidth (KB/s)"), imagefile, [0, 'calc'], _)

@@ -31,7 +31,7 @@ class SimpleThermodynamicsModel(AbstractModel):
         AbstractModel.__init__(self, global_parameters)
         self.atmosphere = 0.0
 
-    def init_model(self, probe, initial_tick):
+    def init_model(self, probe, initial_tick, probes):
         planet_params = self.params.Planets[probe.planet]
         self.atmosphere = planet_params.Atmosphere
 
@@ -56,7 +56,7 @@ class SimpleThermodynamicsModel(AbstractModel):
         hc.sun_flow = 0
         hc.radiation = 0
 
-    def step(self, probe, tick):
+    def step(self, probe, tick, probes):
         hc = probe.systems[data.SUBSYSTEM_HEAT_CONTROL]
         navig = probe.systems[data.SUBSYSTEM_NAVIGATION]
 

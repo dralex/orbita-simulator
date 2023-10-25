@@ -27,7 +27,7 @@ class AbstractModel:
     def __init__(self, global_parameters):
         self.params = global_parameters
 
-    def init_model(self, probe, initial_tick):
+    def init_model(self, probe, initial_tick, probes):
         # model initialization (once during start)
         pass
 

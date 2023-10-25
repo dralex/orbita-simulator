@@ -45,6 +45,7 @@ MISSION_DZZ = 'dzz'
 MISSION_CRYSTAL = 'crystal'
 MISSION_MOLNIYA = 'molniya'
 MISSION_EARLY_WARNING = 'early_warning'
+MISSION_SATELLITE_INTERNET = 'satellite_internet'
 
 MESSAGE_TYPE_SMS = 'sms'
 MESSAGE_TYPE_PHOTO = 'photo'
