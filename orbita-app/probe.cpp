@@ -200,13 +200,15 @@ void Probe::loadFromXml(QString filename, PlanetDevices *planetDevicesData, Sett
 //    QXmlSchema schema;
 //    schema.load(settingsManager->getSimulationPath() + "/xml-schemas/probe.xsd");
 //    if(!schema.isValid()) {
-//        qDebug()<<"Плохой файл xml-схемы аппарата";
+//        QString errorMessage = "Плохой файл xml-схемы аппарата";
+//        emit errorOccurred(errorMessage);
 //        return;
 //    }
 
 //    QXmlSchemaValidator validator(schema);
 //    if(!validator.validate(settingsManager->getSimulationPath() + "/xml-schemas/probe.xsd")) {
-//        qDebug() << "Файл аппарата " << filename << " не соответствует схеме";
+//        QString errorMessage = "Файл аппарата " + filename + " не соответствует схеме";
+//        emit errorOccurred(errorMessage);
 //        return;
 //    }
 

@@ -6,6 +6,8 @@
 #include <QFile>
 #include <QDebug>
 #include <QXmlStreamReader>
+#include <QXmlSchema>
+#include <QXmlSchemaValidator>
 
 struct EarthSystemItem {
     int id;

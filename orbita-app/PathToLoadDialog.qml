@@ -21,6 +21,7 @@ FileDialog {
 
         if (typeMission) {
             probes.loadFromXml(fileToLoad, planetDevicesItems, settingsManager)
+            if (probes.size()) {
             listViewProbes.currentIndex = probes.size() - 1
             currentProbe = listViewProbes.currentItem.probesModelData
 
@@ -32,6 +33,7 @@ FileDialog {
 
             firstNumber.text = `${currentProbe.innerRadius}`
             secondNumber.text = `${currentProbe.outerRadius}`
+            }
             if (currentProbe.pythonCode) {
                 showPlanetsElems = false
                 showPlanetsDevices = true

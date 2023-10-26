@@ -6,6 +6,8 @@
 #include <QFile>
 #include <QDebug>
 #include <QXmlStreamWriter>
+#include <QXmlSchema>
+#include <QXmlSchemaValidator>
 
 struct PlanetsItem {
     int id;

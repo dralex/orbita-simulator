@@ -418,13 +418,15 @@ void EarthProbe::loadEarthProbeFromXml(const QString &path, Systems *systems, Ea
 //    QXmlSchema schema;
 //    schema.load(settingsManager->getEarthSimulationPath() + "/xml-schemas/probe.xsd");
 //    if(!schema.isValid()) {
-//        qDebug()<<"Плохой файл xml-схемы аппарата";
+//        QString errorMessage = "Плохой файл xml-схемы аппарата";
+//        emit errorOccurred(errorMessage);
 //        return;
 //    }
 
 //    QXmlSchemaValidator validator(schema);
 //    if(!validator.validate(settingsManager->getEarthSimulationPath() + "/xml-schemas/probe.xsd")) {
-//        qDebug() << "Файл аппарата " << path << " не соответствует схеме";
+//        QString errorMessage =  "Файл аппарата " + path + " не соответствует схеме";
+//        emit errorOccurred(errorMessage);
 //        return;
 //    }
 

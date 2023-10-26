@@ -39,6 +39,7 @@ ApplicationWindow  {
     CalculatorFileDialog {id: calculatorFileDialog}
     EarthDiagrammDialog {id: earthDiagrammDialog}
     DiagrammFileDialog {id: diagrammFileDialog}
+    EarthCalculator {id: earthCalculatorWindow}
     property string fileNameFromDialog;
     property ListModel modelSolutions: ListModel {}
     property bool itemsEnabled: false
@@ -448,14 +449,26 @@ ApplicationWindow  {
                 anchors.bottom: parent.bottom
                 enabled: itemsEnabled
                 onClicked: {
-                    if (settingsManager.checkSimulationFile(settingsManager.getPlanetsCalculatorPath() + "/simulation.py")) {
-                        mainWindow.visibility = 0
-                        planetCalculatorWindow.visibility = 1
+                    if (typeMission) {
+                        if (settingsManager.checkSimulationFile(settingsManager.getPlanetsCalculatorPath() + "/simulation.py")) {
+                            mainWindow.visibility = 0
+                            planetCalculatorWindow.visibility = 1
 
+                        } else {
+                            errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора."
+                            errorDialog.open()
+                            folderSimulation = "None"
+                        }
                     } else {
-                        errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора."
-                        errorDialog.open()
-                        folderSimulation = "None"
+                        if (settingsManager.checkSimulationFile(settingsManager.getEarthCalculatorPath() + "/simulation.py")) {
+                            mainWindow.visibility = 0
+                            earthCalculatorWindow.visibility = 1
+
+                        } else {
+                            errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора."
+                            errorDialog.open()
+                            folderSimulation = "None"
+                        }
                     }
                 }
             }
