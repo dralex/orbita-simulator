@@ -26,6 +26,7 @@
 import math
 import re
 
+import numpy
 import constants
 import data
 from abstractmodel import AbstractModel
@@ -48,7 +49,7 @@ class SimpleMechanicalModel(AbstractModel):
     def __init__(self, global_parameters):
         AbstractModel.__init__(self, global_parameters)
 
-    def init_model(self, probe, initial_tick):
+    def init_model(self, probe, initial_tick, probes):
         global _ # pylint: disable=W0603
         _ = Language.get_tr()
         planet_params = self.params.Planets[probe.planet]
@@ -84,6 +85,17 @@ class SimpleMechanicalModel(AbstractModel):
                                                                       location_angle)
         orient.ground_stations.sort(key=natural_sort_key)
 
+        orient.other_probes = []
+        orient.other_probes_visible = {}
+        orient.other_probes_arc = {}
+
+        for other_probe in probes.get():
+            if other_probe == probe:
+                continue
+            orient.other_probes.append(other_probe)
+            orient.other_probes_visible[other_probe.name] = False
+            orient.other_probes_arc[other_probe.name] = False
+
     @classmethod
     def angle_to_coord(cls, probe, angle):
         angle_rad = math.radians(angle)
@@ -96,7 +108,7 @@ class SimpleMechanicalModel(AbstractModel):
 
         return (x, y, z)
 
-    def step(self, probe, tick):
+    def step(self, probe, tick, probes):
         orient = probe.systems[constants.SUBSYSTEM_ORIENTATION]
         navig = probe.systems[constants.SUBSYSTEM_NAVIGATION]
         radio = probe.systems[constants.SUBSYSTEM_RADIO]
@@ -123,6 +135,62 @@ class SimpleMechanicalModel(AbstractModel):
         if orient.planet_rotation:
             flight_time = probe.systems[constants.SUBSYSTEM_CPU].flight_time
             angle_offset = 360.0 * flight_time / orient.planet_rotation_period
+
+        for other_probe in orient.other_probes:
+            other_navig = other_probe.systems[constants.SUBSYSTEM_NAVIGATION]
+            other_orient = other_probe.systems[constants.SUBSYSTEM_ORIENTATION]
+            other_radio = other_probe.systems[constants.SUBSYSTEM_RADIO]
+
+            first_visible_coords = self.angle_to_coord(probe, first_visible_angle)
+            last_visible_coords = self.angle_to_coord(probe, last_visible_angle)
+
+            matric_first = numpy.array([[first_visible_coords[0], 1.], [navig.x, 1.]])
+            vector_first = numpy.array([first_visible_coords[1], navig.y])
+            k_first, b_first = numpy.linalg.solve(matric_first, vector_first)
+
+            matric_last = numpy.array([[last_visible_coords[0], 1.], [navig.x, 1.]])
+            vector_last = numpy.array([last_visible_coords[1], navig.y])
+            k_last, b_last = numpy.linalg.solve(matric_last, vector_last)
+
+            if first_visible_coords[1] > 0:
+                is_outside_first = other_navig.y > k_first * other_navig.x + b_first
+            elif first_visible_coords[1] < 0:
+                is_outside_first = other_navig.y < k_first * other_navig.x + b_first
+            else:
+                is_outside_first = (other_navig.x > first_visible_coords[0] if first_visible_coords[0] > 0 else
+                                    other_navig.x < first_visible_coords[0])
+
+            if last_visible_coords[1] > 0:
+                is_outside_last = other_navig.y > k_last * other_navig.x + b_last
+            elif last_visible_coords[1] < 0:
+                is_outside_last = other_navig.y < k_last * other_navig.x + b_last
+            else:
+                is_outside_last = (other_navig.x > last_visible_coords[0] if last_visible_coords[0] > 0 else
+                                    other_navig.x < last_visible_coords[0])
+
+            orient.other_probes_visible[other_probe.name] = (angle_is_between(other_navig.angle,
+                                                                             first_visible_angle,
+                                                                             last_visible_angle) or
+                                                             is_outside_first or is_outside_last)
+
+            other_probe_position = (other_navig.x, other_navig.y, other_navig.z)
+
+            direction = (other_probe_position[0] - position[0], other_probe_position[1] - position[1],
+                         other_probe_position[2] - position[2])
+            direction_angle = math.degrees(math.atan2(direction[1], direction[0]))
+            off_direction_angle = abs(data.normalize_angle_difference(orient.orient_angle -
+                                                                      direction_angle))
+
+            other_direction = (position[0] - other_probe_position[0], position[1] - other_probe_position[1],
+                               position[2] - other_probe_position[2])
+            other_direction_angle = math.degrees(math.atan2(other_direction[1], other_direction[0]))
+            other_off_direction_angle = abs(data.normalize_angle_difference(other_orient.orient_angle -
+                                                                            other_direction_angle))
+
+            if radio and other_radio:
+                orient.other_probes_arc[other_probe.name] = (orient.other_probes_visible[other_probe.name] and
+                                                             off_direction_angle <= radio.radio_angle / 2 and
+                                                             other_off_direction_angle <= other_radio.radio_angle / 2)
 
         for gsname, gs in orient.ground_stations_coords.items():
             location_angle = orient.ground_stations_initial_angles[gsname]

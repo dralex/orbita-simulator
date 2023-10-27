@@ -40,12 +40,14 @@ class TestSmsMission(Mission):
         Mission.__init__(self, global_parameters)
         self.text = ''
 
-    def init(self, probe, initial_tick, lang):
+    def init(self, probes, initial_tick, lang):
         global _ # pylint: disable=W0603
         _ = lang
+        probe = probes.get()[0]
         self.text = _(probe.xml.flight.mission.oneway_message.text)
 
-    def step(self, probe, tick):
+    def step(self, probes, tick):
+        probe = probes.get()[0]
         radio = probe.systems[constants.SUBSYSTEM_RADIO]
 
         for gs in radio.sent_packets.keys():
@@ -63,14 +65,14 @@ class TestSmsMission(Mission):
                             msg += _('Error: the message was changed while being transferred. ')
                             error = True
 
-                        mission_log(msg + errmsg)
-                        debug_log(msg + errmsg)
+                        mission_log(probe, msg + errmsg)
+                        debug_log(probe, msg + errmsg)
 
                         if error:
                             data.terminate(probe,
                                            _('The probe transferred wrong message. {}').format(errmsg)) # pylint: disable=C0301
                         else:
-                            mission_log(_('MISSION ACCOMPLISHED! The message was transferred.'))
+                            mission_log(probe, _('MISSION ACCOMPLISHED! The message was transferred.'))
                             probe.success = True
                             probe.success_timestamp = time.time()
                             probe.completed = True
