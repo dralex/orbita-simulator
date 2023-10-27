@@ -94,8 +94,17 @@ void SimulationController::startSimulation(QString probePath, SettingsManager *s
 void SimulationController::startCalculatorSimulation(SettingsManager *settingsManager, bool typeMission)
 {
     QString process;
-    QString infoFolderPath = QDir::currentPath() + "/" + planetCalculatorData.planetName + "_info";
-    QString simulationPath = settingsManager->getPlanetsCalculatorPath() + "/simulation.py";
+    QString infoFolderPath;
+    QString simulationPath;
+    mTypeMission = typeMission;
+
+    if (typeMission) {
+        infoFolderPath = QDir::currentPath() + "/" + planetCalculatorData.planetName + "_info";
+        simulationPath = settingsManager->getPlanetsCalculatorPath() + "/simulation.py";
+    } else {
+        infoFolderPath = QDir::currentPath() + "/testmodel_info";
+        simulationPath = settingsManager->getEarthCalculatorPath() + "/simulation.py";
+    }
 
 
     if (simulationProcess->state() != QProcess::NotRunning) {
@@ -115,8 +124,8 @@ void SimulationController::startCalculatorSimulation(SettingsManager *settingsMa
         arguments << simulationPath
                   << planetCalculatorData.planetName
                   << QString::number(planetCalculatorData.tick)
-                  << QString::number(planetCalculatorData.square)
-                  << QString::number(planetCalculatorData.mass)
+                  << planetCalculatorData.square
+                  << planetCalculatorData.mass
                   << QString::number(planetCalculatorData.h)
                   << QString::number(planetCalculatorData.x)
                   << QString::number(planetCalculatorData.vy)
@@ -124,6 +133,50 @@ void SimulationController::startCalculatorSimulation(SettingsManager *settingsMa
                   << QString::number(planetCalculatorData.aeroCoeff)
                   << "--test-log=" + infoFolderPath + "/telemetry.log"
                   << "--img-templ=" + infoFolderPath + "/.";
+    else {
+        QString filename = "testmodel.xml";
+        QFile file(filename);
+        if (file.open(QIODevice::WriteOnly | QIODevice::Text))
+        {
+            QXmlStreamWriter xmlWriter(&file);
+            xmlWriter.setAutoFormatting(true);
+
+            xmlWriter.writeStartDocument();
+            xmlWriter.writeStartElement("v:testmodel");
+            xmlWriter.writeAttribute("name", "testmodel");
+            xmlWriter.writeAttribute("planet", "Earth");
+            xmlWriter.writeNamespace("venus", "v");
+
+            xmlWriter.writeTextElement("angular_velocity", QString::number(earthCalculatorData.angularVelocity));
+            xmlWriter.writeTextElement("constr_edge", QString::number(earthCalculatorData.constrEdge));
+            xmlWriter.writeTextElement("duration", QString::number(earthCalculatorData.duration));
+            if (earthCalculatorData.impulseDuration && earthCalculatorData.impulseSpeed
+                && earthCalculatorData.impulseTime && earthCalculatorData.impulseTraction) {
+                xmlWriter.writeTextElement("impulse_duration", QString::number(earthCalculatorData.impulseDuration));
+                xmlWriter.writeTextElement("impulse_speed", QString::number(earthCalculatorData.impulseSpeed));
+                xmlWriter.writeTextElement("impulse_time", QString::number(earthCalculatorData.impulseTime));
+                xmlWriter.writeTextElement("impulse_traction", QString::number(earthCalculatorData.impulseTraction));
+            }
+            xmlWriter.writeTextElement("mass", QString::number(earthCalculatorData.mass));
+            xmlWriter.writeTextElement("moment", earthCalculatorData.moment);
+            xmlWriter.writeTextElement("orient_angle", QString::number(earthCalculatorData.orientAngle));
+            xmlWriter.writeTextElement("tick", QString::number(earthCalculatorData.tick));
+            xmlWriter.writeTextElement("vx", QString::number(earthCalculatorData.vX));
+            xmlWriter.writeTextElement("vy", QString::number(earthCalculatorData.vY));
+            xmlWriter.writeTextElement("x", QString::number(earthCalculatorData.x));
+            xmlWriter.writeTextElement("y", QString::number(earthCalculatorData.y));
+
+            xmlWriter.writeEndElement();
+            xmlWriter.writeEndDocument();
+            file.close();
+        }
+
+        arguments << simulationPath
+                  << QDir::currentPath() + "/testmodel.xml"
+                  << "--test-log=" + infoFolderPath + "/telemetry.log"
+                  << "--images=" + infoFolderPath + "/.";
+    }
+    qDebug()<<arguments;
     if (QSysInfo::productType() == "windows")
         process = "python";
     else
@@ -180,8 +233,13 @@ void SimulationController::processFinished(int exitCode, QProcess::ExitStatus ex
         loadImagesFromFolder(currentProbePath.left(currentProbePath.length() - 4) + "_info/");
         telemetryLogContents = readTelemetryLog(currentProbePath.left(currentProbePath.length() - 4) + "_info/telemetry.log");
     } else {
-        loadImagesFromFolder(QDir::currentPath() + "/" + planetCalculatorData.planetName + "_info/");
-        telemetryLogContents = readTelemetryLog(QDir::currentPath() + "/" + planetCalculatorData.planetName + "_info/telemetry.log");
+        if (mTypeMission) {
+            loadImagesFromFolder(QDir::currentPath() + "/" + planetCalculatorData.planetName + "_info/");
+            telemetryLogContents = readTelemetryLog(QDir::currentPath() + "/" + planetCalculatorData.planetName + "_info/telemetry.log");
+        } else {
+            loadImagesFromFolder(QDir::currentPath() + "/testmodel_info/");
+            telemetryLogContents = readTelemetryLog(QDir::currentPath() + "/testmodel_info/telemetry.log");
+        }
     }
     if (!exitCode)
         mMissionStatus = "Cимуляция завершилась успешно";
@@ -234,7 +292,7 @@ void SimulationController::clearImages()
     }
 }
 
-void SimulationController::addPlanetCalculatorData(QString planetName, int tick, double square, double mass, int h, int x, int vx, int vy, double aeroCoeff)
+void SimulationController::addPlanetCalculatorData(QString planetName, int tick, QString square, QString mass, int h, int x, int vx, int vy, double aeroCoeff)
 {
     planetCalculatorData.planetName = planetName;
     planetCalculatorData.tick = tick;
@@ -248,6 +306,27 @@ void SimulationController::addPlanetCalculatorData(QString planetName, int tick,
         planetCalculatorData.aeroCoeff = aeroCoeff;
     else
         planetCalculatorData.aeroCoeff = 0.47;
+}
+
+void SimulationController::addEarthCalculatorData(int angularVelocity, int duration, int impulseDuration, int impulseSpeed,
+                                                  int impulseTime, int impulseTraction, int mass,
+                                                  QString moment, int orientAngle, int tick, int vX, int vY, int x, int y)
+{
+    earthCalculatorData.angularVelocity = angularVelocity;
+    earthCalculatorData.constrEdge = 0.1;
+    earthCalculatorData.duration = duration;
+    earthCalculatorData.impulseDuration = impulseDuration;
+    earthCalculatorData.impulseSpeed = impulseSpeed;
+    earthCalculatorData.impulseTime = impulseTime;
+    earthCalculatorData.impulseTraction = impulseTraction;
+    earthCalculatorData.mass = mass;
+    earthCalculatorData.moment = moment;
+    earthCalculatorData.orientAngle = orientAngle;
+    earthCalculatorData.tick = tick;
+    earthCalculatorData.vX = vX;
+    earthCalculatorData.vY = vY;
+    earthCalculatorData.x = x;
+    earthCalculatorData.y = y;
 }
 
 void SimulationController::updateMissionStatus(const QString &status)
@@ -269,6 +348,16 @@ void SimulationController::clearInfo()
         QDir infoDir(infoFolderPath);
         if (infoDir.exists())
             infoDir.removeRecursively();
+
+        QString infoFolderPathEarth = QDir::currentPath() + "/testmodel_info/";
+        QDir infoEarthDir(infoFolderPathEarth);
+        if (infoEarthDir.exists())
+            infoEarthDir.removeRecursively();
+
+        QString filename = "testmodel.xml";
+        QFile fileToRemove(filename);
+        if (fileToRemove.exists())
+            fileToRemove.remove();
     }
 
 
@@ -278,13 +367,29 @@ void SimulationController::clearInfo()
 
     planetCalculatorData.planetName = "";
     planetCalculatorData.tick = 0;
-    planetCalculatorData.square = 0;
-    planetCalculatorData.mass = 0;
+    planetCalculatorData.square = "";
+    planetCalculatorData.mass = "";
     planetCalculatorData.h = 0;
     planetCalculatorData.x = 0;
     planetCalculatorData.vx = 0;
     planetCalculatorData.vy = 0;
     planetCalculatorData.aeroCoeff = 0.47;
+
+    earthCalculatorData.angularVelocity = 0;
+    earthCalculatorData.constrEdge = 0;
+    earthCalculatorData.duration = 0;
+    earthCalculatorData.impulseDuration = 0;
+    earthCalculatorData.impulseSpeed = 0;
+    earthCalculatorData.impulseTime = 0;
+    earthCalculatorData.impulseTraction = 0;
+    earthCalculatorData.mass = 0;
+    earthCalculatorData.moment = "";
+    earthCalculatorData.orientAngle = 0;
+    earthCalculatorData.tick = 0;
+    earthCalculatorData.vX = 0;
+    earthCalculatorData.vY = 0;
+    earthCalculatorData.x = 0;
+    earthCalculatorData.y = 0;
 
     emit telemetryLogUpdated(telemetryLogContents);
     emit standardOutputUpdated(mStandardOutput);

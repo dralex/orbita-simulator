@@ -13,26 +13,31 @@ FileDialog {
         if (folderSimulation.startsWith("file://")) {
         folderSimulation = folderSimulation.substring(7)
         }
-        if (settingsManager.checkSimulationFile(folderSimulation + "/simulation.py")) {
-            if (typeMission) {
+        if (typeMission) {
+            if (settingsManager.checkSimulationFile(folderSimulation + "/simulation.py") && (folderSimulation.includes("planets")
+                                                                                             && !folderSimulation.includes("planets_garvity"))) {
                 settingsManager.setSimulationPath(folderSimulation);
                 settingsManager.setDevicesPath(folderSimulation + "/devices-ru.xml");
                 settingsManager.setPlanetsPath(folderSimulation + "/planets.xml");
                 planetsItems.loadPlanets(settingsManager.getPlanetsPath());
                 planetDevicesItems.loadDevices(settingsManager.getDevicesPath());
             } else {
+                errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора планет."
+                errorDialog.open()
+                folderSimulation = ""
+            }
+        } else {
+            if(settingsManager.checkSimulationFile(folderSimulation + "/simulation.py")&& folderSimulation.includes("earth") && !folderSimulation.includes("earth_gravity")) {
                 settingsManager.setEarthSimulationPath(folderSimulation);
                 settingsManager.setEarthSystemsPath(folderSimulation + "/devices-ru.xml");
                 settingsManager.setMissionsPath(folderSimulation + "/missions-ru.xml");
                 earthMissions.loadMissions(settingsManager.getMissionsPath());
+            } else {
+                errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора Земли."
+                errorDialog.open()
+                folderSimulation = ""
             }
-
-            settingsFolderSimulation = folderSimulation
-
-        } else {
-            errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора."
-            errorDialog.open()
-            folderSimulation = ""
         }
+        settingsFolderSimulation = folderSimulation
     }
 }

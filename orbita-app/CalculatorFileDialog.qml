@@ -15,15 +15,28 @@ FileDialog {
         if (folderCalculator.startsWith("file://")) {
         folderCalculator = folderCalculator.substring(7)
         }
-        if (settingsManager.checkSimulationFile(folderCalculator + "/simulation.py")) {
-            settingsManager.setPlanetsCalculatorPath(folderCalculator);
-            folderCalculatorPath = settingsManager.getPlanetsCalculatorPath()
+        if (typeMission) {
+            if (settingsManager.checkSimulationFile(folderCalculator + "/simulation.py") && folderCalculator.includes("planets_gravity")) {
+                settingsManager.setPlanetsCalculatorPath(folderCalculator);
+                folderCalculatorPath = settingsManager.getPlanetsCalculatorPath()
+            } else {
+                errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора планет."
+                errorDialog.open()
+                folderCalculatorPath = ""
+                return;
+            }
+            settingsFolderCalculatorPath = folderCalculator
         } else {
-            errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора."
-            errorDialog.open()
-            folderSimulation = ""
+            if (settingsManager.checkSimulationFile(folderCalculator + "/simulation.py") && folderCalculator.includes("earth_gravity")) {
+                settingsManager.setEarthCalculatorPath(folderCalculator);
+                earthFolderCalculatorPath = settingsManager.getPlanetsCalculatorPath()
+            } else {
+                errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора Земли."
+                errorDialog.open()
+                folderCalculatorPath = ""
+                return;
+            }
+            settingsFolderCalculatorPath = folderCalculator
         }
-
-        settingsFolderCalculatorPath = folderCalculator
     }
 }

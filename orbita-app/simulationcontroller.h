@@ -7,6 +7,7 @@
 #include <QDebug>
 #include <QFile>
 #include <QTextStream>
+#include <QXmlStreamWriter>
 #include <QDir>
 #include <QFileInfoList>
 #include "settingsmanager.h"
@@ -20,13 +21,31 @@ struct ImageItem {
 struct PlanetCalculatorData {
     QString planetName;
     int tick;
-    double square;
-    double mass;
+    QString square;
+    QString mass;
     int h;
     int x;
     int vx;
     int vy;
     double aeroCoeff;
+};
+
+struct EarthCalculatorData {
+    int angularVelocity;
+    double constrEdge;
+    int duration;
+    int impulseDuration;
+    int impulseSpeed;
+    int impulseTime;
+    int impulseTraction;
+    int mass;
+    QString moment;
+    int orientAngle;
+    int tick;
+    int vX;
+    int vY;
+    int x;
+    int y;
 };
 
 class SimulationController : public QObject
@@ -63,7 +82,11 @@ public slots:
     void loadImagesFromFolder(const QString &folderPath);
     void clearImages();
 
-    void addPlanetCalculatorData(QString planetName, int tick, double square, double mass, int h, int x, int vx, int xy, double aeroCoeff);
+    void addPlanetCalculatorData(QString planetName, int tick, QString square, QString mass, int h, int x, int vx, int xy, double aeroCoeff);
+    void addEarthCalculatorData(int angularVelocity, int duration, int impulseDuration, int impulseSpeed,
+                                 int impulseTime, int impulseTraction,
+                                 int mass, QString moment, int orientAngle, int tick,
+                                 int vX, int vY, int x, int y);
 
     void updateMissionStatus(const QString &status);
 
@@ -95,8 +118,10 @@ private:
     QString mMissionStatus;
 
     PlanetCalculatorData planetCalculatorData;
+    EarthCalculatorData earthCalculatorData;
 
     bool whatIsSimulator = true;
+    bool mTypeMission = true;
 
 };
 

@@ -8,7 +8,7 @@ import ImagesModel 1.0
 
 Window  {
     id: earthCalculatorWindow
-    width: 819
+    width: 1100
     height: 610
     visible: false
     flags: Qt.Window | Qt.WindowFixedSize
@@ -43,40 +43,8 @@ Window  {
                     width: 80
                     height: 23
                     Layout.row: 0
-                    Layout.column: 0
+                    Layout.column: 2
                     Layout.alignment: Qt.AlignTop
-                    Layout.preferredWidth: width
-                    Layout.preferredHeight: height
-                    text: "Миссия: "
-                }
-
-                ComboBox {
-                    id: missionBox
-                    width: 110
-                    height: 23
-                    Layout.preferredWidth: width
-                    Layout.preferredHeight: height
-                    Layout.alignment: Qt.AlignTop
-                    Layout.row: 0
-                    Layout.column: 1
-                    editable: false
-                    model: EarthMissionsModel {
-                        id: modelMissions
-                        list: earthMissions
-                    }
-                    currentIndex: 0
-                    onAccepted: {
-                        if (find(editText) === -1)
-                            model.append({text: editText})
-                    }
-                }
-
-                Text {
-                    width: 80
-                    height: 23
-                    Layout.row: 1
-                    Layout.column: 0
-                    Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
                     text: "Угловая скорость: "
@@ -86,11 +54,11 @@ Window  {
                     id: angularVelocityInput
                     width: 80
                     height: 23
-                    Layout.alignment: Qt.AlignVCenter
+                    Layout.alignment: Qt.AlignTop
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
-                    Layout.row: 1
-                    Layout.column: 1
+                    Layout.row: 0
+                    Layout.column: 3
                     text: "0"
 
                     onTextChanged: {
@@ -111,46 +79,9 @@ Window  {
                 Text {
                     width: 80
                     height: 23
-                    Layout.row: 2
-                    Layout.column: 0
-                    Layout.alignment: Qt.AlignBottom
-                    Layout.preferredWidth: width
-                    Layout.preferredHeight: height
-                    text: "Грань корпуса "
-                }
-
-                TextInput {
-                    id: consrtEdgeInput
-                    width: 80
-                    height: 23
-                    Layout.alignment: Qt.AlignBottom
-                    Layout.preferredWidth: width
-                    Layout.preferredHeight: height
-                    Layout.row: 2
-                    Layout.column: 1
-                    text: "0"
-
-                    onTextChanged: {
-                        if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(consrtEdgeInput.text)) {
-                            consrtEdgeInput.text = consrtEdgeInput.text.replace(new RegExp("[^\\d.\\-]", "g"), "");
-                        }
-                    }
-
-                    property string placeholderText: "Введите число..."
-
-                    Text {
-                        text: consrtEdgeInput.placeholderText
-                        color: "#aaa"
-                        visible: !consrtEdgeInput.text
-                    }
-                }
-
-                Text {
-                    width: 80
-                    height: 23
-                    Layout.row: 1
-                    Layout.column: 2
-                    Layout.alignment: Qt.AlignVCenter
+                    Layout.row: 0
+                    Layout.column: 4
+                    Layout.alignment: Qt.AlignTop
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
                     text: "Длительность: "
@@ -160,11 +91,11 @@ Window  {
                     id: durationInput
                     width: 80
                     height: 23
-                    Layout.alignment: Qt.AlignVCenter
+                    Layout.alignment: Qt.AlignTop
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
-                    Layout.row: 1
-                    Layout.column: 3
+                    Layout.row: 0
+                    Layout.column: 5
                     text: "0"
 
                     onTextChanged: {
@@ -185,9 +116,9 @@ Window  {
                 Text {
                     width: 80
                     height: 23
-                    Layout.row: 2
-                    Layout.column: 2
-                    Layout.alignment: Qt.AlignBottom
+                    Layout.row: 1
+                    Layout.column: 0
+                    Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
                     text: "Масса: "
@@ -197,11 +128,11 @@ Window  {
                     id: massInput
                     width: 80
                     height: 23
-                    Layout.alignment: Qt.AlignBottom
+                    Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
-                    Layout.row: 2
-                    Layout.column: 3
+                    Layout.row: 1
+                    Layout.column: 1
                     text: "0"
 
                     onTextChanged: {
@@ -220,11 +151,11 @@ Window  {
                 }
 
                 Text {
-                    width: 80
+                    width: 90
                     height: 23
-                    Layout.row: 0
-                    Layout.column: 4
-                    Layout.alignment: Qt.AlignTop
+                    Layout.row: 1
+                    Layout.column: 2
+                    Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
                     text: "Ориентацион. угол: "
@@ -234,12 +165,12 @@ Window  {
                     id: orientAngleInput
                     width: 80
                     height: 23
-                    Layout.alignment: Qt.AlignTop
+                    Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
-                    Layout.row: 0
+                    Layout.row: 1
                     Layout.column: 3
-                    text: "10"
+                    text: "0"
 
                     onTextChanged: {
                         if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(orientAngleInput.text)) {
@@ -259,9 +190,9 @@ Window  {
                 Text {
                     width: 80
                     height: 23
-                    Layout.row: 0
-                    Layout.column: 2
-                    Layout.alignment: Qt.AlignTop
+                    Layout.row: 1
+                    Layout.column: 4
+                    Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
                     text: "Момент: "
@@ -272,12 +203,12 @@ Window  {
                     id: momentInput
                     width: 80
                     height: 23
-                    Layout.alignment: Qt.AlignTop
+                    Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
-                    Layout.row: 0
-                    Layout.column: 3
-                    text: "0.47"
+                    Layout.row: 1
+                    Layout.column: 5
+                    text: "0"
 
                     onTextChanged: {
                         if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(momentInput.text)) {
@@ -288,17 +219,17 @@ Window  {
                     property string placeholderText: "Введите число..."
 
                     Text {
-                        text: coeffTextInput.placeholderText
+                        text: momentInput.placeholderText
                         color: "#aaa"
-                        visible: !coeffTextInput.text
+                        visible: !momentInput.text
                     }
                 }
 
                 Text {
                     width: 80
                     height: 23
-                    Layout.row: 1
-                    Layout.column: 4
+                    Layout.row: 2
+                    Layout.column: 0
                     Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
@@ -312,9 +243,9 @@ Window  {
                     Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
-                    Layout.row: 1
-                    Layout.column: 5
-                    text: "0"
+                    Layout.row: 2
+                    Layout.column: 1
+                    text: "10"
 
                     onTextChanged: {
                         if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(tickInput.text)) {
@@ -335,8 +266,8 @@ Window  {
                     width: 80
                     height: 23
                     Layout.row: 2
-                    Layout.column: 4
-                    Layout.alignment: Qt.AlignBottom
+                    Layout.column: 2
+                    Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
                     text: "Cкорость X (м/с): "
@@ -346,11 +277,11 @@ Window  {
                     id: xVTextInput
                     width: 80
                     height: 23
-                    Layout.alignment: Qt.AlignBottom
+                    Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
                     Layout.row: 2
-                    Layout.column: 5
+                    Layout.column: 3
                     text: "0"
 
                     onTextChanged: {
@@ -373,7 +304,7 @@ Window  {
                     height: 23
                     Layout.row: 2
                     Layout.column: 4
-                    Layout.alignment: Qt.AlignBottom
+                    Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
                     text: "Cкорость Y (м/с): "
@@ -383,11 +314,11 @@ Window  {
                     id: yVTextInput
                     width: 80
                     height: 23
-                    Layout.alignment: Qt.AlignBottom
+                    Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
-                    Layout.row: 3
-                    Layout.column: 0
+                    Layout.row: 2
+                    Layout.column: 5
                     text: "0"
 
                     onTextChanged: {
@@ -408,9 +339,9 @@ Window  {
                 Text {
                     width: 80
                     height: 23
-                    Layout.row: 2
-                    Layout.column: 4
-                    Layout.alignment: Qt.AlignBottom
+                    Layout.row: 3
+                    Layout.column: 0
+                    Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
                     text: "X : "
@@ -420,11 +351,11 @@ Window  {
                     id: xTextInput
                     width: 80
                     height: 23
-                    Layout.alignment: Qt.AlignBottom
+                    Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
-                    Layout.row: 2
-                    Layout.column: 5
+                    Layout.row: 3
+                    Layout.column: 1
                     text: "0"
 
                     onTextChanged: {
@@ -445,23 +376,23 @@ Window  {
                 Text {
                     width: 80
                     height: 23
-                    Layout.row: 2
-                    Layout.column: 4
-                    Layout.alignment: Qt.AlignBottom
+                    Layout.row: 3
+                    Layout.column: 2
+                    Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
-                    text: "Высота Y (м/с): "
+                    text: "Высота Y: "
                 }
 
                 TextInput {
                     id: yTextInput
                     width: 80
                     height: 23
-                    Layout.alignment: Qt.AlignBottom
+                    Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
-                    Layout.row: 2
-                    Layout.column: 5
+                    Layout.row: 3
+                    Layout.column: 3
                     text: "0"
 
                     onTextChanged: {
@@ -479,158 +410,156 @@ Window  {
                     }
                 }
 
+                Text {
+                    width: 110
+                    height: 23
+                    Layout.row: 3
+                    Layout.column: 4
+                    Layout.alignment: Qt.AlignVCenter
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
+                    text: "Длительность импульса: "
+                }
 
-            }
+                TextInput {
+                    id: impulseDurationInput
+                    width: 80
+                    height: 23
+                    Layout.alignment: Qt.AlignVCenter
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
+                    Layout.row: 3
+                    Layout.column: 5
+                    text: "0"
 
-            Text {
-                width: 80
-                height: 23
-                Layout.row: 2
-                Layout.column: 4
-                Layout.alignment: Qt.AlignBottom
-                Layout.preferredWidth: width
-                Layout.preferredHeight: height
-                text: "Cкорость X (м/с): "
-            }
+                    onTextChanged: {
+                        if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(impulseDurationInput.text)) {
+                            impulseDurationInput.text = impulseDurationInput.text.replace(new RegExp("[^\\d.\\-]", "g"), "");
+                        }
+                    }
 
-            TextInput {
-                id: impulseDurationInput
-                width: 80
-                height: 23
-                Layout.alignment: Qt.AlignBottom
-                Layout.preferredWidth: width
-                Layout.preferredHeight: height
-                Layout.row: 2
-                Layout.column: 5
-                text: "0"
+                    property string placeholderText: "Введите число..."
 
-                onTextChanged: {
-                    if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(impulseDurationInput.text)) {
-                        impulseDurationInput.text = impulseDurationInput.text.replace(new RegExp("[^\\d.\\-]", "g"), "");
+                    Text {
+                        text: impulseDurationInput.placeholderText
+                        color: "#aaa"
+                        visible: !impulseDurationInput.text
                     }
                 }
 
-                property string placeholderText: "Введите число..."
-
                 Text {
-                    text: impulseDurationInput.placeholderText
-                    color: "#aaa"
-                    visible: !impulseDurationInput.text
+                    width: 80
+                    height: 23
+                    Layout.row: 4
+                    Layout.column: 0
+                    Layout.alignment: Qt.AlignBottom
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
+                    text: "Скорость импульса: "
                 }
-            }
 
-            Text {
-                width: 80
-                height: 23
-                Layout.row: 2
-                Layout.column: 4
-                Layout.alignment: Qt.AlignBottom
-                Layout.preferredWidth: width
-                Layout.preferredHeight: height
-                text: "Cкорость X (м/с): "
-            }
+                TextInput {
+                    id: impulseSpeedInput
+                    width: 80
+                    height: 23
+                    Layout.alignment: Qt.AlignBottom
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
+                    Layout.row: 4
+                    Layout.column: 1
+                    text: "0"
 
-            TextInput {
-                id: impulseSpeedInput
-                width: 80
-                height: 23
-                Layout.alignment: Qt.AlignBottom
-                Layout.preferredWidth: width
-                Layout.preferredHeight: height
-                Layout.row: 2
-                Layout.column: 5
-                text: "0"
+                    onTextChanged: {
+                        if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(impulseSpeedInput.text)) {
+                            impulseSpeedInput.text = impulseSpeedInput.text.replace(new RegExp("[^\\d.\\-]", "g"), "");
+                        }
+                    }
 
-                onTextChanged: {
-                    if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(impulseSpeedInput.text)) {
-                        impulseSpeedInput.text = impulseSpeedInput.text.replace(new RegExp("[^\\d.\\-]", "g"), "");
+                    property string placeholderText: "Введите число..."
+
+                    Text {
+                        text: impulseSpeedInput.placeholderText
+                        color: "#aaa"
+                        visible: !impulseSpeedInput.text
                     }
                 }
 
-                property string placeholderText: "Введите число..."
-
                 Text {
-                    text: impulseSpeedInput.placeholderText
-                    color: "#aaa"
-                    visible: !impulseSpeedInput.text
+                    width: 80
+                    height: 23
+                    Layout.row: 4
+                    Layout.column: 2
+                    Layout.alignment: Qt.AlignBottom
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
+                    text: "Время импульса: "
                 }
-            }
 
-            Text {
-                width: 80
-                height: 23
-                Layout.row: 2
-                Layout.column: 4
-                Layout.alignment: Qt.AlignBottom
-                Layout.preferredWidth: width
-                Layout.preferredHeight: height
-                text: "Cкорость X (м/с): "
-            }
+                TextInput {
+                    id: impulseTimeInput
+                    width: 80
+                    height: 23
+                    Layout.alignment: Qt.AlignBottom
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
+                    Layout.row: 4
+                    Layout.column: 3
+                    text: "0"
 
-            TextInput {
-                id: impulseTimeInput
-                width: 80
-                height: 23
-                Layout.alignment: Qt.AlignBottom
-                Layout.preferredWidth: width
-                Layout.preferredHeight: height
-                Layout.row: 2
-                Layout.column: 5
-                text: "0"
+                    onTextChanged: {
+                        if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(impulseTimeInput.text)) {
+                            impulseTimeInput.text = impulseTimeInput.text.replace(new RegExp("[^\\d.\\-]", "g"), "");
+                        }
+                    }
 
-                onTextChanged: {
-                    if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(impulseTimeInput.text)) {
-                        impulseTimeInput.text = impulseTimeInput.text.replace(new RegExp("[^\\d.\\-]", "g"), "");
+                    property string placeholderText: "Введите число..."
+
+                    Text {
+                        text: impulseTimeInput.placeholderText
+                        color: "#aaa"
+                        visible: !impulseTimeInput.text
                     }
                 }
 
-                property string placeholderText: "Введите число..."
 
                 Text {
-                    text: impulseTimeInput.placeholderText
-                    color: "#aaa"
-                    visible: !impulseTimeInput.text
+                    width: 80
+                    height: 23
+                    Layout.row: 4
+                    Layout.column: 4
+                    Layout.alignment: Qt.AlignBottom
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
+                    text: "Импульсная тяга: "
                 }
-            }
 
+                TextInput {
+                    id: impulseTractionInput
+                    width: 80
+                    height: 23
+                    Layout.alignment: Qt.AlignBottom
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
+                    Layout.row: 4
+                    Layout.column: 5
+                    text: "0"
 
-            Text {
-                width: 80
-                height: 23
-                Layout.row: 2
-                Layout.column: 4
-                Layout.alignment: Qt.AlignBottom
-                Layout.preferredWidth: width
-                Layout.preferredHeight: height
-                text: "Cкорость X (м/с): "
-            }
+                    onTextChanged: {
+                        if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(impulseTractionInput.text)) {
+                            impulseTractionInput.text = impulseTractionInput.text.replace(new RegExp("[^\\d.\\-]", "g"), "");
+                        }
+                    }
 
-            TextInput {
-                id: impulseTractionInput
-                width: 80
-                height: 23
-                Layout.alignment: Qt.AlignBottom
-                Layout.preferredWidth: width
-                Layout.preferredHeight: height
-                Layout.row: 2
-                Layout.column: 5
-                text: "0"
+                    property string placeholderText: "Введите число..."
 
-                onTextChanged: {
-                    if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(impulseTractionInput.text)) {
-                        impulseTractionInput.text = impulseTractionInput.text.replace(new RegExp("[^\\d.\\-]", "g"), "");
+                    Text {
+                        text: impulseTractionInput.placeholderText
+                        color: "#aaa"
+                        visible: !impulseTractionInput.text
                     }
                 }
 
-                property string placeholderText: "Введите число..."
-
-                Text {
-                    text: impulseTractionInput.placeholderText
-                    color: "#aaa"
-                    visible: !impulseTractionInput.text
-                }
             }
-
 
         }
 
@@ -720,22 +649,37 @@ Window  {
                 Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                 text: "Cтарт!"
                 onClicked: {
-                    if (squareTextInput.text &&
-                            massTextInput.text &&
-                            hTextInput.text &&
-                            xTextInput.text &&
-                            xVTextInput.text &&
-                            yVTextInput.text &&
-                            coeffTextInput.text) {
-                    simulationController.addPlanetCalculatorData(planetsBox.currentValue,
-                                                                 tickComboBox.currentValue,
-                                                                 squareTextInput.text,
-                                                                 massTextInput.text,
-                                                                 hTextInput.text,
-                                                                 xTextInput.text,
-                                                                 xVTextInput.text,
-                                                                 yVTextInput.text,
-                                                                 coeffTextInput.text
+                    if (
+                        angularVelocityInput.text &&
+                        durationInput.text &&
+                        massInput.text &&
+                        orientAngleInput.text &&
+                        momentInput.text &&
+                        tickInput.text &&
+                        xVTextInput.text &&
+                        yVTextInput.text &&
+                        impulseDurationInput.text &&
+                        impulseSpeedInput.text &&
+                        impulseTimeInput.text &&
+                        impulseTractionInput.text &&
+                        xTextInput.text &&
+                        yTextInput.text
+                            ) {
+                        console.log(momentInput.text)
+                    simulationController.addEarthCalculatorData(angularVelocityInput.text,
+                                                                durationInput.text,
+                                                                impulseDurationInput.text,
+                                                                impulseSpeedInput.text,
+                                                                impulseTimeInput.text,
+                                                                impulseTractionInput.text,
+                                                                massInput.text ,
+                                                                momentInput.text,
+                                                                orientAngleInput.text,
+                                                                tickInput.text,
+                                                                xVTextInput.text,
+                                                                yVTextInput.text,
+                                                                xTextInput.text,
+                                                                yTextInput.text
                                                                  )
 
                     simulationController.startCalculatorSimulation(settingsManager, typeMission)
