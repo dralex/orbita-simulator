@@ -1181,6 +1181,12 @@ class Probes:
         except:
             pass
 
+    def is_single(self):
+        return len(self.probes) == 1
+
+    def get_one(self):
+        return self.probes[0]
+
     def get(self):
         return self.probes
 

@@ -69,7 +69,7 @@ def run(probename, probefile, missionfile, debugfile, shortfile, #pylint: disabl
     Language.set_lang(lang)
     global _ # pylint: disable=W0603
     _ = Language.get_tr()
-
+    
     probes = None
     try:
 
@@ -176,8 +176,7 @@ def run(probename, probefile, missionfile, debugfile, shortfile, #pylint: disabl
                 logger.simulation_time += tick_length
 
                 if iteration % SYNC_LOGS_PERIOD == 0:
-                    for probe in probes.get():
-                        sync_logs(probe)
+                    sync_logs(probes.get())
                 iteration += 1
 
         except Terminated as e:
