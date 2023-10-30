@@ -176,7 +176,6 @@ void SimulationController::startCalculatorSimulation(SettingsManager *settingsMa
                   << "--test-log=" + infoFolderPath + "/telemetry.log"
                   << "--images=" + infoFolderPath + "/.";
     }
-    qDebug()<<arguments;
     if (QSysInfo::productType() == "windows")
         process = "python";
     else

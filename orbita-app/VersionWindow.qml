@@ -120,6 +120,7 @@ Dialog  {
                     newProbeButton.enabled = true
                     loadProbeButton.enabled = true
                     settingsButton.enabled = true
+                    runCalculatorButton.enabled = true
 
                 }
             }

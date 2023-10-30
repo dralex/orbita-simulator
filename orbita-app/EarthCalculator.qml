@@ -43,7 +43,7 @@ Window  {
                     width: 80
                     height: 23
                     Layout.row: 0
-                    Layout.column: 2
+                    Layout.column: 0
                     Layout.alignment: Qt.AlignTop
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
@@ -58,7 +58,7 @@ Window  {
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
                     Layout.row: 0
-                    Layout.column: 3
+                    Layout.column: 1
                     text: "0"
 
                     onTextChanged: {
@@ -80,7 +80,7 @@ Window  {
                     width: 80
                     height: 23
                     Layout.row: 0
-                    Layout.column: 4
+                    Layout.column: 2
                     Layout.alignment: Qt.AlignTop
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
@@ -95,7 +95,7 @@ Window  {
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
                     Layout.row: 0
-                    Layout.column: 5
+                    Layout.column: 3
                     text: "0"
 
                     onTextChanged: {
@@ -116,8 +116,8 @@ Window  {
                 Text {
                     width: 80
                     height: 23
-                    Layout.row: 1
-                    Layout.column: 0
+                    Layout.row: 0
+                    Layout.column: 4
                     Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
@@ -131,8 +131,8 @@ Window  {
                     Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
-                    Layout.row: 1
-                    Layout.column: 1
+                    Layout.row: 0
+                    Layout.column: 5
                     text: "0"
 
                     onTextChanged: {
@@ -154,7 +154,7 @@ Window  {
                     width: 90
                     height: 23
                     Layout.row: 1
-                    Layout.column: 2
+                    Layout.column: 0
                     Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
@@ -169,7 +169,7 @@ Window  {
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
                     Layout.row: 1
-                    Layout.column: 3
+                    Layout.column: 1
                     text: "0"
 
                     onTextChanged: {
@@ -191,7 +191,7 @@ Window  {
                     width: 80
                     height: 23
                     Layout.row: 1
-                    Layout.column: 4
+                    Layout.column: 2
                     Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
@@ -207,7 +207,7 @@ Window  {
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
                     Layout.row: 1
-                    Layout.column: 5
+                    Layout.column: 3
                     text: "0"
 
                     onTextChanged: {
@@ -228,8 +228,8 @@ Window  {
                 Text {
                     width: 80
                     height: 23
-                    Layout.row: 2
-                    Layout.column: 0
+                    Layout.row: 1
+                    Layout.column: 4
                     Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
@@ -243,8 +243,8 @@ Window  {
                     Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
-                    Layout.row: 2
-                    Layout.column: 1
+                    Layout.row: 1
+                    Layout.column: 5
                     text: "10"
 
                     onTextChanged: {
@@ -266,7 +266,7 @@ Window  {
                     width: 80
                     height: 23
                     Layout.row: 2
-                    Layout.column: 2
+                    Layout.column: 0
                     Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
@@ -281,7 +281,7 @@ Window  {
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
                     Layout.row: 2
-                    Layout.column: 3
+                    Layout.column: 1
                     text: "0"
 
                     onTextChanged: {
@@ -303,7 +303,7 @@ Window  {
                     width: 80
                     height: 23
                     Layout.row: 2
-                    Layout.column: 4
+                    Layout.column: 2
                     Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
@@ -318,7 +318,7 @@ Window  {
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
                     Layout.row: 2
-                    Layout.column: 5
+                    Layout.column: 3
                     text: "0"
 
                     onTextChanged: {
@@ -339,8 +339,8 @@ Window  {
                 Text {
                     width: 80
                     height: 23
-                    Layout.row: 3
-                    Layout.column: 0
+                    Layout.row: 2
+                    Layout.column: 4
                     Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
@@ -354,8 +354,8 @@ Window  {
                     Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
-                    Layout.row: 3
-                    Layout.column: 1
+                    Layout.row: 2
+                    Layout.column: 5
                     text: "0"
 
                     onTextChanged: {
@@ -377,7 +377,7 @@ Window  {
                     width: 80
                     height: 23
                     Layout.row: 3
-                    Layout.column: 2
+                    Layout.column: 0
                     Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
@@ -392,7 +392,7 @@ Window  {
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
                     Layout.row: 3
-                    Layout.column: 3
+                    Layout.column: 1
                     text: "0"
 
                     onTextChanged: {
@@ -414,7 +414,7 @@ Window  {
                     width: 110
                     height: 23
                     Layout.row: 3
-                    Layout.column: 4
+                    Layout.column: 2
                     Layout.alignment: Qt.AlignVCenter
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
@@ -429,7 +429,7 @@ Window  {
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
                     Layout.row: 3
-                    Layout.column: 5
+                    Layout.column: 3
                     text: "0"
 
                     onTextChanged: {
@@ -450,8 +450,8 @@ Window  {
                 Text {
                     width: 80
                     height: 23
-                    Layout.row: 4
-                    Layout.column: 0
+                    Layout.row: 3
+                    Layout.column: 4
                     Layout.alignment: Qt.AlignBottom
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
@@ -465,8 +465,8 @@ Window  {
                     Layout.alignment: Qt.AlignBottom
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
-                    Layout.row: 4
-                    Layout.column: 1
+                    Layout.row: 3
+                    Layout.column: 5
                     text: "0"
 
                     onTextChanged: {
@@ -488,7 +488,7 @@ Window  {
                     width: 80
                     height: 23
                     Layout.row: 4
-                    Layout.column: 2
+                    Layout.column: 0
                     Layout.alignment: Qt.AlignBottom
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
@@ -503,7 +503,7 @@ Window  {
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
                     Layout.row: 4
-                    Layout.column: 3
+                    Layout.column: 1
                     text: "0"
 
                     onTextChanged: {
@@ -526,7 +526,7 @@ Window  {
                     width: 80
                     height: 23
                     Layout.row: 4
-                    Layout.column: 4
+                    Layout.column: 2
                     Layout.alignment: Qt.AlignBottom
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
@@ -541,7 +541,7 @@ Window  {
                     Layout.preferredWidth: width
                     Layout.preferredHeight: height
                     Layout.row: 4
-                    Layout.column: 5
+                    Layout.column: 3
                     text: "0"
 
                     onTextChanged: {
@@ -665,7 +665,6 @@ Window  {
                         xTextInput.text &&
                         yTextInput.text
                             ) {
-                        console.log(momentInput.text)
                     simulationController.addEarthCalculatorData(angularVelocityInput.text,
                                                                 durationInput.text,
                                                                 impulseDurationInput.text,

@@ -447,7 +447,7 @@ ApplicationWindow  {
                 width: parent.width; height: 23
                 text: "Запустить калькулятор"
                 anchors.bottom: parent.bottom
-                enabled: itemsEnabled
+                enabled: false
                 onClicked: {
                     if (typeMission) {
                         if (settingsManager.checkSimulationFile(settingsManager.getPlanetsCalculatorPath() + "/simulation.py")) {
