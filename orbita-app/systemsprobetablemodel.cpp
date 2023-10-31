@@ -1,13 +1,12 @@
-#include "devicestablemodel.h"
+#include "systemsprobetablemodel.h"
 
-DevicesTableModel::DevicesTableModel(QObject *parent)
+SystemsProbeTableModel::SystemsProbeTableModel(QObject *parent)
     : QAbstractTableModel(parent)
-    , mList(nullptr)
 {
-    table.append({"Номер", "Название", "Начальное состояние", "Safe Mode"});
+    table.append({"Название", "Масса", "Start State", "Файл"});
 }
 
-int DevicesTableModel::rowCount(const QModelIndex &parent) const
+int SystemsProbeTableModel::rowCount(const QModelIndex &parent) const
 {
     if (parent.isValid() || !mList)
         return 0;
@@ -15,7 +14,7 @@ int DevicesTableModel::rowCount(const QModelIndex &parent) const
     return table.size() + mList->items().size();
 }
 
-int DevicesTableModel::columnCount(const QModelIndex &parent) const
+int SystemsProbeTableModel::columnCount(const QModelIndex &parent) const
 {
     if (parent.isValid() || !mList)
         return 0;
@@ -23,7 +22,7 @@ int DevicesTableModel::columnCount(const QModelIndex &parent) const
     return table.at(0).size();
 }
 
-QVariant DevicesTableModel::data(const QModelIndex &index, int role) const
+QVariant SystemsProbeTableModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid() || !mList)
         return QVariant();
@@ -34,15 +33,15 @@ QVariant DevicesTableModel::data(const QModelIndex &index, int role) const
         } else {
             int dataIndex = index.row() - 1;
             if (dataIndex < mList->items().size()) {
-                const DevicesItem item = mList->items().at(dataIndex);
+                const SystemItem item = mList->items().at(dataIndex);
                 if (index.column() == 0) {
-                    return item.deviceNumber;
+                    return item.systemName;
                 } else if (index.column() == 1) {
-                    return item.deviceName;
+                    return item.mass;
                 } else if (index.column() == 2) {
-                    return item.startState;
+                    return item.startMode;
                 } else if (index.column() == 3) {
-                    return item.inSafeMode;
+                    return item.diagramPath;
                 }
             }
         }
@@ -53,9 +52,7 @@ QVariant DevicesTableModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-
-
-bool DevicesTableModel::setData(const QModelIndex &index, const QVariant &value, int role)
+bool SystemsProbeTableModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     if (!mList)
         return false;
@@ -63,17 +60,17 @@ bool DevicesTableModel::setData(const QModelIndex &index, const QVariant &value,
     if (role == tableDataRole && index.row() > 0) {
         int dataIndex = index.row() - 1;
         if (dataIndex < mList->items().size()) {
-            DevicesItem item = mList->items()[dataIndex];
+            SystemItem item = mList->items()[dataIndex];
             if (index.column() == 0) {
-                item.deviceNumber = value.toInt();
+                item.systemName = value.toString();
             } else if (index.column() == 1) {
-                item.deviceName = value.toString();
+                item.mass = value.toDouble();
             } else if (index.column() == 2) {
-                item.startState = value.toString();
+                item.startMode = value.toBool();
             } else if (index.column() == 3) {
-                item.inSafeMode = value.toBool();
+                item.diagramPath = value.toString();
             }
-            mList->setDevicesItem(dataIndex, item);
+            mList->setEarthProbesSystems(dataIndex, item);
             emit dataChanged(index, index, QVector<int>() << role);
             return true;
         }
@@ -82,7 +79,7 @@ bool DevicesTableModel::setData(const QModelIndex &index, const QVariant &value,
     return false;
 }
 
-Qt::ItemFlags DevicesTableModel::flags(const QModelIndex &index) const
+Qt::ItemFlags SystemsProbeTableModel::flags(const QModelIndex &index) const
 {
     if (!index.isValid())
         return Qt::NoItemFlags;
@@ -90,7 +87,7 @@ Qt::ItemFlags DevicesTableModel::flags(const QModelIndex &index) const
     return Qt::ItemIsEditable;
 }
 
-QHash<int, QByteArray> DevicesTableModel::roleNames() const
+QHash<int, QByteArray> SystemsProbeTableModel::roleNames() const
 {
     QHash<int, QByteArray> names;
     names[tableDataRole] = "tableData";
@@ -98,12 +95,12 @@ QHash<int, QByteArray> DevicesTableModel::roleNames() const
     return names;
 }
 
-Devices *DevicesTableModel::list() const
+SystemProbe *SystemsProbeTableModel::list() const
 {
     return mList;
 }
 
-void DevicesTableModel::setList(Devices *list)
+void SystemsProbeTableModel::setList(SystemProbe *list)
 {
     beginResetModel();
 
@@ -113,18 +110,18 @@ void DevicesTableModel::setList(Devices *list)
     mList = list;
 
     if (mList) {
-        connect(mList, &Devices::preDevicesItemAppended, this, [=]() {
+        connect(mList, &SystemProbe::preEarthProbeSystemsAppended, this, [=] () {
             const int index = mList->items().size();
             beginInsertRows(QModelIndex(), index, index);
         });
-        connect(mList, &Devices::postDevicesItemAppended, this, [=]() {
+        connect(mList, &SystemProbe::postEarthProbeSystemsAppended, this, [=] () {
             endInsertRows();
         });
 
-        connect(mList, &Devices::preDevicesItemRemoved, this, [=](int index) {
+        connect(mList, &SystemProbe::preEarthProbeSystemsRemoved, this, [=] (int index) {
             beginRemoveRows(QModelIndex(), index, index);
         });
-        connect(mList, &Devices::postDevicesItemRemoved, this, [=]() {
+        connect(mList, &SystemProbe::postEarthProbeSystemsRemoved, this, [=] () {
             endRemoveRows();
         });
     }

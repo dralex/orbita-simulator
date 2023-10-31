@@ -47,6 +47,7 @@ public slots:
     void changeDevices(Probe* probe, int probeIndex);
 
     int size();
+    QString getDeviceName(int index);
 
 private:
     QVector<DevicesItem> mItems;

@@ -10,7 +10,6 @@ SOURCES += \
         comboboxdevices.cpp \
         comboboxearthdevices.cpp \
         devices.cpp \
-        devicesmodel.cpp \
         devicestablemodel.cpp \
         earthmissions.cpp \
         earthmissionsmodel.cpp \
@@ -29,12 +28,12 @@ SOURCES += \
         settingsmanager.cpp \
         simulationcontroller.cpp \
         stepsactivity.cpp \
-        stepsactivitymodel.cpp \
+        stepsactivitytablemodel.cpp \
         stepslanding.cpp \
-        stepslandingmodel.cpp \
+        stepslandingtablemodel.cpp \
         systemprobe.cpp \
         systems.cpp \
-        systemsprobemodel.cpp
+        systemsprobetablemodel.cpp
 
 RESOURCES += qml.qrc
 
@@ -58,7 +57,6 @@ HEADERS += \
     comboboxdevices.h \
     comboboxearthdevices.h \
     devices.h \
-    devicesmodel.h \
     devicestablemodel.h \
     earthmissions.h \
     earthmissionsmodel.h \
@@ -76,11 +74,11 @@ HEADERS += \
     settingsmanager.h \
     simulationcontroller.h \
     stepsactivity.h \
-    stepsactivitymodel.h \
+    stepsactivitytablemodel.h \
     stepslanding.h \
-    stepslandingmodel.h \
+    stepslandingtablemodel.h \
     systemprobe.h \
     systems.h \
-    systemsprobemodel.h
+    systemsprobetablemodel.h
 
 DISTFILES +=

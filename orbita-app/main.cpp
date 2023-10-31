@@ -15,13 +15,14 @@
 #include "planetdevices.h"
 
 #include "probemodel.h"
-#include "stepsactivitymodel.h"
-#include "stepslandingmodel.h"
+#include "stepsactivitytablemodel.h"
+#include "stepslandingtablemodel.h"
 #include "comboboxdevices.h"
 #include "planetsmodel.h"
 #include "imagesmodel.h"
 #include "planetsdevicesmodel.h"
 #include "planetsprobesdevicesmodel.h"
+#include "devicestablemodel.h"
 
 
 #include "earthprobe.h"
@@ -32,15 +33,13 @@
 
 #include "earthprobesmodel.h"
 #include "earthmissionsmodel.h"
-#include "systemsprobemodel.h"
+#include "systemsprobetablemodel.h"
 #include "earthsystemsmodel.h"
 #include "comboboxearthdevices.h"
 
 #include "simulationcontroller.h"
 #include "settingsmanager.h"
 
-
-#include "devicestablemodel.h"
 
 
 int main(int argc, char *argv[])
@@ -63,9 +62,8 @@ int main(int argc, char *argv[])
     }
 
     qmlRegisterType<ProbeModel>("ProbeModel", 1, 0, "ProbeModel");
-    qmlRegisterType<DevicesModel>("DevicesModel", 1, 0, "DevicesModel");
-    qmlRegisterType<StepsActivityModel>("StepsActivityModel", 1, 0, "StepsActivityModel");
-    qmlRegisterType<StepsLandingModel>("StepsLandingModel", 1, 0, "StepsLandingModel");
+    qmlRegisterType<StepsActivityTableModel>("StepsActivityModel", 1, 0, "StepsActivityModel");
+    qmlRegisterType<StepsLandingTableModel>("StepsLandingModel", 1, 0, "StepsLandingModel");
     qmlRegisterType<PlanetsModel>("PlanetsModel", 1, 0, "PlanetsModel");
     qmlRegisterType<PlanetsDevicesModel>("PlanetsDevicesModel", 1, 0, "PlanetsDevicesModel");
     qmlRegisterType<PlanetsProbesDevicesModel>("PlanetsProbesDevicesModel", 1, 0, "PlanetsProbesDevicesModel");
@@ -74,7 +72,7 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<EarthProbesModel>("EarthProbesModel", 1, 0, "EarthProbesModel");
     qmlRegisterType<EarthMissionsModel>("EarthMissionsModel", 1, 0, "EarthMissionsModel");
-    qmlRegisterType<SystemsProbeModel>("SystemsProbeModel", 1, 0, "SystemsProbeModel");
+    qmlRegisterType<SystemsProbeTableModel>("SystemsProbeModel", 1, 0, "SystemsProbeModel");
     qmlRegisterType<EarthSystemsModel>("EarthSystemsModel", 1, 0, "EarthSystemsModel");
 
     qmlRegisterType<ComboBoxEarthDevices>("ComboBoxEarthDevices", 1, 0, "ComboBoxEarthDevices");

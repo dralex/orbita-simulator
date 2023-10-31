@@ -1,39 +1,33 @@
-#ifndef STEPSLANDINGMODEL_H
-#define STEPSLANDINGMODEL_H
+#ifndef STEPSLANDINGTABLEMODEL_H
+#define STEPSLANDINGTABLEMODEL_H
 
-#include <QAbstractListModel>
+#include <QAbstractTableModel>
 #include "stepslanding.h"
 
 class StepsLanding;
 
-class StepsLandingModel : public QAbstractListModel
+class StepsLandingTableModel : public QAbstractTableModel
 {
     Q_OBJECT
     Q_PROPERTY(StepsLanding *list READ list WRITE setList)
 
 public:
-    explicit StepsLandingModel(QObject *parent = nullptr);
+    explicit StepsLandingTableModel(QObject *parent = nullptr);
 
     enum {
-        idRole = Qt::UserRole,
-        deviceNumberRole,
-        timeRole,
-        deviceRole,
-        commandRole,
-        argumentRole
+        tableDataRole = Qt::UserRole + 1,
+        headingRole
     };
 
-    // Basic functionality:
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
-    // Editable:
     bool setData(const QModelIndex &index, const QVariant &value,
                  int role = Qt::EditRole) override;
 
-    Qt::ItemFlags flags(const QModelIndex& index) const override;
-
+    Qt::ItemFlags flags(const QModelIndex &index) const override;
     virtual QHash<int, QByteArray> roleNames() const override;
 
     StepsLanding *list() const;
@@ -41,6 +35,7 @@ public:
 
 private:
     StepsLanding *mList;
+    QVector<QVector<QString>> table;
 };
 
-#endif // STEPSLANDINGMODEL_H
+#endif // STEPSLANDINGTABLEMODEL_H

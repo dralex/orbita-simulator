@@ -152,26 +152,31 @@ Dialog  {
                         return
                     }
 
+                    var textWithNumber = devicesBox.currentValue;
+                    var match = /(\d+)$/.exec(textWithNumber);
+                    if (match && match.length > 1)
+                        var extractedNumber = parseInt(match[1]);
+
                     if (whatIsWindow) {
                         stepsLandingItems.appendItem(probes,
                                                      whatIsWindow,
                                                      listViewProbes.currentIndex,
-                                                     listViewDevices.currentItem.devicesModelData.deviceNumber,
+                                                     extractedNumber,
                                                      timeInput.text,
                                                      devicesBox.currentValue,
                                                      commandsBox.currentValue,
                                                      argumentInput.text);
-                        listViewStepsLanding.currentIndex = stepsLandingItems.size() - 1
+                       tableViewStepsLanding.currentRow = stepsLandingItems.size()
                     } else {
                         stepsActivityItems.appendItem(probes,
                                                       whatIsWindow,
                                                       listViewProbes.currentIndex,
-                                                      listViewDevices.currentItem.devicesModelData.deviceNumber,
+                                                      extractedNumber,
                                                       timeInput.text,
                                                       devicesBox.currentValue,
                                                       commandsBox.currentValue,
                                                       argumentInput.text);
-                        listViewStepsPlanetActivity.currentIndex = stepsActivityItems.size() - 1
+                        tableViewStepsLanding.currentRow = stepsActivityItems.size()
                     }
 
 

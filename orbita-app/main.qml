@@ -3,9 +3,9 @@ import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import Qt.labs.settings 1.0
+//import Qt.labs.qmlmodels 1.0
 
 import ProbeModel 1.0
-import DevicesModel 1.0
 import StepsActivityModel 1.0
 import StepsLandingModel 1.0
 import PlanetsProbesDevicesModel 1.0
@@ -587,18 +587,19 @@ ApplicationWindow  {
 
                     RowLayout {
                         anchors.fill: parent
-                        ListView {
-                            id: listViewDevices
+                        TableView {
+                            id: tableViewDevices
                             width: parent.width - devicesButtons.width
                             height: parent.height
                             clip: true
                             enabled: itemsEnabled
                             visible: showPlanetsDevices
-                            model: DevicesModel {
+                            rowSpacing: 1
+                            columnSpacing: 1
+
+                            model: DevicesTableModel {
                                 list: devicesItems
                             }
-
-
 
                             ScrollBar.vertical: ScrollBar {
                                 id: devicesScrollBar
@@ -609,41 +610,39 @@ ApplicationWindow  {
                                     margins: 0
                                 }
                             }
+                            property int currentRow: -1
 
                             delegate: Item {
-                                property variant devicesModelData: model
+                                width: 85
+                                implicitWidth: 85
+                                implicitHeight: 30
 
-                                width: listViewDevices.width
-                                height: 100
                                 Rectangle {
-                                    width: parent.width - devicesScrollBar.width
-                                    height: parent.height - 5
-                                    color: listViewDevices.currentIndex === index ** listViewDevices.enabled? "lightblue" : "white"
                                     border.color: "grey"
+                                    border.width: 1
+                                    width: parent.width
+                                    height: 30
+                                    color: tableViewDevices.currentRow === row ** tableViewDevices.enabled ? "lightblue" : "white"
 
-                                    MouseArea {
+                                    Text {
+                                        width: parent.width
+                                        text: tableData
+                                        font.pointSize: 7.5
+                                        elide: Text.ElideRight
+                                        wrapMode: Text.WordWrap
                                         anchors.fill: parent
-                                        onClicked: {
-                                            listViewDevices.currentIndex = index
-                                        }
+                                        verticalAlignment: Text.AlignVCenter
+                                        horizontalAlignment: Text.AlignHCenter
                                     }
                                 }
 
-                                Column {
+                                MouseArea {
                                     anchors.fill: parent
-                                    anchors.leftMargin: 5
-                                    anchors.topMargin: 15
-
-                                    Text { text: '<b>Номер:</b> ' + model.deviceNumber  }
-
-                                    Text { text: index >= 0 && index < listViewDevices.count && model.deviceName ? '<b>Название:</b> ' + model.deviceName : "<b>Название:</b> None" }
-
-                                    Text { text: index >= 0 && index < listViewDevices.count && model.startState ? '<b>Начальное состояние:</b> ' + model.startState : "<b>Начальное состояние:</b> None" }
-
-                                    Text {
-                                        text: index >= 0 && index < listViewDevices.count ? '<b>Safe Mode:</b> ' + model.inSafeMode : ""
+                                    onClicked: {
+                                        if (row > 0) {
+                                            tableViewDevices.currentRow = row;
+                                        }
                                     }
-
                                 }
                             }
                         }
@@ -677,8 +676,9 @@ ApplicationWindow  {
                                 enabled: itemsEnabled
                                 onClicked: {
                                     if (devicesItems.size()) {
-                                        successDialog.message = `Успешно удалено устройство ${listViewDevices.currentItem.devicesModelData.deviceName}`
-                                        devicesItems.removeDevicesItem(probes, stepsActivityItems, stepsLandingItems, listViewProbes.currentIndex, listViewDevices.currentIndex)
+                                        successDialog.message = `Успешно удалено устройство ${devicesItems.getDeviceName(tableViewDevices.currentRow - 1)}`
+                                        devicesItems.removeDevicesItem(probes, stepsActivityItems, stepsLandingItems, listViewProbes.currentIndex,
+                                                                       tableViewDevices.currentRow - 1)
                                         successDialog.open()
                                     }
 
@@ -872,9 +872,9 @@ ApplicationWindow  {
 
                     RowLayout {
                         anchors.fill: parent
-                        ListView {
-                            id: listViewEarthSystems
-                            width: parent.width - devicesButtons.width
+                        TableView {
+                            id: tableViewEarthSystems
+                            width: parent.width - systemsEarthButtons.width
                             height: parent.height
                             clip: true
                             enabled: itemsEnabled
@@ -894,49 +894,39 @@ ApplicationWindow  {
                                 }
                             }
 
+                            property int currentRow: -1
+
                             delegate: Item {
-                                property variant systemsModelData: model
+                                width: 85
+                                implicitWidth: 85
+                                implicitHeight: 30
 
-                                width: listViewEarthSystems.width - earthDevicesScrollBar.width
-                                height: model.diagramPath ? 95 : 80
                                 Rectangle {
-                                    width: parent.width - devicesScrollBar.width
-                                    height: parent.height - 5
-                                    color: listViewEarthSystems.currentIndex === index ** listViewEarthSystems.enabled? "lightblue" : "white"
                                     border.color: "grey"
+                                    border.width: 1
+                                    width: parent.width
+                                    height: 30
+                                    color: tableViewEarthSystems.currentRow === row ** tableViewEarthSystems.enabled ? "lightblue" : "white"
 
-                                    MouseArea {
+                                    Text {
+                                        width: parent.width
+                                        text: tableData
+                                        font.pointSize: 7.5
+                                        elide: Text.ElideRight
+                                        wrapMode: Text.WordWrap
                                         anchors.fill: parent
-                                        onClicked: {
-                                            listViewEarthSystems.currentIndex = index
-                                        }
+                                        verticalAlignment: Text.AlignVCenter
+                                        horizontalAlignment: Text.AlignHCenter
                                     }
                                 }
 
-                                Column {
+                                MouseArea {
                                     anchors.fill: parent
-                                    anchors.leftMargin: 5
-                                    anchors.topMargin: 10
-
-
-                                    Text {
-                                        width: listViewEarthSystems.width - systemsEarthButtons.width
-                                        text: index >= 0 && index < listViewEarthSystems.count && model.systemName ? '<b>Название:</b> ' + model.systemName : "<b>Название:</b> None"
-                                        wrapMode: Text.WordWrap
+                                    onClicked: {
+                                        if (row > 0) {
+                                            tableViewEarthSystems.currentRow = row;
+                                        }
                                     }
-
-                                    Text { text: index >= 0 && index < listViewEarthSystems.count && model.mass ? '<b>Масса:</b> ' + model.mass : "<b>Масса:</b> None" }
-
-                                    Text {
-                                        text: index >= 0 && index < listViewEarthSystems.count ? '<b>Начальное состояние:</b> ' + model.startMode : ""
-                                    }
-
-                                    Text {
-                                        width: listViewEarthSystems.width - systemsEarthButtons.width
-                                        text: index >= 0 && index < listViewEarthSystems.count && model.diagramPath ? '<b>Путь к файлу:</b> ' + model.diagramPath : ""
-                                        wrapMode: Text.WordWrap
-                                    }
-
                                 }
                             }
                         }
@@ -1005,8 +995,8 @@ ApplicationWindow  {
                             title: qsTr("Этап приземления")
                             RowLayout {
                                 anchors.fill: parent
-                                ListView {
-                                    id: listViewStepsLanding
+                                TableView {
+                                    id: tableViewStepsLanding
                                     width: parent.width - sLButton.width
                                     height: parent.height
                                     clip: true
@@ -1027,41 +1017,43 @@ ApplicationWindow  {
                                         }
                                     }
 
-                                    delegate: Item {
-                                        width: listViewStepsLanding.width
-                                        height: model.argument ? 85 : 80
-                                        Rectangle {
-                                            width: parent.width - stepsLandingScrollBar.width
-                                            height: parent.height - 5
-                                            color: listViewStepsLanding.currentIndex === index && listViewStepsLanding.enabled? "lightblue" : "white"
-                                            border.color: "grey"
+                                    property int currentRow: -1
 
-                                            MouseArea {
+                                    delegate: Item {
+                                        width: 60
+                                        implicitWidth: 60
+                                        implicitHeight: 30
+
+                                        Rectangle {
+                                            border.color: "grey"
+                                            border.width: 1
+                                            width: parent.width
+                                            height: 30
+                                            color: tableViewStepsLanding.currentRow === row ** tableViewStepsLanding.enabled ? "lightblue" : "white"
+
+                                            Text {
+                                                width: parent.width
+                                                text: tableData
+                                                font.pointSize: 7.5
+                                                elide: Text.ElideRight
+                                                wrapMode: Text.WordWrap
                                                 anchors.fill: parent
-                                                onClicked: {
-                                                    listViewStepsLanding.currentIndex = index
-                                                }
+                                                verticalAlignment: Text.AlignVCenter
+                                                horizontalAlignment: Text.AlignHCenter
                                             }
                                         }
 
-                                        Column {
+                                        MouseArea {
                                             anchors.fill: parent
-                                            anchors.leftMargin: 5
-                                            anchors.topMargin: model.argument ? 2 : 5
-
-                                            Text { text: index >= 0 && index < listViewStepsLanding.count && model.deviceNumber? '<b>Номер устройства:</b> ' + model.deviceNumber : "<b>Номер устройства:</b> None" }
-
-                                            Text { text: index >= 0 && index < listViewStepsLanding.count && model.time >= 0 ? '<b>Время:</b> ' + model.time : "<b>Время:</b> None" }
-
-                                            Text { text: index >= 0 && index < listViewStepsLanding.count && model.device ? '<b>Тип:</b> ' + model.device : "<b>Тип:</b> None" }
-
-                                            Text { text: index >= 0 && index < listViewStepsLanding.count && model.command ? '<b>Команда:</b> ' + model.command : "<b>Команда:</b> None" }
-
-                                            Text { text: index >= 0 && index < listViewStepsLanding.count && model.argument ? '<b>Параметр:</b> ' + model.argument : "" }
+                                            onClicked: {
+                                                if (row > 0) {
+                                                    tableViewStepsLanding.currentRow = row;
+                                                }
+                                            }
                                         }
                                     }
-                                }
 
+                                }
 
                                 ColumnLayout {
                                     id: sLButton
@@ -1086,7 +1078,7 @@ ApplicationWindow  {
                                         onClicked: {
                                             if (stepsLandingItems.size()) {
                                                 successDialog.message = "Успшено удалено"
-                                                stepsLandingItems.removeItem(probes, true, listViewProbes.currentIndex, listViewStepsLanding.currentIndex)
+                                                stepsLandingItems.removeItem(probes, true, listViewProbes.currentIndex, tableViewStepsLanding.currentRow - 1)
                                                 successDialog.open()
                                             }
                                         }
@@ -1103,8 +1095,8 @@ ApplicationWindow  {
                                 Layout.preferredHeight: parent.height * 0.5
                                 RowLayout {
                                     anchors.fill: parent
-                                    ListView {
-                                        id: listViewStepsPlanetActivity
+                                    TableView {
+                                        id: tableViewStepsPlanetActivity
                                         width: parent.width - sPAButtons.width
                                         height: parent.height
                                         clip: true
@@ -1125,41 +1117,43 @@ ApplicationWindow  {
                                             }
                                         }
 
-                                        delegate: Item {
-                                            width: listViewStepsPlanetActivity.width
-                                            height: model.argument ? 85 : 80
-                                            Rectangle {
-                                                width: parent.width - stepsPlanetActivityScrollBar.width
-                                                height: parent.height - 5
-                                                color: listViewStepsPlanetActivity.currentIndex === index && listViewStepsPlanetActivity.enabled? "lightblue" : "white"
-                                                border.color: "grey"
 
-                                                MouseArea {
+                                        property int currentRow: -1
+
+                                        delegate: Item {
+                                            width: 60
+                                            implicitWidth: 60
+                                            implicitHeight: 30
+
+                                            Rectangle {
+                                                border.color: "grey"
+                                                border.width: 1
+                                                width: parent.width
+                                                height: 30
+                                                color: tableViewStepsPlanetActivity.currentRow === row ** tableViewStepsPlanetActivity.enabled ? "lightblue" : "white"
+
+                                                Text {
+                                                    width: parent.width
+                                                    text: tableData
+                                                    font.pointSize: 7.5
+                                                    elide: Text.ElideRight
+                                                    wrapMode: Text.WordWrap
                                                     anchors.fill: parent
-                                                    onClicked: {
-                                                        listViewStepsPlanetActivity.currentIndex = index
-                                                    }
+                                                    verticalAlignment: Text.AlignVCenter
+                                                    horizontalAlignment: Text.AlignHCenter
                                                 }
                                             }
 
-                                            Column {
+                                            MouseArea {
                                                 anchors.fill: parent
-                                                anchors.leftMargin: 5
-                                                anchors.topMargin: 3
-
-                                                Text { text: index >= 0 && index < listViewStepsLanding.count && model.deviceNumber ? '<b>Номер устройства:</b> ' + model.deviceNumber : "<b>Номер устройства:</b> None" }
-
-                                                Text { text: index >= 0 && index < listViewStepsPlanetActivity.count && model.time >= 0 ? '<b>Время:</b> ' + model.time : "<b>Время:</b> None" }
-
-                                                Text { text: index >= 0 && index < listViewStepsPlanetActivity.count && model.device ? '<b>Тип:</b> ' + model.device : "<b>Тип:</b> None" }
-
-                                                Text { text: index >= 0 && index < listViewStepsPlanetActivity.count && model.command ? '<b>Команда:</b>' + model.command : "<b>Команда:</b> None" }
-
-                                                Text { text: index >= 0 && index < listViewStepsPlanetActivity.count && model.argument ? '<b>Параметр:</b> ' + model.argument : "" }
+                                                onClicked: {
+                                                    if (row > 0) {
+                                                        tableViewStepsPlanetActivity.currentRow = row;
+                                                    }
+                                                }
                                             }
                                         }
                                     }
-
 
                                     ColumnLayout {
                                         id: sPAButtons
@@ -1184,7 +1178,7 @@ ApplicationWindow  {
                                             onClicked: {
                                                 if (stepsActivityItems.size()) {
                                                     successDialog.message = "Успешно удалено"
-                                                    stepsActivityItems.removeItem(probes, false, listViewProbes.currentIndex, listViewStepsPlanetActivity.currentIndex)
+                                                    stepsActivityItems.removeItem(probes, false, listViewProbes.currentIndex, tableViewStepsPlanetActivity.currentRow - 1)
                                                     successDialog.open()
                                                 }
 
