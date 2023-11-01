@@ -2,7 +2,7 @@
 active = False
 decreasing = False
 tangented = False
-idled = False
+backwarded = False
 observed = False
 max_angular_acceleration = 0
 sample_time = 0
@@ -15,9 +15,13 @@ max_orientation_torsion = 0.0165
 angular_velocity_precision = 2e-3
 orient_angle_precision = 5e-3
 
+
 # radio_enable_angle = ground_station_angle - 5
 # enable_gs = False
 # enable_gs_radio_flight = None
+
+def is_orientation_needed():
+    return (abs(orientation.get_angular_velocity(AXIS_Z) - desired_a_v) > angular_velocity_precision) or (abs(normalize_angle_difference(desired_a - orientation.get_angle(AXIS_Z))) > orient_angle_precision)
 
 
 def start_reduction():

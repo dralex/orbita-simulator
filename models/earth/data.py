@@ -22,7 +22,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see https://www.gnu.org/licenses/
 # -----------------------------------------------------------------------------
-
+import copy
 import os
 import time
 import math
@@ -31,7 +31,6 @@ from constants import * # pylint: disable=W0401,W0614
 import calcmodels.planet
 
 from logger import debug_log, error_log, mission_log, time_to_str
-from errors import CriticalError, Terminated
 from xmlconverters import ProbeLoader, ShortLogLoader
 from language import Language
 import sm.python_hsm
@@ -50,9 +49,9 @@ def critical_error(probe, m, *e):
     raise CriticalError(msg, probe)
 
 def terminate(probe, message):
-    debug_log(_('Probe terminated'))
-    debug_log('t=%s', time_to_str(probe.time()))
-    debug_log(message)
+    debug_log(probe, _('Probe terminated'))
+    debug_log(probe, 't=%s', time_to_str(probe.time()))
+    debug_log(probe, message)
     raise Terminated(message)
 
 class Vector:
@@ -113,10 +112,10 @@ class Device:
             return
         if self.mode == STATE_DEAD:
             # cannot change state of dead device
-            debug_log(_('Trying to change the state %s for the dead device %s'),
+            debug_log(self.probe, _('Trying to change the state %s for the dead device %s'),
                       new_mode, self.device.name)
             return
-        debug_log(_('The device %s now has the state %s'), self.device.name, new_mode)
+        debug_log(self.probe, _('The device %s now has the state %s'), self.device.name, new_mode)
         self.mode = new_mode
         if self.mode == STATE_OFF or self.mode == STATE_DEAD:
             self.turn_off()
@@ -127,7 +126,7 @@ class Device:
 
     def check_temperature(self, T):
         if self.mode != STATE_DEAD and not self.min_temperature <= T <= self.max_temperature:
-            debug_log(_('The device %s has %s'),
+            debug_log(self.probe, _('The device %s has %s'),
                       self.device.name,
                       _('overheated') if T > self.max_temperature else _('overcooled'))
             self.set_mode(STATE_DEAD)
@@ -196,7 +195,7 @@ class LogicDevice(Device):
             return
         if self.probe.safe_mode and (self.device.type != SUBSYSTEM_CPU
                                      and new_mode not in (STATE_OFF, STATE_DEAD)):
-            debug_log(_('Trying to change the state of the subsystem %s in SAFE MODE'),
+            debug_log(self.probe, _('Trying to change the state of the subsystem %s in SAFE MODE'),
                       self.device.name)
             return
         if self.mode == STATE_SLEEP:
@@ -255,17 +254,17 @@ class LogicDevice(Device):
 
     def dispatch_event(self, event):
         if event[1] is None:
-            debug_log(_('Subsystem {} dispatch simple event {}').format(self.device.type,
+            debug_log(self.probe, _('Subsystem {} dispatch simple event {}').format(self.device.type,
                                                                         event[0]))
         else:
-            debug_log(_('Subsystem {} dispatch value event {}').format(self.device.type,
+            debug_log(self.probe, _('Subsystem {} dispatch value event {}').format(self.device.type,
                                                                        event))
         self.events.append(event)
 
     def get_event(self):
         if self.events:
             ev = self.events.pop(0)
-            debug_log(_('Subsystem {} returned event {}').format(self.device.type,
+            debug_log(self.probe, _('Subsystem {} returned event {}').format(self.device.type,
                                                                  ev[0]))
             return ev
         return None
@@ -284,7 +283,7 @@ class CPUDevice(LogicDevice):
     def set_cycle(self, cyc):
         c = int(cyc)
         if self.cycle != c:
-            debug_log(_('Cycle number %d'), c)
+            debug_log(self.probe, _('Cycle number %d'), c)
             tel = self.probe.systems[SUBSYSTEM_TELEMETRY]
             tel.send_log_message(_('Cycle number %d') % c)
             self.cycle = c
@@ -407,7 +406,7 @@ class RadioDevice(LogicDevice):
 
     def send_message(self, mtype, message, receiver, sender, timeout=None): # pylint: disable=W0613
         if mtype != MESSAGE_TYPE_SMS:
-            debug_log(_('This type of message is not supported'))
+            debug_log(self.probe, _('This type of message is not supported'))
             return
 
         if receiver is None:
@@ -421,9 +420,9 @@ class RadioDevice(LogicDevice):
             source = self.gs_index_to_name(sender)
 
         if self.probe.mission in [MISSION_SMS, MISSION_TEST_SMS]:
-            debug_log(_('Sending SMS from %s to %s'), source, target)
+            debug_log(self.probe, _('Sending SMS from %s to %s'), source, target)
         else:
-            debug_log(_('This mission do not allow sending messages'))
+            debug_log(self.probe, _('This mission do not allow sending messages'))
             return
 
         size = len(message)
@@ -452,7 +451,7 @@ class RadioDevice(LogicDevice):
     def put_data(self, gs, volume, realdata=None):
         telemetry = self.probe.systems[SUBSYSTEM_TELEMETRY]
         if self.queues_size + volume > self.memory_total:
-            debug_log(_('Dropping message (len %d B) which does not fit the memory %f MB'),
+            debug_log(self.probe, _('Dropping message (len %d B) which does not fit the memory %f MB'),
                       volume, self.memory_size)
             if self != telemetry and not self.overflow:
                 telemetry.send_log_message(_('Memory of the transmitter %s (%f MB) is overful. The messagy (type %s len %f MB) dropped') % # pylint: disable=C0301
@@ -618,15 +617,15 @@ class OrientationDevice(LogicDevice):
 
     def start_motor(self):
         if self.mode == STATE_ON:
-            debug_log(_('Flywheel started'))
+            debug_log(self.probe, _('Flywheel started'))
             self.motor_running = True
         else:
-            debug_log(_('Trying to run flywheel while the navigation system is off'))
+            debug_log(self.probe, _('Trying to run flywheel while the navigation system is off'))
 
     def stop_motor(self):
         if not self.motor_running:
             return
-        debug_log(_('Flywheel stopped'))
+        debug_log(self.probe, _('Flywheel stopped'))
         self.motor_running = False
 
     def set_torsion(self, m):
@@ -639,13 +638,13 @@ class OrientationDevice(LogicDevice):
                     self.moment = -max_moment
                 else:
                     self.moment = max_moment
-                debug_log(_('Bad moment value %f'), moment)
+                debug_log(self.probe, _('Bad moment value %f'), moment)
             else:
                 self.moment = moment
 
-            debug_log(_('Moment set %f'), self.moment)
+            debug_log(self.probe, _('Moment set %f'), self.moment)
         else:
-            debug_log(_('Trying to set moment while the navigation system is off'))
+            debug_log(self.probe, _('Trying to set moment while the navigation system is off'))
 
     def start_coil(self):
         pass
@@ -685,15 +684,15 @@ class EngineDevice(LogicDevice):
 
     def start_engine(self):
         if self.mode == STATE_ON:
-            debug_log(_('Engine started. Fuel %f kg') % self.fuel)
+            debug_log(self.probe, _('Engine started. Fuel %f kg') % self.fuel)
             self.running = True
         else:
-            debug_log(_('Trying to start engine while the engine device is off'))
+            debug_log(self.probe, _('Trying to start engine while the engine device is off'))
 
     def stop_engine(self):
         if not self.running:
             return
-        debug_log(_('Engine stopped. Fuel %f kg') % self.fuel)
+        debug_log(self.probe, _('Engine stopped. Fuel %f kg') % self.fuel)
         self.running = False
 
     def set_traction(self, t):
@@ -703,13 +702,13 @@ class EngineDevice(LogicDevice):
 
             if traction < 0 or traction > max_traction:
                 self.traction = max_traction
-                debug_log(_('Bad engine traction value %f'), traction)
+                debug_log(self.probe, _('Bad engine traction value %f'), traction)
             else:
                 self.traction = traction
 
-            debug_log(_('Set engine traction %f'), self.traction)
+            debug_log(self.probe, _('Set engine traction %f'), self.traction)
         else:
-            debug_log(_('Trying to set traction while the engine is off'))
+            debug_log(self.probe, _('Trying to set traction while the engine is off'))
 
     def check_fuel(self, df):
         return self.fuel >= df
@@ -751,23 +750,22 @@ class TelemetryDevice(RadioDevice):
         period = int(period)
 
         if not self.min_period <= period <= self.max_period:
-            debug_log(_('The priod value %d exceeds the possible limits [%d:%d]') %
+            debug_log(self.probe, _('The priod value %d exceeds the possible limits [%d:%d]') %
                       (period, self.min_period, self.max_period))
             if period < self.min_period:
                 period = self.min_period
             else:
                 period = self.max_period
 
-        debug_log(_('Set telemetry period %d s'), period)
+        debug_log(self.probe, _('Set telemetry period %d s'), period)
         self.period = period
 
     def send_log_message(self, s):
-        debug_log(_('Telemetry message: %s'), s)
+        debug_log(self.probe, _('Telemetry message: %s'), s)
         self.put_data_broadcast(self.data_volume, ('telemetry', s))
 
-    @classmethod
-    def debug(cls, s):
-        debug_log(_('Program debug: %s'), s)
+    def debug(self, s):
+        debug_log(self.probe, _('Program debug: %s'), s)
 
 class HeatControlDevice(LogicDevice):
 
@@ -802,32 +800,32 @@ class HeatControlDevice(LogicDevice):
 
             if heater_power > max_heater_power:
                 self.heater_power = max_heater_power
-                debug_log(_('Too high heater power %f'),
+                debug_log(self.probe, _('Too high heater power %f'),
                           heater_power)
             else:
                 self.heater_power = heater_power
 
-            debug_log(_('Set heater power %f'), self.heater_power)
+            debug_log(self.probe, _('Set heater power %f'), self.heater_power)
 
             if self.heating:
                 self.power = float(self.device.power) + self.heater_power
                 self.heat_production = float(self.device.power) + self.heater_power
         else:
-            debug_log(_('Trying to set heat power while the heat control device is off'))
+            debug_log(self.probe, _('Trying to set heat power while the heat control device is off'))
 
     def start_heating(self):
         if self.mode == STATE_ON:
-            debug_log(_('Start heating'))
+            debug_log(self.probe, _('Start heating'))
             self.heating = True
             self.power = float(self.device.power) + self.heater_power
             self.heat_production = float(self.device.power) + self.heater_power
         else:
-            debug_log(_('Tring to start heating while the heat control device is off'))
+            debug_log(self.probe, _('Tring to start heating while the heat control device is off'))
 
     def stop_heating(self):
         if not self.heating:
             return
-        debug_log(_('Stop heating'))
+        debug_log(self.probe, _('Stop heating'))
         self.heating = False
         self.power = float(self.device.power)
         self.heat_production = float(self.device.power)
@@ -845,7 +843,7 @@ class LoadDevice(LogicDevice):
             self.camera_range = self.device.camera_range
             self.data_stream = int(float(self.device.data_stream) *
                                    1024 * 1024 / 8) # megabit/sec -> bytes/sec
-            debug_log(_('Photocamera with the performance of %f Mbps -> %f B/s'),
+            debug_log(self.probe, _('Photocamera with the performance of %f Mbps -> %f B/s'),
                       self.device.data_stream, self.data_stream)
             self.memory_total = int(self.memory_size * 1024 * 1024)
             self.memory_used = 0
@@ -877,15 +875,15 @@ class LoadDevice(LogicDevice):
     # --------------------------------------------------------------------------
     def take_photo(self): #pylint: disable=R0912
         if not self.photo:
-            debug_log(_('The device is not a camera'))
+            debug_log(self.probe, _('The device is not a camera'))
             return None
 
         if self.mode != STATE_ON:
-            debug_log(_('Trying to take a photo while the camera is off'))
+            debug_log(self.probe, _('Trying to take a photo while the camera is off'))
             return None
 
         if self.running:
-            debug_log(_('The shooting is already performing'))
+            debug_log(self.probe, _('The shooting is already performing'))
             return None
 
         if self.visible_target is not None:
@@ -901,22 +899,22 @@ class LoadDevice(LogicDevice):
         else:
             self.target_resolution = None
 
-        debug_log(_('Camera shot: %s'), str(self.visible_target))
+        debug_log(self.probe, _('Camera shot: %s'), str(self.visible_target))
         if self.target_offset_angle is not None:
-            debug_log(_('Target offset angle: %.3f deg'), float(self.target_offset_angle))
+            debug_log(self.probe, _('Target offset angle: %.3f deg'), float(self.target_offset_angle))
         if self.target_distance is not None:
-            debug_log(_('Distance to the target: %.3f m'), float(self.target_distance))
+            debug_log(self.probe, _('Distance to the target: %.3f m'), float(self.target_distance))
         if self.visible_target is not None:
             if self.target_resolution is not None:
-                debug_log(_('Resolution: %.3f m/pixel'), float(self.target_resolution))
+                debug_log(self.probe, _('Resolution: %.3f m/pixel'), float(self.target_resolution))
             if self.target_incidence_angle is not None:
-                debug_log(_('Target incidence angle: %.3f deg'), float(self.target_incidence_angle))
+                debug_log(self.probe, _('Target incidence angle: %.3f deg'), float(self.target_incidence_angle))
 
         image_size = int(self.data_stream * 0.1) # TODO: make in a proper way
 
         free_memory = self.memory_total - self.memory_used
         if image_size > free_memory:
-            debug_log(_('Insufficient memory to save the image'))
+            debug_log(self.probe, _('Insufficient memory to save the image'))
             return None
 
         slot_found = None
@@ -925,7 +923,7 @@ class LoadDevice(LogicDevice):
                 slot_found = slot
 
         if slot_found is None:
-            debug_log(_('There are no empty slot to save the image'))
+            debug_log(self.probe, _('There are no empty slot to save the image'))
             return None
 
         payload = {'camera_range': self.camera_range,
@@ -943,7 +941,7 @@ class LoadDevice(LogicDevice):
     def start_shooting(self):
         if self.photo:
             if self.mode == STATE_ON:
-                debug_log(_('Start shooting'))
+                debug_log(self.probe, _('Start shooting'))
                 self.running = True
                 self.photo_data = 0
                 self.best_visible_target = None
@@ -951,23 +949,23 @@ class LoadDevice(LogicDevice):
                 self.best_target_distance = None
                 self.best_target_incidence_angle = None
             else:
-                debug_log(_('Trying to start shooting while the camera is off'))
+                debug_log(self.probe, _('Trying to start shooting while the camera is off'))
         else:
-            debug_log(_('The device is not a camera'))
+            debug_log(self.probe, _('The device is not a camera'))
 
     def stop_shooting(self):
         if not self.photo:
-            debug_log(_('The device is not a camera'))
+            debug_log(self.probe, _('The device is not a camera'))
             return None
 
         if not self.running:
             return None
 
-        debug_log(_('Stop shooting'))
+        debug_log(self.probe, _('Stop shooting'))
         self.running = False
 
         if self.photo_data == 0:
-            debug_log(_('Buffer is empty. Nothing was shooted'))
+            debug_log(self.probe, _('Buffer is empty. Nothing was shooted'))
             return None
 
         if self.best_visible_target is not None:
@@ -984,19 +982,19 @@ class LoadDevice(LogicDevice):
         else:
             self.best_target_resolution = None
 
-        debug_log(_('Camera shot: %s'), str(self.best_visible_target))
+        debug_log(self.probe, _('Camera shot: %s'), str(self.best_visible_target))
         if self.best_visible_target is not None:
             if self.best_target_offset_angle is not None:
-                debug_log(_('The best target offset angle: %.3f deg'),
+                debug_log(self.probe, _('The best target offset angle: %.3f deg'),
                           float(self.best_target_offset_angle))
             if self.best_target_distance is not None:
-                debug_log(_('The best distance to target: %.3f m'),
+                debug_log(self.probe, _('The best distance to target: %.3f m'),
                           float(self.best_target_distance))
             if self.best_target_resolution is not None:
-                debug_log(_('The best resolution: %.3f m/pixel'),
+                debug_log(self.probe, _('The best resolution: %.3f m/pixel'),
                           float(self.best_target_resolution))
             if self.best_target_incidence_angle is not None:
-                debug_log(_('The best target incidence angle: %.3f deg'),
+                debug_log(self.probe, _('The best target incidence angle: %.3f deg'),
                           float(self.best_target_incidence_angle))
 
         slot_found = None
@@ -1005,7 +1003,7 @@ class LoadDevice(LogicDevice):
                 slot_found = slot
 
         if slot_found is None:
-            debug_log(_('There are no empty slots to save the shot'))
+            debug_log(self.probe, _('There are no empty slots to save the shot'))
             return None
 
         payload = {'camera_range': self.camera_range,
@@ -1022,7 +1020,7 @@ class LoadDevice(LogicDevice):
 
     def get_image_size(self, slot):
         if not self.photo:
-            debug_log(_('The device is not a camera'))
+            debug_log(self.probe, _('The device is not a camera'))
             return None
 
         if slot >= self.MAX_SLOTS:
@@ -1035,7 +1033,7 @@ class LoadDevice(LogicDevice):
 
     def get_image_data(self, slot):
         if not self.photo:
-            debug_log(_('The device is not a camera'))
+            debug_log(self.probe, _('The device is not a camera'))
             return None
 
         if slot >= self.MAX_SLOTS:
@@ -1048,7 +1046,7 @@ class LoadDevice(LogicDevice):
 
     def remove_image(self, slot):
         if not self.photo:
-            debug_log(_('The device is not a camera'))
+            debug_log(self.probe, _('The device is not a camera'))
             return
 
         if slot >= self.MAX_SLOTS:
@@ -1067,15 +1065,15 @@ class LoadDevice(LogicDevice):
         if not self.photo:
             if self.mode == STATE_ON:
                 if self.start_angle is None:
-                    debug_log(_('Starting the experiment'))
+                    debug_log(self.probe, _('Starting the experiment'))
                     self.running = True
                     self.valid_environment = True
                 else:
-                    debug_log(_('The experiment was already started'))
+                    debug_log(self.probe, _('The experiment was already started'))
             else:
-                debug_log(_('Trying to start experiment while the container is off'))
+                debug_log(self.probe, _('Trying to start experiment while the container is off'))
         else:
-            debug_log(_('Cannot start experiment. The device is not a scientific container'))
+            debug_log(self.probe, _('Cannot start experiment. The device is not a scientific container'))
 
     def check_temperature(self, T):
         LogicDevice.check_temperature(self, T)
@@ -1086,17 +1084,17 @@ class LoadDevice(LogicDevice):
 
     def stop_experiment(self):
         if self.photo:
-            debug_log(_('Cannot stop experiment. The device is not a scientific container'))
+            debug_log(self.probe, _('Cannot stop experiment. The device is not a scientific container'))
             return
 
         if not self.running:
             return
 
-        debug_log(_('The experiment finished'))
+        debug_log(self.probe, _('The experiment finished'))
         self.running = False
 
     def set_para_height(self, h):
-        debug_log(_('Set parachute activation height to %f m'), h)
+        debug_log(self.probe, _('Set parachute activation height to %f m'), h)
         self.probe.parachute_height = h
 
     def drop(self):
@@ -1104,17 +1102,17 @@ class LoadDevice(LogicDevice):
         self.probe.parachute_square = 0
         self.probe.drop_container()
         self.parachute_ready = True
-        debug_log(_('The container was shot off'))
+        debug_log(self.probe, _('The container was shot off'))
 
     def parachute_open(self):
         if self.parachute_ready:
             if self.probe.systems[SUBSYSTEM_NAVIGATION].velocity <= self.device.parachute_velocity:
                 self.probe.parachute_square = self.device.parachute_square
                 self.parachute_ready = False
-                debug_log(_('The parachute has opened'))
+                debug_log(self.probe, _('The parachute has opened'))
             else:
                 self.parachute_drop()
-                debug_log(_('The parachute has dropped because of exceeding the maximum speed'))
+                debug_log(self.probe, _('The parachute has dropped because of exceeding the maximum speed'))
 
     def parachute_drop(self):
         self.probe.parachute_square = 0
@@ -1151,10 +1149,60 @@ Device.DEVICE_CLASS = {
     SUBSYSTEM_LOAD: LoadDevice
 }
 
+
+class Probes:
+
+    probes = []
+
+    def __init__(self, name, probefile, parameters, devices_map):
+        probe = ProbeLoader.load_probe(Language, probefile)
+
+        names = ['a', 'b', 'c']
+
+        wrapper_probe = WrapperProbe(
+                names[0],
+                probe.flight,
+                probe.construction,
+                probe.systems,
+                probe.flight.mission.orbit[0]
+            )
+        self.probes.append(Probe(name, probefile, wrapper_probe, parameters, devices_map))
+
+        try:
+            for i in range(len(probe.satellites.satellite)):
+                wrapper_probe = WrapperProbe(
+                    names[i + 1],
+                    probe.flight,
+                    probe.satellites.satellite[i].construction,
+                    probe.satellites.satellite[i].systems,
+                    probe.satellites.satellite[i].orbit[0]
+                )
+                self.probes.append(Probe(name, probefile, wrapper_probe, parameters, devices_map))
+        except:
+            pass
+
+    def is_single(self):
+        return len(self.probes) == 1
+
+    def get_one(self):
+        return self.probes[0]
+
+    def get(self):
+        return self.probes
+
+
+class WrapperProbe:
+    def __init__(self, name, flight, construction, systems, orbit):
+        self.name = name
+        self.flight = flight
+        self.construction = construction
+        self.systems = systems
+        self.orbit = orbit
+
+
 class Probe: # pylint: disable=R0902
 
-    def __init__(self, name, probefile, parameters, devices_map): #pylint: disable=R0912
-        probe = ProbeLoader.load_probe(Language, probefile)
+    def __init__(self, name, probefile, probe, parameters, devices_map): #pylint: disable=R0912
 
         global _ # pylint: disable=W0603
         _ = Language.get_tr()
@@ -1288,7 +1336,7 @@ class Probe: # pylint: disable=R0902
             self.max_acceleration = 9.8 * 15
 
         self.update_mass()
-        debug_log(_('Probe mass: %f kg'), self.mass)
+        debug_log(self, _('Probe mass: %f kg'), self.mass)
 
         if self.mass > planet_params.probe.max_mass:
             critical_error(self, _('The probe weight limit %.3f exceeded'), planet_params.max_mass)
@@ -1301,7 +1349,7 @@ class Probe: # pylint: disable=R0902
         cpu.time_left = float(probe.flight.mission.duration) * 3600
 
         navigation = self.systems[SUBSYSTEM_NAVIGATION]
-        navigation.initialize_flight(float(probe.flight.mission.orbit), 0.0)
+        navigation.initialize_flight(float(probe.orbit), 0.0)
 
         orientation = self.systems[SUBSYSTEM_ORIENTATION]
         orientation.initialize_flight(float(probe.flight.mission.start_angular_velocity))
@@ -1386,22 +1434,21 @@ class Probe: # pylint: disable=R0902
                                    fuel_volume, self.max_fuel_volume)
             engine.initialize_fuel(fuel_mass)
         self.update_mass()
-        debug_log(_('Total mass (with fuel): %f kg'), self.mass)
+        debug_log(self, _('Total mass (with fuel): %f kg'), self.mass)
 
     def print_probe(self):
 #        self.Parameters.debug_parameters(self.planet, debug_log)
         self.debug_probe(debug_log)
-        debug_log('')
+        debug_log(self, '')
 
 #        self.Parameters.debug_parameters(self.planet)
         self.debug_probe()
-        mission_log('')
-        mission_log(_('The flight log:'))
+        mission_log(self, '')
+        mission_log(self, _('The flight log:'))
 
-    @classmethod
-    def calculate_construction(cls, construction):
+    def calculate_construction(self, construction):
         a = pow(float(construction.device.volume), 1.0 / 3.0) / 10
-        debug_log(_("The size of the probe's side: %f"), a)
+        debug_log(self, _("The size of the probe's side: %f"), a)
         square = a ** 2
         return (1/12.0) * 2.0 * square, square
 
@@ -1420,7 +1467,7 @@ class Probe: # pylint: disable=R0902
 
     def safe_mode_on(self):
         if not self.safe_mode:
-            debug_log(_('Going to SAFE MODE'))
+            debug_log(self, _('Going to SAFE MODE'))
             for s in self.systems.values():
                 if s and s.device.type != SUBSYSTEM_CONSTRUCTION:
                     if s.device.type == SUBSYSTEM_CPU:
@@ -1455,21 +1502,21 @@ class Probe: # pylint: disable=R0902
     def debug_probe(self, logger=mission_log):
         navig = self.systems[SUBSYSTEM_NAVIGATION]
         orient = self.systems[SUBSYSTEM_ORIENTATION]
-        logger(_('Probe %s:'), str(self.name))
-        logger(_('\tFlight parameters:'))
-        logger(_('\t\tPlanet: %s'), self.planet)
-        logger(_('\t\tStart temperature: %.1f К'),
+        logger(self, _('Probe %s:'), str(self.name))
+        logger(self, _('\tFlight parameters:'))
+        logger(self, _('\t\tPlanet: %s'), self.planet)
+        logger(self, _('\t\tStart temperature: %.1f К'),
                self.systems[SUBSYSTEM_HEAT_CONTROL].temperature)
-        logger(_('\t\tStart time of the autonomous flight: %s'), self.start_time)
-        logger(_('\t\tFlight duration: %d h'), self.systems[SUBSYSTEM_CPU].time_left / 3600)
-        logger(_('\t\tOrbit height: %.2f m'), navig.orbit_height)
-        logger(_('\t\tStart angle: %.2f deg'), navig.angle)
-        logger(_('\t\tStart orientation angle: %.2f deg'), orient.orient_angle)
-        logger(_('\t\tStart rotation speed of the probe: %.2f deg/s'), orient.angular_velocity)
+        logger(self, _('\t\tStart time of the autonomous flight: %s'), self.start_time)
+        logger(self, _('\t\tFlight duration: %d h'), self.systems[SUBSYSTEM_CPU].time_left / 3600)
+        logger(self, _('\t\tOrbit height: %.2f m'), navig.orbit_height)
+        logger(self, _('\t\tStart angle: %.2f deg'), navig.angle)
+        logger(self, _('\t\tStart orientation angle: %.2f deg'), orient.orient_angle)
+        logger(self, _('\t\tStart rotation speed of the probe: %.2f deg/s'), orient.angular_velocity)
         # logger(_('\t\tTarget:'))
         # logger(_('\t\t\tX coord: %.1f m'), self.target.x)
         # logger(_('\t\t\tY coord: %.1f m'), self.target.y)
-        logger(_('\tSubsystems:'))
+        logger(self, _('\tSubsystems:'))
         min_T = -1000
         max_T = 1000
         for sysname, system in self.systems.items():
@@ -1478,7 +1525,7 @@ class Probe: # pylint: disable=R0902
                     p = '\t' + '\n\t'.join(system.program.split('\n'))
                 else:
                     p = _('\tNo')
-                logger(_('\t\tSubsystem %s: device %s, m %f v %f st.state %s, program:\n%s\n'),
+                logger(self, _('\t\tSubsystem %s: device %s, m %f v %f st.state %s, program:\n%s\n'),
                        sysname,
                        system.device.full_name,
                        system.device.mass,
@@ -1490,12 +1537,12 @@ class Probe: # pylint: disable=R0902
                 if system.device.max_temperature < max_T:
                     max_T = float(system.device.max_temperature)
             else:
-                logger(_('\t\tSubsystem %s is absent\n'), sysname)
-        logger(_('\tStart mass: %.4f kg'), self.mass)
-        logger(_("\tSystems' volume: %.5f m^3"), self.volume_used)
-        logger(_('\tMin temperature: %.1f K'), min_T + 273)
-        logger(_('\tMax temperature: %.1f K'), max_T + 273)
-        logger(_('\tStart power generation: %.2f W'),
+                logger(self, _('\t\tSubsystem %s is absent\n'), sysname)
+        logger(self, _('\tStart mass: %.4f kg'), self.mass)
+        logger(self, _("\tSystems' volume: %.5f m^3"), self.volume_used)
+        logger(self, _('\tMin temperature: %.1f K'), min_T + 273)
+        logger(self, _('\tMax temperature: %.1f K'), max_T + 273)
+        logger(self, _('\tStart power generation: %.2f W'),
                self.systems[SUBSYSTEM_POWER].power_generation)
 
     def write_short_log(self, filename, data, events, addparams):

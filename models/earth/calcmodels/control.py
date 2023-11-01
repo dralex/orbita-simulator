@@ -41,8 +41,7 @@ class PythonControlModel(AbstractModel):
         AbstractModel.__init__(self, global_parameters)
         self.programs = []
 
-    def init_model(self, probe, initial_tick):
-        
+    def init_model(self, probe, initial_tick, probes):
         global _ # pylint: disable=W0603
         _ = Language.get_tr()
         for s in probe.systems.values():
@@ -56,9 +55,9 @@ class PythonControlModel(AbstractModel):
                                                                        s.program_text,
                                                                        Language
                                                                        )
-                        
+
                         self.programs.append(s)
-                        
+
                     except pycontrol.program.ProgramError as e:
                         str_e = str(e).replace('%', '%%')
                         data.critical_error(probe,
@@ -75,7 +74,7 @@ class PythonControlModel(AbstractModel):
                                             _('System error while running program: %s'),
                                             str_e)
 
-    def step(self, probe, tick):
+    def step(self, probe, tick, probes):
         for s in self.programs:
             try:
                 s.run_program()
@@ -93,7 +92,7 @@ class PythonControlModel(AbstractModel):
                                     s.device.name, str_e)
             except pycontrol.program.FinishError as e:
                 str_e = str(e).replace('%', '%%')
-                mission_log(_('Program finished.'))
+                mission_log(probe, _('Program finished.'))
                 if probe.success:
                     probe.completed = True
                 else:

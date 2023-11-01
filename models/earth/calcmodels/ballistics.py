@@ -70,7 +70,7 @@ class FlatBallisticModel(AbstractModel):
         past.append(rv)
         return rv
 
-    def init_model(self, probe, initial_tick):
+    def init_model(self, probe, initial_tick, probes):
         global _ # pylint: disable=W0603
         _ = Language.get_tr()
 
@@ -100,12 +100,12 @@ class FlatBallisticModel(AbstractModel):
         navig.max_acceleration = navig.acceleration = (navig.gravity_koeff /
                                                        navig.height ** 2)
         navig.atm_border = self.atmosphere.border(float(planet_params.atmosphere.density_border))
-        debug_log(_('The atmosphere border: %f m'), navig.atm_border)
+        debug_log(probe, _('The atmosphere border: %f m'), navig.atm_border)
         navig.acceleration_limit = probe.max_acceleration
         omega = 2.0 * math.pi / float(planet_params.rotation_period)
         navig.gs_orbit = math.pow(float(planet_params.mass) *
                                   float(self.params.G) / omega ** 2, 1 / 3.0)
-        debug_log(_('The geostationary orbit: %f (%f) m'), navig.gs_orbit,
+        debug_log(probe, _('The geostationary orbit: %f (%f) m'), navig.gs_orbit,
                   navig.gs_orbit - navig.planet_radius)
 
         navig.angle = navig.start_angle
@@ -115,15 +115,21 @@ class FlatBallisticModel(AbstractModel):
         navig.ground_visibility_angle = math.degrees(math.acos(navig.planet_radius /
                                                                navig.height)) * 2
 
-    def step(self, probe, tick): # pylint: disable=R0912,R0914
+    def step(self, probe, tick, probes): # pylint: disable=R0912,R0914
         navig = probe.systems[constants.SUBSYSTEM_NAVIGATION]
         orient = probe.systems[constants.SUBSYSTEM_ORIENTATION]
         engine = probe.systems[constants.SUBSYSTEM_ENGINE]
 
+        for probe_a in probes.get():
+            if probe_a != probe:
+                navig_a = probe_a.systems[constants.SUBSYSTEM_NAVIGATION]
+                if data.calculate_distance(navig, navig_a) < 1:
+                    data.terminate(probe, "Spacecraft collision")
+
         if navig.height <= navig.planet_radius:
             if abs(navig.velocity) <= probe.Parameters.Planets[probe.planet].max_landing_velocity:
-                debug_log(_('Successful landing %s!'), time_to_str(probe.time()))
-                mission_log(_('LANDING Ti=%s, Ang=%.2f V=%.2f, Max.Acc=%.2f'),
+                debug_log(probe, _('Successful landing %s!'), time_to_str(probe.time()))
+                mission_log(probe, _('LANDING Ti=%s, Ang=%.2f V=%.2f, Max.Acc=%.2f'),
                             time_to_str(probe.time()),
                             navig.angle,
                             navig.velocity,
@@ -208,7 +214,7 @@ class FlatBallisticModel(AbstractModel):
         if navig.angle <= 0.1 and probe.time() - navig.last_turn_time > 600:
             navig.turns += 1
             navig.last_turn_time = probe.time()
-            data.debug_log(_('Orbital revolution: %d'), navig.turns)
+            data.debug_log(probe, _('Orbital revolution: %d'), navig.turns)
 
         alpha = math.atan2(navig.v_x, navig.v_y) - math.atan2(navig.x, navig.y)
         navig.v_transversal = navig.velocity * math.sin(alpha)

@@ -1,28 +1,3 @@
-# -----------------------------------------------------------------------------
-# -*- coding: utf-8 -*-
-# -----------------------------------------------------------------------------
-# The Orbita Simulator
-# The Earth orbit simulation model (v2)
-#
-# The simulator missions implementation: The SMS Messaging System
-#
-# Copyright (C) 2015-2023 Alexey Fedoseev <aleksey@fedoseev.net>
-# Copyright (C) 2016-2023 Ilya Tagunov <tagunil@gmail.com>
-#
-# This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-#
-# This program is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU General Public License for more details.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program. If not, see https://www.gnu.org/licenses/
-# -----------------------------------------------------------------------------
-
 import time
 import gettext
 
@@ -34,15 +9,21 @@ from logger import debug_log, mission_log
 
 _ = gettext.gettext
 
-class SmsMission(Mission):
-    name = constants.MISSION_SMS
+class SatelliteInternetMission(Mission):
+    name = constants.MISSION_SATELLITE_INTERNET
 
     def __init__(self, global_parameters):
         Mission.__init__(self, global_parameters)
         self.sms_messages = None
+        self.is_start = False
+        self.is_med = False
+        self.count_ticks = 0
+        self.is_end = False
+        self.gs_id = None
+        self.probe_id = None
 
     def init(self, probes, initial_tick, lang):
-        global _ # pylint: disable=W0603
+        global _  # pylint: disable=W0603
         _ = lang
         probe = probes.get()[0]
 
@@ -72,6 +53,9 @@ class SmsMission(Mission):
     def step(self, probes, tick):
         probe = probes.get()[0]
         radio = probe.systems[constants.SUBSYSTEM_RADIO]
+        orient = probe.systems[constants.SUBSYSTEM_ORIENTATION]
+
+        self.count_ticks += 1 if self.is_start else 0
 
         for gs in radio.received_packets.keys():
             if len(radio.received_packets[gs]) != 0:
@@ -84,6 +68,14 @@ class SmsMission(Mission):
                         debug_log(probe, msg)
                         mission_log(probe, msg)
                         self.sms_messages[0][4] = probe.time()
+                        if self.is_start and self.probe_id != probe.name and realdata[1] != self.gs_id:
+                            self.is_end = True
+                            print("Второй получил сообщение!")
+                        else:
+                            self.gs_id = realdata[1]
+                            self.probe_id = probe.name
+                            self.is_start = True
+                            print("Первый получил сообщение!", probe.name, realdata[1], gs)
 
         for gs in radio.sent_packets.keys():
             if len(radio.sent_packets[gs]) != 0:
@@ -101,12 +93,14 @@ class SmsMission(Mission):
                         if len(self.sms_messages) > 0:
                             sms = self.sms_messages[0]
                             if sms[0] != source:
-                                errmsg += (_('Error: the message was received from the wrong source - %s instead of %s. ') % # pylint: disable=C0301
-                                           (source, sms[0]))
+                                errmsg += (
+                                            _('Error: the message was received from the wrong source - %s instead of %s. ') %  # pylint: disable=C0301
+                                            (source, sms[0]))
                                 error = True
                             if sms[1] != gs:
-                                errmsg += (_('Error: the message was sent to the wrong destination - %s instead of %s. ') % # pylint: disable=C0301
-                                           (gs, sms[1]))
+                                errmsg += (
+                                            _('Error: the message was sent to the wrong destination - %s instead of %s. ') %  # pylint: disable=C0301
+                                            (gs, sms[1]))
                                 error = True
                             if sms[2] != text:
                                 errmsg += _('Error: the message was changed while transfered. ')
@@ -114,11 +108,13 @@ class SmsMission(Mission):
                             if sms[4] is not None:
                                 dt = probe.time() - sms[4]
                                 if sms[3] < dt:
-                                    errmsg += (_('Error: the transfer time %f sec exceeded the valid interval %f sec.') % # pylint: disable=C0301
-                                               (dt, sms[3]))
+                                    errmsg += (
+                                                _('Error: the transfer time %f sec exceeded the valid interval %f sec.') %  # pylint: disable=C0301
+                                                (dt, sms[3]))
                                     error = True
                             else:
-                                errmsg += _('Error: the probe tried to send message before receiving it. ') # pylint: disable=C0301
+                                errmsg += _(
+                                    'Error: the probe tried to send message before receiving it. ')  # pylint: disable=C0301
                                 error = True
                         else:
                             errmsg += _('Error: all the messages were sent. ')
@@ -130,13 +126,15 @@ class SmsMission(Mission):
                         if error:
                             mission_log(probe, _('Problems while sending SMS-message. ') + errmsg)
                         else:
-                            mission_log(probe, _('MISSION ACCOMPLISHED! SMS-message was transferred correctly.')) # pylint: disable=C0301
-                            probe.success = True
-                            if probe.message_number is None:
-                                probe.message_number = 1
-                            else:
-                                probe.message_number += 1
-                            probe.success_timestamp = time.time()
+                            if self.is_end:
+                                mission_log(probe,
+                                            _('MISSION ACCOMPLISHED! SMS-message was transferred correctly.'))  # pylint: disable=C0301
+                                probe.success = True
+                                if probe.message_number is None:
+                                    probe.message_number = 1
+                                else:
+                                    probe.message_number += 1
+                                probe.success_timestamp = time.time()
 
                         if len(self.sms_messages) > 0:
                             self.sms_messages.pop(0)
@@ -151,4 +149,4 @@ class SmsMission(Mission):
                             probe.completed = True
 
 
-data.available_missions[SmsMission.name] = SmsMission
+data.available_missions[SatelliteInternetMission.name] = SatelliteInternetMission

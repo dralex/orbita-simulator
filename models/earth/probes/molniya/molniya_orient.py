@@ -17,6 +17,11 @@ angular_velocity_precision = 2e-3
 orient_angle_precision = 5e-3
 
 
+def is_orientation_needed():
+    return (abs(orientation.get_angular_velocity(AXIS_Z) - desired_a_v) > angular_velocity_precision) or (
+                abs(normalize_angle_difference(desired_a - orientation.get_angle(AXIS_Z))) > orient_angle_precision)
+
+
 def start_reduction():
     global decreasing
     angular_velocity = orientation.get_angular_velocity(AXIS_Z)
@@ -86,4 +91,3 @@ def calculate_acc_inertia():
     global max_angular_acceleration, inertia_moment
     max_angular_acceleration = abs(initial_angular_velocity) / (cpu.get_flight_time() - stabilization_begin_time)
     inertia_moment = max_orientation_torsion / max_angular_acceleration
-

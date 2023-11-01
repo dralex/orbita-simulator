@@ -17,7 +17,7 @@ Each model is supplemented by gravity calculators (**planets_gravity** and **ear
 The code is distributed under the GNU Public License (version 3), the documentation -- under
 the GNU Free Documentation License (version 1.3).
 
-The simulator interface and the user manual are available in English and Russian.
+The simulator interface and the user manual are available in English and Russian. The English manuals in PDF are located here: https://disk.yandex.ru/d/IE_Xm2pjxk5zcw
 
 Initial authors: [Alexey Fedoseev](mailto:aleksey@fedoseev.net), [Nikolay Safronov](mailto:bfishh@gmail.com), and
 [Ilya Tagunov](mailto:tagunil@gmail.com). The simulation was created with the support of

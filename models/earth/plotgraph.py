@@ -54,7 +54,7 @@ def plot_cycle_graph(times, maxtime, values, y_label, imagefile, tr):
                     cycles[j][i] = float('nan')
         plot_graph(times, maxtime, cycles, None, y_label, imagefile, [-0.1, max_cycle + 0.1], True)
 
-def plot_graph(times, maxtime, values, labels, y_label, imagefile, ylimits, tr, multi=False):
+def plot_graph(probe, times, maxtime, values, labels, y_label, imagefile, ylimits, tr, multi=False):
     global global_counter #pylint: disable=W0603
     plt.figure(global_counter, figsize=(8.0, 8.0))
     global_counter += 1
@@ -69,7 +69,7 @@ def plot_graph(times, maxtime, values, labels, y_label, imagefile, ylimits, tr, 
         maxlist = values
         minlist = values
     if isnan(minlist).all() or isnan(maxlist).all():
-        debug_log('Disable graph {}: all nan min/max array'.format(imagefile))
+        debug_log(probe, 'Disable graph {}: all nan min/max array'.format(imagefile))
         return
     if ylimits[0] == 'calc':
         ylimits[0] = nanmin(minlist) * 0.99

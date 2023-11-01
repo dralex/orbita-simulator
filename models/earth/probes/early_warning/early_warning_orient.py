@@ -15,6 +15,11 @@ scanning_period = 140.0
 angle_offset = 6.0
 
 
+def is_orientation_needed():
+    return (abs(orientation.get_angular_velocity(AXIS_Z) - desired_a_v) > angular_velocity_precision) or (
+            abs(normalize_angle_difference(desired_a - orientation.get_angle(AXIS_Z))) > orient_angle_precision)
+
+
 def start_reduction():
     global decreasing
     angular_velocity = orientation.get_angular_velocity(AXIS_Z)
@@ -45,14 +50,6 @@ def calc_observing_data():
     prev_flight_time = flight_time
     prev_nav_angle = nav_angle
     desired_a = normalize_angle((270 - nav_angle) - angle_offset)
-
-
-def need_angle_change():
-    angle = orientation.get_angle(AXIS_Z)
-    angular_velocity = orientation.get_angular_velocity(AXIS_Z)
-    desired_angle_change = normalize_angle_difference(desired_a - angle)
-    return ((abs(angular_velocity - desired_a_v) > angular_velocity_precision) or
-            (abs(desired_angle_change) > orient_angle_precision))
 
 
 def calculate_torsion_orientation():
