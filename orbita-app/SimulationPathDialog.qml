@@ -32,6 +32,7 @@ FileDialog {
                 settingsManager.setEarthSystemsPath(folderSimulation + "/devices-ru.xml");
                 settingsManager.setMissionsPath(folderSimulation + "/missions-ru.xml");
                 earthMissions.loadMissions(settingsManager.getMissionsPath());
+                systems.loadSystems((settingsManager.getEarthSystemsPath()));
             } else {
                 errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора Земли."
                 errorDialog.open()

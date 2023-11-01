@@ -77,6 +77,7 @@ Dialog  {
                         versionWindow.visible = false
                         earthElementsVisible = false
                         planetsElementsVisible = true
+                        showDiagrammButton = false
 
                     } else {
                         if (!earthProbes.size())
@@ -113,6 +114,7 @@ Dialog  {
                         versionWindow.visible = false
                         planetsElementsVisible = false
                         earthElementsVisible = true
+                        showDiagrammButton = true
 
 
                     }
