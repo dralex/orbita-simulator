@@ -4,7 +4,7 @@ import QtQuick.Controls 2.5
 FileDialog {
     id: fileToSaveDialog
     title: 'Выберите файл для сохранения'
-    folder: ""
+    folder: shortcuts.home
     selectFolder: true
     selectMultiple: false
     width: 264
@@ -24,12 +24,11 @@ FileDialog {
         }
 
         if (typeMission) {
-            pathToSave = settingsManager.getPlanetsProbesPath()
+            pathToSave = settingsManager.getPlanetsProbesPath() !== "None" ? settingsManager.getPlanetsProbesPath() : "None"
             pathToLoad = settingsManager.getPlanetsProbesPath()
             if (!systems.size())
                 systems.loadSystems((settingsManager.getEarthSystemsPath()));
             if (checkAction) {
-
                 if (fileToSave) {
                     probes.saveProbe(listViewProbes.currentIndex,
                                      probeNameText.text,
@@ -58,18 +57,16 @@ FileDialog {
                 }
             } else {
                 settingsManager.setProbesPath(folderProbesPath)
-                settingsManager.saveSettingsToFile("planets_settings.txt", typeMission);
-                settingsFolderProbesPath = pathToSave
+                pathToSave = folderProbesPath
+                settingsFolderProbesPath = folderProbesPath
             }
         }
         else {
-            earthPathToLoad = settingsManager.getEarthProbesPath()
-            earthPathToSave = settingsManager.getEarthProbesPath()
             if (!earthMissions.size())
                 earthMissions.loadMissions(settingsManager.getMissionsPath());
 
             if (checkAction) {
-                earthPathToSave = settingsManager.getEarthProbesPath()
+                earthPathToSave = settingsManager.getEarthProbesPath() !== "None" ? settingsManager.getPlanetsProbesPath() : "None"
                 earthPathToLoad = settingsManager.getEarthProbesPath()
 
                 if (fileToSave) {
@@ -107,8 +104,8 @@ FileDialog {
                 }
             } else {
                 settingsManager.setEarthProbesPath(folderProbesPath)
-                settingsManager.saveSettingsToFile("earth_settings.txt", typeMission);
-                settingsFolderProbesPath = earthPathToLoad
+                earthPathToSave = folderProbesPath
+                settingsFolderProbesPath = folderProbesPath
             }
         }
 

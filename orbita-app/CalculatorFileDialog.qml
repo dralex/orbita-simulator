@@ -22,7 +22,7 @@ FileDialog {
             } else {
                 errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора планет."
                 errorDialog.open()
-                folderCalculatorPath = ""
+                folderCalculatorPath = "None"
                 return;
             }
             settingsFolderCalculatorPath = folderCalculator
@@ -33,7 +33,7 @@ FileDialog {
             } else {
                 errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора Земли."
                 errorDialog.open()
-                folderCalculatorPath = ""
+                folderCalculatorPath = "None"
                 return;
             }
             settingsFolderCalculatorPath = folderCalculator

@@ -7,12 +7,20 @@
 
 #include <QQmlContext>
 
+#include "simulationcontroller.h"
+#include "settingsmanager.h"
+
 #include "probe.h"
 #include "devices.h"
 #include "stepslanding.h"
 #include "stepsactivity.h"
 #include "planets.h"
 #include "planetdevices.h"
+
+#include "earthprobe.h"
+#include "systems.h"
+#include "earthmissions.h"
+#include "systemprobe.h"
 
 #include "probemodel.h"
 #include "stepsactivitytablemodel.h"
@@ -24,22 +32,11 @@
 #include "planetsprobesdevicesmodel.h"
 #include "devicestablemodel.h"
 
-
-#include "earthprobe.h"
-#include "systems.h"
-#include "earthmissions.h"
-#include "systemprobe.h"
-
-
 #include "earthprobesmodel.h"
 #include "earthmissionsmodel.h"
 #include "systemsprobetablemodel.h"
 #include "earthsystemsmodel.h"
 #include "comboboxearthdevices.h"
-
-#include "simulationcontroller.h"
-#include "settingsmanager.h"
-
 
 
 int main(int argc, char *argv[])
@@ -61,25 +58,39 @@ int main(int argc, char *argv[])
         }
     }
 
-    qmlRegisterType<ProbeModel>("ProbeModel", 1, 0, "ProbeModel");
-    qmlRegisterType<StepsActivityTableModel>("StepsActivityModel", 1, 0, "StepsActivityModel");
-    qmlRegisterType<StepsLandingTableModel>("StepsLandingModel", 1, 0, "StepsLandingModel");
-    qmlRegisterType<PlanetsModel>("PlanetsModel", 1, 0, "PlanetsModel");
-    qmlRegisterType<PlanetsDevicesModel>("PlanetsDevicesModel", 1, 0, "PlanetsDevicesModel");
-    qmlRegisterType<PlanetsProbesDevicesModel>("PlanetsProbesDevicesModel", 1, 0, "PlanetsProbesDevicesModel");
-    qmlRegisterType<DevicesTableModel>("DevicesTableModel", 1, 0, "DevicesTableModel");
+    Probe probes;
+    Devices devicesItems;
+    StepsActivity stepsActivityItems;
+    StepsLanding stepsLandingItems;
+    Planets planetsItems;
+    PlanetDevices planetDevices;
 
+    SimulationController simulationController;
+    SettingsManager settingsManager;
 
-    qmlRegisterType<EarthProbesModel>("EarthProbesModel", 1, 0, "EarthProbesModel");
-    qmlRegisterType<EarthMissionsModel>("EarthMissionsModel", 1, 0, "EarthMissionsModel");
-    qmlRegisterType<SystemsProbeTableModel>("SystemsProbeModel", 1, 0, "SystemsProbeModel");
-    qmlRegisterType<EarthSystemsModel>("EarthSystemsModel", 1, 0, "EarthSystemsModel");
+    Systems systems;
+    EarthMissions earthMissions;
+    EarthProbe earthProbes;
+    SystemProbe earthProbeSystems;
 
-    qmlRegisterType<ComboBoxEarthDevices>("ComboBoxEarthDevices", 1, 0, "ComboBoxEarthDevices");
-    qmlRegisterType<ComboBoxDevices>("ComboBoxDevicesModel", 1, 0, "ComboBoxDevicesModel");
+    ProbeModel probeModel;
+    StepsActivityTableModel stepsActivityTableModel;
+    StepsLandingTableModel stepaLandingTableModel;
+    PlanetsModel planetsModel;
+    PlanetsDevicesModel planetsDevicesModel;
+    PlanetsProbesDevicesModel planetsProbesDevicesModel;
+    DevicesTableModel devicesTableModel;
 
-    qmlRegisterType<QProcess>("SimulationProcess", 1, 0, "SimulationProcess");
-    qmlRegisterType<ImagesModel>("ImagesModel", 1, 0, "ImagesModel");
+    EarthProbesModel earthProbesModel;
+    EarthMissionsModel earthMissionsModel;
+    SystemsProbeTableModel systemsProbeTableModel;
+    EarthSystemsModel earthSystemsModel;
+
+    ComboBoxEarthDevices comboBoxEarthDevices;
+    ComboBoxDevices comboBoxDevices;
+
+    QProcess simulationProcess;
+    ImagesModel imagesModel;
 
     qmlRegisterUncreatableType<Probe>("Probe", 1, 0, "Probe",
                                         QStringLiteral("Probe should not be created in QML."));
@@ -103,21 +114,6 @@ int main(int argc, char *argv[])
     qmlRegisterUncreatableType<SimulationController>("SimulationController", 1, 0, "SimulationController",
                                                      QStringLiteral("SimulationController should not be created in QML."));
 
-    Probe probes;
-    Devices devicesItems;
-    StepsActivity stepsActivityItems;
-    StepsLanding stepsLandingItems;
-    Planets planetsItems;
-    PlanetDevices planetDevices;
-
-    SimulationController simulationController;
-    SettingsManager settingsManager;
-
-    Systems systems;
-    EarthMissions earthMissions;
-    EarthProbe earthProbes;
-    SystemProbe earthProbeSystems;
-
     QQmlApplicationEngine engine;
     engine.rootContext()->setContextProperty(QStringLiteral("probes"), &probes);
     engine.rootContext()->setContextProperty(QStringLiteral("devicesItems"), &devicesItems);
@@ -134,6 +130,26 @@ int main(int argc, char *argv[])
 
     engine.rootContext()->setContextProperty(QStringLiteral("simulationController"), &simulationController);
     engine.rootContext()->setContextProperty(QStringLiteral("settingsManager"), &settingsManager);
+
+    qmlRegisterType<ProbeModel>("ProbeModel", 1, 0, "ProbeModel");
+    qmlRegisterType<StepsActivityTableModel>("StepsActivityModel", 1, 0, "StepsActivityModel");
+    qmlRegisterType<StepsLandingTableModel>("StepsLandingModel", 1, 0, "StepsLandingModel");
+    qmlRegisterType<PlanetsModel>("PlanetsModel", 1, 0, "PlanetsModel");
+    qmlRegisterType<PlanetsDevicesModel>("PlanetsDevicesModel", 1, 0, "PlanetsDevicesModel");
+    qmlRegisterType<PlanetsProbesDevicesModel>("PlanetsProbesDevicesModel", 1, 0, "PlanetsProbesDevicesModel");
+    qmlRegisterType<DevicesTableModel>("DevicesTableModel", 1, 0, "DevicesTableModel");
+
+
+    qmlRegisterType<EarthProbesModel>("EarthProbesModel", 1, 0, "EarthProbesModel");
+    qmlRegisterType<EarthMissionsModel>("EarthMissionsModel", 1, 0, "EarthMissionsModel");
+    qmlRegisterType<SystemsProbeTableModel>("SystemsProbeModel", 1, 0, "SystemsProbeModel");
+    qmlRegisterType<EarthSystemsModel>("EarthSystemsModel", 1, 0, "EarthSystemsModel");
+
+    qmlRegisterType<ComboBoxEarthDevices>("ComboBoxEarthDevices", 1, 0, "ComboBoxEarthDevices");
+    qmlRegisterType<ComboBoxDevices>("ComboBoxDevicesModel", 1, 0, "ComboBoxDevicesModel");
+
+    qmlRegisterType<QProcess>("SimulationProcess", 1, 0, "SimulationProcess");
+    qmlRegisterType<ImagesModel>("ImagesModel", 1, 0, "ImagesModel");
 
 
 

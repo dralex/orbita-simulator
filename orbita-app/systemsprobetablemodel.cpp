@@ -2,6 +2,7 @@
 
 SystemsProbeTableModel::SystemsProbeTableModel(QObject *parent)
     : QAbstractTableModel(parent)
+    , mList(nullptr)
 {
     table.append({"Название", "Масса", "Start State", "Файл"});
 }

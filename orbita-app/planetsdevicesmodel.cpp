@@ -2,6 +2,7 @@
 
 PlanetsDevicesModel::PlanetsDevicesModel(QObject *parent)
     : QAbstractListModel(parent)
+    , mList(nullptr)
 {
 }
 

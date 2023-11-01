@@ -2,7 +2,6 @@
 
 PlanetsModel::PlanetsModel(QObject *parent)
     : QAbstractListModel(parent)
-    , mList(nullptr)
 {
 }
 

@@ -24,7 +24,7 @@ FileDialog {
             } else {
                 errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора планет."
                 errorDialog.open()
-                folderSimulation = ""
+                folderSimulation = "None"
             }
         } else {
             if(settingsManager.checkSimulationFile(folderSimulation + "/simulation.py")&& folderSimulation.includes("earth") && !folderSimulation.includes("earth_gravity")) {
@@ -35,7 +35,7 @@ FileDialog {
             } else {
                 errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора Земли."
                 errorDialog.open()
-                folderSimulation = ""
+                folderSimulation = "None"
             }
         }
         settingsFolderSimulation = folderSimulation

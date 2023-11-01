@@ -8,7 +8,7 @@ FileDialog {
     width: 264
     height: 146
     visible: false
-    folder: ""
+    folder: shortcuts.home
 
     onAccepted: {
         var filePath = fileToLoadDialog.fileUrl.toString()

@@ -62,8 +62,8 @@ Dialog  {
                         pathToSave = settingsManager.getPlanetsProbesPath()
                         pathToLoad = settingsManager.getPlanetsProbesPath()
 
-                        pathToLoadDialog.folder = "file://" + pathToLoad
-                        pathToSaveDialog.folder = "file://" + pathToSave
+                        pathToLoadDialog.folder = pathToLoad !== "None" ? "file://" + pathToLoad : Qt.resolvedUrl("~")
+                        pathToSaveDialog.folder = pathToSave !== "None" ? "file://" + pathToSave : Qt.resolvedUrl("~")
 
                         settingsFolderSimulation = settingsManager.getSimulationPath()
                         settingsFolderProbesPath = pathToSave
@@ -103,8 +103,8 @@ Dialog  {
                         earthPathToLoad = settingsManager.getEarthProbesPath()
                         earthPathToSave = settingsManager.getEarthProbesPath()
 
-                        pathToLoadDialog.folder = "file://" + earthPathToLoad
-                        pathToSaveDialog.folder = "file://" + earthPathToSave
+                        pathToLoadDialog.folder = earthPathToLoad !== "None" ? "file://" + earthPathToLoad : Qt.resolvedUrl("~")
+                        pathToSaveDialog.folder = earthPathToSave !== "None" ? "file://" + earthPathToSave : Qt.resolvedUrl("~")
 
                         showPlanetsElems = false
                         showPlanetsDevices = false
