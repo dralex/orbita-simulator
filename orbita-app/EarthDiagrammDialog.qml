@@ -54,7 +54,7 @@ Dialog  {
                 text: "Добавить"
                 onClicked: {
                     if (systems.getAllowProgram(earthDevicesBox.currentValue)) {
-                        diagrammSystemName = earthDevicesBox.currentValue;
+                        diagrammSystemName = systems.getSystemsEngName(earthDevicesBox.currentValue)
                         diagrammFileDialog.open()
                     } else {
                         errorDialog.textOfError = "Для этой системы нельзя установить решение в виде диаграммы."

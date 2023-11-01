@@ -3,7 +3,6 @@ import QtQuick.Window 2.15
 import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 import Qt.labs.settings 1.0
-//import Qt.labs.qmlmodels 1.0
 
 import ProbeModel 1.0
 import StepsActivityModel 1.0
@@ -40,6 +39,7 @@ ApplicationWindow  {
     EarthDiagrammDialog {id: earthDiagrammDialog}
     DiagrammFileDialog {id: diagrammFileDialog}
     EarthCalculator {id: earthCalculatorWindow}
+    InfoWindow {id: infoWindow}
     property string fileNameFromDialog;
     property ListModel modelSolutions: ListModel {}
     property bool itemsEnabled: false
@@ -643,6 +643,13 @@ ApplicationWindow  {
                                             tableViewDevices.currentRow = row;
                                         }
                                     }
+
+                                    onDoubleClicked: {
+                                        if (column >= 0 && row > 0) {
+                                            infoWindow.textOfInfo = devicesItems.getText(row - 1, column)
+                                            if (infoWindow.textOfInfo.length) infoWindow.open()
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -878,6 +885,8 @@ ApplicationWindow  {
                             height: parent.height
                             clip: true
                             enabled: itemsEnabled
+                            rowSpacing: 1
+                            columnSpacing: 1
                             visible: earthElementsVisible
                             model: SystemsProbeModel {
                                 list: earthProbeSystems
@@ -925,6 +934,14 @@ ApplicationWindow  {
                                     onClicked: {
                                         if (row > 0) {
                                             tableViewEarthSystems.currentRow = row;
+                                        }
+
+                                    }
+
+                                    onDoubleClicked: {
+                                        if (column >= 0 && row > 0) {
+                                            infoWindow.textOfInfo = earthProbeSystems.getText(row - 1, column)
+                                            if (infoWindow.textOfInfo.length) infoWindow.open()
                                         }
                                     }
                                 }
@@ -1002,6 +1019,8 @@ ApplicationWindow  {
                                     clip: true
                                     enabled: itemsEnabled
                                     visible: showPlanetsElems
+                                    rowSpacing: 1
+                                    columnSpacing: 1
                                     model: StepsLandingModel {
                                         list: stepsLandingItems
                                     }
@@ -1102,6 +1121,8 @@ ApplicationWindow  {
                                         clip: true
                                         enabled: itemsEnabled
                                         visible: showPlanetsElems
+                                        rowSpacing: 1
+                                        columnSpacing: 1
                                         model: StepsActivityModel {
                                             list: stepsActivityItems
                                         }

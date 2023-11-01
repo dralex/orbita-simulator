@@ -42,6 +42,18 @@ void SystemProbe::removeEarthSystem(EarthProbe *earthProbe, int probeIndex, int 
     emit postEarthProbeSystemsRemoved();
 }
 
+void SystemProbe::appendDiagramPath(QString systemEngName, QString diagramPath)
+{
+    for (int i = 0; i < mItems.size(); ++i)
+        if (mItems[i].systemEngName == systemEngName)
+            mItems[i].diagramPath = diagramPath;
+}
+
+QString SystemProbe::getText(int row, int column)
+{
+    return (row >= 0 && row < mItems.size()) ? ((column == 0) ? mItems[row].systemName : ((column == 3) ? mItems[row].diagramPath : QString())) : QString();
+}
+
 bool SystemProbe::checkUniqueType(QString type)
 {
     for (int i = 0; i < mItems.size(); ++i)

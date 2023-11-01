@@ -115,3 +115,8 @@ QString Devices::getDeviceName(int index)
 
     return "None";
 }
+
+QString Devices::getText(int row, int column)
+{
+    return (row >= 0 && row < mItems.size() && column == 1) ? mItems[row].deviceName : QString();
+}

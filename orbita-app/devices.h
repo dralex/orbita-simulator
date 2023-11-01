@@ -48,6 +48,7 @@ public slots:
 
     int size();
     QString getDeviceName(int index);
+    QString getText(int row, int column);
 
 private:
     QVector<DevicesItem> mItems;
