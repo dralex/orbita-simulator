@@ -42,6 +42,8 @@ logging = {
 mission_log_buffer = deque()
 simulation_time = 0.0
 
+the_only_probe = False
+
 def time_to_str(tim):
     t = int(tim) # round to sec
     hours = t / 3600
@@ -49,63 +51,98 @@ def time_to_str(tim):
     seconds = (t % 3600) % 60
     return '%02d:%02d:%02d' % (hours, minutes, seconds)
 
-def set_logging(target, do_logging):
+def set_logging(target, do_logging, probes):
+    global the_only_probe
     if target in logging:
         logging[target] = do_logging
         if do_logging and target != 'image':
-            f = open(do_logging, 'w')
-            f.truncate()
-            f.close()
+            if len(probes) > 1:
+                for probe in probes:
+                    f = open(f'{probe.name}_{do_logging}', 'w')
+                    f.truncate()
+                    f.close()
+            else:
+                the_only_probe = True
+                f = open(do_logging, 'w')
+                f.truncate()
+                f.close()
             if target == 'mission':
                 mission_log_buffer.clear()
     else:
         error_log(_('Bad logging target "%s"\n'), target)
         sys.exit(1)
 
-def sync_logs():
-    if logging['debug']:
-        f = open(logging['debug'], 'a')
-        f.flush()
-        os.fsync(f.fileno())
-        f.close()
-    if logging['mission']:
-        f = open(logging['mission'], 'a')
-        f.flush()
-        os.fsync(f.fileno())
-        f.close()
-    if logging['test']:
-        f = open(logging['test'], 'a')
-        f.flush()
-        os.fsync(f.fileno())
-        f.close()
+def sync_logs(probes):
+    if not the_only_probe:
+        for probe in probes:
+            if logging['debug']:
+                f = open(f"{probe.name}_{logging['debug']}", 'a')
+                f.flush()
+                os.fsync(f.fileno())
+                f.close()
+            if logging['mission']:
+                f = open(f"{probe.name}_{logging['mission']}", 'a')
+                f.flush()
+                os.fsync(f.fileno())
+                f.close()
+            if logging['test']:
+                f = open(f"{probe.name}_{logging['test']}", 'a')
+                f.flush()
+                os.fsync(f.fileno())
+                f.close()
+    else:
+        if logging['debug']:
+            f = open(logging['debug'], 'a')
+            f.flush()
+            os.fsync(f.fileno())
+            f.close()
+        if logging['mission']:
+            f = open(logging['mission'], 'a')
+            f.flush()
+            os.fsync(f.fileno())
+            f.close()
+        if logging['test']:
+            f = open(logging['test'], 'a')
+            f.flush()
+            os.fsync(f.fileno())
+            f.close()    
 
-def debug_log(s, *args):
+def debug_log(probe, s, *args):
     if logging['debug']:
-        f = open(logging['debug'], 'a')
+        if the_only_probe:
+            f = open(logging['debug'], 'a')
+        else:
+            f = open(f"{probe.name}_{logging['debug']}", 'a')
         f.write('DEBUG [%s]: %s\n' % (time_to_str(simulation_time),
                                       s % args))
         f.close()
 
-def error_log(s, *args):
-    debug_log(s, *args)
-    mission_log(s, *args)
+def error_log(probe, s, *args):
+    debug_log(probe, s, *args)
+    mission_log(probe, s, *args)
     sys.stderr.write('ERROR: ' + (s % args) + '\n')
 
-def test_log(s, *args):
+def test_log(probe, s, *args):
     outs = (s % args) + '\n'
     if logging['test']:
-        f = open(logging['test'], 'a')
+        if the_only_probe:
+            f = open(logging['test'], 'a')
+        else:
+            f = open(f"{probe.name}_{logging['test']}", 'a')
         f.write(outs)
         f.close()
 
-def mission_log(s, *args):
+def mission_log(probe, s, *args):
     if simulation_time > 0:
         outs = ('%s: ' % time_to_str(simulation_time)) + (s % args) + '\n'
     else:
         outs = (s % args) + '\n'
     mission_log_buffer.append(outs)
     if logging['mission']:
-        f = open(logging['mission'], 'a')
+        if the_only_probe:
+            f = open(logging['mission'], 'a')
+        else:
+            f = open(f"{probe.name}_{logging['mission']}", 'a')
         f.write(outs)
         f.close()
 
@@ -115,9 +152,12 @@ def stdout_log(s, *args):
 def get_mission_logs():
     return ''.join(mission_log_buffer)
 
-def short_log(s, *args):
+def short_log(probe, s, *args):
     if logging['short']:
-        f = open(logging['short'], 'a')
+        if the_only_probe:
+            f = open(logging['short'], 'a')
+        else:
+            f = open(f"{probe.name}_{logging['short']}", 'a')
         f.write((s % args) + '\n')
         f.close()
 

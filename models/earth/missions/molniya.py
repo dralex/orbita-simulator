@@ -47,9 +47,10 @@ class MolniyaMission(Mission):
         self.on_air = False
         self.transferred_data = 0.0
 
-    def init(self, probe, initial_tick, lang):
+    def init(self, probes, initial_tick, lang):
         global _ # pylint: disable=W0603
         _ = lang
+        probe = probes.get()[0]
 
         orient = probe.systems[constants.SUBSYSTEM_ORIENTATION]
 
@@ -59,7 +60,8 @@ class MolniyaMission(Mission):
         self.on_air = False
         self.transferred_data = 0.0
 
-    def step(self, probe, tick):
+    def step(self, probes, tick):
+        probe = probes.get()[0]
         radio = probe.systems[constants.SUBSYSTEM_RADIO]
 
         if radio.transmitting and radio.max_bandwidth >= self.acceptable_bandwidth:
@@ -79,7 +81,7 @@ class MolniyaMission(Mission):
                                             if duration >= self.acceptable_duration]
             if len(acceptable_session_durations) >= self.acceptable_count:
                 if not probe.success:
-                    mission_log(_('MISSION ACCOMPLISHED! The required telecommunication session completed.')) # pylint: disable=C0301
+                    mission_log(probe, _('MISSION ACCOMPLISHED! The required telecommunication session completed.')) # pylint: disable=C0301
                     probe.success = True
 
                 probe.session_count = len(acceptable_session_durations)

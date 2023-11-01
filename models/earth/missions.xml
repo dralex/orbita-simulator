@@ -679,5 +679,56 @@ while sputnik.cpu.run():
         </orbit>
       </generator>
     </mission>
+  <mission name="satellite_internet" full_name="Transmitting messages via satellite Internet" duration="6" order="5">
+      <description>
+
+      </description>
+      <image>image.jpg</image>
+      <achievements>
+        <achievement type="speed">
+          <score level="1" compare="equal" full_name="The first on orbit!" score_value="1500"/>
+          <score level="2" compare="equal" full_name="The second on orbit!" score_value="1200"/>
+          <score level="3" compare="equal" full_name="The third on orbit!" score_value="1000"/>
+        </achievement>
+        <achievement type="tries">
+          <score level="1" compare="equal" full_name="Precise calculation" score_value="3000"/>
+          <score level="5" compare="lesseq" full_name="Good calculation" score_value="2000"/>
+          <score level="6" compare="moreeq" full_name="Mission accomplished" score_value="1000"/>
+        </achievement>
+        <achievement type="spec" full_name="High reliability" xmlname="result_msgnum">
+          <score level="5" compare="equal" score_value="5000"/>
+        </achievement>
+      </achievements>
+      <generator parameters="orbit,control_stations,messages">
+        <control_stations>
+          <control_station name="0">
+            <location_angle>
+              <frm>100.0</frm>
+              <to>111.0</to>
+            </location_angle>
+          </control_station>
+          <control_station name="1">
+            <location_angle>
+              <frm>190.0</frm>
+              <to>201.0</to>
+            </location_angle>
+          </control_station>
+        </control_stations>
+        <messages number="5">
+          <data>
+            <frm>20</frm>
+            <to>30</to>
+          </data>
+          <timeout>
+            <frm>6000</frm>
+            <to>7000</to>
+          </timeout>
+        </messages>
+        <orbit>
+          <frm>600</frm>
+          <to>650</to>
+        </orbit>
+      </generator>
+    </mission>
   </mission_list>
 </v:missions>
