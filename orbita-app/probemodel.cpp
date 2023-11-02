@@ -2,7 +2,9 @@
 
 #include "probe.h"
 
-ProbeModel::ProbeModel(QObject *parent) : QAbstractListModel(parent)
+ProbeModel::ProbeModel(QObject *parent)
+    : QAbstractListModel(parent)
+    , mList(nullptr)
 {
 }
 
