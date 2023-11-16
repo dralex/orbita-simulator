@@ -2,7 +2,7 @@
 
 You need Qt5, Qt.Quick 2.x to run the app.
 
-1. First of all, update all system packages and install qt5 with dependensies.
+Update all system packages and install qt5 with dependensies.
 
 ```
 $ sudo apt update && sudo apt update
