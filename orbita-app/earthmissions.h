@@ -5,6 +5,8 @@
 #include <QVector>
 #include <QFile>
 #include <QXmlStreamReader>
+#include <QXmlSchema>
+#include <QXmlSchemaValidator>
 #include <QDebug>
 
 struct ControlStations {

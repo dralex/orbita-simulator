@@ -1,7 +1,8 @@
 #include "planetsdevicesmodel.h"
 
 PlanetsDevicesModel::PlanetsDevicesModel(QObject *parent)
-    : QAbstractListModel(parent), mList(NULL)
+    : QAbstractListModel(parent)
+    , mList(nullptr)
 {
 }
 

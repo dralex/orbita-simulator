@@ -1,13 +1,13 @@
-#include "devicestablemodel.h"
+#include "stepslandingtablemodel.h"
 
-DevicesTableModel::DevicesTableModel(QObject *parent)
+StepsLandingTableModel::StepsLandingTableModel(QObject *parent)
     : QAbstractTableModel(parent)
     , mList(nullptr)
 {
-    table.append({"Номер", "Название", "Начальное состояние", "Safe Mode"});
+    table.append({"Номер", "Время", "Тип", "Команда", "Параметр"});
 }
 
-int DevicesTableModel::rowCount(const QModelIndex &parent) const
+int StepsLandingTableModel::rowCount(const QModelIndex &parent) const
 {
     if (parent.isValid() || !mList)
         return 0;
@@ -15,7 +15,7 @@ int DevicesTableModel::rowCount(const QModelIndex &parent) const
     return table.size() + mList->items().size();
 }
 
-int DevicesTableModel::columnCount(const QModelIndex &parent) const
+int StepsLandingTableModel::columnCount(const QModelIndex &parent) const
 {
     if (parent.isValid() || !mList)
         return 0;
@@ -23,26 +23,29 @@ int DevicesTableModel::columnCount(const QModelIndex &parent) const
     return table.at(0).size();
 }
 
-QVariant DevicesTableModel::data(const QModelIndex &index, int role) const
+
+QVariant StepsLandingTableModel::data(const QModelIndex &index, int role) const
 {
     if (!index.isValid() || !mList)
         return QVariant();
 
     if (role == tableDataRole) {
         if (index.row() == 0) {
-            return table.at(index.row()).at(index.column());
-        } else {
+             return table.at(index.row()).at(index.column());
+         } else {
             int dataIndex = index.row() - 1;
             if (dataIndex < mList->items().size()) {
-                const DevicesItem item = mList->items().at(dataIndex);
+                const StepsLandingItem item = mList->items().at(dataIndex);
                 if (index.column() == 0) {
                     return item.deviceNumber;
                 } else if (index.column() == 1) {
-                    return item.deviceName;
+                    return item.time;
                 } else if (index.column() == 2) {
-                    return item.startState;
+                    return item.device;
                 } else if (index.column() == 3) {
-                    return item.inSafeMode;
+                    return item.command;
+                } else if (index.column() == 4) {
+                    return item.argument;
                 }
             }
         }
@@ -54,8 +57,7 @@ QVariant DevicesTableModel::data(const QModelIndex &index, int role) const
 }
 
 
-
-bool DevicesTableModel::setData(const QModelIndex &index, const QVariant &value, int role)
+bool StepsLandingTableModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
     if (!mList)
         return false;
@@ -63,17 +65,20 @@ bool DevicesTableModel::setData(const QModelIndex &index, const QVariant &value,
     if (role == tableDataRole && index.row() > 0) {
         int dataIndex = index.row() - 1;
         if (dataIndex < mList->items().size()) {
-            DevicesItem item = mList->items()[dataIndex];
+            StepsLandingItem item = mList->items()[dataIndex];
+
             if (index.column() == 0) {
                 item.deviceNumber = value.toInt();
             } else if (index.column() == 1) {
-                item.deviceName = value.toString();
+                item.time = value.toDouble();
             } else if (index.column() == 2) {
-                item.startState = value.toString();
+                item.device = value.toString();
             } else if (index.column() == 3) {
-                item.inSafeMode = value.toBool();
+                item.command = value.toString();
+            } else if (index.column() == 4) {
+                item.argument = value.toInt();
             }
-            mList->setDevicesItem(dataIndex, item);
+            mList->setItem(dataIndex, item);
             emit dataChanged(index, index, QVector<int>() << role);
             return true;
         }
@@ -82,7 +87,8 @@ bool DevicesTableModel::setData(const QModelIndex &index, const QVariant &value,
     return false;
 }
 
-Qt::ItemFlags DevicesTableModel::flags(const QModelIndex &index) const
+
+Qt::ItemFlags StepsLandingTableModel::flags(const QModelIndex &index) const
 {
     if (!index.isValid())
         return Qt::NoItemFlags;
@@ -90,7 +96,7 @@ Qt::ItemFlags DevicesTableModel::flags(const QModelIndex &index) const
     return Qt::ItemIsEditable;
 }
 
-QHash<int, QByteArray> DevicesTableModel::roleNames() const
+QHash<int, QByteArray> StepsLandingTableModel::roleNames() const
 {
     QHash<int, QByteArray> names;
     names[tableDataRole] = "tableData";
@@ -98,12 +104,12 @@ QHash<int, QByteArray> DevicesTableModel::roleNames() const
     return names;
 }
 
-Devices *DevicesTableModel::list() const
+StepsLanding *StepsLandingTableModel::list() const
 {
     return mList;
 }
 
-void DevicesTableModel::setList(Devices *list)
+void StepsLandingTableModel::setList(StepsLanding *list)
 {
     beginResetModel();
 
@@ -113,18 +119,18 @@ void DevicesTableModel::setList(Devices *list)
     mList = list;
 
     if (mList) {
-        connect(mList, &Devices::preDevicesItemAppended, this, [=]() {
+        connect(mList, &StepsLanding::preItemAppended, this, [=]() {
             const int index = mList->items().size();
             beginInsertRows(QModelIndex(), index, index);
         });
-        connect(mList, &Devices::postDevicesItemAppended, this, [=]() {
+        connect(mList, &StepsLanding::postItemAppended, this, [=]() {
             endInsertRows();
         });
 
-        connect(mList, &Devices::preDevicesItemRemoved, this, [=](int index) {
+        connect(mList, &StepsLanding::preItemRemoved, this, [=](int index) {
             beginRemoveRows(QModelIndex(), index, index);
         });
-        connect(mList, &Devices::postDevicesItemRemoved, this, [=]() {
+        connect(mList, &StepsLanding::postItemRemoved, this, [=]() {
             endRemoveRows();
         });
     }

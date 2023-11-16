@@ -54,12 +54,19 @@ Dialog  {
             Layout.row: 1
             text: "ОК"
             onClicked: {
-                fileNameFromDialog =  fileNameInput.text
-                pathToSaveDialog.open()
-                fileNameInput.text = ""
+                if (fileNameInput.text) {
+                    fileNameFromDialog =  fileNameInput.text
+                    pathToSaveDialog.open()
+                    fileNameInput.text = ""
 
-                fileNameDialog.accepted()
-                fileNameDialog.close()
+                    fileNameDialog.accepted()
+                    fileNameDialog.close()
+                }
+                else {
+                    errorDialog.textOfError = "Вы не указали название файла."
+                    errorDialog.open()
+                }
+
             }
 
         }

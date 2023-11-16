@@ -49,6 +49,7 @@ Dialog  {
                 onAccepted: {
                     if (find(editText) === -1)
                         model.append({text: editText})
+
                 }
             }
         }
@@ -96,10 +97,11 @@ Dialog  {
                 text: "ОК"
                 onClicked: {
                     var startMode = false;
-                    if (startStateEarthBox.currentValue === "ON")
+                    if (startStateEarthBox.currentValue === "ON" && systems.getAllowState(deviceEarthBox.currentValue))
                         startMode = true
                     else
                         startMode = false
+
                     if (earthProbeSystems.checkUniqueType(systems.getType(deviceEarthBox.currentValue))) {
                         errorDialog.textOfError = `Вы уже добавили подсистему типа: ${systems.getType(deviceEarthBox.currentValue)}.`
                         errorDialog.open()

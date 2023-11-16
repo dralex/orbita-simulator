@@ -8,7 +8,7 @@ FileDialog {
     width: 264
     height: 146
     visible: false
-    folder: typeMission ? "file://" + pathToLoad : "file://" + earthPathToLoad
+    folder: shortcuts.home
 
     onAccepted: {
         var filePath = fileToLoadDialog.fileUrl.toString()
@@ -21,6 +21,7 @@ FileDialog {
 
         if (typeMission) {
             probes.loadFromXml(fileToLoad, planetDevicesItems, settingsManager)
+            if (probes.size()) {
             listViewProbes.currentIndex = probes.size() - 1
             currentProbe = listViewProbes.currentItem.probesModelData
 
@@ -32,6 +33,7 @@ FileDialog {
 
             firstNumber.text = `${currentProbe.innerRadius}`
             secondNumber.text = `${currentProbe.outerRadius}`
+            }
             if (currentProbe.pythonCode) {
                 showPlanetsElems = false
                 showPlanetsDevices = true
@@ -45,7 +47,7 @@ FileDialog {
                 showDiagrammButton = false
             }
         } else {
-            earthProbes.loadEarthProbeFromXml(fileToLoad, systems, earthMissions);
+            earthProbes.loadEarthProbeFromXml(fileToLoad, systems, earthMissions, settingsManager);
             listViewEarthProbes.currentIndex = earthProbes.size() - 1
             currentProbe = listViewEarthProbes.currentItem.earthProbesModelData
 
@@ -54,8 +56,18 @@ FileDialog {
             fuelTextInput.text = `${currentProbe.fuel}`
             voltageTextInput.text = `${currentProbe.voltage}`
             xz_yz_solar_id.text = `${currentProbe.xz_yz_solar}`
-//            xz_yz_radiator_id.text `${currentProbe.xz_yz_radiator}`
+            xz_yz_radiator_id.text = `${currentProbe.xz_yz_radiator}`
             xy_radiator_id.text = `${currentProbe.xy_radiator}`
+
+            if (currentProbe.pythonCode) {
+                gBEPythonCode.visible = true
+                earthPythonCodeProperty = currentProbe.pythonCode
+                showDiagrammButton = false
+            } else {
+                gBEPythonCode.visible = false
+                showDiagrammButton = true
+                earthPythonCodeProperty = ""
+            }
         }
 
 

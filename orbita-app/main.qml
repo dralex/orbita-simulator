@@ -5,7 +5,6 @@ import QtQuick.Layouts 1.12
 import Qt.labs.settings 1.0
 
 import ProbeModel 1.0
-import DevicesModel 1.0
 import StepsActivityModel 1.0
 import StepsLandingModel 1.0
 import PlanetsProbesDevicesModel 1.0
@@ -39,6 +38,8 @@ ApplicationWindow  {
     CalculatorFileDialog {id: calculatorFileDialog}
     EarthDiagrammDialog {id: earthDiagrammDialog}
     DiagrammFileDialog {id: diagrammFileDialog}
+    EarthCalculator {id: earthCalculatorWindow}
+    InfoWindow {id: infoWindow}
     property string fileNameFromDialog;
     property ListModel modelSolutions: ListModel {}
     property bool itemsEnabled: false
@@ -76,6 +77,24 @@ ApplicationWindow  {
     property bool earthElementsVisible: false
     property bool checkAction: false
     property bool typeMission: true
+
+    Connections {
+        target: earthProbes
+        function onErrorOccurred(errorMessage) {
+            errorDialog.textOfError = errorMessage;
+            errorDialog.open();
+        }
+    }
+
+    Connections {
+        target: probes
+        function onErrorOccurred(errorMessage) {
+            errorDialog.textOfError = errorMessage;
+            errorDialog.open();
+        }
+    }
+
+
 
     RowLayout {
         anchors.fill: parent
@@ -296,11 +315,34 @@ ApplicationWindow  {
                         fileNameDialog.open()
                     } else {
                         if (typeMission) {
-                            probes.saveProbe(listViewProbes.currentIndex, probeNameText.text, firstNumber.text, secondNumber.text, pythonCodeProperty, currentProbe.probeFilePath)
-                            probes.saveToXml(listViewProbes.currentIndex, planetsItems, missionIndex, currentProbe.probeFilePath)
+                            probes.saveProbe(listViewProbes.currentIndex,
+                                             probeNameText.text,
+                                             firstNumber.text,
+                                             secondNumber.text,
+                                             pythonCodeProperty,
+                                             currentProbe.probeFilePath)
+
+                            probes.saveToXml(listViewProbes.currentIndex,
+                                             planetsItems,
+                                             missionIndex,
+                                             currentProbe.probeFilePath,
+                                             )
                         } else {
-                            earthProbes.saveEarthProbe(listViewEarthProbes.currentIndex, probeNameText.text, fuelTextInput.text, voltageTextInput.text,
-                                                       xz_yz_solar_id.text, xz_yz_radiator_id.text, xy_radiator_id.text);
+                            earthProbes.saveEarthProbe(listViewEarthProbes.currentIndex,
+                                                       probeNameText.text,
+                                                       fuelTextInput.text,
+                                                       voltageTextInput.text,
+                                                       xz_yz_solar_id.text,
+                                                       xz_yz_radiator_id.text,
+                                                       xy_radiator_id.text,
+                                                       currentProbe.probeFilePath);
+
+                            earthProbes.saveEarthProbeToXml(listViewEarthProbes.currentIndex,
+                                                            earthMissions,
+                                                            systems,
+                                                            earthMissionIndex,
+                                                            currentProbe.probeFilePath,
+                                                            )
                         }
                     }
                 }
@@ -361,9 +403,16 @@ ApplicationWindow  {
                 onClicked: {
                     if (typeMission) {
                         if (settingsManager.checkSimulationFile(settingsManager.getSimulationPath() + "/simulation.py")) {
-                            settingsManager.saveSettingsToFile("planets_settings.txt", typeMission);
-                            pathToSave = settingsManager.getPlanetsProbesPath()
-                            pathToLoad = settingsManager.getPlanetsProbesPath()
+                            probes.saveProbe(listViewProbes.currentIndex, probeNameText.text, firstNumber.text, secondNumber.text, pythonCodeProperty, currentProbe.probeFilePath)
+                            if (probes.checkFileChanges(listViewProbes.currentIndex, planetDevicesItems)) {
+                                settingsManager.saveSettingsToFile("planets_settings.txt", typeMission);
+                                pathToSave = settingsManager.getPlanetsProbesPath()
+                                pathToLoad = settingsManager.getPlanetsProbesPath()
+                            } else {
+                                errorDialog.textOfError = "Вы не сохранили изменения в аппарате!"
+                                errorDialog.open()
+                                return
+                            }
                         } else {
                             errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора."
                             errorDialog.open()
@@ -371,9 +420,17 @@ ApplicationWindow  {
                         }
                     } else {
                         if (settingsManager.checkSimulationFile(settingsManager.getEarthSimulationPath() + "/simulation.py")) {
-                            settingsManager.saveSettingsToFile("earth_settings.txt", typeMission);
-                            earthPathToSave = settingsManager.getEarthProbesPath()
-                            earthPathToLoad = settingsManager.getEarthProbesPath()
+                            earthProbes.saveEarthProbe(listViewEarthProbes.currentIndex, probeNameText.text, fuelTextInput.text, voltageTextInput.text,
+                                                       xz_yz_solar_id.text, xz_yz_radiator_id.text, xy_radiator_id.text, currentProbe.probeFilePath);
+                            if (earthProbes.checkFileChanges(systems, listViewEarthProbes.currentIndex)) {
+                                settingsManager.saveSettingsToFile("earth_settings.txt", typeMission);
+                                earthPathToSave = settingsManager.getEarthProbesPath()
+                                earthPathToLoad = settingsManager.getEarthProbesPath()
+                            } else {
+                                errorDialog.textOfError = "Вы не сохранили изменения в аппарате!"
+                                errorDialog.open()
+                                return
+                            }
                         } else {
                             errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора."
                             errorDialog.open()
@@ -390,16 +447,28 @@ ApplicationWindow  {
                 width: parent.width; height: 23
                 text: "Запустить калькулятор"
                 anchors.bottom: parent.bottom
-                enabled: itemsEnabled
+                enabled: false
                 onClicked: {
-                    if (settingsManager.checkSimulationFile(settingsManager.getSimulationPath() + "/simulation.py")) {
-                        mainWindow.visibility = 0
-                        planetCalculatorWindow.visibility = 1
+                    if (typeMission) {
+                        if (settingsManager.checkSimulationFile(settingsManager.getPlanetsCalculatorPath() + "/simulation.py")) {
+                            mainWindow.visibility = 0
+                            planetCalculatorWindow.visibility = 1
 
+                        } else {
+                            errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора."
+                            errorDialog.open()
+                            folderSimulation = "None"
+                        }
                     } else {
-                        errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора."
-                        errorDialog.open()
-                        folderSimulation = "None"
+                        if (settingsManager.checkSimulationFile(settingsManager.getEarthCalculatorPath() + "/simulation.py")) {
+                            mainWindow.visibility = 0
+                            earthCalculatorWindow.visibility = 1
+
+                        } else {
+                            errorDialog.textOfError = "В данной директории отсутствуют файлы симулятора."
+                            errorDialog.open()
+                            folderSimulation = "None"
+                        }
                     }
                 }
             }
@@ -518,18 +587,19 @@ ApplicationWindow  {
 
                     RowLayout {
                         anchors.fill: parent
-                        ListView {
-                            id: listViewDevices
+                        TableView {
+                            id: tableViewDevices
                             width: parent.width - devicesButtons.width
                             height: parent.height
                             clip: true
                             enabled: itemsEnabled
                             visible: showPlanetsDevices
-                            model: DevicesModel {
+                            rowSpacing: 1
+                            columnSpacing: 1
+
+                            model: DevicesTableModel {
                                 list: devicesItems
                             }
-
-
 
                             ScrollBar.vertical: ScrollBar {
                                 id: devicesScrollBar
@@ -540,41 +610,46 @@ ApplicationWindow  {
                                     margins: 0
                                 }
                             }
+                            property int currentRow: -1
 
                             delegate: Item {
-                                property variant devicesModelData: model
+                                width: 85
+                                implicitWidth: 85
+                                implicitHeight: 30
 
-                                width: listViewDevices.width
-                                height: 100
                                 Rectangle {
-                                    width: parent.width - devicesScrollBar.width
-                                    height: parent.height - 5
-                                    color: listViewDevices.currentIndex === index ** listViewDevices.enabled? "lightblue" : "white"
                                     border.color: "grey"
+                                    border.width: 1
+                                    width: parent.width
+                                    height: 30
+                                    color: tableViewDevices.currentRow === row ** tableViewDevices.enabled ? "lightblue" : "white"
 
-                                    MouseArea {
+                                    Text {
+                                        width: parent.width
+                                        text: tableData
+                                        font.pointSize: 7.5
+                                        elide: Text.ElideRight
+                                        wrapMode: Text.WordWrap
                                         anchors.fill: parent
-                                        onClicked: {
-                                            listViewDevices.currentIndex = index
-                                        }
+                                        verticalAlignment: Text.AlignVCenter
+                                        horizontalAlignment: Text.AlignHCenter
                                     }
                                 }
 
-                                Column {
+                                MouseArea {
                                     anchors.fill: parent
-                                    anchors.leftMargin: 5
-                                    anchors.topMargin: 15
-
-                                    Text { text: '<b>Номер:</b> ' + model.deviceNumber  }
-
-                                    Text { text: index >= 0 && index < listViewDevices.count && model.deviceName ? '<b>Название:</b> ' + model.deviceName : "<b>Название:</b> None" }
-
-                                    Text { text: index >= 0 && index < listViewDevices.count && model.startState ? '<b>Начальное состояние:</b> ' + model.startState : "<b>Начальное состояние:</b> None" }
-
-                                    Text {
-                                        text: index >= 0 && index < listViewDevices.count ? '<b>Safe Mode:</b> ' + model.inSafeMode : ""
+                                    onClicked: {
+                                        if (row > 0) {
+                                            tableViewDevices.currentRow = row;
+                                        }
                                     }
 
+                                    onDoubleClicked: {
+                                        if (column >= 0 && row > 0) {
+                                            infoWindow.textOfInfo = devicesItems.getText(row - 1, column)
+                                            if (infoWindow.textOfInfo.length) infoWindow.open()
+                                        }
+                                    }
                                 }
                             }
                         }
@@ -608,8 +683,9 @@ ApplicationWindow  {
                                 enabled: itemsEnabled
                                 onClicked: {
                                     if (devicesItems.size()) {
-                                        successDialog.message = `Успешно удалено устройство ${listViewDevices.currentItem.devicesModelData.deviceName}`
-                                        devicesItems.removeDevicesItem(probes, stepsActivityItems, stepsLandingItems, listViewProbes.currentIndex, listViewDevices.currentIndex)
+                                        successDialog.message = `Успешно удалено устройство ${devicesItems.getDeviceName(tableViewDevices.currentRow - 1)}`
+                                        devicesItems.removeDevicesItem(probes, stepsActivityItems, stepsLandingItems, listViewProbes.currentIndex,
+                                                                       tableViewDevices.currentRow - 1)
                                         successDialog.open()
                                     }
 
@@ -803,12 +879,14 @@ ApplicationWindow  {
 
                     RowLayout {
                         anchors.fill: parent
-                        ListView {
-                            id: listViewEarthSystems
-                            width: parent.width - devicesButtons.width
+                        TableView {
+                            id: tableViewEarthSystems
+                            width: parent.width - systemsEarthButtons.width
                             height: parent.height
                             clip: true
                             enabled: itemsEnabled
+                            rowSpacing: 1
+                            columnSpacing: 1
                             visible: earthElementsVisible
                             model: SystemsProbeModel {
                                 list: earthProbeSystems
@@ -825,43 +903,47 @@ ApplicationWindow  {
                                 }
                             }
 
+                            property int currentRow: -1
+
                             delegate: Item {
-                                property variant devicesModelData: model
+                                width: 85
+                                implicitWidth: 85
+                                implicitHeight: 30
 
-                                width: listViewEarthSystems.width - earthDevicesScrollBar.width
-                                height: 80
                                 Rectangle {
-                                    width: parent.width - devicesScrollBar.width
-                                    height: parent.height - 5
-                                    color: listViewEarthSystems.currentIndex === index ** listViewEarthSystems.enabled? "lightblue" : "white"
                                     border.color: "grey"
+                                    border.width: 1
+                                    width: parent.width
+                                    height: 30
+                                    color: tableViewEarthSystems.currentRow === row ** tableViewEarthSystems.enabled ? "lightblue" : "white"
 
-                                    MouseArea {
+                                    Text {
+                                        width: parent.width
+                                        text: tableData
+                                        font.pointSize: 7.5
+                                        elide: Text.ElideRight
+                                        wrapMode: Text.WordWrap
                                         anchors.fill: parent
-                                        onClicked: {
-                                            listViewEarthSystems.currentIndex = index
-                                        }
+                                        verticalAlignment: Text.AlignVCenter
+                                        horizontalAlignment: Text.AlignHCenter
                                     }
                                 }
 
-                                Column {
+                                MouseArea {
                                     anchors.fill: parent
-                                    anchors.leftMargin: 5
-                                    anchors.topMargin: 10
+                                    onClicked: {
+                                        if (row > 0) {
+                                            tableViewEarthSystems.currentRow = row;
+                                        }
 
-
-                                    Text {
-                                        width: listViewEarthSystems.width - systemsEarthButtons.width
-                                        text: index >= 0 && index < listViewEarthSystems.count && model.systemName ? '<b>Название:</b> ' + model.systemName : "<b>Название:</b> None"
-                                        wrapMode: Text.WordWrap
                                     }
 
-                                    Text { text: index >= 0 && index < listViewEarthSystems.count && model.mass ? '<b>Масса:</b> ' + model.mass : "<b>Масса:</b> None" }
-
-                                    Text {
-                                        text: index >= 0 && index < listViewEarthSystems.count ? '<b>Начальное состояние:</b> ' + model.startMode : ""
+                                    onDoubleClicked: {
+                                        if (column >= 0 && row > 0) {
+                                            infoWindow.textOfInfo = earthProbeSystems.getText(row - 1, column)
+                                            if (infoWindow.textOfInfo.length) infoWindow.open()
+                                        }
                                     }
-
                                 }
                             }
                         }
@@ -896,7 +978,7 @@ ApplicationWindow  {
                                 enabled: itemsEnabled
                                 onClicked: {
                                     if (systems.size()) {
-                                        successDialog.message = `Успешно удалена подсистема: ${listViewEarthSystems.currentItem.devicesModelData.systemName}`
+                                        successDialog.message = `Успешно удалена подсистема: ${listViewEarthSystems.currentItem.systemsModelData.systemName}`
                                         earthProbeSystems.removeEarthSystem(earthProbes, listViewEarthProbes.currentIndex, listViewEarthSystems.currentIndex)
                                         successDialog.open()
                                     }
@@ -930,13 +1012,15 @@ ApplicationWindow  {
                             title: qsTr("Этап приземления")
                             RowLayout {
                                 anchors.fill: parent
-                                ListView {
-                                    id: listViewStepsLanding
+                                TableView {
+                                    id: tableViewStepsLanding
                                     width: parent.width - sLButton.width
                                     height: parent.height
                                     clip: true
                                     enabled: itemsEnabled
                                     visible: showPlanetsElems
+                                    rowSpacing: 1
+                                    columnSpacing: 1
                                     model: StepsLandingModel {
                                         list: stepsLandingItems
                                     }
@@ -952,41 +1036,43 @@ ApplicationWindow  {
                                         }
                                     }
 
-                                    delegate: Item {
-                                        width: listViewStepsLanding.width
-                                        height: 85
-                                        Rectangle {
-                                            width: parent.width - stepsLandingScrollBar.width
-                                            height: parent.height - 5
-                                            color: listViewStepsLanding.currentIndex === index && listViewStepsLanding.enabled? "lightblue" : "white"
-                                            border.color: "grey"
+                                    property int currentRow: -1
 
-                                            MouseArea {
+                                    delegate: Item {
+                                        width: 60
+                                        implicitWidth: 60
+                                        implicitHeight: 30
+
+                                        Rectangle {
+                                            border.color: "grey"
+                                            border.width: 1
+                                            width: parent.width
+                                            height: 30
+                                            color: tableViewStepsLanding.currentRow === row ** tableViewStepsLanding.enabled ? "lightblue" : "white"
+
+                                            Text {
+                                                width: parent.width
+                                                text: tableData
+                                                font.pointSize: 7.5
+                                                elide: Text.ElideRight
+                                                wrapMode: Text.WordWrap
                                                 anchors.fill: parent
-                                                onClicked: {
-                                                    listViewStepsLanding.currentIndex = index
-                                                }
+                                                verticalAlignment: Text.AlignVCenter
+                                                horizontalAlignment: Text.AlignHCenter
                                             }
                                         }
 
-                                        Column {
+                                        MouseArea {
                                             anchors.fill: parent
-                                            anchors.leftMargin: 5
-                                            anchors.topMargin: 2
-
-                                            Text { text: index >= 0 && index < listViewStepsLanding.count && model.deviceNumber? '<b>Номер устройства:</b> ' + model.deviceNumber : "<b>Номер устройства:</b> None" }
-
-                                            Text { text: index >= 0 && index < listViewStepsLanding.count && model.time >= 0 ? '<b>Время:</b> ' + model.time : "<b>Время:</b> None" }
-
-                                            Text { text: index >= 0 && index < listViewStepsLanding.count && model.device ? '<b>Тип:</b> ' + model.device : "<b>Тип:</b> None" }
-
-                                            Text { text: index >= 0 && index < listViewStepsLanding.count && model.command ? '<b>Команда:</b> ' + model.command : "<b>Команда:</b> None" }
-
-                                            Text { text: index >= 0 && index < listViewStepsLanding.count && model.argument ? '<b>Параметр:</b> ' + model.argument : "" }
+                                            onClicked: {
+                                                if (row > 0) {
+                                                    tableViewStepsLanding.currentRow = row;
+                                                }
+                                            }
                                         }
                                     }
-                                }
 
+                                }
 
                                 ColumnLayout {
                                     id: sLButton
@@ -1011,7 +1097,7 @@ ApplicationWindow  {
                                         onClicked: {
                                             if (stepsLandingItems.size()) {
                                                 successDialog.message = "Успшено удалено"
-                                                stepsLandingItems.removeItem(probes, true, listViewProbes.currentIndex, listViewStepsLanding.currentIndex)
+                                                stepsLandingItems.removeItem(probes, true, listViewProbes.currentIndex, tableViewStepsLanding.currentRow - 1)
                                                 successDialog.open()
                                             }
                                         }
@@ -1028,13 +1114,15 @@ ApplicationWindow  {
                                 Layout.preferredHeight: parent.height * 0.5
                                 RowLayout {
                                     anchors.fill: parent
-                                    ListView {
-                                        id: listViewStepsPlanetActivity
+                                    TableView {
+                                        id: tableViewStepsPlanetActivity
                                         width: parent.width - sPAButtons.width
                                         height: parent.height
                                         clip: true
                                         enabled: itemsEnabled
                                         visible: showPlanetsElems
+                                        rowSpacing: 1
+                                        columnSpacing: 1
                                         model: StepsActivityModel {
                                             list: stepsActivityItems
                                         }
@@ -1050,41 +1138,43 @@ ApplicationWindow  {
                                             }
                                         }
 
-                                        delegate: Item {
-                                            width: listViewStepsPlanetActivity.width
-                                            height: 85
-                                            Rectangle {
-                                                width: parent.width - stepsPlanetActivityScrollBar.width
-                                                height: parent.height - 5
-                                                color: listViewStepsPlanetActivity.currentIndex === index && listViewStepsPlanetActivity.enabled? "lightblue" : "white"
-                                                border.color: "grey"
 
-                                                MouseArea {
+                                        property int currentRow: -1
+
+                                        delegate: Item {
+                                            width: 60
+                                            implicitWidth: 60
+                                            implicitHeight: 30
+
+                                            Rectangle {
+                                                border.color: "grey"
+                                                border.width: 1
+                                                width: parent.width
+                                                height: 30
+                                                color: tableViewStepsPlanetActivity.currentRow === row ** tableViewStepsPlanetActivity.enabled ? "lightblue" : "white"
+
+                                                Text {
+                                                    width: parent.width
+                                                    text: tableData
+                                                    font.pointSize: 7.5
+                                                    elide: Text.ElideRight
+                                                    wrapMode: Text.WordWrap
                                                     anchors.fill: parent
-                                                    onClicked: {
-                                                        listViewStepsPlanetActivity.currentIndex = index
-                                                    }
+                                                    verticalAlignment: Text.AlignVCenter
+                                                    horizontalAlignment: Text.AlignHCenter
                                                 }
                                             }
 
-                                            Column {
+                                            MouseArea {
                                                 anchors.fill: parent
-                                                anchors.leftMargin: 5
-                                                anchors.topMargin: 2
-
-                                                Text { text: index >= 0 && index < listViewStepsLanding.count && model.deviceNumber ? '<b>Номер устройства:</b> ' + model.deviceNumber : "<b>Номер устройства:</b> None" }
-
-                                                Text { text: index >= 0 && index < listViewStepsPlanetActivity.count && model.time >= 0 ? '<b>Время:</b> ' + model.time : "<b>Время:</b> None" }
-
-                                                Text { text: index >= 0 && index < listViewStepsPlanetActivity.count && model.device ? '<b>Тип:</b> ' + model.device : "<b>Тип:</b> None" }
-
-                                                Text { text: index >= 0 && index < listViewStepsPlanetActivity.count && model.command ? '<b>Команда:</b>' + model.command : "<b>Команда:</b> None" }
-
-                                                Text { text: index >= 0 && index < listViewStepsPlanetActivity.count && model.argument ? '<b>Параметр:</b> ' + model.argument : "" }
+                                                onClicked: {
+                                                    if (row > 0) {
+                                                        tableViewStepsPlanetActivity.currentRow = row;
+                                                    }
+                                                }
                                             }
                                         }
                                     }
-
 
                                     ColumnLayout {
                                         id: sPAButtons
@@ -1109,7 +1199,7 @@ ApplicationWindow  {
                                             onClicked: {
                                                 if (stepsActivityItems.size()) {
                                                     successDialog.message = "Успешно удалено"
-                                                    stepsActivityItems.removeItem(probes, false, listViewProbes.currentIndex, listViewStepsPlanetActivity.currentIndex)
+                                                    stepsActivityItems.removeItem(probes, false, listViewProbes.currentIndex, tableViewStepsPlanetActivity.currentRow - 1)
                                                     successDialog.open()
                                                 }
 
@@ -1131,56 +1221,67 @@ ApplicationWindow  {
                     Layout.preferredHeight: 400
                     visible: showPythonArea
                     title: qsTr("Вставьте Python код:")
-                    TextArea {
-                        id: pythonCodeTextArea
+
+                    ScrollView {
                         anchors.fill: parent
-                        enabled: itemsEnabled
-                        text: pythonCodeProperty
+                        TextArea {
+                            id: pythonCodeTextArea
+                            width: parent.width
+                            height: parent.height
+                            enabled: itemsEnabled
+                            text: pythonCodeProperty
 
-                        onTextChanged: {
-                            pythonCodeProperty = text;
-                        }
+                            onTextChanged: {
+                                pythonCodeProperty = text;
+                            }
 
-                        Keys.onPressed: {
-                            if (event.key === Qt.Key_Tab) {
-                                event.accepted = true;
-                                var cursorPos = cursorPosition;
-                                text = text.slice(0, cursorPos) + "    " + text.slice(cursorPos);
-                                cursorPosition = cursorPos + 4;
+                            Keys.onPressed: {
+                                if (event.key === Qt.Key_Tab) {
+                                    event.accepted = true;
+                                    var cursorPos = cursorPosition;
+                                    text = text.slice(0, cursorPos) + "    " + text.slice(cursorPos);
+                                    cursorPosition = cursorPos + 4;
+                                }
                             }
                         }
-
                     }
                 }
+
 
                 GroupBox {
                     id: gBEPythonCode
                     width: parent.width
-                    height: 400
+                    height: 300
                     Layout.preferredWidth: parent.width
-                    Layout.preferredHeight: 400
+                    Layout.preferredHeight: 300
                     visible: false
                     title: qsTr("Вставьте Python код:")
-                    TextArea {
-                        id: earthPythonCodeTextArea
+
+                    ScrollView {
                         anchors.fill: parent
-                        text: earthPythonCodeProperty
+                        TextArea {
+                            id: earthPythonCodeTextArea
+                            width: parent.width
+                            height: parent.height
 
-                        onTextChanged: {
-                            earthPythonCodeProperty = text;
-                        }
+                            text: earthPythonCodeProperty
 
-                        Keys.onPressed: {
-                            if (event.key === Qt.Key_Tab) {
-                                event.accepted = true;
-                                var cursorPos = cursorPosition;
-                                text = text.slice(0, cursorPos) + "    " + text.slice(cursorPos);
-                                cursorPosition = cursorPos + 4;
+                            onTextChanged: {
+                                earthPythonCodeProperty = text;
+                            }
+
+                            Keys.onPressed: {
+                                if (event.key === Qt.Key_Tab) {
+                                    event.accepted = true;
+                                    var cursorPos = cursorPosition;
+                                    text = text.slice(0, cursorPos) + "    " + text.slice(cursorPos);
+                                    cursorPosition = cursorPos + 4;
+                                }
                             }
                         }
-
                     }
                 }
+
 
                 Button {
                     id: settingsButton
@@ -1189,7 +1290,7 @@ ApplicationWindow  {
                     Layout.preferredHeight: height
                     Layout.preferredWidth: width
                     Layout.alignment: Qt.AlignBottom | Qt.AlignRight
-                    enabled: itemsEnabled
+                    enabled: false
                     text: "Настройки"
                     onClicked: {
                         folderProbesPath = settingsManager.getPlanetsProbesPath()
@@ -1223,7 +1324,6 @@ ApplicationWindow  {
                     }
                 }
             }
-
         }
     }
 }

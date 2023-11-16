@@ -5,10 +5,31 @@
 #include <QVector>
 #include <QDebug>
 #include <QRandomGenerator>
+#include <QXmlSchema>
+#include <QXmlSchemaValidator>
 #include "systemprobe.h"
 #include "earthmissions.h"
 #include "systems.h"
 #include "systemprobe.h"
+#include "settingsmanager.h"
+
+struct StationData {
+    QString name;
+    double locationAngle;
+};
+struct MissileData {
+    int index;
+    double locationAngle;
+    double launchTime;
+};
+
+struct MessageData {
+    int order;
+    int msgFrom;
+    int msgTo;
+    double data;
+    double duration;
+};
 
 struct SystemItem;
 
@@ -66,6 +87,7 @@ signals:
     void preEarthSystemRemoved(int index);
     void postEarthSystemRemoved();
 
+    void errorOccurred(const QString &errorMessage);
 
 public slots:
     void appendEarthProbe(QString probeName, QString missionName, QString pythonCode, QString filePath);
@@ -80,9 +102,11 @@ public slots:
     void removeDiagramm(int probeIndex, QString systemEngName);
 
     int size();
-    void saveEarthProbeToXml(int probeIndex, EarthMissions *missions,  int missionIndex,
-                             const QString &filename, const QString &oldFilename);
-    void loadEarthProbeFromXml(const QString &path, Systems *systems, EarthMissions *missions);
+    void saveEarthProbeToXml(int probeIndex, EarthMissions *missions,  Systems *earthSystems, int missionIndex,
+                             const QString &filename);
+    void loadEarthProbeFromXml(const QString &path, Systems *systems, EarthMissions *missions, SettingsManager *settingsManager);
+
+    bool checkFileChanges(Systems *systems, int probeIndex);
 
 private:
     QString generateIntData(QVector<int>);
