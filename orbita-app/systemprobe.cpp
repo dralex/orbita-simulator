@@ -26,7 +26,7 @@ void SystemProbe::appendEarthSystem(EarthProbe *earthProbe, int probeIndex, QStr
 {
     emit preEarthProbeSystemsAppended();
 
-    mItems.append({mItems.size(), systemEngName, systemName, type, mass, startMode});
+    mItems.append({mItems.size(), systemEngName, systemName, type, mass, startMode, ""});
     earthProbe->appendEarthDevice(probeIndex, systemEngName, systemName, type, mass, startMode);
 
     emit postEarthProbeSystemsAppended();
@@ -40,6 +40,18 @@ void SystemProbe::removeEarthSystem(EarthProbe *earthProbe, int probeIndex, int 
     earthProbe->removeEarthDevice(probeIndex, index);
 
     emit postEarthProbeSystemsRemoved();
+}
+
+void SystemProbe::appendDiagramPath(QString systemEngName, QString diagramPath)
+{
+    for (int i = 0; i < mItems.size(); ++i)
+        if (mItems[i].systemEngName == systemEngName)
+            mItems[i].diagramPath = diagramPath;
+}
+
+QString SystemProbe::getText(int row, int column)
+{
+    return (row >= 0 && row < mItems.size()) ? ((column == 0) ? mItems[row].systemName : ((column == 3) ? mItems[row].diagramPath : QString())) : QString();
 }
 
 bool SystemProbe::checkUniqueType(QString type)
@@ -66,7 +78,8 @@ void SystemProbe::changeEarthSystems(EarthProbe *earthProbe, int probeIndex)
                        earthProbe->items()[probeIndex].systems[i].systemName,
                        earthProbe->items()[probeIndex].systems[i].type,
                        earthProbe->items()[probeIndex].systems[i].mass,
-                       earthProbe->items()[probeIndex].systems[i].startMode
+                       earthProbe->items()[probeIndex].systems[i].startMode,
+                       earthProbe->items()[probeIndex].systems[i].diagramPath,
                       });
 
         emit postEarthProbeSystemsAppended();

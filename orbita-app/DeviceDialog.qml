@@ -131,7 +131,7 @@ Dialog  {
                                 startStateBox.currentValue,
                                 safeModeBox.currentIndex === 1 ? false : true)
 
-                    listViewDevices.currentIndex = devicesItems.size() - 1
+                    tableViewDevices.currentRow = devicesItems.size()
 
                     deviceBox.currentIndex = 0
                     startStateBox.currentIndex = 0

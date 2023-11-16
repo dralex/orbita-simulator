@@ -6,6 +6,8 @@
 #include <QFile>
 #include <QDebug>
 #include <QXmlStreamWriter>
+#include <QXmlSchema>
+#include <QXmlSchemaValidator>
 
 struct PlanetsItem {
     int id;
@@ -34,6 +36,7 @@ public slots:
     void loadPlanets(const QString &filePath);
     int size();
 private:
+    bool checkUnique(QString planetName);
     QVector<PlanetsItem> mItems;
 };
 

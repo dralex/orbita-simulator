@@ -1,9 +1,8 @@
-#include "devices.h"
+﻿#include "devices.h"
 
 Devices::Devices(QObject *parent)
     : QObject{parent}
 {
-
 }
 
 QVector<DevicesItem> Devices::items() const
@@ -106,4 +105,18 @@ void Devices::changeDevices(Probe *probe, int probeIndex)
 int Devices::size()
 {
     return mItems.size();
+}
+
+QString Devices::getDeviceName(int index)
+{
+    for (int i = 0; i < mItems.size(); ++i)
+        if (i == index)
+            return mItems[i].deviceName;
+
+    return "None";
+}
+
+QString Devices::getText(int row, int column)
+{
+    return (row >= 0 && row < mItems.size() && column == 1) ? mItems[row].deviceName : QString();
 }

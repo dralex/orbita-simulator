@@ -2,6 +2,7 @@
 
 EarthMissionsModel::EarthMissionsModel(QObject *parent)
     : QAbstractListModel(parent)
+    , mList(nullptr)
 {
 }
 

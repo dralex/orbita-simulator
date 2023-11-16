@@ -46,7 +46,7 @@ void Planets::loadPlanets(const QString &filePath)
                         planet.height = xmlReader.readElementText().toDouble();
                     }
                 }
-                if (planet.planetName != "Earth") {
+                if (planet.planetName != "Earth" && !checkUnique(planet.planetName)) {
                     emit prePlanetsItemAppended();
 
                     mItems.append(planet);
@@ -65,5 +65,15 @@ void Planets::loadPlanets(const QString &filePath)
 int Planets::size()
 {
     return mItems.size();
+}
+
+bool Planets::checkUnique(QString planetName)
+{
+    for (int i = 0; i < mItems.size(); ++i) {
+        if (mItems[i].planetName == planetName)
+            return true;
+    }
+
+    return false;
 }
 

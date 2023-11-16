@@ -1,7 +1,7 @@
 #ifndef PROBEMODEL_H
 #define PROBEMODEL_H
 
-#include "devicesmodel.h"
+#include <QAbstractListModel>
 
 class Probe;
 

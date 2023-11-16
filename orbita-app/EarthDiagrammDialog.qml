@@ -52,9 +52,15 @@ Dialog  {
                 Layout.preferredHeight: 23
                 Layout.preferredWidth: parent.width * 0.5
                 text: "Добавить"
-                onClicked: {appendEarthSystem
-                    diagrammSystemName = earthDevicesBox.currentValue;
-                    diagrammFileDialog.open()
+                onClicked: {
+                    if (systems.getAllowProgram(earthDevicesBox.currentValue)) {
+                        diagrammSystemName = systems.getSystemsEngName(earthDevicesBox.currentValue)
+                        diagrammFileDialog.open()
+                    } else {
+                        errorDialog.textOfError = "Для этой системы нельзя установить решение в виде диаграммы."
+                        errorDialog.open()
+                        return
+                    }
 
                     earthDiagrammDialog.accepted()
                     earthDiagrammDialog.close()

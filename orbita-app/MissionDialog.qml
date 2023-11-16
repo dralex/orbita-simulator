@@ -109,7 +109,9 @@ Dialog  {
                                 showDiagrammButton = false
                                 showPythonArea.text = ""
 
-                                probes.loadFromXml(`../orbita-app/planets_probes_templates/${missonSelect.currentText}-Template.xml`, planetDevicesItems, settingsManager)
+                                probes.loadFromXml(`../orbita-app/planets_probes_templates/${missonSelect.currentText}-Template.xml`,
+                                                   planetDevicesItems,
+                                                   settingsManager)
                                 listViewProbes.currentIndex = probes.size() - 1
                                 currentProbe = listViewProbes.currentItem.probesModelData
 
@@ -124,7 +126,9 @@ Dialog  {
                                     showPythonArea = true
                                     showDiagrammButton = false
 
-                                    probes.loadFromXml(`../orbita-app/planets_probes_templates/${missonSelect.currentText}-Python-Template.xml`, planetDevicesItems, settingsManager)
+                                    probes.loadFromXml(`../orbita-app/planets_probes_templates/${missonSelect.currentText}-Python-Template.xml`,
+                                                       planetDevicesItems,
+                                                       settingsManager)
                                     listViewProbes.currentIndex = probes.size() - 1
                                     currentProbe = listViewProbes.currentItem.probesModelData
 
@@ -166,8 +170,13 @@ Dialog  {
                                     devicesItems.changeDevices(probes, listViewProbes.currentIndex)
                                     pythonCodeProperty = currentProbe.pythonCode
                                 } else {
-
-                                    earthProbes.appendEarthProbe("earth probe", earthMissonSelect.currentText, "print('Hello World!')", "");
+                                    if (earthMissions.getMissionEngName(earthMissonSelect.currentText).includes("test"))
+                                        earthProbes.loadEarthProbeFromXml(`../orbita-app/earth_probes_templates/${earthMissions.getMissionEngName(earthMissonSelect.currentText)}.xml`,
+                                                                          systems,
+                                                                          earthMissions,
+                                                                          settingsManager)
+                                    else
+                                        earthProbes.appendEarthProbe("earth probe", earthMissonSelect.currentText, "print('Hello World!')", "");
                                     listViewEarthProbes.currentIndex = earthProbes.size() - 1
                                     currentProbe = listViewEarthProbes.currentItem.earthProbesModelData
 
@@ -175,7 +184,7 @@ Dialog  {
                                     fuelTextInput.text = `${currentProbe.fuel}`
                                     voltageTextInput.text = `${currentProbe.voltage}`
                                     xz_yz_solar_id.text = `${currentProbe.xz_yz_solar}`
-                                    xz_yz_radiator_id.text `${currentProbe.xz_yz_radiator}`
+                                    xz_yz_radiator_id.text = `${currentProbe.xz_yz_radiator}`
                                     xy_radiator_id.text = `${currentProbe.xy_radiator}`
                                     earthProbeSystems.changeEarthSystems(earthProbes, listViewEarthProbes.currentIndex)
 
@@ -188,16 +197,25 @@ Dialog  {
                             }
 
                             if (solutionSelect.currentText === "Диаграмма") {
-                                earthProbes.appendEarthProbe("earth probe", earthMissonSelect.currentText, "", "");
+                                if (earthMissions.getMissionEngName(earthMissonSelect.currentText).includes("test"))
+                                    earthProbes.loadEarthProbeFromXml(`../orbita-app/earth_probes_templates/${earthMissions.getMissionEngName(earthMissonSelect.currentText)}sm.xml`,
+                                                                      systems,
+                                                                      earthMissions,
+                                                                      settingsManager
+                                                                      )
+                                else
+                                    earthProbes.appendEarthProbe("earth probe", earthMissonSelect.currentText, "", "");
                                 listViewEarthProbes.currentIndex = earthProbes.size() - 1
                                 currentProbe = listViewEarthProbes.currentItem.earthProbesModelData
 
                                 probeNameText.text = `${currentProbe.probeName}`
-//                                fuelTextInput.text = `${currentProbe.fuel}`
-//                                voltageTextInput.text = `${currentProbe.voltage}`
-//                                xz_yz_solar_id.text = `${currentProbe.xz_yz_solar}`
-//                                xz_yz_radiator_id.text `${currentProbe.xz_yz_radiator}`
-//                                xy_radiator_id.text = `${currentProbe.xy_radiator}`
+                                fuelTextInput.text = `${currentProbe.fuel}`
+                                voltageTextInput.text = `${currentProbe.voltage}`
+                                xz_yz_solar_id.text = `${currentProbe.xz_yz_solar}`
+
+                                xz_yz_radiator_id.text = `${currentProbe.xz_yz_radiator}`
+
+                                xy_radiator_id.text = `${currentProbe.xy_radiator}`
                                 earthProbeSystems.changeEarthSystems(earthProbes, listViewEarthProbes.currentIndex)
 
                                 gBEPythonCode.visible = false

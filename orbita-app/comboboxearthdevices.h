@@ -32,6 +32,7 @@ public:
     virtual QHash<int, QByteArray> roleNames() const override;
     SystemProbe *list() const;
     void setList(SystemProbe *list);
+
 private:
     SystemProbe *mList;
 };

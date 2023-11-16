@@ -17,8 +17,10 @@ FileDialog {
         if (filePath.startsWith("file://") || folderPath.startsWith("file://")) {
             var fileToLoad= filePath.substring(7)
         }
-
         earthProbes.appendDiagramm(listViewEarthProbes.currentIndex, diagrammSystemName, fileToLoad);
+        earthProbeSystems.appendDiagramPath(diagrammSystemName, fileToLoad)
         diagrammSystemName = ""
+        tableViewEarthSystems.contentY = tableViewEarthSystems.contentHeight
+        tableViewEarthSystems.contentY -= tableViewEarthSystems.contentHeight
     }
 }

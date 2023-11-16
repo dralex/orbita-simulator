@@ -3,7 +3,6 @@
 StepsLanding::StepsLanding(QObject *parent)
     : QObject{parent}
 {
-
 }
 
 const QVector<StepsLandingItem> StepsLanding::items() const

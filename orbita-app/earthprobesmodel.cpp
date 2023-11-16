@@ -2,6 +2,7 @@
 
 EarthProbesModel::EarthProbesModel(QObject *parent)
     : QAbstractListModel(parent)
+    , mList(nullptr)
 {
 }
 

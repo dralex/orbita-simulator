@@ -53,12 +53,17 @@ Dialog  {
                     if (versionSelect.currentIndex === 0 ) {
                         if (!probes.size())
                             itemsEnabled = false
+                        else
+                            itemsEnabled = true
                         probeNameText.text = ""
                         modelSolutions.append({text: "Таблица"})
                         typeMission = true
                         settingsManager.loadSettingsFromFile("planets_settings.txt", typeMission);
                         pathToSave = settingsManager.getPlanetsProbesPath()
                         pathToLoad = settingsManager.getPlanetsProbesPath()
+
+                        pathToLoadDialog.folder = pathToLoad !== "None" ? "file://" + pathToLoad : Qt.resolvedUrl("~")
+                        pathToSaveDialog.folder = pathToSave !== "None" ? "file://" + pathToSave : Qt.resolvedUrl("~")
 
                         settingsFolderSimulation = settingsManager.getSimulationPath()
                         settingsFolderProbesPath = pathToSave
@@ -72,8 +77,14 @@ Dialog  {
                         versionWindow.visible = false
                         earthElementsVisible = false
                         planetsElementsVisible = true
+                        showDiagrammButton = false
 
                     } else {
+                        if (!earthProbes.size())
+                            itemsEnabled = false
+                        else
+                            itemsEnabled = true
+
                         probeNameText.text = ""
                         typeMission = false
                         modelSolutions.append({text: "Диаграмма"})
@@ -93,6 +104,9 @@ Dialog  {
                         earthPathToLoad = settingsManager.getEarthProbesPath()
                         earthPathToSave = settingsManager.getEarthProbesPath()
 
+                        pathToLoadDialog.folder = earthPathToLoad !== "None" ? "file://" + earthPathToLoad : Qt.resolvedUrl("~")
+                        pathToSaveDialog.folder = earthPathToSave !== "None" ? "file://" + earthPathToSave : Qt.resolvedUrl("~")
+
                         showPlanetsElems = false
                         showPlanetsDevices = false
                         showPythonArea = false
@@ -100,13 +114,15 @@ Dialog  {
                         versionWindow.visible = false
                         planetsElementsVisible = false
                         earthElementsVisible = true
+                        showDiagrammButton = true
 
 
                     }
                     modelSolutions.append({text: "Python"})
-                    versionSelect.currentIndex = 0
                     newProbeButton.enabled = true
                     loadProbeButton.enabled = true
+                    settingsButton.enabled = true
+                    runCalculatorButton.enabled = true
 
                 }
             }
@@ -116,7 +132,7 @@ Dialog  {
                 Layout.preferredWidth: parent.width * 0.5
                 text: "Отмена"
                 onClicked: {
-                    versionSelect.currentIndex = 0
+                    versionWindow.visible = false
                 }
             }
         }

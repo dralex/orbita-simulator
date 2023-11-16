@@ -1,39 +1,32 @@
-#ifndef STEPSACTIVITYMODEL_H
-#define STEPSACTIVITYMODEL_H
+#ifndef STEPSACTIVITYTABLEMODEL_H
+#define STEPSACTIVITYTABLEMODEL_H
 
-#include <QAbstractListModel>
+#include <QAbstractTableModel>
 #include "stepsactivity.h"
 
 class StepsActivity;
 
-class StepsActivityModel : public QAbstractListModel
+class StepsActivityTableModel : public QAbstractTableModel
 {
     Q_OBJECT
     Q_PROPERTY(StepsActivity *list READ list WRITE setList)
 
 public:
-    explicit StepsActivityModel(QObject *parent = nullptr);
+    explicit StepsActivityTableModel(QObject *parent = nullptr);
 
     enum {
-        idRole = Qt::UserRole,
-        deviceNumberRole,
-        timeRole,
-        deviceRole,
-        commandRole,
-        argumentRole
+        tableDataRole = Qt::UserRole + 1,
+        headingRole
     };
 
-    // Basic functionality:
     int rowCount(const QModelIndex &parent = QModelIndex()) const override;
+    int columnCount(const QModelIndex &parent = QModelIndex()) const override;
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
-    // Editable:
-    bool setData(const QModelIndex &index, const QVariant &value,
-                 int role = Qt::EditRole) override;
+    bool setData(const QModelIndex &index, const QVariant &value, int role = Qt::EditRole) override;
 
     Qt::ItemFlags flags(const QModelIndex& index) const override;
-
     virtual QHash<int, QByteArray> roleNames() const override;
 
     StepsActivity *list() const;
@@ -41,6 +34,7 @@ public:
 
 private:
     StepsActivity *mList;
+    QVector<QVector<QString>> table;
 };
 
-#endif // STEPSACTIVITYMODEL_H
+#endif // STEPSACTIVITYTABLEMODEL_H

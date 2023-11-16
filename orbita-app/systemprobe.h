@@ -14,6 +14,7 @@ struct SystemItem {
     QString type;
     double mass;
     bool startMode;
+    QString diagramPath;
 };
 
 class SystemProbe : public QObject
@@ -36,10 +37,14 @@ signals:
 public slots:
     void appendEarthSystem(EarthProbe* earthProbe, int probeIndex, QString systemEngName, QString systemName, QString type, double mass, bool startMode);
     void removeEarthSystem(EarthProbe* earthProbe, int probeIndex, int index);
+    void appendDiagramPath(QString systemEngName, QString diagramPath);
+
+    QString getText(int row, int column);
 
     bool checkUniqueType(QString type);
 
     void changeEarthSystems(EarthProbe* earthProbe, int probeIndex);
+
 
     int size();
 

@@ -18,5 +18,8 @@
         <file>CalculatorFileDialog.qml</file>
         <file>EarthDiagrammDialog.qml</file>
         <file>DiagrammFileDialog.qml</file>
+        <file>SimulationErrorDialog.qml</file>
+        <file>EarthCalculator.qml</file>
+        <file>InfoWindow.qml</file>
     </qresource>
 </RCC>

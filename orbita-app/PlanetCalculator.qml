@@ -4,6 +4,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Layouts 1.15
 
 import PlanetsModel 1.0
+import ImagesModel 1.0
 
 Window  {
     id: planetCalculatorWindow
@@ -12,41 +13,49 @@ Window  {
     visible: false
     flags: Qt.Window | Qt.WindowFixedSize
     title: qsTr("Гравитационный кальулятор")
+    ErrorMessage {id: errorDialog}
 
     onClosing: {
+        simulationController.clearInfo()
+        simulationController.clearImages()
         mainWindow.visible = true
         planetCalculatorWindow.visible = false
     }
 
     ColumnLayout {
         anchors.fill: parent
+        width: parent.width
+        height: parent.height
 
         GroupBox {
             id: cParametrs
             title: qsTr("Параметры модели")
             width: parent.width
             height: parent.height * 0.3
-            Layout.preferredHeight: width
-            Layout.preferredWidth: height
+            Layout.preferredWidth: width
+            Layout.preferredHeight: height
 
             GridLayout {
-                width: parent.width
-                height: parent.height
+                anchors.fill: parent
                 columns: 6
                 rows: 3
                 Text {
+                    width: 80
+                    height: 23
                     Layout.row: 0
                     Layout.column: 0
                     Layout.alignment: Qt.AlignTop
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
                     text: "Планета: "
                 }
 
                 ComboBox {
-                    id: deviceBox
-                    Layout.preferredWidth: parent.width * 0.2
-                    Layout.preferredHeight: 23
+                    id: planetsBox
+                    width: 110
+                    height: 23
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
                     Layout.alignment: Qt.AlignTop
                     Layout.row: 0
                     Layout.column: 1
@@ -63,21 +72,26 @@ Window  {
                 }
 
                 Text {
+                    width: 80
+                    height: 23
                     Layout.row: 1
                     Layout.column: 0
                     Layout.alignment: Qt.AlignVCenter
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
                     text: "Площадь (м^2): "
                 }
 
                 TextInput {
                     id: squareTextInput
+                    width: 80
+                    height: 23
                     Layout.alignment: Qt.AlignVCenter
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
                     Layout.row: 1
                     Layout.column: 1
+                    text: "0"
 
                     onTextChanged: {
                         if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(squareTextInput.text)) {
@@ -95,21 +109,26 @@ Window  {
                 }
 
                 Text {
+                    width: 80
+                    height: 23
                     Layout.row: 2
                     Layout.column: 0
                     Layout.alignment: Qt.AlignBottom
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
                     text: "Масса кг: "
                 }
 
                 TextInput {
                     id: massTextInput
+                    width: 80
+                    height: 23
                     Layout.alignment: Qt.AlignBottom
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
                     Layout.row: 2
                     Layout.column: 1
+                    text: "0"
 
                     onTextChanged: {
                         if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(massTextInput.text)) {
@@ -127,21 +146,26 @@ Window  {
                 }
 
                 Text {
+                    width: 80
+                    height: 23
                     Layout.row: 1
                     Layout.column: 2
                     Layout.alignment: Qt.AlignVCenter
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
                     text: "Y высота (м): "
                 }
 
                 TextInput {
                     id: hTextInput
+                    width: 80
+                    height: 23
                     Layout.alignment: Qt.AlignVCenter
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
                     Layout.row: 1
                     Layout.column: 3
+                    text: "0"
 
                     onTextChanged: {
                         if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(hTextInput.text)) {
@@ -159,21 +183,26 @@ Window  {
                 }
 
                 Text {
+                    width: 80
+                    height: 23
                     Layout.row: 2
                     Layout.column: 2
                     Layout.alignment: Qt.AlignBottom
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
                     text: "X (м): "
                 }
 
                 TextInput {
                     id: xTextInput
+                    width: 80
+                    height: 23
                     Layout.alignment: Qt.AlignBottom
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
                     Layout.row: 2
                     Layout.column: 3
+                    text: "0"
 
                     onTextChanged: {
                         if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(xTextInput.text)) {
@@ -191,18 +220,22 @@ Window  {
                 }
 
                 Text {
+                    width: 80
+                    height: 23
                     Layout.row: 0
                     Layout.column: 4
                     Layout.alignment: Qt.AlignTop
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
                     text: "Шаг (сек): "
                 }
 
                 ComboBox {
                     id: tickComboBox
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
+                    width: 80
+                    height: 23
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
                     Layout.alignment: Qt.AlignTop
                     Layout.row: 0
                     Layout.column: 5
@@ -228,53 +261,64 @@ Window  {
                 }
 
                 Text {
-                    Layout.row: 1
-                    Layout.column: 4
-                    Layout.alignment: Qt.AlignVCenter
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
-                    text: "Cкорость Y (м/с): "
+                    width: 80
+                    height: 23
+                    Layout.row: 0
+                    Layout.column: 2
+                    Layout.alignment: Qt.AlignTop
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
+                    text: "Аэродинам. коэфф.: "
+                    wrapMode: Text.WordWrap
                 }
 
                 TextInput {
-                    id: xVTextInput
-                    Layout.alignment: Qt.AlignVCenter
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
-                    Layout.row: 1
-                    Layout.column: 5
+                    id: coeffTextInput
+                    width: 80
+                    height: 23
+                    Layout.alignment: Qt.AlignTop
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
+                    Layout.row: 0
+                    Layout.column: 3
+                    text: "0.47"
 
                     onTextChanged: {
-                        if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(xVTextInput.text)) {
-                            xVTextInput.text = xVTextInput.text.replace(new RegExp("[^\\d.\\-]", "g"), "");
+                        if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(coeffTextInput.text)) {
+                            coeffTextInput.text = coeffTextInput.text.replace(new RegExp("[^\\d.\\-]", "g"), "");
                         }
                     }
 
                     property string placeholderText: "Введите число..."
 
                     Text {
-                        text: xVTextInput.placeholderText
+                        text: coeffTextInput.placeholderText
                         color: "#aaa"
-                        visible: !xVTextInput.text
+                        visible: !coeffTextInput.text
                     }
                 }
 
                 Text {
-                    Layout.row: 2
+                    width: 80
+                    height: 23
+                    Layout.row: 1
                     Layout.column: 4
-                    Layout.alignment: Qt.AlignBottom
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
-                    text: "Cкорость X (м/с): "
+                    Layout.alignment: Qt.AlignVCenter
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
+                    text: "Cкорость Y (м/с): "
                 }
 
                 TextInput {
                     id: yVTextInput
-                    Layout.alignment: Qt.AlignBottom
-                    Layout.preferredWidth: parent.width * 0.1
-                    Layout.preferredHeight: 23
-                    Layout.row: 2
+                    width: 80
+                    height: 23
+                    Layout.alignment: Qt.AlignVCenter
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
+                    Layout.row: 1
                     Layout.column: 5
+                    text: "0"
 
                     onTextChanged: {
                         if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(yVTextInput.text)) {
@@ -291,32 +335,122 @@ Window  {
                     }
                 }
 
-            }
-
-        }
-
-        GroupBox {
-            id: journalOfFlyGB
-            width: parent.width
-            height: parent.height * 0.6
-            Layout.preferredHeight: height
-            Layout.preferredWidth: width
-            title: qsTr("Журнал полёта")
-            ScrollView {
-                Layout.preferredWidth: parent.width
-                Layout.preferredHeight: parent.height
-
-                TextArea {
-                    id: missionInfo
-                    anchors.fill: parent
-                    readOnly: true
+                Text {
+                    width: 80
+                    height: 23
+                    Layout.row: 2
+                    Layout.column: 4
+                    Layout.alignment: Qt.AlignBottom
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
+                    text: "Cкорость X (м/с): "
                 }
+
+                TextInput {
+                    id: xVTextInput
+                    width: 80
+                    height: 23
+                    Layout.alignment: Qt.AlignBottom
+                    Layout.preferredWidth: width
+                    Layout.preferredHeight: height
+                    Layout.row: 2
+                    Layout.column: 5
+                    text: "0"
+
+                    onTextChanged: {
+                        if (!/^[-]?[0-9]*[.]?[0-9]*$/.test(xVTextInput.text)) {
+                            xVTextInput.text = xVTextInput.text.replace(new RegExp("[^\\d.\\-]", "g"), "");
+                        }
+                    }
+
+                    property string placeholderText: "Введите число..."
+
+                    Text {
+                        text: xVTextInput.placeholderText
+                        color: "#aaa"
+                        visible: !yVTextInput.text
+                    }
+                }
+
             }
+
         }
 
         RowLayout {
+           height: parent.height * 0.6 - buttonsLayout.height
+           width: parent.width
+           Layout.preferredHeight: height
+           Layout.preferredWidth: width
+
+           GroupBox {
+               title: qsTr("Журнал полёта")
+               width: parent.width
+               height: parent.height
+               Layout.preferredHeight: parent.height
+               Layout.preferredWidth: parent.width * 0.5
+
+               ScrollView {
+                   width: parent.width
+                   height: parent.height
+                   Layout.preferredWidth: width
+                   Layout.preferredHeight: height
+
+                   TextArea {
+                       id: missionInfo
+                       anchors.fill: parent
+                       readOnly: true
+                       text: simulationController.telemetryLogContents
+                   }
+               }
+           }
+
+           GroupBox {
+               title: qsTr("Графики")
+               Layout.preferredHeight: parent.height
+               Layout.preferredWidth: parent.width * 0.5
+               ListView {
+                   id: imageListView
+                   width: parent.width
+                   height: parent.height
+                   clip: true
+
+                   model: ImagesModel {
+                        list: simulationController
+                   }
+
+                   ScrollBar.vertical: ScrollBar {
+                       id: probesScrollBar
+                       anchors {
+                           right: parent.right
+                           top: parent.top
+                           bottom: parent.bottom
+                           margins: 0
+                       }
+                   }
+
+                   delegate: Item {
+                       width: imageListView.width
+                       height: imageListView.height
+
+                       Image {
+                           width: parent.width
+                           height: parent.height
+                           fillMode: Image.PreserveAspectFit
+
+                           source: model.imageSource
+                       }
+                   }
+               }
+
+
+           }
+        }
+
+
+        RowLayout {
+            id: buttonsLayout
             width: parent.width
-            height: parent.height * 0.1
+            height: 23
             Layout.preferredHeight: height
             Layout.preferredWidth: width
 
@@ -327,6 +461,31 @@ Window  {
                 Layout.preferredWidth: width
                 Layout.alignment: Qt.AlignLeft | Qt.AlignVCenter
                 text: "Cтарт!"
+                onClicked: {
+                    if (squareTextInput.text &&
+                            massTextInput.text &&
+                            hTextInput.text &&
+                            xTextInput.text &&
+                            xVTextInput.text &&
+                            yVTextInput.text &&
+                            coeffTextInput.text) {
+                    simulationController.addPlanetCalculatorData(planetsBox.currentValue,
+                                                                 tickComboBox.currentValue,
+                                                                 squareTextInput.text,
+                                                                 massTextInput.text,
+                                                                 hTextInput.text,
+                                                                 xTextInput.text,
+                                                                 xVTextInput.text,
+                                                                 yVTextInput.text,
+                                                                 coeffTextInput.text
+                                                                 )
+
+                    simulationController.startCalculatorSimulation(settingsManager, typeMission)
+                    } else {
+                        errorDialog.textOfError = "Вы заполнили не все данные!"
+                        errorDialog.open()
+                    }
+                }
             }
 
             Button {
@@ -337,6 +496,8 @@ Window  {
                 Layout.alignment: Qt.AlignRight | Qt.AlignVCenter
                 text: "Закрыть"
                 onClicked: {
+                    simulationController.clearInfo()
+                    simulationController.clearImages()
                     mainWindow.visibility = 1
                     planetCalculatorWindow.visibility = 0
                 }
