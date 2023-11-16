@@ -1,7 +1,7 @@
 #include "earthmissionsmodel.h"
 
 EarthMissionsModel::EarthMissionsModel(QObject *parent)
-    : QAbstractListModel(parent)
+    : QAbstractListModel(parent), mList(NULL)
 {
 }
 

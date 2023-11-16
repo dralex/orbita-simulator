@@ -1,7 +1,7 @@
 #include "earthprobesmodel.h"
 
 EarthProbesModel::EarthProbesModel(QObject *parent)
-    : QAbstractListModel(parent)
+    : QAbstractListModel(parent), mList(NULL)
 {
 }
 
