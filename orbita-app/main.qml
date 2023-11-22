@@ -78,6 +78,9 @@ ApplicationWindow  {
     property bool checkAction: false
     property bool typeMission: true
 
+    property string currentMissionName: ""
+    property string currentProbeName:""
+
     Connections {
         target: earthProbes
         function onErrorOccurred(errorMessage) {
@@ -404,6 +407,8 @@ ApplicationWindow  {
                     if (typeMission) {
                         if (settingsManager.checkSimulationFile(settingsManager.getSimulationPath() + "/simulation.py")) {
                             probes.saveProbe(listViewProbes.currentIndex, probeNameText.text, firstNumber.text, secondNumber.text, pythonCodeProperty, currentProbe.probeFilePath)
+                            currentMissionName = listViewProbes.currentItem.probesModelData.missionName
+                            currentProbeName = listViewProbes.currentItem.probesModelData.probeName
                             if (probes.checkFileChanges(listViewProbes.currentIndex, planetDevicesItems)) {
                                 settingsManager.saveSettingsToFile("planets_settings.txt", typeMission);
                                 pathToSave = settingsManager.getPlanetsProbesPath()
@@ -422,6 +427,8 @@ ApplicationWindow  {
                         if (settingsManager.checkSimulationFile(settingsManager.getEarthSimulationPath() + "/simulation.py")) {
                             earthProbes.saveEarthProbe(listViewEarthProbes.currentIndex, probeNameText.text, fuelTextInput.text, voltageTextInput.text,
                                                        xz_yz_solar_id.text, xz_yz_radiator_id.text, xy_radiator_id.text, currentProbe.probeFilePath);
+                            currentMissionName = listViewEarthProbes.currentItem.earthProbesModelData.missionName
+                            currentProbeName = listViewEarthProbes.currentItem.earthProbesModelData.probeName
                             if (earthProbes.checkFileChanges(systems, listViewEarthProbes.currentIndex)) {
                                 settingsManager.saveSettingsToFile("earth_settings.txt", typeMission);
                                 earthPathToSave = settingsManager.getEarthProbesPath()
