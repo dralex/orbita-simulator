@@ -5,7 +5,7 @@ You need Python (version 3.x) to run the simulator.
 1. First of all, update all system packages and install python3.
 
 ```
-$ sudo apt update && sudo apt update
+$ sudo apt update && sudo apt upgrade
 $ sudo apt install python3
 $ sudo apt install python3-pip
 ```
