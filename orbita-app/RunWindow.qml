@@ -16,6 +16,8 @@ Window  {
     onClosing: {
         simulationController.clearInfo()
         simulationController.clearImages()
+        currentMissionName = ""
+        currentProbeName = ""
         mainWindow.visible = true
         runWindow.visible = false
     }
@@ -39,8 +41,7 @@ Window  {
             Layout.preferredWidth: parent.width
             Layout.topMargin: 5
             wrapMode: Text.WordWrap
-            text: listViewProbes.currentIndex >= 0 && listViewProbes.currentIndex < listViewProbes.count ?
-                      "<b>Аппарат:</b> " + listViewProbes.currentItem.probesModelData.probeName : "<b>Аппарат:</b> "
+            text: "<b>Аппарат:</b> " + currentProbeName
         }
 
         Text {
@@ -73,8 +74,7 @@ Window  {
                    Column {
                        Layout.preferredWidth: parent.width
                        Layout.preferredHeight: 15
-                       Text {text: listViewProbes.currentIndex >= 0 && listViewProbes.currentIndex < listViewProbes.count ?
-                                       "Миссия: " + listViewProbes.currentItem.probesModelData.missionName : "Миссия: "}
+                       Text {text:"Миссия: " + currentMissionName}
                    }
 
                    ScrollView {
