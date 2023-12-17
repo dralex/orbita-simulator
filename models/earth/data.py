@@ -439,11 +439,14 @@ class RadioDevice(LogicDevice):
 
         orient = self.probe.systems[SUBSYSTEM_ORIENTATION]
         names = orient.ground_stations
+        names_probes = orient.other_probes
 
-        if index >= len(names):
-            return None
+        if index < len(names):
+            return names[index]
+        elif len(names) + len(names_probes) > index >= len(names):
+            return names_probes[index - len(names)]
 
-        return names[index]
+        return None
 
     def put_data_broadcast(self, volume, realdata=None):
         self.put_data(None, volume, realdata)
@@ -1157,10 +1160,8 @@ class Probes:
     def __init__(self, name, probefile, parameters, devices_map):
         probe = ProbeLoader.load_probe(Language, probefile)
 
-        names = ['a', 'b', 'c']
-
         wrapper_probe = WrapperProbe(
-                names[0],
+                probe.name,
                 probe.flight,
                 probe.construction,
                 probe.systems,
@@ -1171,7 +1172,7 @@ class Probes:
         try:
             for i in range(len(probe.satellites.satellite)):
                 wrapper_probe = WrapperProbe(
-                    names[i + 1],
+                    probe.satellites.satellite[i].name,
                     probe.flight,
                     probe.satellites.satellite[i].construction,
                     probe.satellites.satellite[i].systems,
