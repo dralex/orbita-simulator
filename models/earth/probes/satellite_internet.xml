@@ -232,7 +232,7 @@ while sputnik.cpu.run():
 <system name="Telemetry-1" start_mode="ON"/>
 </systems>
 <satellites>
-<satellite>
+<satellite name="Sat2">
 <orbit>604.000000</orbit>
 <start_angular_velocity>1.000000</start_angular_velocity>
 <construction><fuel>0.000000</fuel>

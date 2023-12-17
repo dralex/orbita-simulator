@@ -125,6 +125,14 @@
                                     <xsd:sequence>
                                       <xsd:element name="location_angle" type="v:range" minOccurs="1" maxOccurs="1"/>
                                       <xsd:element name="orbit" type="xsd:decimal" minOccurs="1" maxOccurs="1"/>
+                                      <xsd:element name="orbit2" minOccurs="0" maxOccurs="1">
+                                        <xsd:complexType>
+                                          <xsd:sequence>
+                                          <xsd:element name="height" type="v:range" minOccurs="1" maxOccurs="1"/>
+                                          </xsd:sequence>
+                                          <xsd:attribute name="probe" type="xsd:string"/>
+                                        </xsd:complexType>
+                                      </xsd:element>
                                     </xsd:sequence>
                                     <xsd:attribute name="name" type="xsd:string"/>
                                   </xsd:complexType>

@@ -728,6 +728,10 @@ while sputnik.cpu.run():
           <frm>600</frm>
           <to>650</to>
         </orbit>
+        <orbit2 probe="Sat2">
+          <frm>700</frm>
+          <to>750</to>
+        </orbit2>
       </generator>
     </mission>
   </mission_list>
