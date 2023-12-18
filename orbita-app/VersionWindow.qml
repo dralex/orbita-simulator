@@ -78,6 +78,7 @@ Dialog  {
                         earthElementsVisible = false
                         planetsElementsVisible = true
                         showDiagrammButton = false
+                        gBEPythonCode.visible = false
 
                     } else {
                         if (!earthProbes.size())
@@ -114,7 +115,6 @@ Dialog  {
                         versionWindow.visible = false
                         planetsElementsVisible = false
                         earthElementsVisible = true
-                        showDiagrammButton = true
 
 
                     }
