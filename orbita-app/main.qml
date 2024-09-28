@@ -234,6 +234,7 @@ ApplicationWindow  {
 
                                 probeNameText.text = `${model.probeName}`
                                 earthProbeSystems.changeEarthSystems(earthProbes, index)
+                                earthElementsVisible = true
 
                                 if (currentProbe.pythonCode) {
                                     gBEPythonCode.visible = true
@@ -244,6 +245,7 @@ ApplicationWindow  {
                                     showDiagrammButton = true
                                     earthPythonCodeProperty = ""
                                 }
+
                             }
                         }
                     }
