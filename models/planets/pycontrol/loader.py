@@ -159,7 +159,7 @@ if __name__ == '__main__':
 
         syscall_filter.load()
 
-    send_to_controller('READY')
+    send_to_controller(b'READY')
 
     status = 0
 

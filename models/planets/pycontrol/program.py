@@ -146,12 +146,10 @@ class Program:
             self._stderr_reader = None
 
         if self._request_queue is not None:
-            self._request_queue.unlink()
             self._request_queue.close()
             self._request_queue = None
 
         if self._response_queue is not None:
-            self._response_queue.unlink()
             self._response_queue.close()
             self._response_queue = None
 
