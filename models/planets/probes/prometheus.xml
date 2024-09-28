@@ -34,11 +34,11 @@
   <program>
     <stage id="Landing">
       <command time="0" device="D1" action="PERIOD" argument="10"/>
-	  <command time="169" device="EG1" action="TURNON"/>
-	  <command time="169" device="EG2" action="TURNON"/>
-	  <command time="323" device="EG2" action="TURNOFF"/>
-	  <command time="323" device="EG1" action="TURNOFF"/>
-	  <command time="330" device="EG1" action="TURNON"/>
+	  <command time="160" device="EG1" action="TURNON"/>
+	  <command time="160" device="EG2" action="TURNON"/>
+	  <command time="312" device="EG2" action="TURNOFF"/>
+	  <command time="312" device="EG1" action="TURNOFF"/>
+	  <command time="329" device="EG1" action="TURNON"/>
     </stage>
     <stage id="Surface activity">
       <command time="0" device="D1" action="PERIOD" argument="10"/>
