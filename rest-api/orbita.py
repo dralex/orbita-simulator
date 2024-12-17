@@ -4,6 +4,7 @@
 # The Orbita Simulator RESTful API
 #
 # The server API implementation
+#
 # Copyright (C) 2024 Alexey Fedoseev <aleksey@fedoseev.net>
 #
 # This program is free software: you can redistribute it and/or modify
