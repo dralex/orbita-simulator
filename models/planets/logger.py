@@ -51,7 +51,7 @@ def load_log_language(tr):
 def set_logging(target, do_logging):
     if target in logging:
         logging[target] = do_logging
-        if do_logging and target != 'image':
+        if do_logging and target != 'image' and target != 'short':
             f = open(do_logging, 'w')
             f.truncate()
             f.close()

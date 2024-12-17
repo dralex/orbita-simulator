@@ -35,10 +35,10 @@ import gettext
 import time
 import pyxb
 
-import data
-from logger import set_logging, test_log, open_logs, close_logs
+import gdata as data
+from glogger import set_logging, test_log, open_logs, close_logs, short_log_xml
 from plotgraph import plot_graph
-import venus.testmodel
+import venusg.testmodel
 from errors import CriticalError
 
 _ = gettext.gettext
@@ -73,7 +73,7 @@ class Probe:
     def fromFile(cls, filename):
         xmldata = data.read_xml_file(filename)
         try:
-            testprobe = venus.testmodel.CreateFromDocument(xmldata)
+            testprobe = venusg.testmodel.CreateFromDocument(xmldata)
             if hasattr(testprobe, 'h') and testprobe.h is not None:
                 h = float(testprobe.h)
             else:
@@ -252,9 +252,11 @@ def run(testname, testfile, logfile, debugfile, shortfile, imagetempl, htmltmpl,
 
     if lang != DEFAULT_LANGUAGE:
         set_language(lang)
-
+        
     if logfile is not None:
         set_logging('test', logfile)
+    if shortfile is not None:
+        set_logging('short', shortfile)
 
     open_logs()
         
@@ -275,6 +277,8 @@ def run(testname, testfile, logfile, debugfile, shortfile, imagetempl, htmltmpl,
     gravity_simulation(probe, tick_length, probe.tick, imagetempl)
 
     close_logs()
+    params = {'name': testname}
+    short_log_xml(params)
 
     return True
 

@@ -1,15 +1,15 @@
 unix:
-	rm -rf venus
-	python3 ../../pyxbgen.py xml-schemas/global_parameters.xsd -m venus.global_parameters
-	python3 ../../pyxbgen.py xml-schemas/global_config.xsd -m venus.global_config
-	python3 ../../pyxbgen.py xml-schemas/planets.xsd -m venus.planets
-	python3 ../../pyxbgen.py xml-schemas/testmodel.xsd -m venus.testmodel
+	rm -rf venusg
+	python3 ../../pyxbgen.py xml-schemas/global_parameters.xsd -m venusg.global_parameters
+	python3 ../../pyxbgen.py xml-schemas/global_config.xsd -m venusg.global_config
+	python3 ../../pyxbgen.py xml-schemas/planets.xsd -m venusg.planets
+	python3 ../../pyxbgen.py xml-schemas/testmodel.xsd -m venusg.testmodel
 
 win:
-	python3 ../../pyxbgen.py xml-schemas/global_parameters.xsd -m venus.global_parameters
-	python3 ../../pyxbgen.py xml-schemas/global_config.xsd -m venus.global_config
-	python3 ../../pyxbgen.py xml-schemas/planets.xsd -m venus.planets
-	python3 ../../pyxbgen.py xml-schemas/testmodel.xsd -m venus.testmodel
+	python3 ../../pyxbgen.py xml-schemas/global_parameters.xsd -m venusg.global_parameters
+	python3 ../../pyxbgen.py xml-schemas/global_config.xsd -m venusg.global_config
+	python3 ../../pyxbgen.py xml-schemas/planets.xsd -m venusg.planets
+	python3 ../../pyxbgen.py xml-schemas/testmodel.xsd -m venusg.testmodel
 
 messages:
 	mkdir -p ru/LC_MESSAGES
@@ -19,13 +19,13 @@ pylint:
 	pylint *.py
 
 clean_unix:
-	rm -rf venus
+	rm -rf venusg
 	rm -rf __pycache__
 	rm -rf ru	
 	rm -f *~ pycontrol/*~ api/*~ xml-schemas/*~ probes/*~ *.pyc
 
 clean_win:
-	rmdir venus
+	rmdir venusg
 	rmdir __pycache__
 	rmdir ru	
 	rmdir *~ pycontrol/*~ api/*~ xml-schemas/*~ probes/*~ *.pyc

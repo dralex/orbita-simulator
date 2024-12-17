@@ -123,7 +123,7 @@ def short_log(s, *args):
 
 def short_log_xml(parameters):
     if logging['short']:
-        f = open(logging['short'], 'a')
+        f = open(logging['short'], 'w')
         f.write('<?xml version="1.0" encoding="utf-8"?>\n')
         f.write('<result name="{}">\n'.format(parameters['name']))
         for p in parameters:
