@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # -----------------------------------------------------------------------------
 # -*- coding: utf-8 -*-
 # -----------------------------------------------------------------------------
@@ -6,7 +7,7 @@
 # The computing server
 #
 # Copyright (C) 2013      Nikolay Safronov <bfishh@gmail.com>
-# Copyright (C) 2013-2023 Alexey Fedoseev <aleksey@fedoseev.net>
+# Copyright (C) 2013-2024 Alexey Fedoseev <aleksey@fedoseev.net>
 # Copyright (C) 2016-2023 Ilya Tagunov <tagunil@gmail.com>
 #
 # This program is free software: you can redistribute it and/or modify
@@ -34,6 +35,7 @@ import random
 from time import sleep
 import configparser
 import importlib
+import simplejson as json
 
 TASK_EXTENSION = '.xml'
 
@@ -131,12 +133,12 @@ def write_shortfile_error(shortfile, msg):
     f.write('</o:shortlog>\n')
     f.close()
 
-def process_file(filename, model, idir, wdir, odir, imdir, language, debuglog):
+def process_file(filename, modelname, model, idir, wdir, odir, imdir, language, debuglog):
     server_log('process file: {}'.format(filename))
     if not take_file(filename, idir, wdir):
         return -1
     task = filename.split('.')[0]
-    server_log('process task: {}'.format(task))
+    server_log('process task {} with model {}'.format(task, modelname))
     take_add_files(task, idir, wdir)
 
     taskfile = join(wdir, filename)
@@ -147,6 +149,7 @@ def process_file(filename, model, idir, wdir, odir, imdir, language, debuglog):
     logfile = join(odir, task + '-result.log')
     shortfile = join(wdir, task + '-short.xml')
     htmlfile = join(odir, task + '-full.html')
+    imdir = imdir + '/'
 
     pid = os.fork()
     if pid == 0:
@@ -162,7 +165,7 @@ def process_file(filename, model, idir, wdir, odir, imdir, language, debuglog):
                 write_shortfile_error(shortfile, 'Critical error while starting model')
         try:
             if os.path.isfile(shortfile):
-                os.rename(shortfile, join(outdir, task + "-short.xml"))
+                os.rename(shortfile, join(odir, task + "-short.xml"))
         except Exception as ex: # pylint: disable=W0703
             template = 'general exception of type {0}: arguments:\n{1!r}'
             message = template.format(type(ex).__name__, ex.args)
@@ -183,11 +186,17 @@ if __name__ == '__main__':
     cfg = configparser.ConfigParser()
     cfg.read(sys.argv[1])
 
-    if cfg.has_option('logging', 'logfile'):
-        the_logfile = cfg.get('logging', 'logfile')
+    if cfg.has_option('status', 'version'):
+        version = cfg.get('status', 'version')
+    else:
+        print('server config has no server version\n')
+        sys.exit(1)
+    
+    if cfg.has_option('status', 'logfile'):
+        the_logfile = cfg.get('status', 'logfile')
     else:
         the_logfile = None
-
+        
     indir = cfg.get('general', 'incoming')
     workdir = cfg.get('general', 'working')
     imgdir = cfg.get('general', 'images')
@@ -198,9 +207,10 @@ if __name__ == '__main__':
     debug = cfg.get('general', 'debug').lower() in ('on', 'true', 'yes', '1')
 
     modelsdir = cfg.get('simulation', 'models')
-    calcmodel = cfg.get('simulation', 'calc_model')
+    calcmodels = cfg.get('simulation', 'calc_models').split(' ')
 
     server_log("========= Orbita server started =========")
+    server_log('version: {}'.format(version))
     server_log('in dir: {}'.format(indir))
     server_log('work dir: {}'.format(workdir))
     server_log('out dir: {}'.format(outdir))
@@ -211,27 +221,48 @@ if __name__ == '__main__':
     server_log('debugging: {}'.format(debug))
     server_log('')
     server_log('models dir: {}'.format(modelsdir))
-    server_log('model: {}'.format(calcmodel))
+    server_log('models: {}'.format(calcmodels))
 
     sleep(random.random() + 0.1)
 
+    models = {}
     child_procs = []
 
     try:
-        modelsim = load_model(modelsdir, calcmodel)
-        if modelsim is None:
-            server_log('no model {} available'.format(calcmodel))
-            raise Exception('No model error')
-
-        server_log('loaded model:')
-        server_log('\t{}'.format(calcmodel))
-
+        model_dirs = {}
+        for model in calcmodels:
+            modelsim = load_model(modelsdir, model)
+            if modelsim is None:
+                server_log('no model {} available'.format(model))
+                raise Exception('No model error')
+            server_log('loaded model: {}'.format(model))
+            models[model] = modelsim
+            model_dirs[model] = {'indir': os.path.join(indir, model),
+                                 'workdir': os.path.join(workdir, model),
+                                 'outdir': os.path.join(outdir, model),
+                                 'imgdir': os.path.join(imgdir, model)}
+            for d in model_dirs[model].values():
+                if not os.path.isdir(d):
+                    os.mkdir(d)
+                    server_log('model directory {} created'.format(d))
+        
         while True:
+            the_file = None
+            the_model = None
             if len(child_procs) <= max_process_num:
-                the_file = get_oldest_file(indir)
+                start_index = random.randint(0, len(calcmodels) - 1)
+                for i in range(len(calcmodels)):
+                    index = (start_index + i) % len(calcmodels) 
+                    the_model = calcmodels[index]
+                    the_file = get_oldest_file(model_dirs[the_model]['indir'])
+                    if the_file is not None:
+                        break
                 if the_file is not None:
-                    chpid = process_file(the_file, modelsim, indir, workdir, outdir,
-                                         imgdir, lang, debug)
+                    modelsim = models[the_model]
+                    dirs = model_dirs[the_model]
+                    chpid = process_file(the_file, the_model, modelsim,
+                                         dirs['indir'], dirs['workdir'], dirs['outdir'], dirs['imgdir'],
+                                         lang, debug)
                     if chpid > 0:
                         child_procs.append(chpid)
                     continue
@@ -244,7 +275,7 @@ if __name__ == '__main__':
                     child_procs.remove(p)
                     finished = True
             if not finished:
-                sleep(0.5)
+                sleep(0.1)
 
     except Exception as global_exc: # pylint: disable=W0703
         m = "general exception of type {0}: arguments:\n{1!r}".format(type(global_exc).__name__,
@@ -255,5 +286,5 @@ if __name__ == '__main__':
     for p in child_procs:
         os.waitpid(p, 0)
         server_log('finishing child process %d' % p)
-
+        
     server_log("========= Orbita server finished =========")
