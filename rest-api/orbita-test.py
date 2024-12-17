@@ -1,10 +1,8 @@
 #!/usr/bin/python3
 
 from time import sleep
-import simplejson as json
 import orbita
 
-decoder = json.JSONDecoder()
 api = orbita.OrbitaServerAPI('../orbita_server.cfg',
                              '.',
                              '/static/results',
@@ -37,7 +35,7 @@ XML_BLOB = '''<?xml version="1.0" encoding="utf-8"?>
 res = api.calculation(MODEL, XML_BLOB)
 print(res)
 print()
-task_id = decoder.decode(res)['id']
+task_id = res['id']
 
 sleep(0.1)
 
@@ -49,7 +47,7 @@ sleep(2)
 res = api.status(MODEL, task_id)
 print(res)
 print()
-status = decoder.decode(res)['status']
+status = res['status']
 assert status == 'completed'
 
 print(api.result(MODEL, task_id))

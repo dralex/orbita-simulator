@@ -24,7 +24,6 @@ import time
 import os
 import configparser
 import re
-import simplejson as json
 
 PARAMETERS_FILE = 'parameters-ru.xml'
 DEVICES_FILE = 'devices-ru.xml'
@@ -50,8 +49,6 @@ class OrbitaServerAPI:
 
         self.outurl = resurl
         self.imgurl = imgurl
-        
-        self.encoder = json.encoder.JSONEncoder()
 
         self.temp_dir = tmpdir
         self.start_id = int(time.time() * 1e6)
@@ -65,7 +62,7 @@ class OrbitaServerAPI:
             'tasks': self.__calculate_tasks()
         }
 
-        return self.encoder.encode(result)
+        return result
 
     def parameters(self, model):
         self.__check_model(model)
@@ -74,7 +71,7 @@ class OrbitaServerAPI:
         data = f.read()
         f.close()
 
-        return data
+        return { 'data': data }
     
     def devices(self, model):
         self.__check_model(model)
@@ -83,8 +80,8 @@ class OrbitaServerAPI:
         data = f.read()
         f.close()
 
-        return data
-        
+        return { 'data': data }
+
     def calculation(self, model, xml):
         self.__check_model(model)
         if len(xml) == 0:
@@ -99,7 +96,7 @@ class OrbitaServerAPI:
             'id': task_id
         }
 
-        return self.encoder.encode(result)
+        return result
 
     def status(self, model, task_id):
         self.__check_model(model)
@@ -117,7 +114,7 @@ class OrbitaServerAPI:
             'status': status
         }
 
-        return self.encoder.encode(result)
+        return result
 
     def result(self, model, task_id):
         self.__check_model(model)

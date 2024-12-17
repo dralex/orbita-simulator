@@ -53,7 +53,7 @@ Arguments:
 
 * model: `planets`
 
-Response: `...XML BLOB...`
+Response: `{"data": "...XML BLOB..."}`
 
 ## GET /devices
 
@@ -77,7 +77,7 @@ Arguments:
 
 * model: `planets`
 
-Response: `...XML BLOB...`
+Response: `{"data": "...XML BLOB..."}`
 
 ## POST /calculation
 
