@@ -73,14 +73,14 @@ def get_devices():
         abort(400)
     return jsonify(res)
 
-@app.route('/calculate', methods=['POST'])
-def post_calculate():
+@app.route('/calculation', methods=['POST'])
+def post_calculation():
     if not request.json or 'model' not in request.json or 'xml' not in request.json:
         abort(400)
     try:
         model = request.json['model']
         xml = request.json['xml']
-        res = orbita_api.calculate(model, xml)
+        res = orbita_api.calculation(model, xml)
     except orbita.OrbitaNotFoundException:
         abort(404)
     except orbita.OrbitaBadRequestException:
