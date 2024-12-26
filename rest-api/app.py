@@ -31,12 +31,13 @@ cfg = configparser.ConfigParser()
 cfg.read(SERVER_CONFIG)
 
 config = cfg.get('server', 'configuration')
+samplesdir = cfg.get('server', 'samples')
 tempdir = cfg.get('storage', 'tempdir')
 resurl = cfg.get('web', 'results')
 imgurl = cfg.get('web', 'images')
 
 app = Flask(__name__)
-orbita_api = orbita.OrbitaServerAPI(config, tempdir, resurl, imgurl)
+orbita_api = orbita.OrbitaServerAPI(config, samplesdir, tempdir, resurl, imgurl)
 
 @app.route('/server', methods=['GET'])
 def get_server():
