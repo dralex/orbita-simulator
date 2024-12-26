@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:probe name="apollo" xmlns:v="venus">
+  <flight>
+    <mission name="Moon"/>
+    <start_height></start_height>
+  </flight>
+  <parameters>
+    <radius_external>1.171</radius_external>
+    <radius_internal>1.17</radius_internal>
+    <absorber>OFF</absorber>
+    <isolator>OFF</isolator>
+  </parameters>
+  <devices>
+    <device number="1" name="camera" start_state="OFF"/>
+    <device number="1" name="generator" start_state="ON" in_safe_mode="ON"/>
+    <device number="2" name="generator" start_state="ON" in_safe_mode="ON"/>
+    <device number="1" name="moon_damper" start_state="ON"/>	
+    <device number="1" name="transmitter" start_state="ON" in_safe_mode="ON"/>
+    <device number="1" name="diagn" start_state="ON" in_safe_mode="ON"/>
+    <device number="1" name="cpu" start_state="ON" in_safe_mode="ON"/>
+    <device number="1" name="engine_g" start_state="OFF" in_safe_mode="OFF"/>
+    <device number="1" name="fueltank_large" start_state="ON" in_safe_mode="ON"/>
+  </devices>
+  <python_code></python_code>
+</v:probe>

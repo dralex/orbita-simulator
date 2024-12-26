@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<v:probe name="Mercury" xmlns:v="venus">
+  <flight>
+    <mission name="Mercury"/>
+    <start_height></start_height>
+  </flight>
+  <parameters>
+    <radius_external></radius_external>
+    <radius_internal></radius_internal>
+    <absorber>OFF</absorber>
+    <isolator>OFF</isolator>
+  </parameters>
+  <devices>
+  </devices>
+  <python_code></python_code>
+</v:probe>

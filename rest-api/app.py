@@ -49,11 +49,12 @@ def get_server():
 
 @app.route('/parameters', methods=['GET'])
 def get_parameters():
-    if not request.json or 'model' not in request.json:
+    if not request.json or 'model' not in request.json or 'mission' not in request.json:
         abort(400)
     try:
         model = request.json['model']
-        res = orbita_api.parameters(model)
+        mission = request.json['mission']
+        res = orbita_api.parameters(model, mission)
     except orbita.OrbitaNotFoundException:
         abort(404)
     except orbita.OrbitaBadRequestException:
@@ -67,6 +68,20 @@ def get_devices():
     try:
         model = request.json['model']
         res = orbita_api.devices(model)
+    except orbita.OrbitaNotFoundException:
+        abort(404)
+    except orbita.OrbitaBadRequestException:
+        abort(400)
+    return jsonify(res)
+
+@app.route('/sample', methods=['GET'])
+def get_sample():
+    if not request.json or 'model' not in request.json or 'mission' not in request.json:
+        abort(400)
+    try:
+        model = request.json['model']
+        mission = request.json['mission']
+        res = orbita_api.sample(model, mission)
     except orbita.OrbitaNotFoundException:
         abort(404)
     except orbita.OrbitaBadRequestException:

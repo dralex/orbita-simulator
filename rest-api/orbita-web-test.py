@@ -13,8 +13,14 @@ print()
 
 print('parameters')
 url = BASE_URL + 'parameters'
-response = requests.get(url, json={"model": "planets"})
-print('data len: ', len(response.json()['data']))
+response = requests.get(url, json={"model": "planets", "mission": "Moon"})
+print(response.json())
+print()
+
+print('sample')
+url = BASE_URL + 'sample'
+response = requests.get(url, json={"model": "planets", "mission": "Moon"})
+print(response.json())
 print()
 
 print('devices')

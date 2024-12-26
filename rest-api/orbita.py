@@ -21,22 +21,48 @@
 # along with this program. If not, see https://www.gnu.org/licenses/
 # -----------------------------------------------------------------------------
 
+import sys
 import time
 import os
 import configparser
 import re
+import importlib
+import pyxb
 
 PARAMETERS_FILE = 'parameters-ru.xml'
 DEVICES_FILE = 'devices-ru.xml'
 TASK_EXTENSION = '.xml'
+XML_ROOT = 'venus'
+XML_PARAMETERS = 'global_parameters'
+
+MISSION_START_HEIGHTS = {
+    'Moon': (45000.0, 55000.0),
+    'Mars': (75000.0, 85000.0),
+    'Mercury': (90000.0, 110000.0),
+    'Venus': (240000.0, 260000.0)
+}
+MISSION_NEED_CONSTRUCTION = {
+    'Moon': False,
+    'Mars': False,
+    'Mercury': True,
+    'Venus': True
+}
+MISSION_PROBE_RADIUS = {
+    'Moon': 'none',
+    'Mars': 'none',
+    'Mercury': 'internal',
+    'Venus': 'both'
+}
 
 class OrbitaNotFoundException(Exception):
     pass
 class OrbitaBadRequestException(Exception):
     pass
+class OrbitaInternalErrorException(Exception):
+    pass
 
 class OrbitaServerAPI:
-    def __init__(self, configfile, tmpdir, resurl, imgurl):
+    def __init__(self, configfile, samplesdir, tmpdir, resurl, imgurl):
         cfg = configparser.ConfigParser()
         cfg.read(configfile)
 
@@ -51,6 +77,7 @@ class OrbitaServerAPI:
         self.outurl = resurl
         self.imgurl = imgurl
 
+        self.samples_dir = samplesdir
         self.temp_dir = tmpdir
         self.start_id = int(time.time() * 1e6)
         self.re_id = re.compile(r'\d+')
@@ -65,14 +92,35 @@ class OrbitaServerAPI:
 
         return result
 
-    def parameters(self, model):
+    def parameters(self, model, missionname):
         self.__check_model(model)
-
-        f = open(os.path.join(self.modelsdir, model, PARAMETERS_FILE))
-        data = f.read()
-        f.close()
-
-        return { 'data': data }
+        module = self.__import_module(model, XML_ROOT, XML_PARAMETERS)
+        results = {}
+        try:
+            params_path = os.path.join(self.modelsdir, model, PARAMETERS_FILE)
+            f = open(params_path)
+            xmldata = f.read()
+            f.close()
+            parameters = module.CreateFromDocument(xmldata)
+            for p in parameters.missions.mission:
+                if p.name == missionname:
+                    results['devices'] = p.devices.replace('\n', '').replace(' ', '').replace('\t', '').split(',')
+                if (hasattr(p, 'construction') and p.construction is not None and
+                    hasattr(p.construction, 'program') and p.construction.program):
+                    results['program'] = p.construction.program
+                if missionname in MISSION_START_HEIGHTS:
+                    results['start_height'] = MISSION_START_HEIGHTS[missionname]
+                if missionname in MISSION_NEED_CONSTRUCTION:
+                    results['need_construction'] = MISSION_NEED_CONSTRUCTION[missionname]
+                if missionname in MISSION_PROBE_RADIUS:
+                    results['probe_radius'] = MISSION_PROBE_RADIUS[missionname]
+        except pyxb.BadDocumentError as e:
+            raise OrbitaInternalErrorException()
+        except pyxb.ValidationError as e:
+            raise OrbitaInternalErrorException()
+        if len(results) == 0:
+            raise OrbitaNotFoundException()
+        return results
     
     def devices(self, model):
         self.__check_model(model)
@@ -80,6 +128,19 @@ class OrbitaServerAPI:
         f = open(os.path.join(self.modelsdir, model, DEVICES_FILE))
         data = f.read()
         f.close()
+
+        return { 'data': data }
+
+    def sample(self, model, mission):
+        self.__check_model(model)
+
+        sample_path = os.path.join(self.samples_dir, model + '-' + mission + TASK_EXTENSION)
+        if os.path.isfile(sample_path):
+            f = open(sample_path)
+            data = f.read()
+            f.close() 
+        else:
+            raise OrbitaNotFoundException()            
 
         return { 'data': data }
 
@@ -98,7 +159,7 @@ class OrbitaServerAPI:
         }
 
         return result
-
+    
     def status(self, model, task_id):
         self.__check_model(model)
         self.__check_id(task_id)
@@ -179,3 +240,10 @@ class OrbitaServerAPI:
     def __check_id(self, num):
         if re.match(self.re_id, num) is None:
             raise OrbitaBadRequestException()
+
+    def __import_module(self, modelname, moduledir, module):
+        modelpath = os.path.join(self.modelsdir, modelname)
+        if os.path.isdir(modelpath):
+            sys.path.append(os.path.abspath(modelpath))
+            return importlib.import_module('{}.{}'.format(moduledir, module))
+        return None

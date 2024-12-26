@@ -4,6 +4,7 @@ from time import sleep
 import orbita
 
 api = orbita.OrbitaServerAPI('../orbita_server.cfg',
+                             '../samples',
                              '.',
                              '/static/results',
                              '/static/images/')
@@ -11,12 +12,14 @@ api = orbita.OrbitaServerAPI('../orbita_server.cfg',
 print(api.server())
 print()
 
-print(api.parameters('planets'))
+print(api.parameters('planets', 'Moon'))
 print()
 
 print(api.devices('planets'))
 print()
 
+print(api.sample('planets', 'Moon'))
+print()
 
 MODEL = 'planets_gravity'
 XML_BLOB = '''<?xml version="1.0" encoding="utf-8"?>
