@@ -38,7 +38,7 @@ Obtain the list of available mission parameters.
 Run the calculation on the sever. Arguments:
 
 * **model** - the name of the calculation model;
-* **mission* - the name of the particular mission.
+* **mission** - the name of the particular mission.
 
 Return codes:
 
@@ -51,9 +51,9 @@ Return value in JSON format:
 * **program** - the mission default program (if available);
 * **need_construction** - the boolean value if probe construction is required;
 * **probe_radius** - what type of radius input is availabler for the mission, variants:
-** **none** - radius cannot be changed;
-** **internal** - internal radius need to be set;
-** **both** - the both internal and external radius need to be set.
+ * **none** - radius cannot be changed;
+ * **internal** - internal radius need to be set;
+ * **both** - the both internal and external radius need to be set.
 
 Return value is the mission parameters list in XML format.
 
@@ -65,8 +65,6 @@ Arguments:
 
 * model: `planets`
 * mission: `Moon`
-
-Response: Request: `GET /`
 
 Response: `{'devices': ['camera', 'generator', 'moon_damper', 'transmitter', 'diagn', 'cpu', 'engine_g', 'fueltank_large'], 'need_construction': False, 'probe_radius': 'none', 'program': "\n\t  t_off = # CALCULATE AND SET t_off\nstart_angle = # CALCULATE AND SET start_angle\n\nprobe.engine_set_angle('ERD1', start_angle)\nprobe.set_device_state('ERD1', STATE_ON)\nengine = True\n\nprobe.set_device_period('D1', 10)\n\nwhile probe.run():\n    t = probe.cpu_get_flight_time()\n    if engine and t >= t_off:\n        probe.set_device_state('ERD1', STATE_OFF)\n        engine = False\n        continue\n\n        ", 'start_height': [45000.0, 55000.0]}`
 
@@ -101,7 +99,7 @@ Obtain the default probe XML for the mission.
 Run the calculation on the sever. Arguments:
 
 * **model** - the name of the calculation model;
-* **mission* - the name of the particular mission.
+* **mission** - the name of the particular mission.
 
 Return codes:
 
