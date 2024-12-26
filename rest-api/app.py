@@ -31,7 +31,7 @@ cfg = configparser.ConfigParser()
 cfg.read(SERVER_CONFIG)
 
 config = cfg.get('server', 'configuration')
-samplesdir = cfg.get('server', 'samples')
+samplesdir = cfg.get('server', 'probes')
 tempdir = cfg.get('storage', 'tempdir')
 resurl = cfg.get('web', 'results')
 imgurl = cfg.get('web', 'images')
