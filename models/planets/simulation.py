@@ -590,6 +590,8 @@ def run(probename, probefile, missionfile, debugfile, shortfile, imagedir, htmlt
             simulation_stage2(the_probe, program, tick_length_2)
         else:
             data.write_short_log(the_probe, 'landing')
+    except Terminated as e:
+        debug_log(_("Termination error: {}").format(e))
     finally:
         close_logs()
     return True
