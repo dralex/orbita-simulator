@@ -110,15 +110,15 @@ class OrbitaServerAPI:
             for p in parameters.missions.mission:
                 if p.name == missionname:
                     results['devices'] = p.devices.replace('\n', '').replace(' ', '').replace('\t', '').split(',')
-                if (hasattr(p, 'construction') and p.construction is not None and
-                    hasattr(p.construction, 'program') and p.construction.program):
-                    results['program'] = p.construction.program
-                if missionname in MISSION_START_HEIGHTS:
-                    results['start_height'] = MISSION_START_HEIGHTS[missionname]
-                if missionname in MISSION_NEED_CONSTRUCTION:
-                    results['need_construction'] = MISSION_NEED_CONSTRUCTION[missionname]
-                if missionname in MISSION_PROBE_RADIUS:
-                    results['probe_radius'] = MISSION_PROBE_RADIUS[missionname]
+                    if (hasattr(p, 'construction') and p.construction is not None and
+                        hasattr(p.construction, 'program') and p.construction.program):
+                        results['program'] = p.construction.program
+                    if missionname in MISSION_START_HEIGHTS:
+                        results['start_height'] = MISSION_START_HEIGHTS[missionname]
+                    if missionname in MISSION_NEED_CONSTRUCTION:
+                        results['need_construction'] = MISSION_NEED_CONSTRUCTION[missionname]
+                    if missionname in MISSION_PROBE_RADIUS:
+                        results['probe_radius'] = MISSION_PROBE_RADIUS[missionname]
         except pyxb.BadDocumentError as e:
             raise OrbitaInternalErrorException()
         except pyxb.ValidationError as e:
